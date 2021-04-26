@@ -1539,7 +1539,7 @@ GameObject:
   m_Component:
   - component: {fileID: 978000678}
   m_Layer: 0
-  m_Name: Map Test 2
+  m_Name: Map Test 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1822,27 +1822,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1099877974815473501}
   m_PrefabAsset: {fileID: 0}
---- !u!50 &1357053018
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1357053016}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!4 &1357053019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1099877973811568956, guid: f8e6509723cb3d3498d3b4a27c1d50f4,
@@ -3024,11 +3003,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Daddy
       objectReference: {fileID: 0}
-    - target: {fileID: 1099877973811568898, guid: f8e6509723cb3d3498d3b4a27c1d50f4,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 1099877973811568956, guid: f8e6509723cb3d3498d3b4a27c1d50f4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3084,8 +3058,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1099877973811568957, guid: f8e6509723cb3d3498d3b4a27c1d50f4, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8e6509723cb3d3498d3b4a27c1d50f4, type: 3}
 --- !u!114 &1116585847667386684
 MonoBehaviour:
@@ -3310,11 +3283,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b23697a93bc40a45ad0db2e76efbb71, type: 3}
---- !u!114 &2457380074626988794
+--- !u!114 &2457380074626988794 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2457380074626988794, guid: f8e6509723cb3d3498d3b4a27c1d50f4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1099877974815473501}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357053016}
   m_Enabled: 1
@@ -3623,8 +3596,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerController
       value: 
-      objectReference: {fileID: 8023726949506168224, guid: 1c1cdb42a0000b34cbcf27690f24f597,
-        type: 3}
+      objectReference: {fileID: 2457380074626988794}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8cc77c5973f5db45a6d134bc5697d72, type: 3}
 --- !u!1001 &6351393590777208735
