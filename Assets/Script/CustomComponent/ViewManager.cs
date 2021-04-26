@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 
-public class SceneOutput : Singleton<SceneOutput>
+public class ViewManager : Singleton<ViewManager>
 {
     // Start is called before the first frame update
     void Start()
@@ -18,25 +18,19 @@ public class SceneOutput : Singleton<SceneOutput>
     #region Movement
     public static void MoveOutput(in Sequence sequence, in Transform moveObject, in  Vector2 destination,in float duration)
     {
-        sequence.Append(moveObject.DOMoveX(destination.x, duration));
-        sequence.Join(moveObject.DOMoveY(destination.y, duration));
+        sequence.Append(moveObject.DOMove(destination, duration));
     }
     public static void MoveOutput(in Sequence sequence, in Transform moveObject, in Vector2 destination, in float duration, in Ease ease)
     {
-        sequence.Append(moveObject.DOMoveX(destination.x, duration).SetEase(ease));
-        sequence.Join(moveObject.DOMoveY(destination.y, duration).SetEase(ease));
+        sequence.Append(moveObject.DOMove(destination, duration).SetEase(ease));
     }
     public static void MoveOutput(in Transform moveObject, in Vector2 destination, in float duration)
     {
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(moveObject.DOMoveX(destination.x, duration));
-        sequence.Join(moveObject.DOMoveY(destination.y, duration));
+        moveObject.DOMove(destination, duration);
     }
     public static void MoveOutput(in Transform moveObject, in Vector2 destination, in float duration, in Ease ease)
     {
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(moveObject.DOMoveX(destination.x, duration).SetEase(ease));
-        sequence.Join(moveObject.DOMoveY(destination.y, duration).SetEase(ease));
+        moveObject.DOMove(destination, duration).SetEase(ease);
     }
     public static void SetPosition(in Transform moveObject, in Vector3 destination)
     {

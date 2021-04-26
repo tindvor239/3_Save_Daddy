@@ -56,25 +56,25 @@ public class GameController : Singleton<GameController>
     #region Movement Handle
     public static void Move(in Sequence sequence, in Transform moveObject, in Vector2 destination, in float duration)
     {
-        SceneOutput.MoveOutput(sequence, moveObject, destination, duration);
+        ViewManager.MoveOutput(sequence, moveObject, destination, duration);
     }
     public static void Move(in Sequence sequence, in Transform moveObject, in Vector2 destination, in float duration, in Ease ease)
     {
-        SceneOutput.MoveOutput(sequence, moveObject, destination, duration, ease);
+        ViewManager.MoveOutput(sequence, moveObject, destination, duration, ease);
     }
     public static void Move(in Transform moveObject, in Vector2 destination, in float duration)
     {
-        SceneOutput.MoveOutput(moveObject, destination, duration);
+        ViewManager.MoveOutput(moveObject, destination, duration);
     }
     public static void Move(in Transform moveObject, in Vector2 destination, in float duration, in Ease ease)
     {
-        SceneOutput.MoveOutput(moveObject, destination, duration, ease);
+        ViewManager.MoveOutput(moveObject, destination, duration, ease);
     }
     #endregion
     #region Rotate Handle
     public static void Rotate(in Transform transform, in Quaternion target,in float duration)
     {
-        SceneOutput.Rotating(transform, target, duration);
+        ViewManager.Rotating(transform, target, duration);
     }
     #endregion
     #region Calculation
@@ -85,12 +85,12 @@ public class GameController : Singleton<GameController>
     public static void LookRotation(Vector3 axis, GameObject gameObject, Vector3 lookDirection)
     {
         Quaternion lookRotation = Quaternion.LookRotation(axis, lookDirection);
-        SceneOutput.Rotating(gameObject.transform, lookRotation);
+        ViewManager.Rotating(gameObject.transform, lookRotation);
     }
     public static void LookRotation(Vector3 axis, GameObject gameObject, Vector3 lookDirection, float min, float max)
     {
         Quaternion lookRotation = Quaternion.LookRotation(axis, lookDirection);
-        SceneOutput.Rotating(gameObject.transform, lookRotation, min, max);
+        ViewManager.Rotating(gameObject.transform, lookRotation, min, max);
     }
     public static void MoveToDestination(CharacterController controller, Transform destination)
     {
@@ -100,13 +100,12 @@ public class GameController : Singleton<GameController>
             GameManager.Instance.PassedDestinations.Add(GameManager.Instance.Destinations[index]);
             GameManager.Instance.Destinations[index].gameObject.SetActive(false);
             GameManager.Instance.Destinations[index] = controller.transform;
-            CharacterController.Move(controller, destination.position, 3f, Ease.Linear);
+            controller.Move(destination.position, Ease.Linear);
             if (index > 0)
             {
                 index = GameManager.GetDestinationIndex(controller.transform);
                 GameManager.Instance.Destinations[index] = GameManager.Instance.PassedDestinations[0];
                 GameManager.Instance.PassedDestinations.Remove(GameManager.Instance.Destinations[index]);
-                //GameManager.Instance.Destinations[index].gameObject.SetActive(true);
             }
         }
     }

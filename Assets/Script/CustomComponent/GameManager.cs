@@ -124,16 +124,24 @@ public class GameManager : Singleton<GameManager>
     public static int GetNextDestinationIndex(CharacterController controller)
     {
         int index = GetDestinationIndex(controller.transform);
-        if(index != -1)
+        controller.GetComponent<Collider2D>().enabled = false;
+        if (index != -1 && index + 1 < Instance.destinations.Count)
         {
-            if(index + 1 < Instance.destinations.Count)
+            for (int i = index + 1; i < Instance.destinations.Count; i++)
             {
-                return index + 1;
+                bool isBlocked = IsBlocked(Instance.destinations[index].position, Instance.destinations[i].position);
+                if (!isBlocked)
+                {
+                    controller.GetComponent<Collider2D>().enabled = true;
+                    return i;
+                }
             }
+            controller.GetComponent<Collider2D>().enabled = true;
             return -1;
         }
         else
         {
+            controller.GetComponent<Collider2D>().enabled = true;
             return 0;
         }
     }

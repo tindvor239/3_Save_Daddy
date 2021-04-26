@@ -16,7 +16,7 @@ public class EnemyController : CharacterController
         if(!isBlocked)
         {
             isBlocked = GameManager.IsBlocked(transform.position, player.transform.position, 1 << LayerMask.NameToLayer("Player"));
-            if(!isBlocked)
+            if(!isBlocked && gameObject.activeInHierarchy)
             {
                 GameController.Move(transform, player.transform.position, 0.6f);
                 StartCoroutine(Kill(0.7f));

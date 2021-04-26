@@ -708,6 +708,20 @@ PrefabInstance:
       propertyPath: trap
       value: 
       objectReference: {fileID: 5310699195740216733}
+    - target: {fileID: 1821799509, guid: 4d49c545d1367c54584308f93b8b79d6, type: 3}
+      propertyPath: isLoopingPin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892875413353439214, guid: 4d49c545d1367c54584308f93b8b79d6,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892875414139209937, guid: 4d49c545d1367c54584308f93b8b79d6,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6104131516384771422, guid: 4d49c545d1367c54584308f93b8b79d6,
         type: 3}
       propertyPath: m_LocalPosition.x

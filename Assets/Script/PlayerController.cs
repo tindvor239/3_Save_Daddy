@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.CustomComponents;
+using DG.Tweening;
 public class PlayerController : CharacterController
 {
     // Start is called before the first frame update
@@ -13,7 +14,6 @@ public class PlayerController : CharacterController
     {
         
     }
-
     public void MovePlayerToNextDestination()
     {
         int index = GameManager.GetNextDestinationIndex(this);
@@ -27,7 +27,10 @@ public class PlayerController : CharacterController
                 if (!isBlocked)
                 {
                     GameController.MoveToDestination(this, GameManager.Instance.Destinations[index]);
-                    GameManager.isWin();
+                    if(!GameManager.isWin())
+                    {
+                        MovePlayerToNextDestination();
+                    }
                 }
             }
         }

@@ -8,15 +8,15 @@ public class CameraController : CharacterController
     [SerializeField]
     private Vector3 offset;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         player = GameController.PlayerController;
     }
 
     // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
         Vector3 target = new Vector3(player.transform.position.x + offset.x, player.transform.position.y + offset.y, transform.position.z);
-        SceneOutput.SetPosition(transform, target);
+        ViewManager.SetPosition(transform, target);
     }
 }

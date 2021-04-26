@@ -273,7 +273,7 @@ PrefabInstance:
     - target: {fileID: 2102019891374306397, guid: 3aed6594c07d02745b8fc715f8823a1d,
         type: 3}
       propertyPath: m_Name
-      value: Scene Output
+      value: View Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aed6594c07d02745b8fc715f8823a1d, type: 3}
