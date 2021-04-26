@@ -10,7 +10,11 @@ public class Trap : Obstacle
     private ParticleSystem effect;
     private void Awake()
     {
-        
+        hitBox = GetComponent<Collider2D>();
+        if (GetComponent<ParticleSystem>())
+        {
+            effect = GetComponent<ParticleSystem>();
+        }
     }
     private void Start()
     {
@@ -46,6 +50,9 @@ public class Trap : Obstacle
     public void Disarmed()
     {
         hitBox.enabled = false;
-        effect.Stop();
+        if(effect != null)
+        {
+            effect.Stop();
+        }
     }
 }
