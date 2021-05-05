@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Pin : Item
+public abstract class Pin : Model, IInteractable
 {
     [SerializeField]
     private Trap trap;
+    [SerializeField]
+    protected Transform mainTransform;
     [SerializeField]
     private bool isLoopingPin = false;
     private PlayerController player;
@@ -17,16 +19,21 @@ public abstract class Pin : Item
     protected float triggerDuration = 0;
     #region Properties
     public bool IsLoopingPin { protected get => isLoopingPin; set => isLoopingPin = value; }
+    public new Behaviour collider { get; private set; }
     #endregion
     protected delegate void OnUnpinTriggered();
     protected event OnUnpinTriggered onUnpinTrigger;
 
-    protected override void Start()
+    protected virtual void Start()
     {
-        player = GameController.PlayerController;
+        collider = GetComponent<Collider2D>();
     }
     protected virtual void Update()
     {
+        if(player == null)
+        {
+            player = GameManager.Instance.Player;
+        }
         if(isLoopingPin && onUnpinTrigger != null)
         {
             triggerDuration += Time.deltaTime;
@@ -34,7 +41,7 @@ public abstract class Pin : Item
         }
     }
 
-    public virtual void Unpin()
+    protected virtual void Unpin()
     {
         if(trap != null)
         {
@@ -44,8 +51,7 @@ public abstract class Pin : Item
         onUnpinTrigger += OnTrigger;
         StartCoroutine(StartMoveObject(0.8f));
     }
-
-    protected virtual void OnTrigger()
+    private void OnTrigger()
     {
         if (triggerDuration >= unpinDelay)
         {
@@ -54,7 +60,7 @@ public abstract class Pin : Item
             onUnpinTrigger = null;
         }
     }
-    protected IEnumerator StartMoveObject(float duration)
+    private IEnumerator StartMoveObject(float duration)
     {
         yield return new WaitForSeconds(duration);
         EnemyController enemy = GameManager.GetClosestEnemy();
@@ -67,5 +73,15 @@ public abstract class Pin : Item
     protected virtual void GetDestination()
     {
         player.MovePlayerToNextDestination();
+    }
+
+    public void Interact()
+    {
+        Unpin();
+    }
+    public override Package Pack()
+    {
+        Package result = new Package(poolName, mainTransform.name, mainTransform.position, mainTransform.rotation);
+        return result;
     }
 }

@@ -19,7 +19,7 @@ public class MovePin : Pin
         base.Start();
         unpinDuration = 0.5f;
     }
-    public override void Unpin()
+    protected override void Unpin()
     {
         if(timer <= 0)
         {

@@ -1,0 +1,249 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4346017648622716248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4346017648622716255}
+  - component: {fileID: 2373245489598336425}
+  m_Layer: 2
+  m_Name: Lands
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4346017648622716255
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346017648622716248}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4474138031329556907}
+  - {fileID: 1493947881717789982}
+  - {fileID: 8648559736600900798}
+  - {fileID: 2593890645362590511}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2373245489598336425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346017648622716248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acd84f4912e80a74e818f5707c0620a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parties:
+  - name: Downs
+    pools:
+    - name: Down
+      pooledObjects: []
+      objectToPool: {fileID: 5536609106645377642, guid: 1b23697a93bc40a45ad0db2e76efbb71,
+        type: 3}
+      parent: {fileID: 4474138031329556907}
+    - name: Down 2
+      pooledObjects: []
+      objectToPool: {fileID: 7388152196748197993, guid: 8e63d35b678cdeb4e89512e0fd18c9cb,
+        type: 3}
+      parent: {fileID: 4474138031329556907}
+    - name: Down 3
+      pooledObjects: []
+      objectToPool: {fileID: 5300133222476193094, guid: be7753a90fce1a04fac4be5464c56d05,
+        type: 3}
+      parent: {fileID: 4474138031329556907}
+    - name: Down L Shape
+      pooledObjects: []
+      objectToPool: {fileID: 6745083046450190838, guid: 3889302ed6f0a754b90f33cd9c57040f,
+        type: 3}
+      parent: {fileID: 4474138031329556907}
+    - name: Down Curve
+      pooledObjects: []
+      objectToPool: {fileID: 7338392994203442086, guid: 1b52c1bf5df0cf74ea5d0ac8317cc26d,
+        type: 3}
+      parent: {fileID: 4474138031329556907}
+  - name: Ups
+    pools:
+    - name: Up
+      pooledObjects: []
+      objectToPool: {fileID: 5061161446870495298, guid: 437c5d6cc02a3274cb745b1a61e88d08,
+        type: 3}
+      parent: {fileID: 8648559736600900798}
+    - name: Up 2
+      pooledObjects: []
+      objectToPool: {fileID: 9053955398608374476, guid: 24ff1c655fe9c7c4aa65c494c8cea7bf,
+        type: 3}
+      parent: {fileID: 8648559736600900798}
+    - name: Up 3
+      pooledObjects: []
+      objectToPool: {fileID: 9210164296574014747, guid: 7bcc7f607de39934fbd6e9f89936e106,
+        type: 3}
+      parent: {fileID: 8648559736600900798}
+    - name: Up L Shape
+      pooledObjects: []
+      objectToPool: {fileID: 6745083046450190838, guid: c75887c26c39138458a039f77f373475,
+        type: 3}
+      parent: {fileID: 8648559736600900798}
+    - name: Up Curve
+      pooledObjects: []
+      objectToPool: {fileID: 914350524996816755, guid: 9ec25bb005ab3fd49abacf0a3efa3d39,
+        type: 3}
+      parent: {fileID: 8648559736600900798}
+  - name: Lefts
+    pools:
+    - name: 
+      pooledObjects: []
+      objectToPool: {fileID: 0}
+      parent: {fileID: 0}
+  - name: Rights
+    pools:
+    - name: Right
+      pooledObjects: []
+      objectToPool: {fileID: 5264755956634344040, guid: aa4b2cf2c1e7d0147944ce2eea6f782b,
+        type: 3}
+      parent: {fileID: 2593890645362590511}
+  - name: Others
+    pools:
+    - name: Grass
+      pooledObjects: []
+      objectToPool: {fileID: 7774369831787823431, guid: 4bda94206de7b5445b9588ffa723aa7c,
+        type: 3}
+      parent: {fileID: 4346017648622716255}
+    - name: Sand
+      pooledObjects: []
+      objectToPool: {fileID: 5305961498205008120, guid: 36facd1eae9811242a215653b3d54e47,
+        type: 3}
+      parent: {fileID: 4346017648622716255}
+--- !u!1 &5157762897225470530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2593890645362590511}
+  m_Layer: 2
+  m_Name: Rights
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2593890645362590511
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5157762897225470530}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4346017648622716255}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7253470317865431373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4474138031329556907}
+  m_Layer: 2
+  m_Name: Downs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4474138031329556907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7253470317865431373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4346017648622716255}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7937967170767887855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8648559736600900798}
+  m_Layer: 2
+  m_Name: Ups
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8648559736600900798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7937967170767887855}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4346017648622716255}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8522004271014079113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1493947881717789982}
+  m_Layer: 2
+  m_Name: Lefts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1493947881717789982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8522004271014079113}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4346017648622716255}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

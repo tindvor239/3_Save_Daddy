@@ -48,6 +48,16 @@ namespace UnityEngine.CustomComponents
             pooledObjects.Add(pooledObject);
             return pooledObject;
         }
+        public T CreatePooledObject<T>() where T : MonoBehaviour
+        {
+            GameObject pooledObject = Object.Instantiate(objectToPool, parent);
+            pooledObjects.Add(pooledObject);
+            if(pooledObject.GetComponent<T>() == null)
+            {
+                return pooledObject.GetComponentInChildren<T>();
+            }
+            return pooledObject.GetComponent<T>();
+        }
         public GameObject GetPooledObject()
         {
             foreach(GameObject pooledObject in pooledObjects)

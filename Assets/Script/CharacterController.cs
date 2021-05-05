@@ -1,42 +1,33 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour, IInteractable
+public class CharacterController : Controller, IInteractable
 {
-    protected GameController gameController;
-    protected ViewManager sceneOutput;
-    protected GameManager gameManager;
-    protected new Collider2D collider;
     protected Sequence sequence;
-    [SerializeField]
-    protected float moveSpeed = 8f;
+    protected float moveDuration;
     #region Properties
-    public float MoveSpeed { get => moveSpeed; }
+    public new Component collider { get; private set; }
     public Sequence Sequence { get => sequence; }
     #endregion
-    protected virtual void Start()
+    protected virtual void Awake()
     {
-        gameController = GameController.Instance;
-        sceneOutput = ViewManager.Instance;
-        gameManager = GameManager.Instance;
         sequence = DOTween.Sequence();
         collider = GetComponent<Collider2D>();
+    }
+    protected override void Start()
+    {
+        base.Start();
 
     }
     public void Move(in Vector2 destination, in Ease ease)
     {
-        float duration = MoveDuration(transform.position, destination);
-        GameController.Move(in sequence, transform, destination, duration, ease);
+        moveDuration = MoveDuration(transform.position, destination);
+        GameController.Move(in sequence, transform, destination, moveDuration, ease);
     }
-    public void Move(in Vector2 destination)
+    public override void Move(in Vector3 destination)
     {
-        float duration = MoveDuration(transform.position, destination);
-        GameController.Move(in sequence, transform, destination, duration);
-    }
-    private float MoveDuration(Vector2 fromPosition, Vector2 toPosition)
-    {
-        float duration = Vector2.Distance(fromPosition, toPosition) / moveSpeed;
-        return duration;
+        moveDuration = MoveDuration(transform.position, destination);
+        GameController.Move(in sequence, transform, destination, moveDuration);
     }
     public virtual void Interact()
     {

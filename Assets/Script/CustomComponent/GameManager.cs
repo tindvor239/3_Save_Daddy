@@ -1,24 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.CustomComponents;
 
 public class GameManager : Singleton<GameManager>
 {
+    [Header("Movement")]
     [SerializeField]
     private List<Transform> destinations = new List<Transform>();
     [SerializeField]
     private List<EnemyController> enemies = new List<EnemyController>();
     private List<Transform> passedDestinations = new List<Transform>();
-
     [SerializeField]
     protected GameState gameState;
-
-    private CharacterController player;
-    private static Vector3 from, todir;
+    private PlayerController player;
+    [Header("Game Data")]
+    [SerializeField]
+    private List<Map> mapDatas = new List<Map>();
     #region Properties
+    #region Movement
     public List<Transform> Destinations { get => destinations; }
     public List<Transform> PassedDestinations { get => passedDestinations; }
     public List<EnemyController> Enemies { get => enemies; }
+    public PlayerController Player { get => player; }
+    #endregion
+    #region Pool Parties
+    public List<Map> MapData { get => mapDatas; }
+    #endregion
     #endregion
     protected override void Awake()
     {
@@ -28,12 +36,14 @@ public class GameManager : Singleton<GameManager>
     }
     private void Start()
     {
-        player = GameController.PlayerController;
+        if (CharacterPoolParty.Instance.PlayerPool.PooledObjects.Count == 0)
+        {
+            player = CharacterPoolParty.Instance.PlayerPool.CreatePooledObject<PlayerController>();
+        }
     }
     // Update is called once per frame
     private void Update()
     {
-        Debug.DrawRay(from, todir);
     }
     #region Raycasting
     public static GameObject RayCastObject(Vector3 fromPosition, Vector3 direction)
@@ -57,15 +67,13 @@ public class GameManager : Singleton<GameManager>
     }
     public static GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition)
     {
-        Vector3 direction = GameController.GetDirectionVector(fromPosition, toPosition);
+        Vector3 direction = GetDirectionVector(fromPosition, toPosition);
         GameObject destinateObject = RayCastObject(fromPosition, direction);
         return destinateObject;
     }
     public static GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition, LayerMask ignoreLayer)
     {
-        Vector3 direction = GameController.GetDirectionVector(fromPosition, toPosition);
-        from = fromPosition;
-        todir = direction;
+        Vector3 direction = GetDirectionVector(fromPosition, toPosition);
         GameObject destinateObject = RayCastObject(fromPosition, direction, ignoreLayer);
         return destinateObject;
     }
@@ -99,6 +107,10 @@ public class GameManager : Singleton<GameManager>
     }
     #endregion
     #region Path Handle
+    public static Vector3 GetDirectionVector(Vector3 gameObject, Vector3 target)
+    {
+        return target - gameObject;
+    }
     public bool CheckPlayerInPath()
     {
         foreach(Transform transform in destinations)

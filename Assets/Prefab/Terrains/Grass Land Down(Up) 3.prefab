@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4959078610013724827}
   - component: {fileID: 1470725027112728056}
+  - component: {fileID: 4729092192459298463}
   m_Layer: 0
   m_Name: Grass Land Down(Up) 3
   m_TagString: Untagged
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 530764e3270a2a845b258f5edb82c36d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c0ad04c44b1b9364085b283cd720a3e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,3 +82,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4729092192459298463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5300133222476193094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b77007bacc48b41ac099b7abed3979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolName: Down 3

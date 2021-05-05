@@ -3,40 +3,55 @@ using DG.Tweening;
 
 public class GameController : Singleton<GameController>
 {
-    [SerializeField]
-    private PlayerController playerController;
-    private static PlayerController player;
-    #region Properties
-    public static PlayerController PlayerController { get => player; }
-    #endregion
+    private PlayerController player;
+    private static bool canTrigger = false;
+    private static float unpinDelay = 1f;
+    private static float unpinDelayTimer = 1f;
     protected override void Awake()
     {
         #region Singleton
         base.Awake();
         #endregion
-        player = playerController;
     }
     private void Start()
     {
-        player.MovePlayerToNextDestination();
+        //player.MovePlayerToNextDestination();
+        player = GameManager.Instance.Player;
     }
     private void Update()
     {
+        UnpinDelayCountDown();
         if (Input.GetMouseButtonDown(0))
         {
             GameObject clickedObject = GetObjectByMouseRayCast();
             if (clickedObject != null)
             {
-                if (clickedObject.GetComponent<Pin>() != null)
+                if (clickedObject.GetComponent<Pin>() != null && canTrigger)
                 {
-                    clickedObject.GetComponent<Pin>().Unpin();
+                    clickedObject.GetComponent<Pin>().Interact();
+                    unpinDelayTimer = unpinDelay;
                 }
-                else if (clickedObject.transform.parent.GetComponent<Pin>() != null)
+                else if (clickedObject.transform.parent.GetComponent<Pin>() != null && canTrigger)
                 {
-                    clickedObject.transform.parent.GetComponent<Pin>().Unpin();
+                    clickedObject.transform.parent.GetComponent<Pin>().Interact();
+                    unpinDelayTimer = unpinDelay;
                 }
             }
         }
+    }
+    private void UnpinDelayCountDown()
+    {
+        if(unpinDelayTimer > 0)
+        {
+            unpinDelayTimer -= Time.deltaTime;
+            canTrigger = false;
+        }
+        else
+        {
+            unpinDelayTimer = 0;
+            canTrigger = true;
+        }
+        
     }
     #region Behaviours
     #region Inputs
@@ -76,12 +91,21 @@ public class GameController : Singleton<GameController>
     {
         ViewManager.Rotating(transform, target, duration);
     }
+    public static void Rotate(in Transform transform, in Vector3 target, in float duration, Ease ease)
+    {
+        ViewManager.Rotating(transform, target, duration, ease);
+    }
+    public static void Rotate(Sequence sequence, in Transform transform, in Vector3 target, in float duration, Ease ease)
+    {
+        ViewManager.Rotating(sequence, transform, target, duration, ease);
+    }
+    public static void Rotate(in Transform transform, in Vector3 target)
+    {
+        ViewManager.Rotating(transform, target);
+    }
     #endregion
     #region Calculation
-    public static Vector3 GetDirectionVector(Vector3 gameObject, Vector3 target)
-    {
-        return target - gameObject;
-    }
+
     public static void LookRotation(Vector3 axis, GameObject gameObject, Vector3 lookDirection)
     {
         Quaternion lookRotation = Quaternion.LookRotation(axis, lookDirection);
@@ -91,23 +115,6 @@ public class GameController : Singleton<GameController>
     {
         Quaternion lookRotation = Quaternion.LookRotation(axis, lookDirection);
         ViewManager.Rotating(gameObject.transform, lookRotation, min, max);
-    }
-    public static void MoveToDestination(CharacterController controller, Transform destination)
-    {
-        int index = GameManager.GetDestinationIndex(destination);
-        if (index != -1)
-        {
-            GameManager.Instance.PassedDestinations.Add(GameManager.Instance.Destinations[index]);
-            GameManager.Instance.Destinations[index].gameObject.SetActive(false);
-            GameManager.Instance.Destinations[index] = controller.transform;
-            controller.Move(destination.position, Ease.Linear);
-            if (index > 0)
-            {
-                index = GameManager.GetDestinationIndex(controller.transform);
-                GameManager.Instance.Destinations[index] = GameManager.Instance.PassedDestinations[0];
-                GameManager.Instance.PassedDestinations.Remove(GameManager.Instance.Destinations[index]);
-            }
-        }
     }
     #endregion
     #endregion

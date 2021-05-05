@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7812168518036926378}
   - component: {fileID: 4509511055804438579}
+  - component: {fileID: -8793581961219723729}
   m_Layer: 0
   m_Name: Sand
   m_TagString: Untagged
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 926d9f3b6ae1a3a4d805abc8bf9bee69, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 69830370e473a37429cb424aa2fc3490, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,3 +82,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-8793581961219723729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305961498205008120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b77007bacc48b41ac099b7abed3979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolName: Sand

@@ -186,8 +186,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78f966de4386b740a0dbd8704457418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  poolName: Release Pin Pool
   trap: {fileID: 0}
+  mainTransform: {fileID: 6351393589669881010}
   isLoopingPin: 0
   unpinDuration: 0.8
   anchor: {fileID: 6351393591205928743}

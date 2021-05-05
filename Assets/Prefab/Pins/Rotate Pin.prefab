@@ -593,8 +593,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec2b525306f3df47aa8631547cfab30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  poolName: Rotate Pin Pool
   trap: {fileID: 0}
+  mainTransform: {fileID: 6104131516384771422}
   isLoopingPin: 1
   unpinDuration: 0.8
   pinBase: {fileID: 3892875413409255136}

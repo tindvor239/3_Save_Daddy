@@ -1,42 +1,39 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace UnityEngine.CustomComponents
 {
-    public class PoolParty : Singleton<PoolParty>
+    [Serializable]
+    public class PoolParty
     {
         [SerializeField]
-        private List<ObjectPool> objectPools = new List<ObjectPool>();
+        private string name;
+        [SerializeField]
+        protected List<ObjectPool> pools = new List<ObjectPool>();
         #region Properties
-        public List<ObjectPool> ObjectPools { get => objectPools; }
+        public List<ObjectPool> Pools { get => pools; }
         #endregion
-        protected override void Awake()
+        #region Constructor
+        public PoolParty()
         {
-            #region Singleton
-            base.Awake();
-            #endregion
         }
-
-        // Start is called before the first frame update
-        private void Start()
+        public PoolParty(string name)
         {
-        
+            this.name = name;
         }
-
-        // Update is called once per frame
-        private void Update()
+        public PoolParty(string name, List<ObjectPool> pools)
         {
-        
+            this.name = name;
+            this.pools = pools;
         }
-
-        public static ObjectPool GetPool(string name)
+        #endregion
+        public virtual ObjectPool GetPool(string name)
         {
-            for(int index = 0; index < Instance.objectPools.Count; index++)
+            for (int index = 0; index < pools.Count; index++)
             {
-                if(Instance.objectPools[index].Name == name)
+                if (pools[index].Name == name)
                 {
-                    return Instance.objectPools[index];
+                    return pools[index];
                 }
             }
             return null;

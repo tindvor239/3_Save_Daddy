@@ -7,23 +7,26 @@ public class Water : MonoBehaviour
     private SpriteRenderer sprite;
     private PlayerController player;
     private Vector2 lastPosition;
-    [SerializeField]
     private Material material;
+    [SerializeField]
+    private float speedDivider = 6f;
+    [SerializeField]
+    private float runningDivider = 20f;
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-        player = GameController.PlayerController;
+        player = GameManager.Instance.Player;
         material = sprite.material;
     }
     // Update is called once per frame
     private void Update()
     {
-        material.mainTextureOffset += new Vector2(Time.deltaTime / 6, 0);
+        material.mainTextureOffset -= new Vector2(Time.deltaTime / speedDivider, 0);
         material.mainTextureOffset = ClampOffset(material.mainTextureOffset);
     }
     void LateUpdate()
     {
-        Vector2 offset = ((Vector2)player.transform.position - lastPosition) / 12;
+        Vector2 offset = ((Vector2)player.transform.position - lastPosition) / runningDivider;
         material.mainTextureOffset += offset;
         lastPosition = player.transform.position;
     }

@@ -7,7 +7,7 @@ public class RotatePin : Pin
     private  GameObject pinBase;
     [SerializeField]
     private Transform[] pinLocks = new Transform[2];
-    public override void Unpin()
+    protected override void Unpin()
     {
         if (isAlreadyUnpin == false)
         {

@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8937143071039195996}
   m_Layer: 0
-  m_Name: MovePin
+  m_Name: Move Pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -318,10 +318,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 606f16440049aa8499accfb64a13b1c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  poolName: Move Pin Pool
+  trap: {fileID: 0}
+  isLoopingPin: 0
+  unpinDuration: 0.8
   points:
   - {fileID: 8937143072043918581}
   - {fileID: 8937143072242761188}
+  mainTransform: {fileID: 8937143071039195996}
   middle: {fileID: 8937143071580158987}
 --- !u!1 &8937143072043918583
 GameObject:
