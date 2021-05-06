@@ -1,16 +1,26 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
 public class Trap : Obstacle
 {
     protected Collider2D hitBox;
+    [SerializeField]
     protected ParticleSystem effect;
     protected virtual void Awake()
     {
-        hitBox = GetComponent<Collider2D>();
+        if (GetComponent<Collider2D>())
+        {
+            hitBox = GetComponent<Collider2D>();
+        }
         if (GetComponent<ParticleSystem>())
         {
             effect = GetComponent<ParticleSystem>();
+        }
+        else
+        {
+            if(GetComponentInChildren<ParticleSystem>())
+            {
+                effect = GetComponentInChildren<ParticleSystem>();
+            }
         }
     }
     protected virtual void Start()
@@ -19,7 +29,6 @@ public class Trap : Obstacle
     public override void OnBeingHit(GameObject hitObject)
     {
         Debug.Log("Destroy Self");
-        Destroy(gameObject);
     }
 
     protected override void OnHit(GameObject beenHitObject)
@@ -46,9 +55,13 @@ public class Trap : Obstacle
     }
     public virtual void Disarmed()
     {
-        hitBox.enabled = false;
+        if(hitBox != null)
+        {
+            hitBox.enabled = false;
+        }
         if(effect != null)
         {
+            Debug.Log(effect.name + "stop!!");
             effect.Stop();
         }
     }

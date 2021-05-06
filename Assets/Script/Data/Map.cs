@@ -15,7 +15,7 @@ public class Map : Data
     }
     public void Load(List<PoolParty> poolParties)
     {
-        UnPackAllModels(packages, poolParties);
+        UnpackAllModels(packages, poolParties);
         Debug.Log("Loaded");
     }
 }

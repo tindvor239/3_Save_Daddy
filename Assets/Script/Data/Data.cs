@@ -8,29 +8,34 @@ public abstract class Data : ScriptableObject
     {
         List<Package> result = new List<Package>();
         Model[] models = FindObjectsOfType<Model>();
-        foreach(Model model in models)
+        foreach (Model model in models)
         {
             bool isCamera = model is CameraController;
             if (!isCamera)
             {
-                result.Add(model.Pack());
+                bool isPin = model is Pin;
+                if (isPin)
+                {
+                    Debug.Log("In");
+                    Pin pin = (Pin)model;
+                    result.Add(pin.Pack());
+                }
+                else
+                {
+                    result.Add(model.Pack());
+                }
             }
         }
         return result;
     }
-    public void UnPackAllModels(List<Package> packages, List<PoolParty> poolParties)
+    public void UnpackAllModels(List<Package> packages, List<PoolParty> poolParties)
     {
         foreach (Package package in packages)
         {
-            ObjectPool pool = null;
-            pool = GetPool(package, poolParties);
+            ObjectPool pool = GetPool(package, poolParties);
             if (pool != null)
             {
-                Model newModel = pool.CreatePooledObject<Model>();
-                if (newModel != null)
-                {
-                    newModel.Unpack(package, pool);
-                }
+                SpawnPooledObject(package, pool);
             }
         }
     }
@@ -47,7 +52,6 @@ public abstract class Data : ScriptableObject
 
         return null;
     }
-
     private ObjectPool GetPool(Package package, List<ObjectPool> pools)
     {
         ObjectPool result = null;
@@ -60,5 +64,40 @@ public abstract class Data : ScriptableObject
             }
         }
         return result;
+    }
+    private void SpawnPooledObject(Package package, ObjectPool pool)
+    {
+        if(package is PinPackage)
+        {
+            PinPackage pinPackage = (PinPackage)package;
+            Pin pin = GetPooledObject<Pin>(pool);
+            if (pin != null)
+            {
+                pin.Unpack(pinPackage, pool);
+            }
+        }
+        else
+        {
+            GetPooledObject<Model>(pool).Unpack(package, pool);
+        }
+    }
+    private T GetPooledObject<T>(ObjectPool pool) where T : MonoBehaviour
+    {
+        GameObject gameObject = pool.GetPooledObject();
+        if(gameObject == null)
+        {
+            return pool.CreatePooledObject<T>();
+        }
+        else
+        {
+            if(gameObject.GetComponent<T>() == null)
+            {
+                return gameObject.GetComponentInChildren<T>();
+            }
+            else
+            {
+                return gameObject.GetComponent<T>();
+            }
+        }
     }
 }

@@ -72,7 +72,7 @@ namespace UnityEngine.CustomComponents
         }
         public void GetBackToPool(GameObject gameObject)
         {
-            if(CheckObjectIsInPool(gameObject) && gameObject.activeInHierarchy)
+            if(gameObject != null && CheckObjectIsInPool(gameObject) && gameObject.activeInHierarchy)
             {
                 gameObject.SetActive(false);
             }

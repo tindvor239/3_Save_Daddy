@@ -12,6 +12,7 @@ public class PlayerController : CharacterController
     {
         base.Start();
         poolName = CharacterPoolParty.Instance.PlayerPool.Name;
+        MovePlayerToNextDestination();
     }
 
     // Update is called once per frame
@@ -72,10 +73,7 @@ public class PlayerController : CharacterController
     }
     public override void Interact()
     {
+        Debug.Log("Interact with player");
         CharacterPoolParty.Instance.PlayerPool.GetBackToPool(gameObject);
-    }
-    private void OnEnable()
-    {
-        MovePlayerToNextDestination();
     }
 }

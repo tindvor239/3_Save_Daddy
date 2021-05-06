@@ -7,7 +7,7 @@ public class CharacterPath : Model
     // Start is called before the first frame update
     void Start()
     {
-        poolName = PathPoolParty.Instance.Party.Pools[0].Name;
+        poolName = PathPoolParty.Instance.PathPool.Name;
     }
 
     // Update is called once per frame

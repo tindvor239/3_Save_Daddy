@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.CustomComponents;
@@ -13,8 +13,11 @@ public class GameManager : Singleton<GameManager>
     private List<Transform> passedDestinations = new List<Transform>();
     [SerializeField]
     protected GameState gameState;
+    [SerializeField]
     private PlayerController player;
     [Header("Game Data")]
+    [SerializeField]
+    private PathPoolParty pathPoolParty;
     [SerializeField]
     private List<Map> mapDatas = new List<Map>();
     #region Properties
@@ -33,12 +36,25 @@ public class GameManager : Singleton<GameManager>
         #region Singleton
         base.Awake();
         #endregion
+        Transform[] newDestinations = new Transform[pathPoolParty.PathPool.PooledObjects.Count];
+        for (int i = 0; i < pathPoolParty.PathPool.PooledObjects.Count; i++)
+        {
+            if (pathPoolParty.PathPool.PooledObjects[i].activeInHierarchy)
+            {
+                int index = int.Parse(pathPoolParty.PathPool.PooledObjects[i].name) - 1;
+                newDestinations[index] = pathPoolParty.PathPool.PooledObjects[i].transform;
+            }
+        }
+        destinations = newDestinations.ToList();
     }
     private void Start()
     {
-        if (CharacterPoolParty.Instance.PlayerPool.PooledObjects.Count == 0)
+        player = CharacterPoolParty.Instance.PlayerPool.PooledObjects[0].GetComponent<PlayerController>();
+        if (player == null)
         {
             player = CharacterPoolParty.Instance.PlayerPool.CreatePooledObject<PlayerController>();
+            CharacterPoolParty.Instance.PlayerPool.PooledObjects.RemoveAll(x => x == null);
+            CharacterPoolParty.Instance.PlayerPool.PooledObjects.Add(player.gameObject);
         }
     }
     // Update is called once per frame
@@ -157,6 +173,7 @@ public class GameManager : Singleton<GameManager>
             return 0;
         }
     }
+    
     public static EnemyController GetClosestEnemy()
     {
         EnemyController closestEnemy = null;
@@ -173,6 +190,21 @@ public class GameManager : Singleton<GameManager>
             }
         }
         return closestEnemy;
+    }
+
+    private static int GetPath(int startIndex, CharacterController controller)
+    {
+        controller.GetComponent<Collider2D>().enabled = false;
+        for (int i = startIndex; i < Instance.destinations.Count; i++)
+        {
+            bool isBlocked = IsBlocked(controller.transform.position, Instance.destinations[i].position);
+            if (!isBlocked)
+            {
+                controller.GetComponent<Collider2D>().enabled = true;
+                return i;
+            }
+        }
+        return -1;
     }
     #endregion
     #region State Handle

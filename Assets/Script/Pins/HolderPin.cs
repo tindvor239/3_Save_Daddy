@@ -31,7 +31,8 @@ public class HolderPin : Pin
     {
         for (int i = 0; i < destinations.Length; i++)
         {
-            if (destinations[i].position == transform.position)
+            if (Mathf.Round(destinations[i].position.x) == Mathf.Round(transform.position.x) &&
+                Mathf.Round(destinations[i].position.y) == Mathf.Round(transform.position.y))
             {
                 if (i == destinations.Length - 1)
                 {

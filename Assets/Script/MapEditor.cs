@@ -8,6 +8,8 @@ public class MapEditor : Singleton<MapEditor>
     [SerializeField]
     private Map currentMap;
     [SerializeField]
+    private GameManager gameManager;
+    [SerializeField]
     private CharacterPoolParty characterPoolParty;
     [SerializeField]
     private ObstaclePoolParty obstaclePoolParty;
@@ -24,7 +26,7 @@ public class MapEditor : Singleton<MapEditor>
     public PinPoolParty PinPoolParty { get => pinPoolParty; }
     public PathPoolParty PathPoolParty { get => pathPoolParty; }
     public LandPoolParty LandPoolParty { get => landPoolParty; }
-
+    public GameManager GameManager { get => gameManager; }
     #endregion
 
     protected override void Awake()
@@ -57,6 +59,13 @@ public class MapScriptEditor : Editor
         }
         if(GUILayout.Button("Load"))
         {
+            foreach(PoolParty poolParty in poolParties)
+            {
+                foreach(ObjectPool pool in poolParty.Pools)
+                {
+                    pool.PooledObjects.RemoveAll(x => x == null);
+                }
+            }
             scriptEditor.CurrentMap.Load(poolParties);
         }
         if (GUILayout.Button("Clear"))
@@ -67,9 +76,8 @@ public class MapScriptEditor : Editor
                 {
                     for(int i = 0; i < pool.PooledObjects.Count; i++)
                     {
-                        DestroyImmediate(pool.PooledObjects[i]);
+                        pool.GetBackToPool(pool.PooledObjects[i]);
                     }
-                    pool.PooledObjects.Clear();
                 }
             }
         }

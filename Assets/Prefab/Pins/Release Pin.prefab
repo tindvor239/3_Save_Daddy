@@ -90,7 +90,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6351393590668826376}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: -0.03000021, y: 0, z: 10}
+  m_LocalPosition: {x: -0.03000021, y: 0, z: 0}
   m_LocalScale: {x: 1.5000005, y: 1.5000005, z: 1}
   m_Children:
   - {fileID: 6351393591205928743}
@@ -188,6 +188,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Release Pin Pool
   trap: {fileID: 0}
+  pieces:
+  - {fileID: 6351393591121509513}
+  - {fileID: 6351393591291370620}
+  pinTransfrom: {fileID: 6351393589658271300}
   mainTransform: {fileID: 6351393589669881010}
   isLoopingPin: 0
   unpinDuration: 0.8
@@ -263,7 +267,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d07cc70ee5f7b4a4f889e9d45bad8717, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -405,7 +409,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d07cc70ee5f7b4a4f889e9d45bad8717, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

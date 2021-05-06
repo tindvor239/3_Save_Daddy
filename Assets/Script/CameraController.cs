@@ -10,9 +10,14 @@ public class CameraController : CharacterController
     // Start is called before the first frame update
     protected override void Start()
     {
-        player = GameManager.Instance.Player;
     }
-
+    private void Update()
+    {
+        if(player == null)
+        {
+            player = GameManager.Instance.Player;
+        }
+    }
     // Update is called once per frame
     private void LateUpdate()
     {

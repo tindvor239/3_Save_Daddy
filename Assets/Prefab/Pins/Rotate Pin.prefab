@@ -595,6 +595,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Rotate Pin Pool
   trap: {fileID: 0}
+  pieces:
+  - {fileID: 3892875413089585142}
+  - {fileID: 3892875414740021889}
+  - {fileID: 3892875414038341332}
+  - {fileID: 2383025994915940165}
+  pinTransfrom: {fileID: 3892875414139209936}
   mainTransform: {fileID: 6104131516384771422}
   isLoopingPin: 1
   unpinDuration: 0.8

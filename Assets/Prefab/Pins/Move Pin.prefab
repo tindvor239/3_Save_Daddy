@@ -320,12 +320,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Move Pin Pool
   trap: {fileID: 0}
+  pieces:
+  - {fileID: 8937143072043918583}
+  - {fileID: 8937143071580158988}
+  - {fileID: 8937143072242761190}
+  pinTransfrom: {fileID: 8937143071595690178}
+  mainTransform: {fileID: 8937143071039195996}
   isLoopingPin: 0
   unpinDuration: 0.8
   points:
   - {fileID: 8937143072043918581}
   - {fileID: 8937143072242761188}
-  mainTransform: {fileID: 8937143071039195996}
   middle: {fileID: 8937143071580158987}
 --- !u!1 &8937143072043918583
 GameObject:

@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.CustomComponents;
 
 public abstract class Pin : Model, IInteractable
 {
     [SerializeField]
     private Trap trap;
+    [SerializeField]
+    private List<GameObject> pieces;
+    [SerializeField]
+    private Transform pinTransfrom;
     [SerializeField]
     protected Transform mainTransform;
     [SerializeField]
@@ -79,9 +84,30 @@ public abstract class Pin : Model, IInteractable
     {
         Unpin();
     }
-    public override Package Pack()
+    public new virtual PinPackage Pack()
     {
-        Package result = new Package(poolName, mainTransform.name, mainTransform.position, mainTransform.rotation);
+        List<Piece> pieces = new List<Piece>();
+        foreach(GameObject gameObject in this.pieces)
+        {
+            pieces.Add(Piece.Pack(gameObject));
+        }
+        PinPackage result = new PinPackage(poolName, mainTransform.name, mainTransform.position, mainTransform.rotation, pinTransfrom.localScale, pieces);
         return result;
+    }
+    public override void Unpack(Package package, ObjectPool pool)
+    {
+        poolName = package.PoolName;
+        mainTransform.name = package.Name;
+        mainTransform.position = package.Position;
+        mainTransform.rotation = package.Rotation;
+        if(package is PinPackage)
+        {
+            PinPackage pinPackage = (PinPackage)package;
+            pinTransfrom.localScale = pinPackage.Scale;
+            for(int i = 0; i < pinPackage.Pieces.Count; i++)
+            {
+                Piece.Unpack(pieces[i], pinPackage.Pieces[i]);
+            }
+        }
     }
 }

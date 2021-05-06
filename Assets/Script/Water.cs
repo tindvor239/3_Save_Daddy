@@ -21,6 +21,10 @@ public class Water : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if(player == null)
+        {
+            player = GameManager.Instance.Player;
+        }
         material.mainTextureOffset -= new Vector2(Time.deltaTime / speedDivider, 0);
         material.mainTextureOffset = ClampOffset(material.mainTextureOffset);
     }
