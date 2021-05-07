@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using DoozyUI;
 
 public class ViewManager : Singleton<ViewManager>
 {
@@ -70,6 +71,19 @@ public class ViewManager : Singleton<ViewManager>
     public static void Rotating(in Transform transform, Quaternion target, float duration)
     {
         transform.DORotateQuaternion(target, duration);
+    }
+    #endregion
+    #region UI Handler
+    public static void ShowUI(string UIname , bool isActive)
+    {
+        if(isActive)
+        {
+            UIElement.ShowUIElement(UIname);
+        }
+        else
+        {
+            UIElement.HideUIElement(UIname);
+        }
     }
     #endregion
 }

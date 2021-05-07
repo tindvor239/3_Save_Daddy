@@ -27,9 +27,10 @@ public class GameManager : Singleton<GameManager>
     public List<EnemyController> Enemies { get => enemies; }
     public PlayerController Player { get => player; }
     #endregion
-    #region Pool Parties
+    #region Data
     public List<Map> MapData { get => mapDatas; }
     #endregion
+    public static GameState State { get => Instance.gameState; set => Instance.gameState = value; }
     #endregion
     protected override void Awake()
     {
@@ -223,5 +224,5 @@ public class GameManager : Singleton<GameManager>
         return GameState.win;
     }
     #endregion
-    public enum GameState {start, play, pause, win, gameover }
+    public enum GameState {menu, play, pause, win, gameover }
 }
