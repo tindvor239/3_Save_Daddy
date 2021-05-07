@@ -6,7 +6,7 @@ using UnityEngine.CustomComponents;
 public class MapEditor : Singleton<MapEditor>
 {
     [SerializeField]
-    private Map currentMap;
+    public Map currentMap;
     [SerializeField]
     private GameManager gameManager;
     [SerializeField]
@@ -20,18 +20,52 @@ public class MapEditor : Singleton<MapEditor>
     [SerializeField]
     private LandPoolParty landPoolParty;
     #region Properties
-    public Map CurrentMap { get => currentMap; }
     public CharacterPoolParty CharacterPoolParty { get => characterPoolParty; }
     public ObstaclePoolParty ObstaclePoolParty { get => obstaclePoolParty; }
     public PinPoolParty PinPoolParty { get => pinPoolParty; }
     public PathPoolParty PathPoolParty { get => pathPoolParty; }
     public LandPoolParty LandPoolParty { get => landPoolParty; }
     public GameManager GameManager { get => gameManager; }
+    public List<PoolParty> PoolParties { get => GetPoolParties(); }
     #endregion
+    private List<PoolParty> GetPoolParties()
+    {
+        List<PoolParty> poolParties = new List<PoolParty>();
+        poolParties.Add(characterPoolParty.Party);
+        poolParties.Add(obstaclePoolParty.Party);
+        poolParties.Add(pinPoolParty.Party);
+        poolParties.Add(pathPoolParty.Party);
+        foreach(PoolParty poolParty in landPoolParty.Parties)
+        {
+            poolParties.Add(poolParty);
+        }
+        return poolParties;
+    }
 
     protected override void Awake()
     {
         base.Awake();
+    }
+
+    public void Load()
+    {
+        if(currentMap != null)
+        {
+            foreach (PoolParty poolParty in PoolParties)
+            {
+                foreach (ObjectPool pool in poolParty.Pools)
+                {
+                    pool.PooledObjects.RemoveAll(x => x == null);
+                }
+            }
+            currentMap.Load(PoolParties);
+            gameManager.GetDestinations();
+            Debug.Log("Loaded");
+        }
+        else
+        {
+            Debug.Log("Don't have map");
+        }
     }
 }
 
@@ -42,31 +76,15 @@ public class MapScriptEditor : Editor
     {
         DrawDefaultInspector();
         MapEditor scriptEditor = (MapEditor)target;
-
-        List<PoolParty> poolParties = new List<PoolParty>();
-        poolParties.Add(scriptEditor.CharacterPoolParty.Party);
-        poolParties.Add(scriptEditor.ObstaclePoolParty.Party);
-        poolParties.Add(scriptEditor.PinPoolParty.Party);
-        poolParties.Add(scriptEditor.PathPoolParty.Party);
-        foreach (PoolParty poolParty in scriptEditor.LandPoolParty.Parties)
-        {
-            poolParties.Add(poolParty);
-        }
+        List<PoolParty> poolParties = scriptEditor.PoolParties;
 
         if (GUILayout.Button("Save"))
         {
-            scriptEditor.CurrentMap.Save();
+            scriptEditor.currentMap.Save();
         }
         if(GUILayout.Button("Load"))
         {
-            foreach(PoolParty poolParty in poolParties)
-            {
-                foreach(ObjectPool pool in poolParty.Pools)
-                {
-                    pool.PooledObjects.RemoveAll(x => x == null);
-                }
-            }
-            scriptEditor.CurrentMap.Load(poolParties);
+            scriptEditor.Load();
         }
         if (GUILayout.Button("Clear"))
         {

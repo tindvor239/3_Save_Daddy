@@ -20,7 +20,9 @@ public class RotatePin : Pin
     {
         for(int i = 0; i < pinLocks.Length; i++)
         {
-            if(pinLocks[i].rotation == pinBase.transform.rotation)
+            if(Mathf.Round(pinLocks[i].rotation.x) == Mathf.Round(pinBase.transform.rotation.x) &&
+                Mathf.Round(pinLocks[i].rotation.y) == Mathf.Round(pinBase.transform.rotation.y) &&
+                Mathf.Round(pinLocks[i].rotation.z) == Mathf.Round(pinBase.transform.rotation.z))
             {
                 if(i == pinLocks.Length - 1)
                 {

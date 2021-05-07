@@ -37,16 +37,7 @@ public class GameManager : Singleton<GameManager>
         #region Singleton
         base.Awake();
         #endregion
-        Transform[] newDestinations = new Transform[pathPoolParty.PathPool.PooledObjects.Count];
-        for (int i = 0; i < pathPoolParty.PathPool.PooledObjects.Count; i++)
-        {
-            if (pathPoolParty.PathPool.PooledObjects[i].activeInHierarchy)
-            {
-                int index = int.Parse(pathPoolParty.PathPool.PooledObjects[i].name) - 1;
-                newDestinations[index] = pathPoolParty.PathPool.PooledObjects[i].transform;
-            }
-        }
-        destinations = newDestinations.ToList();
+        
     }
     private void Start()
     {
@@ -61,6 +52,7 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     private void Update()
     {
+        GetDestinations();
     }
     #region Raycasting
     public static GameObject RayCastObject(Vector3 fromPosition, Vector3 direction)
@@ -206,6 +198,19 @@ public class GameManager : Singleton<GameManager>
             }
         }
         return -1;
+    }
+    public void GetDestinations()
+    {
+            Transform[] newDestinations = new Transform[pathPoolParty.PathPool.PooledObjects.Count];
+            for (int i = 0; i < pathPoolParty.PathPool.PooledObjects.Count; i++)
+            {
+                if (pathPoolParty.PathPool.PooledObjects[i].activeInHierarchy)
+                {
+                    int index = int.Parse(pathPoolParty.PathPool.PooledObjects[i].name) - 1;
+                    newDestinations[index] = pathPoolParty.PathPool.PooledObjects[i].transform;
+                }
+            }
+            destinations = newDestinations.ToList();
     }
     #endregion
     #region State Handle

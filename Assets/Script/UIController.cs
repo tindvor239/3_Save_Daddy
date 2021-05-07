@@ -42,6 +42,11 @@ public class UIController : Singleton<UIController>
         else if(gameObject == play)
         {
             GameManager.State = GameManager.GameState.play;
+            Map currentMap = GetNextLevel();
+            if(currentMap != null)
+            {
+                MapEditor.Instance.Load();
+            }
             ViewManager.ShowUI("GAMEPLAY_UI", true);
             ViewManager.ShowUI("MENU_UI", false);
         }
@@ -53,5 +58,17 @@ public class UIController : Singleton<UIController>
         {
             GameManager.State = GameManager.GameState.gameover;
         }
+    }
+    private Map GetNextLevel()
+    {
+        for(int i = 0; i < GameManager.Instance.MapData.Count; i++)
+        {
+            if(!GameManager.Instance.MapData[i].isUnlocked && i - 1 >= 0)
+            {
+                MapEditor.Instance.currentMap = GameManager.Instance.MapData[i - 1];
+                return MapEditor.Instance.currentMap;
+            }
+        }
+        return null;
     }
 }
