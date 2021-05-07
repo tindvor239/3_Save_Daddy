@@ -97,3 +97,4 @@ MonoBehaviour:
     name: Right
     position: {x: 96.36, y: 171.57, z: 0}
     rotation: {x: -0, y: -0, z: -0, w: 1}
+  isUnlocked: 1

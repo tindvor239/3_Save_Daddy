@@ -52,7 +52,6 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     private void Update()
     {
-        GetDestinations();
     }
     #region Raycasting
     public static GameObject RayCastObject(Vector3 fromPosition, Vector3 direction)

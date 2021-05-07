@@ -53,6 +53,7 @@ public class PlayerController : CharacterController
         if (index != -1)
         {
             GameManager.Instance.PassedDestinations.Add(GameManager.Instance.Destinations[index]);
+            Debug.Log("IN");
             GameManager.Instance.Destinations[index] = transform;
             Move(destination.position, Ease.Linear);
             if (index > 0)
