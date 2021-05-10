@@ -44,7 +44,10 @@ public class Gass : Trap
         }
         else if(beenHitObject.tag == "Untagged")
         {
-            Disarmed();
+            if(effect.isStopped == false)
+            {
+                Disarmed();
+            }
         }
     }
 }

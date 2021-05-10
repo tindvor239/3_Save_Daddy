@@ -61,6 +61,7 @@ MonoBehaviour:
       - BOOST_UI
       - DAILY_QUEST_DONE_UI
       - DAILY_QUEST_UI
+      - GAMEOVER_UI
       - GAMEPLAY_UI
       - LEVELUP_UI
       - LUCKYSPIN_POPUP

@@ -61,7 +61,6 @@ public class Trap : Obstacle
         }
         if(effect != null)
         {
-            Debug.Log(effect.name + "stop!!");
             effect.Stop();
         }
     }
