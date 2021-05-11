@@ -91,7 +91,7 @@ MonoBehaviour:
     rotation: {x: -0, y: -0, z: -0, w: 1}
   pinPackages:
   - poolName: Rotate Pin Pool
-    name: Rotate Pin 1
+    name: Rotate Pin
     position: {x: 123.250175, y: 169.33408, z: 0}
     rotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
     scale: {x: 1.4292874, y: 1.0000005, z: 1}
