@@ -6,6 +6,8 @@ public abstract class Data : ScriptableObject
 {
     public void PackAllModels(List<Package> packages, List<PinPackage> pinPackages)
     {
+        packages = new List<Package>();
+        pinPackages = new List<PinPackage>();
         Model[] models = FindObjectsOfType<Model>();
         foreach (Model model in models)
         {
