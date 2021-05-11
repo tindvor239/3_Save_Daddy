@@ -319,7 +319,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Move Pin Pool
-  trap: {fileID: 0}
   pieces:
   - {fileID: 8937143072043918583}
   - {fileID: 8937143071580158988}
