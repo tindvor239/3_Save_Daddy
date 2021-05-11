@@ -71,6 +71,7 @@ public class PlayerController : CharacterController
         }
 
     }
+    //private void CheckCo
     public override void Interact()
     {
         Debug.Log("Interact with player");

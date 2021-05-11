@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using DoozyUI;
 
@@ -84,6 +85,10 @@ public class ViewManager : Singleton<ViewManager>
         {
             UIElement.HideUIElement(UIname);
         }
+    }
+    public static void ChangeSprite(Image image, Sprite changeToSprite)
+    {
+        image.sprite = changeToSprite;
     }
     #endregion
 }

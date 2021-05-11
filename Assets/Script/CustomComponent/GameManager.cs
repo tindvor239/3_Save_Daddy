@@ -49,10 +49,6 @@ public class GameManager : Singleton<GameManager>
             CharacterPoolParty.Instance.PlayerPool.PooledObjects.Add(player.gameObject);
         }
     }
-    // Update is called once per frame
-    private void Update()
-    {
-    }
     #region Raycasting
     public static GameObject RayCastObject(Vector3 fromPosition, Vector3 direction)
     {
@@ -217,15 +213,11 @@ public class GameManager : Singleton<GameManager>
     {
         if(Instance.destinations[Instance.destinations.Count - 1].GetComponent<CharacterController>() != null)
         {
-            Instance.gameState = Win();
+            Instance.gameState = GameState.win;
+            UIController.Instance.ShowWinUI(true);
             return true;
         }
         return false;
-    }
-    private static GameState Win()
-    {
-        //TO DO: Show win menu.
-        return GameState.win;
     }
     #endregion
     public enum GameState {menu, play, pause, win, gameover }

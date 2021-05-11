@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f1158ca641e094fb3cf2fa9de3df48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  poolName: Shark Pool
+  moveSpeed: 0
   destinations: []
 --- !u!60 &8399259286556451696
 PolygonCollider2D:

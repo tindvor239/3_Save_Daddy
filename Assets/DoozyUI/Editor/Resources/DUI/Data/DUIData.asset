@@ -73,6 +73,7 @@ MonoBehaviour:
       - POP_UP_QUEST_UI
       - QUIT_UI
       - RATE_UI
+      - SETTINGS_UI
       - SHOP_UI
       - SKIN_UI
       - SPIN_POPUP

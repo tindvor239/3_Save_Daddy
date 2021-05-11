@@ -60,7 +60,6 @@ public class MapEditor : Singleton<MapEditor>
             }
             currentMap.Load(PoolParties);
             gameManager.GetDestinations();
-            Debug.Log("Loaded");
         }
         else
         {

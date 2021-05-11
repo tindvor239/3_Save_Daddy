@@ -20,23 +20,28 @@ public class GameController : Singleton<GameController>
     }
     private void Update()
     {
-        UnpinDelayCountDown();
-        if (Input.GetMouseButtonDown(0))
+        switch(GameManager.State)
         {
-            GameObject clickedObject = GetObjectByMouseRayCast();
-            if (clickedObject != null)
-            {
-                if (clickedObject.GetComponent<Pin>() != null && canTrigger)
+            case GameManager.GameState.play:
+                UnpinDelayCountDown();
+                if (Input.GetMouseButtonDown(0))
                 {
-                    clickedObject.GetComponent<Pin>().Interact();
-                    unpinDelayTimer = unpinDelay;
+                    GameObject clickedObject = GetObjectByMouseRayCast();
+                    if (clickedObject != null)
+                    {
+                        if (clickedObject.GetComponent<Pin>() != null && canTrigger)
+                        {
+                            clickedObject.GetComponent<Pin>().Interact();
+                            unpinDelayTimer = unpinDelay;
+                        }
+                        else if (clickedObject.transform.parent.GetComponent<Pin>() != null && canTrigger)
+                        {
+                            clickedObject.transform.parent.GetComponent<Pin>().Interact();
+                            unpinDelayTimer = unpinDelay;
+                        }
+                    }
                 }
-                else if (clickedObject.transform.parent.GetComponent<Pin>() != null && canTrigger)
-                {
-                    clickedObject.transform.parent.GetComponent<Pin>().Interact();
-                    unpinDelayTimer = unpinDelay;
-                }
-            }
+                break;
         }
     }
     private void UnpinDelayCountDown()

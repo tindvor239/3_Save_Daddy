@@ -5,20 +5,12 @@ using DoozyUI;
 
 public class UIController : Singleton<UIController>
 {
-    [SerializeField]
-    private GameObject menu;
-    [SerializeField]
-    private GameObject play;
-    [SerializeField]
-    private GameObject win;
-    [SerializeField]
-    private GameObject gameOver;
-    #region Singleton
     protected override void Awake()
     {
+        #region Singleton
         base.Awake();
+        #endregion
     }
-    #endregion
     // Start is called before the first frame update
     void Start()
     {
@@ -30,34 +22,37 @@ public class UIController : Singleton<UIController>
     {
         
     }
-
-    public void ShowUI(GameObject gameObject)
+    public void ShowMenuUI(bool isActive)
     {
-        if(gameObject == menu)
+        GameManager.State = GameManager.GameState.menu;
+        ViewManager.ShowUI("MENU_UI", isActive);
+    }
+    public void ShowGamePlayUI(bool isActive)
+    {
+        GameManager.State = GameManager.GameState.play;
+        Map currentMap = GetNextLevel();
+        if (currentMap != null)
         {
-            GameManager.State = GameManager.GameState.menu;
-            ViewManager.ShowUI("MENU_UI", true);
-            ViewManager.ShowUI("GAMEPLAY_UI", false);
+            MapEditor.Instance.Load();
         }
-        else if(gameObject == play)
-        {
-            GameManager.State = GameManager.GameState.play;
-            Map currentMap = GetNextLevel();
-            if(currentMap != null)
-            {
-                MapEditor.Instance.Load();
-            }
-            ViewManager.ShowUI("GAMEPLAY_UI", true);
-            ViewManager.ShowUI("MENU_UI", false);
-        }
-        else if(gameObject == win)
-        {
-            GameManager.State = GameManager.GameState.win;
-        }
-        else if(gameObject == gameOver)
-        {
-            GameManager.State = GameManager.GameState.gameover;
-        }
+        ViewManager.ShowUI("MENU_UI", false);
+        ViewManager.ShowUI("GAMEPLAY_UI", isActive);
+    }
+    public void ShowSettingUI(bool isActive)
+    {
+        GameManager.State = GameManager.GameState.pause;
+        ViewManager.ShowUI("GAMEPLAY_UI", false);
+        ViewManager.ShowUI("SETTING_UI", isActive);
+    }
+    public void ShowGameOverUI(bool isActive)
+    {
+        GameManager.State = GameManager.GameState.gameover;
+        ViewManager.ShowUI("GAMEOVER_UI", isActive);
+    }
+    public void ShowWinUI(bool isActive)
+    {
+        GameManager.State = GameManager.GameState.win;
+        ViewManager.ShowUI("WIN_UI", isActive);
     }
     private Map GetNextLevel()
     {
