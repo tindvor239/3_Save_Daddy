@@ -13,7 +13,7 @@ public class Map : Data
     public bool isUnlocked;
     public void Save()
     {
-        PackAllModels(packages, pinPackages);
+        PackAllModels( ref packages, ref pinPackages);
         #if UNITY_EDITOR
             EditorUtility.SetDirty(this);
             AssetDatabase.SaveAssets();

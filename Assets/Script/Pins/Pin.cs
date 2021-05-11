@@ -6,8 +6,6 @@ using UnityEngine.CustomComponents;
 public abstract class Pin : Model, IInteractable
 {
     [SerializeField]
-    private Trap trap;
-    [SerializeField]
     private List<GameObject> pieces;
     [SerializeField]
     private Transform pinTransfrom;
@@ -48,10 +46,6 @@ public abstract class Pin : Model, IInteractable
 
     protected virtual void Unpin()
     {
-        if(trap != null)
-        {
-            trap.Disarmed();
-        }
         isAlreadyUnpin = true;
         onUnpinTrigger += OnTrigger;
         StartCoroutine(StartMoveObject(0.8f));

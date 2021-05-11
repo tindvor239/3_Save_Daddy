@@ -4,7 +4,7 @@ using UnityEngine.CustomComponents;
 
 public abstract class Data : ScriptableObject
 {
-    public void PackAllModels(List<Package> packages, List<PinPackage> pinPackages)
+    public void PackAllModels(ref List<Package> packages, ref List<PinPackage> pinPackages)
     {
         packages = new List<Package>();
         pinPackages = new List<PinPackage>();
@@ -17,7 +17,6 @@ public abstract class Data : ScriptableObject
                 bool isPin = model is Pin;
                 if (isPin)
                 {
-                    Debug.Log("In");
                     Pin pin = (Pin)model;
                     pinPackages.Add(pin.Pack());
                 }
