@@ -40,9 +40,16 @@ public class UIController : Singleton<UIController>
     }
     public void ShowSettingUI(bool isActive)
     {
-        GameManager.State = GameManager.GameState.pause;
-        ViewManager.ShowUI("GAMEPLAY_UI", false);
-        ViewManager.ShowUI("SETTING_UI", isActive);
+        if(isActive)
+        {
+            GameManager.State = GameManager.GameState.pause;
+        }
+        else
+        {
+            GameManager.State = GameManager.GameState.play;
+        }
+        ViewManager.ShowUI("GAMEPLAY_UI", !isActive);
+        ViewManager.ShowUI("SETTINGS_UI", isActive);
     }
     public void ShowGameOverUI(bool isActive)
     {

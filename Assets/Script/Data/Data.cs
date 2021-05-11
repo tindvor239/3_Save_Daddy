@@ -4,9 +4,8 @@ using UnityEngine.CustomComponents;
 
 public abstract class Data : ScriptableObject
 {
-    public List<Package> PackAllModels()
+    public void PackAllModels(List<Package> packages, List<PinPackage> pinPackages)
     {
-        List<Package> result = new List<Package>();
         Model[] models = FindObjectsOfType<Model>();
         foreach (Model model in models)
         {
@@ -18,17 +17,16 @@ public abstract class Data : ScriptableObject
                 {
                     Debug.Log("In");
                     Pin pin = (Pin)model;
-                    result.Add(pin.Pack());
+                    pinPackages.Add(pin.Pack());
                 }
                 else
                 {
-                    result.Add(model.Pack());
+                    packages.Add(model.Pack());
                 }
             }
         }
-        return result;
     }
-    public void UnpackAllModels(List<Package> packages, List<PoolParty> poolParties)
+    public void UnpackAllModels(List<Package> packages, List<PinPackage> pinPackages, List<PoolParty> poolParties)
     {
         foreach (Package package in packages)
         {
@@ -36,6 +34,14 @@ public abstract class Data : ScriptableObject
             if (pool != null)
             {
                 SpawnPooledObject(package, pool);
+            }
+        }
+        foreach(PinPackage pinPackage in pinPackages)
+        {
+            ObjectPool pool = GetPool(pinPackage, poolParties);
+            if(pool != null)
+            {
+                SpawnPooledObject(pinPackage, pool);
             }
         }
     }

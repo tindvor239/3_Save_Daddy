@@ -8,11 +8,12 @@ using UnityEditor;
 public class Map : Data
 {
     public List<Package> packages;
+    public List<PinPackage> pinPackages;
     [SerializeField]
     public bool isUnlocked;
     public void Save()
     {
-        packages = PackAllModels();
+        PackAllModels(packages, pinPackages);
         #if UNITY_EDITOR
             EditorUtility.SetDirty(this);
             AssetDatabase.SaveAssets();
@@ -23,7 +24,7 @@ public class Map : Data
     {
         if(isUnlocked)
         {
-            UnpackAllModels(packages, poolParties);
+            UnpackAllModels(packages, pinPackages, poolParties);
             Debug.Log("Loaded");
         }
     }
