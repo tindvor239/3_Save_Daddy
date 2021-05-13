@@ -1906,36 +1906,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402818285}
   m_CullTransparentMesh: 0
---- !u!1 &419860651
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 419860652}
-  m_Layer: 0
-  m_Name: Rocks
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &419860652
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419860651}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 584391169}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &463547743
 GameObject:
   m_ObjectHideFlags: 0
@@ -2671,7 +2641,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568017654}
   m_CullTransparentMesh: 0
---- !u!1 &584391168
+--- !u!1 &568944245
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2679,72 +2649,28 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 584391169}
-  - component: {fileID: 584391170}
+  - component: {fileID: 568944246}
   m_Layer: 0
-  m_Name: Rock Spawner
+  m_Name: Acid Spawners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &584391169
+  m_IsActive: 1
+--- !u!4 &568944246
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 584391168}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.271753, y: 8.279773, z: 10}
+  m_GameObject: {fileID: 568944245}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 419860652}
-  m_Father: {fileID: 1865396158}
-  m_RootOrder: 0
+  m_Children: []
+  m_Father: {fileID: 2525117517786126286}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &584391170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 584391168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80d617e775c56564d8a4cdf2b34f212e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolName: Rock Spawner Pool
-  amount: 5
-  party:
-    name: Stone Party
-    pools:
-    - name: Stone 0
-      pooledObjects: []
-      objectToPool: {fileID: 2150701219657344639, guid: 1046fec3ff159114396be58f80f9ef0e,
-        type: 3}
-      parent: {fileID: 419860652}
-    - name: Stone 1
-      pooledObjects: []
-      objectToPool: {fileID: 7568252915162580183, guid: c3242657820eb5a4ab49826ea2cabdf9,
-        type: 3}
-      parent: {fileID: 419860652}
-    - name: Stone 2
-      pooledObjects: []
-      objectToPool: {fileID: 1514243915091129193, guid: 45e323dd47132d5439194c4566e8914a,
-        type: 3}
-      parent: {fileID: 419860652}
-    - name: Stone 3
-      pooledObjects: []
-      objectToPool: {fileID: 8077905945228945548, guid: af342cdeae343194d9ee0ab17edbb839,
-        type: 3}
-      parent: {fileID: 419860652}
-    - name: Stone 4
-      pooledObjects: []
-      objectToPool: {fileID: 243279906417804248, guid: d2fb9032eeca2a14483e69a2a3c7c485,
-        type: 3}
-      parent: {fileID: 419860652}
 --- !u!1 &618548203
 GameObject:
   m_ObjectHideFlags: 0
@@ -9759,10 +9685,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 584391169}
+  m_Children: []
   m_Father: {fileID: 2525117517786126286}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1865396159
 GameObject:
@@ -11142,8 +11067,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6523767315459695228}
-  - {fileID: 4186374853730539414}
   - {fileID: 1865396158}
+  - {fileID: 568944246}
+  - {fileID: 4186374853730539414}
   m_Father: {fileID: 2525117516106768643}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11253,7 +11179,7 @@ Transform:
   - {fileID: 122972822}
   - {fileID: 1857160864}
   m_Father: {fileID: 2525117517786126286}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4369745949905532664
 Transform:
@@ -11981,7 +11907,7 @@ MonoBehaviour:
       parent: {fileID: 1857160864}
     - name: Rock Spawner Pool
       pooledObjects:
-      - {fileID: 584391168}
+      - {fileID: 0}
       objectToPool: {fileID: 6709897157928633704, guid: e72460ff4af78d54782a4b4ed743c641,
         type: 3}
       parent: {fileID: 1865396158}
@@ -11995,6 +11921,11 @@ MonoBehaviour:
       objectToPool: {fileID: 243279906417804248, guid: e65c398664e75794ea86dc5ea5013b10,
         type: 3}
       parent: {fileID: 1865396158}
+    - name: Acid Spawner Pool
+      pooledObjects: []
+      objectToPool: {fileID: 6709897157928633704, guid: 601bef14a9d3ee046b558c39e35c8148,
+        type: 3}
+      parent: {fileID: 568944246}
 --- !u!4 &7448661608840970601
 Transform:
   m_ObjectHideFlags: 0
