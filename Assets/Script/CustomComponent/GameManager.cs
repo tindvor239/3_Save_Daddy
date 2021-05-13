@@ -13,8 +13,7 @@ public class GameManager : Singleton<GameManager>
     private List<Transform> passedDestinations = new List<Transform>();
     [SerializeField]
     protected GameState gameState;
-    [SerializeField]
-    private PlayerController player;
+
     [Header("Game Data")]
     [SerializeField]
     private PathPoolParty pathPoolParty;
@@ -24,8 +23,8 @@ public class GameManager : Singleton<GameManager>
     #region Movement
     public List<Transform> Destinations { get => destinations; }
     public List<Transform> PassedDestinations { get => passedDestinations; }
-    public List<EnemyController> Enemies { get => enemies; }
-    public PlayerController Player { get => player; }
+    public List<EnemyController> Enemies { get => enemies; set => enemies = value; }
+    public PlayerController Player { get; set; }
     #endregion
     #region Data
     public List<Map> MapData { get => mapDatas; }
@@ -37,17 +36,6 @@ public class GameManager : Singleton<GameManager>
         #region Singleton
         base.Awake();
         #endregion
-        
-    }
-    private void Start()
-    {
-        player = CharacterPoolParty.Instance.PlayerPool.PooledObjects[0].GetComponent<PlayerController>();
-        if (player == null)
-        {
-            player = CharacterPoolParty.Instance.PlayerPool.CreatePooledObject<PlayerController>();
-            CharacterPoolParty.Instance.PlayerPool.PooledObjects.RemoveAll(x => x == null);
-            CharacterPoolParty.Instance.PlayerPool.PooledObjects.Add(player.gameObject);
-        }
     }
     #region Raycasting
     public static GameObject RayCastObject(Vector3 fromPosition, Vector3 direction)
@@ -167,10 +155,10 @@ public class GameManager : Singleton<GameManager>
         EnemyController closestEnemy = null;
         if(Instance.enemies.Count != 0 && Instance.enemies[0] != null)
         {
-            float firstDistance = Vector2.Distance(Instance.player.transform.position, Instance.enemies[0].transform.position);
+            float firstDistance = Vector2.Distance(Instance.Player.transform.position, Instance.enemies[0].transform.position);
             foreach(EnemyController enemy in Instance.enemies)
             {
-                float distance = Vector2.Distance(Instance.player.transform.position, enemy.transform.position);
+                float distance = Vector2.Distance(Instance.Player.transform.position, enemy.transform.position);
                 if (distance <= firstDistance)
                 {
                     closestEnemy = enemy;
@@ -196,16 +184,17 @@ public class GameManager : Singleton<GameManager>
     }
     public void GetDestinations()
     {
-            Transform[] newDestinations = new Transform[pathPoolParty.PathPool.PooledObjects.Count];
-            for (int i = 0; i < pathPoolParty.PathPool.PooledObjects.Count; i++)
+        Transform[] newDestinations = new Transform[pathPoolParty.PathPool.PooledObjects.Count];
+        for (int i = 0; i < pathPoolParty.PathPool.PooledObjects.Count; i++)
+        {
+            if (pathPoolParty.PathPool.PooledObjects[i].activeInHierarchy)
             {
-                if (pathPoolParty.PathPool.PooledObjects[i].activeInHierarchy)
-                {
-                    int index = int.Parse(pathPoolParty.PathPool.PooledObjects[i].name) - 1;
-                    newDestinations[index] = pathPoolParty.PathPool.PooledObjects[i].transform;
-                }
+                int index = int.Parse(pathPoolParty.PathPool.PooledObjects[i].name) - 1;
+                newDestinations[index] = pathPoolParty.PathPool.PooledObjects[i].transform;
             }
-            destinations = newDestinations.ToList();
+        }
+        destinations = newDestinations.ToList();
+        destinations.RemoveAll(x => x == null);
     }
     #endregion
     #region State Handle
@@ -214,10 +203,26 @@ public class GameManager : Singleton<GameManager>
         if(Instance.destinations[Instance.destinations.Count - 1].GetComponent<CharacterController>() != null)
         {
             Instance.gameState = GameState.win;
+            UnlockNextLevel();
             UIController.Instance.ShowWinUI(true);
             return true;
         }
         return false;
+    }
+    #endregion
+    #region Map Handle
+    private static void UnlockNextLevel()
+    {
+        for(int i = 0; i < Instance.mapDatas.Count; i++)
+        {
+            if(i + 1 < Instance.mapDatas.Count && MapEditor.Instance.currentMap != null
+                && Instance.mapDatas[i] == MapEditor.Instance.currentMap)
+            {
+                Instance.mapDatas[i + 1].isUnlocked = true;
+                MapEditor.Instance.currentMap = Instance.mapDatas[i + 1];
+                break;
+            }
+        }
     }
     #endregion
     public enum GameState {menu, play, pause, win, gameover }

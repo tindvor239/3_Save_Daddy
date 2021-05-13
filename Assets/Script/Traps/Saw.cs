@@ -8,11 +8,6 @@ public class Saw : Trap
     private SpriteRenderer[] blades = new SpriteRenderer[2];
     [SerializeField]
     private float spinSpeed = 800f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
     private void SpiningBlades()
     {
         foreach(SpriteRenderer blade in blades)
@@ -26,5 +21,10 @@ public class Saw : Trap
     void Update()
     {
         SpiningBlades();
+    }
+
+    public override void OnBeingHit(GameObject hitObject)
+    {
+        ObstaclePoolParty.Instance.Party.GetPool("Saw Pool").GetBackToPool(gameObject);
     }
 }

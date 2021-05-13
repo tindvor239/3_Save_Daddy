@@ -44,32 +44,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d617e775c56564d8a4cdf2b34f212e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolName: Rock Spawner
-  amount: 0
+  poolName: Rock Spawner Pool
+  amount: 8
   party:
-    name: Rock Pool Party
+    name: Stone Party
     pools:
-    - name: Rock
+    - name: Stone 0
       pooledObjects: []
       objectToPool: {fileID: 2150701219657344639, guid: 1046fec3ff159114396be58f80f9ef0e,
         type: 3}
       parent: {fileID: 6709897158911351241}
-    - name: Rock 2
+    - name: Stone 1
       pooledObjects: []
       objectToPool: {fileID: 7568252915162580183, guid: c3242657820eb5a4ab49826ea2cabdf9,
         type: 3}
       parent: {fileID: 6709897158911351241}
-    - name: Rock 3
+    - name: Stone 2
       pooledObjects: []
       objectToPool: {fileID: 1514243915091129193, guid: 45e323dd47132d5439194c4566e8914a,
         type: 3}
       parent: {fileID: 6709897158911351241}
-    - name: Rock 4
+    - name: Stone 3
       pooledObjects: []
       objectToPool: {fileID: 8077905945228945548, guid: af342cdeae343194d9ee0ab17edbb839,
         type: 3}
       parent: {fileID: 6709897158911351241}
-    - name: Rock 5
+    - name: Stone 4
       pooledObjects: []
       objectToPool: {fileID: 243279906417804248, guid: d2fb9032eeca2a14483e69a2a3c7c485,
         type: 3}

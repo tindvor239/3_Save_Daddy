@@ -30,24 +30,10 @@ public class Gass : Trap
     }
     private void CheckHit()
     {
-        GameObject beenHitObject = GameManager.RayCastToObject(points[0].position, points[1].position);
-        if (beenHitObject != null)
+        bool beenBlocked = GameManager.IsBlocked(points[0].position, points[1].position, 1 << LayerMask.NameToLayer("Pin"));
+        if (beenBlocked)
         {
-            OnHit(beenHitObject);
-        }
-    }
-    protected override void OnHit(GameObject beenHitObject)
-    {
-        if (beenHitObject.tag == "Player")
-        {
-            Debug.Log("Destroy Object");
-        }
-        else if(beenHitObject.tag == "Untagged")
-        {
-            if(effect.isStopped == false)
-            {
-                Disarmed();
-            }
+            Disarmed();
         }
     }
 }

@@ -25,7 +25,6 @@ public class Map : Data
         if(isUnlocked)
         {
             UnpackAllModels(packages, pinPackages, poolParties);
-            Debug.Log("Loaded");
         }
     }
 }

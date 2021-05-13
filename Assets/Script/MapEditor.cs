@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.CustomComponents;
@@ -58,12 +59,73 @@ public class MapEditor : Singleton<MapEditor>
                     pool.PooledObjects.RemoveAll(x => x == null);
                 }
             }
+            Clear();
             currentMap.Load(PoolParties);
             gameManager.GetDestinations();
         }
         else
         {
             Debug.Log("Don't have map");
+        }
+    }
+    public void Clear()
+    {
+        List<PoolParty> poolParties = PoolParties;
+        List<Model> models = FindObjectsOfType<Model>().ToList();
+        List<Model> removeModels = new List<Model>();
+        foreach(PoolParty poolParty in poolParties)
+        {
+            foreach(ObjectPool pool in poolParty.Pools)
+            {
+                foreach(GameObject gameObject in pool.PooledObjects)
+                {
+                    GetModelsBackToPool(ref models, ref removeModels, gameObject);
+                }
+            }
+        }
+        foreach(Model model in removeModels)
+        {
+            if(models.Contains(model))
+            {
+                models.Remove(model);
+            }
+        }
+        foreach(Model remainModel in models)
+        {
+            bool isCamera = remainModel is CameraController;
+            if(!isCamera)
+            {
+                if (remainModel is Pin)
+                {
+                    Pin pin = (Pin)remainModel;
+                    DestroyImmediate(pin.MainTransform.gameObject);
+                }
+                else
+                {
+                    DestroyImmediate(remainModel.gameObject);
+                }
+            }
+        }
+    }
+
+    private static void GetModelsBackToPool(ref List<Model> models, ref List<Model> removeModels, GameObject gameObject)
+    {
+        foreach (Model model in models)
+        {
+            bool isCamera = model is CameraController;
+            if (!isCamera && model.gameObject.activeInHierarchy && gameObject == model.gameObject)
+            {
+                if (model is Pin)
+                {
+                    Pin pin = (Pin)model;
+                    pin.MainTransform.gameObject.SetActive(false);
+                }
+                else
+                {
+                    model.gameObject.SetActive(false);
+                }
+                removeModels.Add(model);
+            }
         }
     }
 }
@@ -75,7 +137,7 @@ public class MapScriptEditor : Editor
     {
         DrawDefaultInspector();
         MapEditor scriptEditor = (MapEditor)target;
-        List<PoolParty> poolParties = scriptEditor.PoolParties;
+        
 
         if (GUILayout.Button("Save"))
         {
@@ -87,16 +149,7 @@ public class MapScriptEditor : Editor
         }
         if (GUILayout.Button("Clear"))
         {
-            foreach (PoolParty poolParty in poolParties)
-            {
-                foreach(ObjectPool pool in poolParty.Pools)
-                {
-                    for(int i = 0; i < pool.PooledObjects.Count; i++)
-                    {
-                        pool.GetBackToPool(pool.PooledObjects[i]);
-                    }
-                }
-            }
+            scriptEditor.Clear();
         }
     }
 }

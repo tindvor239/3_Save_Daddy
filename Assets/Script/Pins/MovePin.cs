@@ -8,8 +8,7 @@ public class MovePin : Pin
     private Transform[] points = new Transform[2];
     [SerializeField]
     private Transform middle;
-    private static float maxTime = 0.52f;
-    private float timer = maxTime;
+    private static float moveSpeed = 5f;
     #region Properties
     public Transform[] Points { get => points; }
     #endregion
@@ -21,26 +20,28 @@ public class MovePin : Pin
     }
     protected override void Unpin()
     {
-        if(timer <= 0)
+        Vector2 destination = new Vector2();
+        for (int i = 0; i < points.Length; i++)
         {
-            Vector2 destination = new Vector2();
-            for (int i = 0; i < points.Length; i++)
+            if (Mathf.RoundToInt(points[i].position.y) == Mathf.RoundToInt(transform.position.y))
             {
-                if (points[i].position == transform.position)
+                if (i == points.Length - 1)
                 {
-                    if (i == points.Length - 1)
-                    {
-                        destination = points[i - 1].position;
-                    }
-                    else
-                    {
-                        destination = points[i + 1].position;
-                    }
+                    destination = points[i - 1].position;
+                }
+                else
+                {
+                    Debug.Log("In 2");
+                    destination = points[i + 1].position;
                 }
             }
-            GameController.Move(transform, destination, unpinDuration);
-            base.Unpin();
-            timer = maxTime;
         }
+        finishDuration = MoveDuration(transform.position, destination);
+        GameController.Move(transform, destination, finishDuration - 0.1f);
+        base.Unpin();
+    }
+    private float MoveDuration(Vector2 fromPosition, Vector2 toPosition)
+    {
+        return Vector2.Distance(fromPosition, toPosition) / moveSpeed;
     }
 }

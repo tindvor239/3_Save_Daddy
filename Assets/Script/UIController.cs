@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.CustomComponents;
 using DoozyUI;
 
 public class UIController : Singleton<UIController>
@@ -14,13 +15,13 @@ public class UIController : Singleton<UIController>
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void ShowMenuUI(bool isActive)
     {
@@ -33,10 +34,51 @@ public class UIController : Singleton<UIController>
         Map currentMap = GetNextLevel();
         if (currentMap != null)
         {
+            Debug.Log("Loaded");
             MapEditor.Instance.Load();
+            GetPlayerController();
+            GetEnemyControllers();
+            SpawnObstaclesOnPlay();
+            GameManager.Instance.Player.MovePlayerToNextDestination();
         }
         ViewManager.ShowUI("MENU_UI", false);
+        ViewManager.ShowUI("WIN_UI", false);
         ViewManager.ShowUI("GAMEPLAY_UI", isActive);
+    }
+    private void GetEnemyControllers()
+    {
+        GameManager.Instance.Enemies = new List<EnemyController>();
+        foreach (ObjectPool pool in CharacterPoolParty.Instance.Party.Pools)
+        {
+            if(pool != CharacterPoolParty.Instance.PlayerPool)
+            {
+                foreach(GameObject gameObject in pool.PooledObjects)
+                {
+                    if(gameObject.activeInHierarchy)
+                    {
+                        GameManager.Instance.Enemies.Add(gameObject.GetComponent<EnemyController>());
+                    }
+                }
+            }
+        }
+    }
+    private void GetPlayerController()
+    {
+        GameManager.Instance.Player = CharacterPoolParty.Instance.PlayerPool.PooledObjects[0].GetComponent<PlayerController>();
+            CameraController.Instance.Player = GameManager.Instance.Player;
+    }
+    private void SpawnObstaclesOnPlay()
+    {
+        foreach (ObjectPool pool in ObstaclePoolParty.Instance.Party.Pools)
+        {
+            foreach(GameObject gameObject in pool.PooledObjects)
+            {
+                if(gameObject.GetComponent<ObstaclePool>() != null)
+                {
+                    gameObject.GetComponent<ObstaclePool>().SpawnObstaclesOnLoad();
+                }
+            }
+        }
     }
     public void ShowSettingUI(bool isActive)
     {
@@ -71,6 +113,7 @@ public class UIController : Singleton<UIController>
                 return MapEditor.Instance.currentMap;
             }
         }
-        return null;
+        MapEditor.Instance.currentMap = GameManager.Instance.MapData[GameManager.Instance.MapData.Count - 1];
+        return MapEditor.Instance.currentMap;
     }
 }

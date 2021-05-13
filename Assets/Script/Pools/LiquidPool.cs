@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.CustomComponents;
 
-public class LavaPool : ObstaclePool
+public class LiquidPool : ObstaclePool
 {
     #region Properties
     public ObjectPool Smokes { get => party.Pools[1]; }
@@ -32,6 +32,6 @@ public class LavaPool : ObstaclePool
             }
         }
         newObject.transform.position = position;
-        StartCoroutine(Extinguish(Obstacles, newObject, 4f));
+        StartCoroutine(Extinguish(Smokes, newObject, 4f));
     }
 }

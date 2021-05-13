@@ -19,7 +19,7 @@ public class HolderPin : Pin
             base.Unpin();
             collider.enabled = false;
             Vector2 destination = FlipFlop();
-            if(GameManager.IsBlocked(transform.position, locker.position) == false)
+            if(GameManager.IsBlocked(transform.position, locker.position, 1 << LayerMask.NameToLayer("Pin")) == false)
             {
                 GameController.Move(transform, destination, unpinDuration);
             }

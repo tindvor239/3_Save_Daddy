@@ -18,9 +18,11 @@ public abstract class ObstaclePool : Model
     }
     protected virtual void Start()
     {
+    }
+    public void SpawnObstaclesOnLoad()
+    {
         StartCoroutine(SpawnObstacle());
     }
-
     protected virtual IEnumerator SpawnObstacle()
     {
         for (int i = 0; i < amount; i++)

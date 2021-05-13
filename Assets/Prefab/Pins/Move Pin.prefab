@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8937143070589237080}
   - component: {fileID: 8937143070589237079}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Movie Pin Ref
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 4.76, y: 0.64}
+  m_DrawMode: 1
+  m_Size: {x: 11, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8937143071039195996}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Move Pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8937143071580158987}
   - component: {fileID: 8937143071580158986}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 8937143071595690207}
   - component: {fileID: 8937143071595690176}
   - component: {fileID: 8937143071595690177}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.87, y: 0}
+  m_Offset: {x: -5.020075, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0.93, w: 0}
     pivot: {x: 1, y: 0.5}
@@ -254,7 +254,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.76, y: 0.64}
+  m_Size: {x: 11.06015, y: 0.64}
   m_EdgeRadius: 0
 --- !u!212 &8937143071595690176
 SpriteRenderer:
@@ -323,6 +323,7 @@ MonoBehaviour:
   - {fileID: 8937143072043918583}
   - {fileID: 8937143071580158988}
   - {fileID: 8937143072242761190}
+  - {fileID: 8937143071595690179}
   pinTransfrom: {fileID: 8937143071595690178}
   mainTransform: {fileID: 8937143071039195996}
   isLoopingPin: 0
@@ -342,7 +343,7 @@ GameObject:
   - component: {fileID: 8937143072043918581}
   - component: {fileID: 8937143072043918582}
   - component: {fileID: 8937143072043918580}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: End_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +441,7 @@ GameObject:
   - component: {fileID: 8937143072242761188}
   - component: {fileID: 8937143072242761189}
   - component: {fileID: 8937143072242761187}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: End_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6351393589669881010}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Holder Pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6351393590497646842}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Locker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 6351393590668826373}
   - component: {fileID: 5376412666545051555}
   - component: {fileID: 6351393590668826374}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pin Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,10 +162,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Holder Pin Pool
-  trap: {fileID: 0}
   pieces:
   - {fileID: 6351393591121509513}
   - {fileID: 6351393591291370620}
+  - {fileID: 6351393590668826376}
+  - {fileID: 6351393591161881152}
+  - {fileID: 6351393591205928744}
   pinTransfrom: {fileID: 6351393589658271300}
   mainTransform: {fileID: 6351393589669881010}
   isLoopingPin: 1
@@ -210,7 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6351393591121509511}
   - component: {fileID: 6351393591121509512}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pin Base Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6351393591161881215}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Close
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6351393591205928743}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6351393591291370618}
   - component: {fileID: 6351393591291370619}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pin Base Holder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

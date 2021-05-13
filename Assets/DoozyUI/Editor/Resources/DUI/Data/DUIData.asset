@@ -79,6 +79,7 @@ MonoBehaviour:
       - SPIN_POPUP
       - VIDEO_REWARD_UI
       - WELCOME_BACK_UI
+      - WIN_UI
       isExpanded:
         m_Target: 0
         speed: 2

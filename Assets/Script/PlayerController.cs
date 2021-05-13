@@ -12,7 +12,6 @@ public class PlayerController : CharacterController
     {
         base.Start();
         poolName = CharacterPoolParty.Instance.PlayerPool.Name;
-        MovePlayerToNextDestination();
     }
 
     // Update is called once per frame
@@ -26,10 +25,11 @@ public class PlayerController : CharacterController
         if (index != -1)
         {
             Vector3 pathPosition = GameManager.Instance.Destinations[index].position;
-            bool isBlocked = GameManager.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Default"));
-            if (!isBlocked)
+            bool isBlockedByTerrain = GameManager.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Default"));
+            bool isBlockedByPin = GameManager.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Pin"));
+            if (!isBlockedByTerrain && !isBlockedByPin)
             {
-                isBlocked = GameManager.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Enemy"));
+                bool isBlocked = GameManager.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Enemy"));
                 if (!isBlocked)
                 {
                     if(sequence != null && sequence.IsPlaying() == false)

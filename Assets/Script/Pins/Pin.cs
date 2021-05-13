@@ -18,9 +18,11 @@ public abstract class Pin : Model, IInteractable
     [SerializeField]
     protected float unpinDuration = 0.8f;
     protected bool isAlreadyUnpin = false;
+    protected float finishDuration = 0.8f;
     protected float unpinDelay = 1f;
     protected float triggerDuration = 0;
     #region Properties
+    public Transform MainTransform { get => mainTransform; }
     public bool IsLoopingPin { protected get => isLoopingPin; set => isLoopingPin = value; }
     public new Behaviour collider { get; private set; }
     #endregion
@@ -48,7 +50,7 @@ public abstract class Pin : Model, IInteractable
     {
         isAlreadyUnpin = true;
         onUnpinTrigger += OnTrigger;
-        StartCoroutine(StartMoveObject(0.8f));
+        StartCoroutine(StartMoveObject(finishDuration));
     }
     private void OnTrigger()
     {

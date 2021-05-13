@@ -11,6 +11,7 @@ public class CharacterPoolParty : Singleton<CharacterPoolParty>
     public PoolParty Party { get => party; }
     public ObjectPool PlayerPool { get => party.Pools[0]; }
     public ObjectPool SharkPool { get => party.Pools[1]; }
+    public ObjectPool AligatorPool { get => party.Pools[2]; }
     #endregion
 
     protected override void Awake()

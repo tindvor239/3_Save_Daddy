@@ -5,7 +5,7 @@ using UnityEngine;
 public class ClearLava : MonoBehaviour
 {
     [SerializeField]
-    private LavaPool lavaPoolParty;
+    private LiquidPool lavaPoolParty;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Lava")

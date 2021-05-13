@@ -236,6 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Saw Pool
+  effect: {fileID: 0}
   blades:
   - {fileID: 1446613700739794315}
   - {fileID: 876891781821896151}

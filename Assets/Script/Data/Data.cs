@@ -12,7 +12,7 @@ public abstract class Data : ScriptableObject
         foreach (Model model in models)
         {
             bool isCamera = model is CameraController;
-            if (!isCamera)
+            if (!isCamera && model.gameObject.activeInHierarchy)
             {
                 bool isPin = model is Pin;
                 if (isPin)

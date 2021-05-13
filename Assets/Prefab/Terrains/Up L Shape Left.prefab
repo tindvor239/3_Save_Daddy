@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9219155015317586245}
   - component: {fileID: 7402449800203323960}
   m_Layer: 0
-  m_Name: Grass Land Up L Shape Left
+  m_Name: Up L Shape Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

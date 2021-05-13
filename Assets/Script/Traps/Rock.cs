@@ -7,18 +7,18 @@ public class Rock : Obstacle
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.transform.gameObject.tag != "Stone")
+        if (collision.transform.gameObject.tag == "Enemy" || collision.transform.gameObject.tag == "Player")
         {
             OnHit(collision.transform.gameObject);
         }

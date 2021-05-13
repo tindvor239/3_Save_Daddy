@@ -31,6 +31,7 @@ public class GameController : Singleton<GameController>
                     {
                         if (clickedObject.GetComponent<Pin>() != null && canTrigger)
                         {
+                            Debug.Log(clickedObject.GetComponent<Pin>());
                             clickedObject.GetComponent<Pin>().Interact();
                             unpinDelayTimer = unpinDelay;
                         }

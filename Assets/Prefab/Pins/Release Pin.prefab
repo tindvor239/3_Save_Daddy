@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6351393589669881010}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Release Pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6351393590497646842}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 6351393590668826373}
   - component: {fileID: 6351393590668826374}
   - component: {fileID: 6351393590668826375}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pin Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,18 +186,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78f966de4386b740a0dbd8704457418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolName: Release Pin Pool
-  trap: {fileID: 0}
-  pieces:
-  - {fileID: 6351393591121509513}
-  - {fileID: 6351393591291370620}
-  pinTransfrom: {fileID: 6351393589658271300}
-  mainTransform: {fileID: 6351393589669881010}
+  poolName: 
+  pieces: []
+  pinTransfrom: {fileID: 0}
+  mainTransform: {fileID: 0}
   isLoopingPin: 0
   unpinDuration: 0.8
-  anchor: {fileID: 6351393591205928743}
-  forward: {fileID: 6351393591161881215}
-  locker: {fileID: 6351393590497646842}
+  anchor: {fileID: 0}
+  forward: {fileID: 0}
+  locker: {fileID: 0}
 --- !u!1 &6351393591121509513
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6351393591121509511}
   - component: {fileID: 6351393591121509512}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pin Base Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +285,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6351393591161881215}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Forward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6351393591205928743}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6351393591291370618}
   - component: {fileID: 6351393591291370619}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pin Base Holder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
