@@ -186,15 +186,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78f966de4386b740a0dbd8704457418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolName: 
-  pieces: []
-  pinTransfrom: {fileID: 0}
-  mainTransform: {fileID: 0}
+  poolName: Release Pin Pool
+  pieces:
+  - {fileID: 6351393591121509513}
+  - {fileID: 6351393591291370620}
+  pinTransfrom: {fileID: 6351393589658271300}
+  mainTransform: {fileID: 6351393589669881010}
   isLoopingPin: 0
   unpinDuration: 0.8
-  anchor: {fileID: 0}
-  forward: {fileID: 0}
-  locker: {fileID: 0}
+  anchor: {fileID: 6351393591205928743}
+  forward: {fileID: 6351393591161881215}
+  locker: {fileID: 6351393590497646842}
 --- !u!1 &6351393591121509513
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6351393591121509513}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.19, z: 9.07}
+  m_LocalPosition: {x: 0, y: -3.19, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 6351393589669881010}
@@ -362,7 +364,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6351393591291370620}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.6599998, z: 9.07}
+  m_LocalPosition: {x: 0, y: 3.6599998, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 6351393589669881010}

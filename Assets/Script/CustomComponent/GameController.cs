@@ -63,7 +63,7 @@ public class GameController : Singleton<GameController>
     #region Inputs
     public static GameObject GetObjectByMouseRayCast()
     {
-        return GameManager.RayCastObject(GetMousePosition(), Vector3.forward);
+        return GameManager.Instance.RayCastObject(GetMousePosition(), Vector3.forward);
     }
     public static Vector3 GetMousePosition()
     {
@@ -75,52 +75,52 @@ public class GameController : Singleton<GameController>
     }
     #endregion
     #region Movement Handle
-    public static void Move(in Sequence sequence, in Transform moveObject, in Vector2 destination, in float duration)
+    public void Move(in Sequence sequence, in Transform moveObject, in Vector2 destination, in float duration)
     {
-        ViewManager.MoveOutput(sequence, moveObject, destination, duration);
+        ViewManager.Instance.MoveOutput(sequence, moveObject, destination, duration);
     }
-    public static void Move(in Sequence sequence, in Transform moveObject, in Vector2 destination, in float duration, in Ease ease)
+    public void Move(in Sequence sequence, in Transform moveObject, in Vector2 destination, in float duration, in Ease ease)
     {
-        ViewManager.MoveOutput(sequence, moveObject, destination, duration, ease);
+        ViewManager.Instance.MoveOutput(sequence, moveObject, destination, duration, ease);
     }
-    public static void Move(in Transform moveObject, in Vector2 destination, in float duration)
+    public void Move(in Transform moveObject, in Vector2 destination, in float duration)
     {
-        ViewManager.MoveOutput(moveObject, destination, duration);
+        ViewManager.Instance.MoveOutput(moveObject, destination, duration);
     }
-    public static void Move(in Transform moveObject, in Vector2 destination, in float duration, in Ease ease)
+    public void Move(in Transform moveObject, in Vector2 destination, in float duration, in Ease ease)
     {
-        ViewManager.MoveOutput(moveObject, destination, duration, ease);
+        ViewManager.Instance.MoveOutput(moveObject, destination, duration, ease);
     }
     #endregion
     #region Rotate Handle
-    public static void Rotate(in Transform transform, in Quaternion target,in float duration)
+    public void Rotate(in Transform transform, in Quaternion target,in float duration)
     {
-        ViewManager.Rotating(transform, target, duration);
+        ViewManager.Instance.Rotating(transform, target, duration);
     }
-    public static void Rotate(in Transform transform, in Vector3 target, in float duration, Ease ease)
+    public void Rotate(in Transform transform, in Vector3 target, in float duration, Ease ease)
     {
-        ViewManager.Rotating(transform, target, duration, ease);
+        ViewManager.Instance.Rotating(transform, target, duration, ease);
     }
-    public static void Rotate(Sequence sequence, in Transform transform, in Vector3 target, in float duration, Ease ease)
+    public void Rotate(Sequence sequence, in Transform transform, in Vector3 target, in float duration, Ease ease)
     {
-        ViewManager.Rotating(sequence, transform, target, duration, ease);
+        ViewManager.Instance.Rotating(sequence, transform, target, duration, ease);
     }
-    public static void Rotate(in Transform transform, in Vector3 target)
+    public void Rotate(in Transform transform, in Vector3 target)
     {
-        ViewManager.Rotating(transform, target);
+        ViewManager.Instance.Rotating(transform, target);
     }
     #endregion
     #region Calculation
 
-    public static void LookRotation(Vector3 axis, GameObject gameObject, Vector3 lookDirection)
+    public void LookRotation(Vector3 axis, GameObject gameObject, Vector3 lookDirection)
     {
         Quaternion lookRotation = Quaternion.LookRotation(axis, lookDirection);
-        ViewManager.Rotating(gameObject.transform, lookRotation);
+        ViewManager.Instance.Rotating(gameObject.transform, lookRotation);
     }
-    public static void LookRotation(Vector3 axis, GameObject gameObject, Vector3 lookDirection, float min, float max)
+    public void LookRotation(Vector3 axis, GameObject gameObject, Vector3 lookDirection, float min, float max)
     {
         Quaternion lookRotation = Quaternion.LookRotation(axis, lookDirection);
-        ViewManager.Rotating(gameObject.transform, lookRotation, min, max);
+        ViewManager.Instance.Rotating(gameObject.transform, lookRotation, min, max);
     }
     #endregion
     #endregion

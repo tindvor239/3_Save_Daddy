@@ -13,7 +13,7 @@ public class Saw : Trap
         foreach(SpriteRenderer blade in blades)
         {
             float z = blade.transform.eulerAngles.z + (Time.deltaTime * spinSpeed);
-            GameController.Rotate(blade.transform, new Vector3(0, 0, z));
+            GameController.Instance.Rotate(blade.transform, new Vector3(0, 0, z));
         }
         //sequence.SetLoops(-1);
     }
@@ -25,6 +25,7 @@ public class Saw : Trap
 
     public override void OnBeingHit(GameObject hitObject)
     {
+        Debug.Log("In");
         ObstaclePoolParty.Instance.Party.GetPool("Saw Pool").GetBackToPool(gameObject);
     }
 }

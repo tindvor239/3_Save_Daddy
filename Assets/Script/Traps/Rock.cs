@@ -18,15 +18,16 @@ public class Rock : Obstacle
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.gameObject.tag == "Enemy" || collision.transform.gameObject.tag == "Player")
+        Debug.Log(collision.transform.gameObject);
+        if (collision.transform.gameObject.tag == "Enemy" || collision.transform.gameObject.tag == "Player" || collision.transform.gameObject.tag == "Trap")
         {
+            Debug.Log("In");
             OnHit(collision.transform.gameObject);
         }
     }
 
     protected override void OnHit(GameObject beenHitObject)
     {
-        //TO DO: => OnInteract().
         if(beenHitObject.GetComponent<CharacterController>() != null)
         {
             beenHitObject.GetComponent<CharacterController>().Interact();
@@ -35,6 +36,7 @@ public class Rock : Obstacle
         {
             if (beenHitObject.GetComponent<Trap>() != null)
             {
+                Debug.Log("In 2");
                 beenHitObject.GetComponent<Trap>().OnBeingHit(gameObject);
             }
         }

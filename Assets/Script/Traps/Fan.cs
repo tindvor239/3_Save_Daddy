@@ -8,6 +8,7 @@ public class Fan : Trap
     private Transform target;
     private float timer = 0;
     private float maxTimer = 0.15f;
+    private bool alreadyBlow = false;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -17,25 +18,46 @@ public class Fan : Trap
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= maxTimer)
+        if(!alreadyBlow)
         {
-            CheckHit();
-            timer = 0;
+            timer += Time.deltaTime;
+            if (timer >= maxTimer)
+            {
+                CheckHit();
+                timer = 0;
+            }
         }
     }
 
     private void CheckHit()
     {
-        GameObject beenHitObject = GameManager.RayCastToObject(transform.position, target.position);
-        if (beenHitObject != null)
+        GameObject beenHitObject = GameManager.Instance.RayCastToObject(transform.position, target.position);
+        if (beenHitObject != null && beenHitObject.tag == "Player")
         {
             OnHit(beenHitObject);
+            alreadyBlow = true;
         }
     }
 
     protected override void OnHit(GameObject beenHitObject)
     {
-        
+        if(beenHitObject.tag == "Player")
+        {
+            PlayerController player = beenHitObject.GetComponent<PlayerController>();
+            player.Move(target.position, DG.Tweening.Ease.Linear);
+            StartCoroutine(MoveNext(player, player.MoveDuration(beenHitObject.transform.position, target.position)));
+        }
+    }
+
+
+    private IEnumerator MoveNext(PlayerController player, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        player.MovePlayerToNextDestination();
+    }
+    private void OnEnable()
+    {
+        alreadyBlow = false;
+        timer = 0;
     }
 }

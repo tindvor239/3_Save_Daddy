@@ -13,7 +13,7 @@ public class RotatePin : Pin
         {
             base.Unpin();
             Quaternion rotate = FlipFlop();
-            GameController.Rotate(pinBase.transform, in rotate, unpinDuration);
+            GameController.Instance.Rotate(pinBase.transform, in rotate, unpinDuration);
         }
     }
     private Quaternion FlipFlop()

@@ -18,11 +18,11 @@ public class LeverUI : MonoBehaviour
         isActive = !isActive;
         if(isActive == false)
         {
-            GameController.Move(buttonIcon.transform, transforms[0].position, timer);
+            GameController.Instance.Move(buttonIcon.transform, transforms[0].position, timer);
         }
         else
         {
-            GameController.Move(buttonIcon.transform, transforms[1].position, timer);
+            GameController.Instance.Move(buttonIcon.transform, transforms[1].position, timer);
         }
         float iconChangeTimer = timer - 0.2f;
         StartCoroutine(ChangeButtonIcon(iconChangeTimer));
@@ -31,6 +31,6 @@ public class LeverUI : MonoBehaviour
     private IEnumerator ChangeButtonIcon(float time)
     {
         yield return new WaitForSeconds(time);
-        ViewManager.ChangeSprite(buttonIcon, sprites[ isActive == false ? 0 : 1]);
+        ViewManager.Instance.ChangeSprite(buttonIcon, sprites[ isActive == false ? 0 : 1]);
     }
 }

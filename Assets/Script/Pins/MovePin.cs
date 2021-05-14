@@ -37,7 +37,7 @@ public class MovePin : Pin
             }
         }
         finishDuration = MoveDuration(transform.position, destination);
-        GameController.Move(transform, destination, finishDuration - 0.1f);
+        GameController.Instance.Move(transform, destination, finishDuration - 0.1f);
         base.Unpin();
     }
     private float MoveDuration(Vector2 fromPosition, Vector2 toPosition)

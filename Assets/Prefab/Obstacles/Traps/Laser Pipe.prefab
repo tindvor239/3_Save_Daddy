@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7251377596061172806}
   m_Layer: 0
   m_Name: Laser Pipe
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Laser Pool
+  effect: {fileID: 0}
   line: {fileID: 7251377597478369237}
 --- !u!1 &7251377597478369239
 GameObject:

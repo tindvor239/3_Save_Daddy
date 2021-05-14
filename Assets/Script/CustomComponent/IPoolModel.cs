@@ -95,7 +95,6 @@ public struct Piece
     {
         gameObject.name = piece.name;
         gameObject.SetActive(piece.isActive);
-        Debug.Log(piece.isActive);
         gameObject.transform.position = piece.position;
         gameObject.transform.rotation = piece.rotation;
         gameObject.transform.localScale = piece.scale;

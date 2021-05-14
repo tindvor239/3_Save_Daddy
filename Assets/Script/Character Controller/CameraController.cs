@@ -23,7 +23,7 @@ public class CameraController : CharacterController
         if(Player != null)
         {
             Vector3 target = new Vector3(Player.transform.position.x + offset.x, Player.transform.position.y + offset.y, transform.position.z);
-            ViewManager.SetPosition(transform, target);
+            ViewManager.Instance.SetPosition(transform, target);
         }
 
     }

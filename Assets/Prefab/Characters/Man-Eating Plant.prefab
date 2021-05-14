@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 329759208372406898}
-  - component: {fileID: 5737885253012179920}
   - component: {fileID: 8399259286556451696}
+  - component: {fileID: 2923583309857551802}
   m_Layer: 9
   m_Name: Man-Eating Plant
   m_TagString: Enemy
@@ -26,28 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329759208372406908}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.58, y: -2.89, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: -1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 8544673686893825143}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5737885253012179920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 329759208372406908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1f1158ca641e094fb3cf2fa9de3df48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolName: Man-Eating Plant Pool
-  moveSpeed: 9
-  destinations: []
 --- !u!60 &8399259286556451696
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -94,6 +79,21 @@ PolygonCollider2D:
       - {x: -0.53897905, y: 0.14389402}
       - {x: -0.57667345, y: -0.25198352}
       - {x: -0.3536619, y: -0.261445}
+--- !u!114 &2923583309857551802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329759208372406908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a920302b7e4e04647b65dafa10ac4503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolName: Man-Eating Plant Pool
+  moveSpeed: 0
+  attackRange: 2
 --- !u!1 &7774497715707542762
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,7 +30,7 @@ public class Gass : Trap
     }
     private void CheckHit()
     {
-        bool beenBlocked = GameManager.IsBlocked(points[0].position, points[1].position, 1 << LayerMask.NameToLayer("Pin"));
+        bool beenBlocked = GameManager.Instance.IsBlocked(points[0].position, points[1].position, 1 << LayerMask.NameToLayer("Pin"));
         if (beenBlocked)
         {
             Disarmed();

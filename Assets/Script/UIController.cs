@@ -34,7 +34,6 @@ public class UIController : Singleton<UIController>
         Map currentMap = GetNextLevel();
         if (currentMap != null)
         {
-            Debug.Log("Loaded");
             MapEditor.Instance.Load();
             GetPlayerController();
             GetEnemyControllers();
@@ -73,7 +72,7 @@ public class UIController : Singleton<UIController>
         {
             foreach(GameObject gameObject in pool.PooledObjects)
             {
-                if(gameObject.GetComponent<ObstaclePool>() != null)
+                if(gameObject.GetComponent<ObstaclePool>() != null && gameObject.activeInHierarchy)
                 {
                     gameObject.GetComponent<ObstaclePool>().SpawnObstaclesOnLoad();
                 }

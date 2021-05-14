@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7812168518036926378}
   - component: {fileID: 4509511055804438579}
   - component: {fileID: -8793581961219723729}
-  - component: {fileID: -8668879129901699783}
+  - component: {fileID: 231558358211923529}
   m_Layer: 0
-  m_Name: Sand
+  m_Name: Sand 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5305961498205008120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 69830370e473a37429cb424aa2fc3490, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b380652197b1a304da8bbd9388164818, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,9 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b77007bacc48b41ac099b7abed3979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolName: Sand
---- !u!61 &-8668879129901699783
-BoxCollider2D:
+  poolName: Sand 7
+--- !u!60 &231558358211923529
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -113,12 +113,17 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.83, y: 5.72}
+    oldSize: {x: 6.11, y: 3.44}
     newSize: {x: 6.56, y: 5.53}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 6.83, y: 5.72}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -2.7055151, y: -1.6492466}
+      - {x: -3.0519745, y: -0.8028851}
+      - {x: -2.9641082, y: -0.36657852}
+      - {x: 2.7026918, y: 1.7231977}
+      - {x: 3.029624, y: 1.4904459}
+      - {x: 3.032334, y: -1.6361917}

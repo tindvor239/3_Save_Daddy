@@ -8,14 +8,18 @@ public class EnemyController : CharacterController
 {
     [SerializeField]
     private List<Transform> destinations = new List<Transform>();
+    protected override void Awake()
+    {
+        base.Awake();
+    }
     protected override void Start()
     {
         base.Start();
     }
     public void GetPlayer()
     {
-        bool isBlockedByTerrain = GameManager.IsBlocked(transform.position, GameManager.Instance.Player.transform.position, 1 << LayerMask.NameToLayer("Default"));
-        bool isBlockedByPin = GameManager.IsBlocked(transform.position, GameManager.Instance.Player.transform.position, 1 << LayerMask.NameToLayer("Pin"));
+        bool isBlockedByTerrain = GameManager.Instance.IsBlocked(transform.position, GameManager.Instance.Player.transform.position, 1 << LayerMask.NameToLayer("Default"));
+        bool isBlockedByPin = GameManager.Instance.IsBlocked(transform.position, GameManager.Instance.Player.transform.position, 1 << LayerMask.NameToLayer("Pin"));
         if (sequence != null && sequence.IsPlaying() == false)
         {
             moveDuration = 0;
@@ -23,7 +27,7 @@ public class EnemyController : CharacterController
         if (!isBlockedByTerrain && !isBlockedByPin)
         {
             Debug.Log("Get Player");
-            bool isBlocked = GameManager.IsBlocked(transform.position, GameManager.Instance.Player.transform.position, 1 << LayerMask.NameToLayer("Player"));
+            bool isBlocked = GameManager.Instance.IsBlocked(transform.position, GameManager.Instance.Player.transform.position, 1 << LayerMask.NameToLayer("Player"));
             if (!isBlocked && gameObject.activeInHierarchy)
             {
                 StartCoroutine(MoveToDestination(GameManager.Instance.Player.transform.position));
@@ -35,8 +39,8 @@ public class EnemyController : CharacterController
             destinations = FindDestination();
             foreach(Transform destination in destinations)
             {
-                isBlockedByTerrain = GameManager.IsBlocked(transform.position, destination.position, 1 << LayerMask.NameToLayer("Default"));
-                isBlockedByPin = GameManager.IsBlocked(transform.position, destination.position, 1 << LayerMask.NameToLayer("Pin"));
+                isBlockedByTerrain = GameManager.Instance.IsBlocked(transform.position, destination.position, 1 << LayerMask.NameToLayer("Default"));
+                isBlockedByPin = GameManager.Instance.IsBlocked(transform.position, destination.position, 1 << LayerMask.NameToLayer("Pin"));
                 if (!isBlockedByTerrain && !isBlockedByPin)
                 {
                     Debug.Log("Get To Destination");
@@ -51,21 +55,21 @@ public class EnemyController : CharacterController
         Vector2 direction = PlayerDirection();
         if(direction.x >= 0)
         {
-            for (int i = gameManager.Destinations.Count - 1; i >= 0; i--)
+            for (int i = GameManager.Instance.Destinations.Count - 1; i >= 0; i--)
             {
-                if(gameManager.Destinations[i].position.x >= transform.position.x)
+                if(GameManager.Instance.Destinations[i].position.x >= transform.position.x)
                 {
-                    destinations.Add(gameManager.Destinations[i]);
+                    destinations.Add(GameManager.Instance.Destinations[i]);
                 }
             }
         }
         else if(direction.x < 0)
         {
-            for(int i = 0; i < gameManager.Destinations.Count; i++)
+            for(int i = 0; i < GameManager.Instance.Destinations.Count; i++)
             {
-                if(gameManager.Destinations[i].position.x < transform.position.x)
+                if(GameManager.Instance.Destinations[i].position.x < transform.position.x)
                 {
-                    destinations.Add(gameManager.Destinations[i]);
+                    destinations.Add(GameManager.Instance.Destinations[i]);
                 }
             }
         }

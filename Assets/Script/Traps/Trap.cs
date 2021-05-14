@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.CustomComponents;
 public class Trap : Obstacle
 {
     protected Collider2D hitBox;
@@ -33,10 +33,35 @@ public class Trap : Obstacle
 
     protected override void OnHit(GameObject beenHitObject)
     {
-        if(beenHitObject.tag == "Player")
+        if (beenHitObject.tag == "Player")
         {
-            Debug.Log("Destroy Object");
+            CharacterPoolParty.Instance.PlayerPool.GetBackToPool(beenHitObject);
         }
+        else if(beenHitObject.tag == "Enemy")
+        {
+            ObjectPool pool = GetCharacterPool(beenHitObject);
+            if(pool != null)
+            {
+                pool.GetBackToPool(beenHitObject);
+            }
+        }
+    }
+    private ObjectPool GetCharacterPool(GameObject gameObject)
+    {
+        foreach (ObjectPool pool in CharacterPoolParty.Instance.Party.Pools)
+        {
+            if (pool != CharacterPoolParty.Instance.PlayerPool)
+            {
+                foreach (GameObject pooledObject in pool.PooledObjects)
+                {
+                    if (pooledObject == gameObject && pooledObject.activeInHierarchy)
+                    {
+                        return pool;
+                    }
+                }
+            }
+        }
+        return null;
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {

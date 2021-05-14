@@ -24,12 +24,15 @@ public class PlayerController : CharacterController
         int index = GameManager.GetNextDestinationIndex(this);
         if (index != -1)
         {
+            Debug.Log(index);
             Vector3 pathPosition = GameManager.Instance.Destinations[index].position;
-            bool isBlockedByTerrain = GameManager.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Default"));
-            bool isBlockedByPin = GameManager.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Pin"));
+            bool isBlockedByTerrain = GameManager.Instance.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Default"));
+            Debug.Log(isBlockedByTerrain);
+            bool isBlockedByPin = GameManager.Instance.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Pin"));
+            Debug.Log(isBlockedByPin);
             if (!isBlockedByTerrain && !isBlockedByPin)
             {
-                bool isBlocked = GameManager.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Enemy"));
+                bool isBlocked = GameManager.Instance.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Enemy"));
                 if (!isBlocked)
                 {
                     if(sequence != null && sequence.IsPlaying() == false)

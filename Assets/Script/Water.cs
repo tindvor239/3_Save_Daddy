@@ -5,7 +5,6 @@ using UnityEngine;
 public class Water : MonoBehaviour
 {
     private SpriteRenderer sprite;
-    private PlayerController player;
     private Vector2 lastPosition;
     private Material material;
     [SerializeField]
@@ -15,24 +14,22 @@ public class Water : MonoBehaviour
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-        player = GameManager.Instance.Player;
         material = sprite.material;
     }
     // Update is called once per frame
     private void Update()
     {
-        if(player == null)
-        {
-            player = GameManager.Instance.Player;
-        }
         material.mainTextureOffset -= new Vector2(Time.deltaTime / speedDivider, 0);
         material.mainTextureOffset = ClampOffset(material.mainTextureOffset);
     }
     void LateUpdate()
     {
-        Vector2 offset = ((Vector2)player.transform.position - lastPosition) / runningDivider;
-        material.mainTextureOffset += offset;
-        lastPosition = player.transform.position;
+        if(GameManager.Instance.Player != null)
+        {
+            Vector2 offset = ((Vector2)GameManager.Instance.Player.transform.position - lastPosition) / runningDivider;
+            material.mainTextureOffset += offset;
+            lastPosition = GameManager.Instance.Player.transform.position;
+        }
     }
 
     private Vector2 ClampOffset(Vector2 offset)

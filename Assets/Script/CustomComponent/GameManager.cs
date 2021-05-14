@@ -38,7 +38,7 @@ public class GameManager : Singleton<GameManager>
         #endregion
     }
     #region Raycasting
-    public static GameObject RayCastObject(Vector3 fromPosition, Vector3 direction)
+    public GameObject RayCastObject(Vector3 fromPosition, Vector3 direction)
     {
         RaycastHit2D hit = Physics2D.Raycast(fromPosition, direction);
         if (hit.collider != null)
@@ -47,7 +47,7 @@ public class GameManager : Singleton<GameManager>
         }
         return null;
     }
-    public static GameObject RayCastObject(Vector3 fromPosition, Vector3 direction, LayerMask ignoreLayer)
+    public GameObject RayCastObject(Vector3 fromPosition, Vector3 direction, LayerMask ignoreLayer)
     {
         RaycastHit2D hit = Physics2D.Raycast(fromPosition, direction, Mathf.Infinity, ignoreLayer);
         if (hit.collider != null)
@@ -57,13 +57,13 @@ public class GameManager : Singleton<GameManager>
         }
         return null;
     }
-    public static GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition)
+    public GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition)
     {
         Vector3 direction = GetDirectionVector(fromPosition, toPosition);
         GameObject destinateObject = RayCastObject(fromPosition, direction);
         return destinateObject;
     }
-    public static GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition, LayerMask ignoreLayer)
+    public GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition, LayerMask ignoreLayer)
     {
         Vector3 direction = GetDirectionVector(fromPosition, toPosition);
         GameObject destinateObject = RayCastObject(fromPosition, direction, ignoreLayer);
@@ -71,11 +71,12 @@ public class GameManager : Singleton<GameManager>
     }
     #endregion
     #region Linecasting
-    public static bool IsBlocked(Vector3 fromPosition, Vector3 toPosition)
+    public bool IsBlocked(Vector3 fromPosition, Vector3 toPosition)
     {
         RaycastHit2D hit = Physics2D.Linecast(fromPosition, toPosition);
         if (hit.collider != null)
         {
+            Debug.Log(hit.collider.gameObject);
             if (hit.collider.transform.position == toPosition)
             {
                 return false;
@@ -84,11 +85,12 @@ public class GameManager : Singleton<GameManager>
         }
         return false;
     }
-    public static bool IsBlocked(Vector3 fromPosition, Vector3 toPosition, int layerIndex)
+    public bool IsBlocked(Vector3 fromPosition, Vector3 toPosition, int layerIndex)
     {
         RaycastHit2D hit = Physics2D.Linecast(fromPosition, toPosition, layerIndex);
         if (hit.collider != null)
         {
+            Debug.Log(hit.collider.gameObject.transform.parent.transform.position);
             if(hit.collider.transform.position == toPosition)
             {
                 return false;
@@ -133,7 +135,7 @@ public class GameManager : Singleton<GameManager>
         {
             for (int i = index + 1; i < Instance.destinations.Count; i++)
             {
-                bool isBlocked = IsBlocked(Instance.destinations[index].position, Instance.destinations[i].position);
+                bool isBlocked = Instance.IsBlocked(Instance.destinations[index].position, Instance.destinations[i].position);
                 if (!isBlocked)
                 {
                     controller.GetComponent<Collider2D>().enabled = true;
@@ -173,7 +175,7 @@ public class GameManager : Singleton<GameManager>
         controller.GetComponent<Collider2D>().enabled = false;
         for (int i = startIndex; i < Instance.destinations.Count; i++)
         {
-            bool isBlocked = IsBlocked(controller.transform.position, Instance.destinations[i].position);
+            bool isBlocked = Instance.IsBlocked(controller.transform.position, Instance.destinations[i].position);
             if (!isBlocked)
             {
                 controller.GetComponent<Collider2D>().enabled = true;

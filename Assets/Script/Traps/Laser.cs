@@ -26,14 +26,10 @@ public class Laser : Trap
     }
     private void CheckHit()
     {
-        GameObject beenHitObject = GameManager.RayCastToObject(line.GetPosition(0), line.GetPosition(1));
+        GameObject beenHitObject = GameManager.Instance.RayCastToObject(line.GetPosition(0), line.GetPosition(1));
         if(beenHitObject != null)
         {
             OnHit(beenHitObject);
         }
-    }
-    protected override void OnHit(GameObject beenHitObject)
-    {
-        base.OnHit(beenHitObject);
     }
 }

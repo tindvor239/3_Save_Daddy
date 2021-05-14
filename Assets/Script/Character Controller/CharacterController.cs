@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using UnityEngine;
+using UnityEngine.CustomComponents;
 
 public class CharacterController : Controller, IInteractable
 {
@@ -22,12 +23,12 @@ public class CharacterController : Controller, IInteractable
     public void Move(in Vector2 destination, in Ease ease)
     {
         moveDuration = MoveDuration(transform.position, destination);
-        GameController.Move(in sequence, transform, destination, moveDuration, ease);
+        GameController.Instance.Move(in sequence, transform, destination, moveDuration, ease);
     }
     public override void Move(in Vector3 destination)
     {
         moveDuration = MoveDuration(transform.position, destination);
-        GameController.Move(in sequence, transform, destination, moveDuration);
+        GameController.Instance.Move(in sequence, transform, destination, moveDuration);
     }
     public virtual void Interact()
     {
