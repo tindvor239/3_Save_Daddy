@@ -65,7 +65,7 @@ public abstract class Pin : Model, IInteractable
     {
         yield return new WaitForSeconds(duration);
         EnemyController enemy = GameManager.GetClosestEnemy();
-        if(enemy != null)
+        if(enemy != null && enemy.gameObject.activeInHierarchy)
         {
             enemy.GetPlayer();
         }

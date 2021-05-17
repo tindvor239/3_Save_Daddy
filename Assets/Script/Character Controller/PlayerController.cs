@@ -23,24 +23,27 @@ public class PlayerController : CharacterController
         int index = GameManager.GetNextDestinationIndex(this);
         if (index != -1)
         {
-            Debug.Log(index);
             Vector3 pathPosition = GameManager.Instance.Destinations[index].position;
-            bool isBlockedByTerrain = GameManager.Instance.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Default"));
-            bool isBlockedByPin = GameManager.Instance.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Pin"));
-            if (!isBlockedByTerrain && !isBlockedByPin)
+            if (!CheckPathIsBlocked(transform.position, pathPosition))
             {
                 bool isBlocked = GameManager.Instance.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Enemy"));
                 if (!isBlocked)
                 {
-                    if(sequence != null && sequence.IsPlaying() == false)
-                    {
-                        moveDuration = 0;
-                    }
-                    StartCoroutine(MoveToDestination(GameManager.Instance.Destinations[index]));
+                    ContinueMoving(GameManager.Instance.Destinations[index]);
                 }
             }
         }
     }
+
+    private void ContinueMoving(Transform destination)
+    {
+        if (!sequence.IsActive())
+        {
+            moveDuration = 0;
+        }
+        StartCoroutine(MoveToDestination(destination));
+    }
+
     IEnumerator MoveToDestination(Transform destination)
     {
         yield return new WaitForSeconds(moveDuration);

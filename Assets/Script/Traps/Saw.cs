@@ -25,7 +25,6 @@ public class Saw : Trap
 
     public override void OnBeingHit(GameObject hitObject)
     {
-        Debug.Log("In");
         ObstaclePoolParty.Instance.Party.GetPool("Saw Pool").GetBackToPool(gameObject);
     }
 }

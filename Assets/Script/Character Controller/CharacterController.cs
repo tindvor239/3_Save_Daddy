@@ -20,6 +20,13 @@ public class CharacterController : Controller, IInteractable
         base.Start();
 
     }
+    protected bool CheckPathIsBlocked(in Vector3 from, in Vector3 to)
+    {
+        bool isBlockedByTerrain = GameManager.Instance.IsBlocked(from, to, 1 << LayerMask.NameToLayer("Default"));
+        bool isBlockedByPin = GameManager.Instance.IsBlocked(from, to, 1 << LayerMask.NameToLayer("Pin"));
+        return isBlockedByTerrain == false && isBlockedByPin == false ? false : true;
+    }
+
     public void Move(in Vector2 destination, in Ease ease)
     {
         moveDuration = MoveDuration(transform.position, destination);
@@ -29,6 +36,10 @@ public class CharacterController : Controller, IInteractable
     {
         moveDuration = MoveDuration(transform.position, destination);
         GameController.Instance.Move(in sequence, transform, destination, moveDuration);
+    }
+    public void Stop()
+    {
+        transform.DOKill();
     }
     public virtual void Interact()
     {
