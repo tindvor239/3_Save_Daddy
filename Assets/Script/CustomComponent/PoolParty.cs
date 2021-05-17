@@ -38,6 +38,21 @@ namespace UnityEngine.CustomComponents
             }
             return null;
         }
+
+        public virtual ObjectPool GetPool(GameObject gameObject)
+        {
+            foreach (ObjectPool pool in CharacterPoolParty.Instance.Party.Pools)
+            {
+                foreach (GameObject pooledObject in pool.PooledObjects)
+                {
+                    if (gameObject == pooledObject)
+                    {
+                        return pool;
+                    }
+                }
+            }
+            return null;
+        }
     }
 
 }

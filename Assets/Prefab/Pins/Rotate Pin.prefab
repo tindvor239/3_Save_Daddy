@@ -434,6 +434,7 @@ MonoBehaviour:
   - {fileID: 9183092428368194054}
   - {fileID: 9183092427418544553}
   - {fileID: 9183092427038249011}
+  - {fileID: 9183092428769758681}
   pinTransfrom: {fileID: 9183092428769758680}
   mainTransform: {fileID: 9183092428455751510}
   isLoopingPin: 1

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.CustomComponents;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -18,10 +19,8 @@ public class Rock : Obstacle
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.transform.gameObject);
         if (collision.transform.gameObject.tag == "Enemy" || collision.transform.gameObject.tag == "Player" || collision.transform.gameObject.tag == "Trap")
         {
-            Debug.Log("In");
             OnHit(collision.transform.gameObject);
         }
     }
@@ -30,13 +29,14 @@ public class Rock : Obstacle
     {
         if(beenHitObject.GetComponent<CharacterController>() != null)
         {
-            beenHitObject.GetComponent<CharacterController>().Interact();
+            ObjectPool pool = CharacterPoolParty.Instance.Party.GetPool(beenHitObject);
+            pool.GetBackToPool(beenHitObject);
+            ObstaclePoolParty.Instance.Party.GetPool(poolName).GetBackToPool(gameObject);
         }
         else
         {
             if (beenHitObject.GetComponent<Trap>() != null)
             {
-                Debug.Log("In 2");
                 beenHitObject.GetComponent<Trap>().OnBeingHit(gameObject);
             }
         }

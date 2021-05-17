@@ -17,7 +17,6 @@ public class PlayerController : CharacterController
     // Update is called once per frame
     void Update()
     {
-        
     }
     public void MovePlayerToNextDestination()
     {
@@ -27,9 +26,7 @@ public class PlayerController : CharacterController
             Debug.Log(index);
             Vector3 pathPosition = GameManager.Instance.Destinations[index].position;
             bool isBlockedByTerrain = GameManager.Instance.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Default"));
-            Debug.Log(isBlockedByTerrain);
             bool isBlockedByPin = GameManager.Instance.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Pin"));
-            Debug.Log(isBlockedByPin);
             if (!isBlockedByTerrain && !isBlockedByPin)
             {
                 bool isBlocked = GameManager.Instance.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Enemy"));

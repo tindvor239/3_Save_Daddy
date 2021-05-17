@@ -76,11 +76,10 @@ public class GameManager : Singleton<GameManager>
         RaycastHit2D hit = Physics2D.Linecast(fromPosition, toPosition);
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.gameObject);
-            if (hit.collider.transform.position == toPosition)
-            {
-                return false;
-            }
+            //if (hit.collider.transform.position == toPosition)
+            //{
+            //    return false;
+            //}
             return true;
         }
         return false;
@@ -90,11 +89,10 @@ public class GameManager : Singleton<GameManager>
         RaycastHit2D hit = Physics2D.Linecast(fromPosition, toPosition, layerIndex);
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.gameObject.transform.parent.transform.position);
-            if(hit.collider.transform.position == toPosition)
-            {
-                return false;
-            }
+            //if (hit.collider.transform.position == toPosition)
+            //{
+            //    return false;
+            //}
             return true;
         }
         return false;

@@ -38,11 +38,16 @@ public class UIController : Singleton<UIController>
             GetPlayerController();
             GetEnemyControllers();
             SpawnObstaclesOnPlay();
-            GameManager.Instance.Player.MovePlayerToNextDestination();
+            Invoke("MovePlayer", 0.5f);
         }
         ViewManager.ShowUI("MENU_UI", false);
         ViewManager.ShowUI("WIN_UI", false);
         ViewManager.ShowUI("GAMEPLAY_UI", isActive);
+    }
+    private void MovePlayer()
+    {
+        //DON'T TOUCH!!!!
+        GameManager.Instance.Player.MovePlayerToNextDestination();
     }
     private void GetEnemyControllers()
     {
@@ -64,7 +69,7 @@ public class UIController : Singleton<UIController>
     private void GetPlayerController()
     {
         GameManager.Instance.Player = CharacterPoolParty.Instance.PlayerPool.PooledObjects[0].GetComponent<PlayerController>();
-            CameraController.Instance.Player = GameManager.Instance.Player;
+        CameraController.Instance.Player = GameManager.Instance.Player;
     }
     private void SpawnObstaclesOnPlay()
     {
