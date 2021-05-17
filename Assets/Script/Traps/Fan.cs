@@ -1,14 +1,19 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fan : Trap
 {
     [SerializeField]
     private Transform target;
+    [SerializeField]
+    private float blowingSpeed = 10f;
+    private float speedMultiplier = 0.002f;
     private float timer = 0;
     private float maxTimer = 0.15f;
-    private bool alreadyBlow = false;
+
+    private GameObject blowedObject;
+    private delegate void OnBlowing();
+    private OnBlowing onBlowing;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -16,39 +21,53 @@ public class Fan : Trap
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(!alreadyBlow)
+        timer += Time.deltaTime;
+        if (timer >= maxTimer)
         {
-            timer += Time.deltaTime;
-            if (timer >= maxTimer)
-            {
-                CheckHit();
-                timer = 0;
-            }
+            CheckHit();
+            timer = 0;
         }
     }
-
+    private void FixedUpdate()
+    {
+        if(onBlowing != null)
+        {
+            onBlowing.Invoke();
+        }
+    }
     private void CheckHit()
     {
         GameObject beenHitObject = GameManager.Instance.RayCastToObject(transform.position, target.position);
-        if (beenHitObject != null && beenHitObject.tag == "Player")
+        if (beenHitObject != null && (beenHitObject.tag == "Player" || beenHitObject.tag == "Enemy"))
         {
             OnHit(beenHitObject);
-            alreadyBlow = true;
+        }
+        else
+        {
+            onBlowing = null;
         }
     }
 
     protected override void OnHit(GameObject beenHitObject)
     {
-        if(beenHitObject.tag == "Player")
+        blowedObject = beenHitObject;
+        if(beenHitObject.GetComponent<CharacterController>())
         {
-            PlayerController player = beenHitObject.GetComponent<PlayerController>();
-            player.Move(target.position, DG.Tweening.Ease.Linear);
-            StartCoroutine(MoveNext(player, player.MoveDuration(beenHitObject.transform.position, target.position)));
+            beenHitObject.GetComponent<CharacterController>().Stop();
+        }
+        onBlowing += Blowing;
+        if (beenHitObject.GetComponent<PlayerController>() != null &&
+            beenHitObject.transform.position.x >= target.transform.position.x && beenHitObject.transform.position.y >= target.transform.position.y)
+        {
+            StartCoroutine(MoveNext(beenHitObject.GetComponent<PlayerController>(), beenHitObject.GetComponent<PlayerController>().MoveDuration(beenHitObject.transform.position, target.position)));
         }
     }
-
+    protected void Blowing()
+    {
+        blowedObject.transform.position += GameManager.GetDirectionVector(transform.position, target.position) * Time.deltaTime * speedMultiplier * blowingSpeed;
+    }
 
     private IEnumerator MoveNext(PlayerController player, float duration)
     {
@@ -57,7 +76,7 @@ public class Fan : Trap
     }
     private void OnEnable()
     {
-        alreadyBlow = false;
         timer = 0;
+        onBlowing = null;
     }
 }

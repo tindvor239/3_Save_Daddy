@@ -20,7 +20,6 @@ public class ReleasePin : Pin
         {
             base.Unpin();
             collider.enabled = false;
-            Debug.Log(GameManager.Instance.IsBlocked(transform.position, locker.position, 1 << LayerMask.NameToLayer("Pin")));
             if (GameManager.Instance.IsBlocked(transform.position, locker.position, 1 << LayerMask.NameToLayer("Pin")) == false)
             {
                 Vector2 pullDirection = (anchor.position - forward.position).normalized;

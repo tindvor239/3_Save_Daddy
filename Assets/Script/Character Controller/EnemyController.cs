@@ -18,15 +18,12 @@ public class EnemyController : CharacterController
     }
     public void GetPlayer()
     {
-        bool isBlockedByTerrain = GameManager.Instance.IsBlocked(transform.position, GameManager.Instance.Player.transform.position, 1 << LayerMask.NameToLayer("Default"));
-        bool isBlockedByPin = GameManager.Instance.IsBlocked(transform.position, GameManager.Instance.Player.transform.position, 1 << LayerMask.NameToLayer("Pin"));
         if (sequence != null && sequence.IsPlaying() == false)
         {
             moveDuration = 0;
         }
-        if (!isBlockedByTerrain && !isBlockedByPin)
+        if (!CheckPathIsBlocked(transform.position, GameManager.Instance.Player.transform.position))
         {
-            Debug.Log("Get Player");
             bool isBlocked = GameManager.Instance.IsBlocked(transform.position, GameManager.Instance.Player.transform.position, 1 << LayerMask.NameToLayer("Player"));
             if (!isBlocked && gameObject.activeInHierarchy)
             {
@@ -36,19 +33,37 @@ public class EnemyController : CharacterController
         }
         else
         {
-            destinations = FindDestination();
-            foreach(Transform destination in destinations)
+            Transform closestDestination = GetClosestDestination();
+
+            //If already find closestDestination
+            if (closestDestination != transform)
             {
-                isBlockedByTerrain = GameManager.Instance.IsBlocked(transform.position, destination.position, 1 << LayerMask.NameToLayer("Default"));
-                isBlockedByPin = GameManager.Instance.IsBlocked(transform.position, destination.position, 1 << LayerMask.NameToLayer("Pin"));
-                if (!isBlockedByTerrain && !isBlockedByPin)
+                if (!CheckPathIsBlocked(transform.position, GameManager.Instance.Player.transform.position))
                 {
-                    Debug.Log("Get To Destination");
-                    StartCoroutine(MoveToDestination(destination.position));
+                    StartCoroutine(MoveToDestination(closestDestination.position));
                 }
             }
         }
     }
+
+    
+    private Transform GetClosestDestination()
+    {
+        destinations = FindDestination();
+        Transform closestDestination = transform;
+        Vector3 playerPosition = GameManager.Instance.Player.transform.position;
+        foreach (Transform destination in destinations)
+        {
+            if (closestDestination == transform ||
+                Vector3.Distance(playerPosition, closestDestination.position) > Vector3.Distance(playerPosition, destination.position))
+            {
+                closestDestination = destination;
+            }
+        }
+
+        return closestDestination;
+    }
+
     private List<Transform> FindDestination()
     {
         List<Transform> destinations = new List<Transform>();
