@@ -20,7 +20,7 @@ public class CharacterController : Controller, IInteractable
         base.Start();
 
     }
-    protected bool CheckPathIsBlocked(in Vector3 from, in Vector3 to)
+    public bool CheckPathIsBlocked(in Vector3 from, in Vector3 to)
     {
         bool isBlockedByTerrain = GameManager.Instance.IsBlocked(from, to, 1 << LayerMask.NameToLayer("Default"));
         bool isBlockedByPin = GameManager.Instance.IsBlocked(from, to, 1 << LayerMask.NameToLayer("Pin"));

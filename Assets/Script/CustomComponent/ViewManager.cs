@@ -54,15 +54,7 @@ public class ViewManager : Singleton<ViewManager>
     }
     public void Rotating(in Transform transform, Vector3 target, float duration, Ease ease)
     {
-        transform.DORotate(target, duration).SetEase(ease);
-    }
-    public void Rotating(in Sequence sequence, in Transform transform, Vector3 target, float duration)
-    {
-        sequence.Append(transform.DORotate(target, duration));
-    }
-    public void Rotating(in Sequence sequence, in Transform transform, Vector3 target, float duration, Ease ease)
-    {
-        sequence.Append(transform.DORotate(target, duration)).SetEase(ease);
+        transform.DORotate(target, duration, RotateMode.FastBeyond360).SetEase(ease);
     }
     public void Rotating(in Transform transform, Quaternion target, float min, float max)
     {
@@ -72,6 +64,14 @@ public class ViewManager : Singleton<ViewManager>
     public void Rotating(in Transform transform, Quaternion target, float duration)
     {
         transform.DORotateQuaternion(target, duration);
+    }
+    public void Rotating(in Sequence sequence, in Transform transform, Vector3 target, float duration)
+    {
+        sequence.Append(transform.DORotate(target, duration));
+    }
+    public void Rotating(in Sequence sequence, in Transform transform, Vector3 target, float duration, Ease ease)
+    {
+        sequence.Append(transform.DORotate(target, duration)).SetEase(ease);
     }
     #endregion
     #region UI Handler

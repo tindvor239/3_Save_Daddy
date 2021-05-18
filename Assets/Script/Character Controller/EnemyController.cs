@@ -18,7 +18,7 @@ public class EnemyController : CharacterController
     }
     public void GetPlayer()
     {
-        if (sequence != null && sequence.IsPlaying() == false)
+        if (!sequence.IsActive())
         {
             moveDuration = 0;
         }

@@ -13,7 +13,6 @@ public abstract class Pin : Model, IInteractable
     protected Transform mainTransform;
     [SerializeField]
     private bool isLoopingPin = false;
-    private PlayerController player;
 
     [SerializeField]
     protected float unpinDuration = 0.8f;
@@ -35,10 +34,6 @@ public abstract class Pin : Model, IInteractable
     }
     protected virtual void Update()
     {
-        if(player == null)
-        {
-            player = GameManager.Instance.Player;
-        }
         if(isLoopingPin && onUnpinTrigger != null)
         {
             triggerDuration += Time.deltaTime;
@@ -69,13 +64,9 @@ public abstract class Pin : Model, IInteractable
         {
             enemy.GetPlayer();
         }
-        GetDestination();
+        Debug.Log("Move");
+        GameManager.Instance.Player.MovePlayerToNextDestination();
     }
-    protected virtual void GetDestination()
-    {
-        player.MovePlayerToNextDestination();
-    }
-
     public void Interact()
     {
         Unpin();

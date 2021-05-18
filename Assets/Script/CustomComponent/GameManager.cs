@@ -76,6 +76,7 @@ public class GameManager : Singleton<GameManager>
         RaycastHit2D hit = Physics2D.Linecast(fromPosition, toPosition);
         if (hit.collider != null)
         {
+            Debug.Log(hit.collider.gameObject);
             if (hit.collider.transform.position == toPosition)
             {
                 return false;
@@ -133,7 +134,7 @@ public class GameManager : Singleton<GameManager>
         {
             for (int i = index + 1; i < Instance.destinations.Count; i++)
             {
-                bool isBlocked = Instance.IsBlocked(Instance.destinations[index].position, Instance.destinations[i].position);
+                bool isBlocked = controller.CheckPathIsBlocked(Instance.destinations[index].position, Instance.destinations[i].position);
                 if (!isBlocked)
                 {
                     controller.GetComponent<Collider2D>().enabled = true;
