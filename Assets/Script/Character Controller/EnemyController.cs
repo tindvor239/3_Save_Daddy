@@ -34,11 +34,10 @@ public class EnemyController : CharacterController
         else
         {
             Transform closestDestination = GetClosestDestination();
-
             //If already find closestDestination
             if (closestDestination != transform)
             {
-                if (!CheckPathIsBlocked(transform.position, GameManager.Instance.Player.transform.position))
+                if (!CheckPathIsBlocked(transform.position, closestDestination.position))
                 {
                     StartCoroutine(MoveToDestination(closestDestination.position));
                 }
@@ -49,21 +48,55 @@ public class EnemyController : CharacterController
     
     private Transform GetClosestDestination()
     {
-        destinations = FindDestination();
+        destinations = FindClosestDestinations();
         Transform closestDestination = transform;
         Vector3 playerPosition = GameManager.Instance.Player.transform.position;
         foreach (Transform destination in destinations)
         {
-            if (closestDestination == transform ||
-                Vector3.Distance(playerPosition, closestDestination.position) > Vector3.Distance(playerPosition, destination.position))
+            if(destination != GameManager.Instance.Player.transform)
             {
-                closestDestination = destination;
+                float lastDistance = Vector3.Distance(playerPosition, closestDestination.position);
+                float currentDistance = Vector3.Distance(playerPosition, destination.position);
+                bool isClosestAndCanGo = lastDistance > currentDistance && !CheckPathIsBlocked(transform.position, destination.position);
+                if (closestDestination == transform || isClosestAndCanGo)
+                {
+                    closestDestination = destination;
+                }
             }
         }
-
+        Debug.Log(closestDestination);
         return closestDestination;
     }
-
+    private List<Transform> FindClosestDestinations()
+    {
+        List<Transform> destinations = new List<Transform>();
+        float distance = 0;
+        for (int i = 0; i < GameManager.Instance.Destinations.Count; i++)
+        {
+            float currentDistance = Vector3.Distance(GameManager.Instance.Destinations[i].position, transform.position);
+            if (distance == 0 || distance > currentDistance)
+            {
+                distance = currentDistance;
+                destinations.Add(GameManager.Instance.Destinations[i]);
+            }
+        }
+        return destinations;
+    }
+    private List<Transform> FindClosestDestinationsToPlayer()
+    {
+        List<Transform> destinations = new List<Transform>();
+        float distance = 0;
+        for (int i = 0; i < GameManager.Instance.Destinations.Count; i++)
+        {
+            float currentDistance = Vector3.Distance(GameManager.Instance.Destinations[i].position, GameManager.Instance.Player.transform.position);
+            if (distance == 0 || distance > currentDistance)
+            {
+                distance = currentDistance;
+                destinations.Add(GameManager.Instance.Destinations[i]);
+            }
+        }
+        return destinations;
+    }
     private List<Transform> FindDestination()
     {
         List<Transform> destinations = new List<Transform>();

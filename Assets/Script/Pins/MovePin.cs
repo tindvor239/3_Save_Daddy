@@ -31,7 +31,6 @@ public class MovePin : Pin
                 }
                 else
                 {
-                    Debug.Log("In 2");
                     destination = points[i + 1].position;
                 }
             }
