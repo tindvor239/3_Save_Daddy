@@ -18,7 +18,7 @@ public class EnemyController : CharacterController
     }
     public void GetPlayer()
     {
-        if (sequence != null && sequence.IsPlaying() == false)
+        if (!sequence.IsActive())
         {
             moveDuration = 0;
         }
@@ -92,7 +92,7 @@ public class EnemyController : CharacterController
     }
     private Vector2 PlayerDirection()
     {
-        return GameManager.GetDirectionVector(transform.position, GameManager.Instance.Player.transform.position);
+        return GameManager.Instance.GetDirectionVector(transform.position, GameManager.Instance.Player.transform.position);
     }
     private IEnumerator MoveToDestination(Vector2 destination)
     {

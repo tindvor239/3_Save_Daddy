@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using DG.Tweening;
+using System;
 
 public class RotatePin : Pin
 {
@@ -20,9 +20,9 @@ public class RotatePin : Pin
     {
         for(int i = 0; i < pinLocks.Length; i++)
         {
-            if(Mathf.Round(pinLocks[i].rotation.x) == Mathf.Round(pinBase.transform.rotation.x) &&
-                Mathf.Round(pinLocks[i].rotation.y) == Mathf.Round(pinBase.transform.rotation.y) &&
-                Mathf.Round(pinLocks[i].rotation.z) == Mathf.Round(pinBase.transform.rotation.z))
+            if(Math.Round(pinLocks[i].rotation.x, 2) == Math.Round(pinBase.transform.rotation.x, 2) &&
+                Math.Round(pinLocks[i].rotation.y, 2) == Math.Round(pinBase.transform.rotation.y, 2) &&
+                Math.Round(pinLocks[i].rotation.z, 2) == Math.Round(pinBase.transform.rotation.z, 2))
             {
                 if(i == pinLocks.Length - 1)
                 {
