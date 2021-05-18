@@ -100,7 +100,7 @@ public class GameManager : Singleton<GameManager>
     }
     #endregion
     #region Path Handle
-    public static Vector3 GetDirectionVector(Vector3 gameObject, Vector3 target)
+    public Vector3 GetDirectionVector(Vector3 gameObject, Vector3 target)
     {
         return target - gameObject;
     }

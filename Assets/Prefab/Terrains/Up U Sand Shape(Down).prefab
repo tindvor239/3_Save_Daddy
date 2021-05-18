@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7937597802642265374}
   - component: {fileID: 6100628060049767954}
   - component: {fileID: -6826049454743104210}
-  - component: {fileID: 2265110966000548002}
+  - component: {fileID: 7012345648020677329}
   m_Layer: 0
   m_Name: Up U Sand Shape(Down)
   m_TagString: Untagged
@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Up U Sand Shape
---- !u!61 &2265110966000548002
-BoxCollider2D:
+--- !u!60 &7012345648020677329
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -109,7 +109,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.24423409}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -119,6 +119,13 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 6.83, y: 5.681532}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -3.398557, y: -2.5884812}
+      - {x: -2.5218465, y: -2.5924048}
+      - {x: -2.5153272, y: 2.1031718}
+      - {x: 2.4422128, y: 2.1055746}
+      - {x: 2.4487324, y: -2.5793715}
+      - {x: 3.4058852, y: -2.579563}
+      - {x: 3.4028487, y: 3.0667763}
+      - {x: -3.4015937, y: 3.0623455}

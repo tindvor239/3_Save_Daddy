@@ -18475,7 +18475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3b70c1a9bbea64a845edc99a8c220f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMap: {fileID: 11400000, guid: 5ceacb9d6f0f4f6479d76e209020244e, type: 2}
+  currentMap: {fileID: 11400000, guid: 122093762eb334143b72eb993e0166ea, type: 2}
   gameManager: {fileID: 2525117517102748120}
   characterPoolParty: {fileID: 1992875543282759733}
   obstaclePoolParty: {fileID: 7281254253796375444}
@@ -21796,7 +21796,7 @@ PrefabInstance:
     - target: {fileID: 7926068399283300270, guid: d368e569593e8b44ab15964002cf6c6a,
         type: 3}
       propertyPath: mapDatas.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7926068399283300270, guid: d368e569593e8b44ab15964002cf6c6a,
         type: 3}
@@ -21851,6 +21851,12 @@ PrefabInstance:
       propertyPath: mapDatas.Array.data[8]
       value: 
       objectReference: {fileID: 11400000, guid: 5ceacb9d6f0f4f6479d76e209020244e,
+        type: 2}
+    - target: {fileID: 7926068399283300270, guid: d368e569593e8b44ab15964002cf6c6a,
+        type: 3}
+      propertyPath: mapDatas.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 122093762eb334143b72eb993e0166ea,
         type: 2}
     - target: {fileID: 7926068399283300270, guid: d368e569593e8b44ab15964002cf6c6a,
         type: 3}

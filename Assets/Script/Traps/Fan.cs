@@ -66,7 +66,7 @@ public class Fan : Trap
     }
     protected void Blowing()
     {
-        blowedObject.transform.position += GameManager.GetDirectionVector(transform.position, target.position) * Time.deltaTime * speedMultiplier * blowingSpeed;
+        blowedObject.transform.position += GameManager.Instance.GetDirectionVector(transform.position, target.position) * Time.deltaTime * speedMultiplier * blowingSpeed;
     }
 
     private IEnumerator MoveNext(PlayerController player, float duration)

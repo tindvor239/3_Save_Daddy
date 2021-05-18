@@ -92,7 +92,7 @@ public class EnemyController : CharacterController
     }
     private Vector2 PlayerDirection()
     {
-        return GameManager.GetDirectionVector(transform.position, GameManager.Instance.Player.transform.position);
+        return GameManager.Instance.GetDirectionVector(transform.position, GameManager.Instance.Player.transform.position);
     }
     private IEnumerator MoveToDestination(Vector2 destination)
     {
