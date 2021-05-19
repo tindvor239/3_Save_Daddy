@@ -7,6 +7,8 @@ public class Fan : Trap
     private Transform target;
     [SerializeField]
     private float blowingSpeed = 10f;
+    [SerializeField]
+    private bool isReverse;
     private float speedMultiplier = 0.002f;
     private float timer = 0;
     private float maxTimer = 0.15f;
@@ -61,7 +63,15 @@ public class Fan : Trap
     }
     protected void Blowing()
     {
-        blowedObject.transform.position += GameManager.Instance.GetDirectionVector(transform.position, target.position) * Time.deltaTime * speedMultiplier * blowingSpeed;
+        Vector3 direction = GameManager.Instance.GetDirectionVector(transform.position, target.position);
+        if (isReverse)
+        {
+            blowedObject.transform.position -= direction * Time.deltaTime * speedMultiplier * blowingSpeed;
+        }
+        else
+        {
+            blowedObject.transform.position += direction * Time.deltaTime * speedMultiplier * blowingSpeed;
+        }
     }
 
     private IEnumerator MoveNext(PlayerController player, float duration)
