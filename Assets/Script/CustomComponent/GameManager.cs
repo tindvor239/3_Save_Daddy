@@ -47,6 +47,15 @@ public class GameManager : Singleton<GameManager>
         }
         return null;
     }
+    public GameObject RayCastObject(Vector3 fromPosition, Vector3 direction, float length)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(fromPosition, direction, length);
+        if (hit.collider != null)
+        {
+            return hit.collider.gameObject;
+        }
+        return null;
+    }
     public GameObject RayCastObject(Vector3 fromPosition, Vector3 direction, LayerMask ignoreLayer)
     {
         RaycastHit2D hit = Physics2D.Raycast(fromPosition, direction, Mathf.Infinity, ignoreLayer);
@@ -61,6 +70,12 @@ public class GameManager : Singleton<GameManager>
     {
         Vector3 direction = GetDirectionVector(fromPosition, toPosition);
         GameObject destinateObject = RayCastObject(fromPosition, direction);
+        return destinateObject;
+    }
+    public GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition, float length)
+    {
+        Vector3 direction = GetDirectionVector(fromPosition, toPosition);
+        GameObject destinateObject = RayCastObject(fromPosition, direction, length);
         return destinateObject;
     }
     public GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition, LayerMask ignoreLayer)

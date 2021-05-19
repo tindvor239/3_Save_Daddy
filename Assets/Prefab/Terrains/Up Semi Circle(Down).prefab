@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7937597802642265374}
   - component: {fileID: 6100628060049767954}
   - component: {fileID: -6826049454743104210}
+  - component: {fileID: 3888605179864548258}
   m_Layer: 0
   m_Name: Up Semi Circle(Down)
   m_TagString: Untagged
@@ -95,3 +96,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Up Semi Circle
+--- !u!60 &3888605179864548258
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061161446870495298}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.5, y: 5.86}
+    newSize: {x: 6.68, y: 5.52}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -5.25, y: 2.9299998}
+      - {x: -5.25, y: -2.79}
+      - {x: -3.2082076, y: -2.79}
+      - {x: -2.3453333, y: -1.4699701}
+      - {x: -1.1255443, y: -0.65764904}
+      - {x: -0.00020383298, y: -0.52141297}
+      - {x: 1.412106, y: -0.7245537}
+      - {x: 2.361203, y: -1.38354}
+      - {x: 3.426226, y: -2.7828593}
+      - {x: 5.2541227, y: -2.7857184}
+      - {x: 5.247693, y: 2.9286988}

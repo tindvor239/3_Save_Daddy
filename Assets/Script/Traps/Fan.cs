@@ -14,11 +14,6 @@ public class Fan : Trap
     private GameObject blowedObject;
     private delegate void OnBlowing();
     private OnBlowing onBlowing;
-    // Start is called before the first frame update
-    protected override void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     private void Update()
@@ -39,10 +34,15 @@ public class Fan : Trap
     }
     private void CheckHit()
     {
-        GameObject beenHitObject = GameManager.Instance.RayCastToObject(transform.position, target.position);
+        GameObject beenHitObject = GameManager.Instance.RayCastToObject(transform.position, target.position, Vector2.Distance(transform.position, target.position));
+        Debug.DrawRay(transform.position, GameManager.Instance.GetDirectionVector(transform.position, target.position), Color.red, Vector2.Distance(transform.position, target.position) / 2);
         if (beenHitObject != null && (beenHitObject.tag == "Player" || beenHitObject.tag == "Enemy"))
         {
             OnHit(beenHitObject);
+            if (beenHitObject.GetComponent<PlayerController>() != null)
+            {
+                StartCoroutine(MoveNext(beenHitObject.GetComponent<PlayerController>(), beenHitObject.GetComponent<PlayerController>().MoveDuration(beenHitObject.transform.position, target.position)));
+            }
         }
         else
         {
@@ -58,11 +58,6 @@ public class Fan : Trap
             beenHitObject.GetComponent<CharacterController>().Stop();
         }
         onBlowing += Blowing;
-        if (beenHitObject.GetComponent<PlayerController>() != null &&
-            beenHitObject.transform.position.x >= target.transform.position.x && beenHitObject.transform.position.y >= target.transform.position.y)
-        {
-            StartCoroutine(MoveNext(beenHitObject.GetComponent<PlayerController>(), beenHitObject.GetComponent<PlayerController>().MoveDuration(beenHitObject.transform.position, target.position)));
-        }
     }
     protected void Blowing()
     {

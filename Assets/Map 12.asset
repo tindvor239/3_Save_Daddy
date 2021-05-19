@@ -221,4 +221,4 @@ MonoBehaviour:
       position: {x: 72.36, y: 208.86}
       rotation: {x: -0, y: -0, z: 1, w: 0}
       scale: {x: 1, y: 1, z: 1}
-  isUnlocked: 0
+  isUnlocked: 1

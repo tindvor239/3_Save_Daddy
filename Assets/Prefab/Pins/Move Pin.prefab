@@ -326,7 +326,7 @@ MonoBehaviour:
   - {fileID: 8937143071595690179}
   pinTransfrom: {fileID: 8937143071595690178}
   mainTransform: {fileID: 8937143071039195996}
-  isLoopingPin: 0
+  isLoopingPin: 1
   unpinDuration: 0.8
   points:
   - {fileID: 8937143072043918581}

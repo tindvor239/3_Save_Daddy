@@ -3,8 +3,8 @@
 public class ClearLiquid : MonoBehaviour
 {
     [SerializeField]
-    private LiquidPool liquidPoolParty;
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected LiquidPool liquidPoolParty;
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Liquid")
         {

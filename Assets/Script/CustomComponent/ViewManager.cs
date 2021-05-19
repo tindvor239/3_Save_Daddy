@@ -74,6 +74,12 @@ public class ViewManager : Singleton<ViewManager>
         sequence.Append(transform.DORotate(target, duration)).SetEase(ease);
     }
     #endregion
+    #region Sprite Handler
+    public static void Fading(SpriteRenderer sprite, float targetAlpha, float duration)
+    {
+        sprite.DOFade(targetAlpha, duration);
+    }
+    #endregion
     #region UI Handler
     public static void ShowUI(string UIname , bool isActive)
     {

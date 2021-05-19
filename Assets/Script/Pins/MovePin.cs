@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -8,6 +8,7 @@ public class MovePin : Pin
     private Transform[] points = new Transform[2];
     [SerializeField]
     private Transform middle;
+    private int index = 0;
     private static float moveSpeed = 5f;
     #region Properties
     public Transform[] Points { get => points; }
@@ -20,27 +21,22 @@ public class MovePin : Pin
     }
     protected override void Unpin()
     {
-        Vector2 destination = new Vector2();
-        for (int i = 0; i < points.Length; i++)
-        {
-            if (Mathf.RoundToInt(points[i].position.y) == Mathf.RoundToInt(transform.position.y))
-            {
-                if (i == points.Length - 1)
-                {
-                    destination = points[i - 1].position;
-                }
-                else
-                {
-                    destination = points[i + 1].position;
-                }
-            }
-        }
-        finishDuration = MoveDuration(transform.position, destination);
-        GameController.Instance.Move(transform, destination, finishDuration - 0.1f);
+        index = FlipFlop();
+        finishDuration = MoveDuration(transform.position, points[index].position);
+        GameController.Instance.Move(transform, points[index].position, finishDuration - 0.1f);
         base.Unpin();
     }
     private float MoveDuration(Vector2 fromPosition, Vector2 toPosition)
     {
         return Vector2.Distance(fromPosition, toPosition) / moveSpeed;
+    }
+    private int FlipFlop()
+    {
+        index++;
+        if(index >= 2)
+        {
+            index = 0;
+        }
+        return index;
     }
 }
