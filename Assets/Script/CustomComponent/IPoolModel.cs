@@ -63,26 +63,26 @@ public struct Piece
     [SerializeField]
     private bool isActive;
     [SerializeField]
-    private Vector2 position;
+    private Vector3 position;
     [SerializeField]
     private Quaternion rotation;
     [SerializeField]
     private Vector3 scale;
-    public Piece(string name, bool isActive, Vector2 position)
+    public Piece(string name, bool isActive, Vector3 position)
     {
         this.name = name;
         this.isActive = isActive;
         this.position = position;
         rotation = new Quaternion();
-        scale = new Vector2();
+        scale = new Vector3();
     }
-    public Piece(string name, bool isActive, Vector2 position, Quaternion rotation)
+    public Piece(string name, bool isActive, Vector3 position, Quaternion rotation)
     {
         this = new Piece(name, isActive, position);
         this.rotation = rotation;
-        scale = new Vector2();
+        scale = new Vector3();
     }
-    public Piece(string name, bool isActive, Vector2 position, Quaternion rotation, Vector3 scale)
+    public Piece(string name, bool isActive, Vector3 position, Quaternion rotation, Vector3 scale)
     {
         this = new Piece(name, isActive, position, rotation);
         this.scale = scale;

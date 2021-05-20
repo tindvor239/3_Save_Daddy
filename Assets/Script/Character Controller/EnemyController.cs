@@ -77,7 +77,10 @@ public class EnemyController : CharacterController
             if (distance == 0 || distance > currentDistance)
             {
                 distance = currentDistance;
-                destinations.Add(GameManager.Instance.Destinations[i]);
+                if(transform.position != GameManager.Instance.Destinations[i].position)
+                {
+                    destinations.Add(GameManager.Instance.Destinations[i]);
+                }
             }
         }
         return destinations;

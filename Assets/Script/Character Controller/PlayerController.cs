@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 public class PlayerController : CharacterController
 {
+    private bool alreadyMoveCamera = false;
     protected override void Awake()
     {
         base.Awake();
@@ -24,9 +25,9 @@ public class PlayerController : CharacterController
         int index = GameManager.GetNextDestinationIndex(this);
         if (index != -1)
         {
+            alreadyMoveCamera = false;
             CameraController.Instance.center = CameraController.Instance.RestartCenter();
             Vector3 pathPosition = GameManager.Instance.Destinations[index].position;
-            Debug.Log(CheckPathIsBlocked(transform.position, pathPosition));
             if (!CheckPathIsBlocked(transform.position, pathPosition))
             {
                 bool isBlocked = GameManager.Instance.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Enemy"));
@@ -35,6 +36,11 @@ public class PlayerController : CharacterController
                     ContinueMoving(GameManager.Instance.Destinations[index]);
                 }
             }
+        }
+        else if(alreadyMoveCamera == false)
+        {
+            MoveCamera();
+            alreadyMoveCamera = true;
         }
     }
 
@@ -51,8 +57,7 @@ public class PlayerController : CharacterController
     {
         yield return new WaitForSeconds(moveDuration);
         StartMoveToDestination(destination);
-        Invoke("CheckMoveCondition", moveDuration);
-        Invoke("MoveCamera", moveDuration + 1);
+        StartCoroutine(CheckMoveCondition(moveDuration));
     }
     private void StartMoveToDestination(Transform destination)
     {
@@ -88,6 +93,7 @@ public class PlayerController : CharacterController
         if(!GameManager.isWin())
         {
             MovePlayerToNextDestination();
+            Debug.Log("Run second time");
         }
 
     }
