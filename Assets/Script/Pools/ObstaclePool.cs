@@ -9,6 +9,7 @@ public abstract class ObstaclePool : Model
     [SerializeField]
     protected PoolParty party;
     #region Properties
+    public PoolParty Party { get => party; }
     public ObjectPool Obstacles { get => party.Pools[0]; }
     #endregion
     // Start is called before the first frame update

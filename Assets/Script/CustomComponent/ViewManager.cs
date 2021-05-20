@@ -38,6 +38,10 @@ public class ViewManager : Singleton<ViewManager>
     {
         moveObject.position = destination;
     }
+    public void SetSmoothPosition(in Transform moveObject, in Vector3 destination, ref Vector3 velocity, float smoothTime)
+    {
+        moveObject.position = Vector3.SmoothDamp(moveObject.position, destination, ref velocity, smoothTime);
+    }
     #endregion
     #region Rotate
     public void Rotating(in Transform transform, Quaternion target)

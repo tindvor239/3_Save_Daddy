@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 public class PlayerController : CharacterController
@@ -23,7 +24,9 @@ public class PlayerController : CharacterController
         int index = GameManager.GetNextDestinationIndex(this);
         if (index != -1)
         {
+            CameraController.Instance.center = CameraController.Instance.RestartCenter();
             Vector3 pathPosition = GameManager.Instance.Destinations[index].position;
+            Debug.Log(CheckPathIsBlocked(transform.position, pathPosition));
             if (!CheckPathIsBlocked(transform.position, pathPosition))
             {
                 bool isBlocked = GameManager.Instance.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Enemy"));
@@ -49,6 +52,7 @@ public class PlayerController : CharacterController
         yield return new WaitForSeconds(moveDuration);
         StartMoveToDestination(destination);
         Invoke("CheckMoveCondition", moveDuration);
+        Invoke("MoveCamera", moveDuration + 1);
     }
     private void StartMoveToDestination(Transform destination)
     {
@@ -66,8 +70,21 @@ public class PlayerController : CharacterController
             }
         }
     }
-    private void CheckMoveCondition()
+    private void MoveCamera()
     {
+        foreach(Transform destination in GameManager.Instance.Destinations)
+        {
+            if(Math.Round(transform.position.x, 2) == Math.Round(destination.position.x, 2) &&
+                Math.Round(transform.position.y, 2) == Math.Round(destination.position.y, 2))
+            {
+                CameraController.Instance.center = CameraController.Instance.GetCenterPoint();
+                break;
+            }
+        }
+    }
+    IEnumerator CheckMoveCondition(float duration)
+    {
+        yield return new WaitForSeconds(duration);
         if(!GameManager.isWin())
         {
             MovePlayerToNextDestination();

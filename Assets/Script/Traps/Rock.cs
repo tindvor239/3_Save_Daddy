@@ -31,7 +31,18 @@ public class Rock : Obstacle
         {
             ObjectPool pool = CharacterPoolParty.Instance.Party.GetPool(beenHitObject);
             pool.GetBackToPool(beenHitObject);
-            ObstaclePoolParty.Instance.Party.GetPool(poolName).GetBackToPool(gameObject);
+            if(IsChildRock())
+            {
+                ObjectPool childRockPool = GetRockSpawnerChildPool(gameObject);
+                if(childRockPool != null)
+                {
+                    childRockPool.GetBackToPool(gameObject);
+                }
+            }
+            else
+            {
+                ObstaclePoolParty.Instance.Party.GetPool(poolName).GetBackToPool(gameObject);
+            }
         }
         else
         {
@@ -40,5 +51,30 @@ public class Rock : Obstacle
                 beenHitObject.GetComponent<Trap>().OnBeingHit(gameObject);
             }
         }
+    }
+
+    private bool IsChildRock()
+    {
+        return poolName == "Stone 0" || poolName == "Stone 1" || poolName == "Stone 2" || poolName == "Stone 3" || poolName == "Stone 4" ? true : false;
+    }
+    private ObjectPool GetRockSpawnerChildPool(GameObject currentObject)
+    {
+        foreach(GameObject gameObject in ObstaclePoolParty.Instance.Party.GetPool("Rock Spawner Pool").PooledObjects)
+        {
+            if(gameObject.GetComponent<RockPool>())
+            {
+                foreach(ObjectPool pool in gameObject.GetComponent<RockPool>().Party.Pools)
+                {
+                    foreach(GameObject rock in pool.PooledObjects)
+                    {
+                        if(rock == currentObject)
+                        {
+                            return pool;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
     }
 }

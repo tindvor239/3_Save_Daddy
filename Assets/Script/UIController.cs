@@ -70,6 +70,7 @@ public class UIController : Singleton<UIController>
     {
         GameManager.Instance.Player = CharacterPoolParty.Instance.PlayerPool.PooledObjects[0].GetComponent<PlayerController>();
         CameraController.Instance.Player = GameManager.Instance.Player;
+        CameraController.Instance.gameObject.transform.position = new Vector3(GameManager.Instance.Player.transform.position.x, GameManager.Instance.Player.transform.position.y, CameraController.Instance.gameObject.transform.position.z);
     }
     private void SpawnObstaclesOnPlay()
     {
