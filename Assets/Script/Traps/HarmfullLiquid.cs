@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.CustomComponents;
 
 public class HarmfullLiquid : Liquid
@@ -23,5 +22,6 @@ public class HarmfullLiquid : Liquid
                 CharacterPoolParty.Instance.PlayerPool.GetBackToPool(collision.gameObject);
             }
         }
+        base.OnCollisionEnter2D(collision);
     }
 }

@@ -8,7 +8,7 @@ public abstract class Pin : Model, IInteractable
     [SerializeField]
     private List<GameObject> pieces;
     [SerializeField]
-    private Transform pinTransfrom;
+    protected Transform pinTransform;
     [SerializeField]
     protected Transform mainTransform;
     [SerializeField]
@@ -78,7 +78,7 @@ public abstract class Pin : Model, IInteractable
         {
             pieces.Add(Piece.Pack(gameObject));
         }
-        PinPackage result = new PinPackage(poolName, mainTransform.name, mainTransform.position, mainTransform.rotation, pinTransfrom.localScale, pieces);
+        PinPackage result = new PinPackage(poolName, mainTransform.name, mainTransform.position, mainTransform.rotation, pinTransform.localScale, pieces);
         return result;
     }
     public override void Unpack(Package package, ObjectPool pool)
@@ -90,7 +90,7 @@ public abstract class Pin : Model, IInteractable
         if(package is PinPackage)
         {
             PinPackage pinPackage = (PinPackage)package;
-            pinTransfrom.localScale = pinPackage.Scale;
+            pinTransform.localScale = pinPackage.Scale;
             for(int i = 0; i < pinPackage.Pieces.Count; i++)
             {
                 Piece.Unpack(pieces[i], pinPackage.Pieces[i]);

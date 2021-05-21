@@ -114,27 +114,27 @@ MonoBehaviour:
     pieces:
     - name: Pin Base Holder
       isActive: 1
-      position: {x: 17.349997, y: -5.8199997}
+      position: {x: 17.349997, y: -5.8199997, z: 0}
       rotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
       scale: {x: 1.5, y: 1.5, z: 1}
     - name: Pin Base Holder (1)
       isActive: 1
-      position: {x: 24.199999, y: -5.8200006}
+      position: {x: 24.199999, y: -5.8200006, z: 0}
       rotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
       scale: {x: 1.5, y: 1.5, z: 1}
     - name: Pin Base
       isActive: 1
-      position: {x: 20.539999, y: -5.79}
+      position: {x: 20.539999, y: -5.79, z: 0}
       rotation: {x: -0, y: -0, z: -1.0000001, w: 0}
       scale: {x: 1.5000005, y: 1.5000005, z: 1}
     - name: Close
       isActive: 1
-      position: {x: 20.539999, y: -5.79}
+      position: {x: 20.539999, y: -5.79, z: 0}
       rotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
       scale: {x: 1.5000006, y: 1.5000006, z: 1}
     - name: Open
       isActive: 1
-      position: {x: 13.149986, y: -5.789998}
+      position: {x: 13.149986, y: -5.789998, z: 0}
       rotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
       scale: {x: 1.5000006, y: 1.5000006, z: 1}
-  isUnlocked: 1
+  isUnlocked: 0

@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1ab1dcb7e0e1dca438bbf28e2537de09, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86a5b6c0d6d4f2046b509f51b4a348c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -134,3 +134,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Spike Ball Pool
+  rockPoolParty: {fileID: 0}

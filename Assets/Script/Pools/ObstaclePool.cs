@@ -12,14 +12,6 @@ public abstract class ObstaclePool : Model
     public PoolParty Party { get => party; }
     public ObjectPool Obstacles { get => party.Pools[0]; }
     #endregion
-    // Start is called before the first frame update
-    protected virtual void Awake()
-    {
-
-    }
-    protected virtual void Start()
-    {
-    }
     public void SpawnObstaclesOnLoad()
     {
         StartCoroutine(SpawnObstacle());

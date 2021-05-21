@@ -118,17 +118,17 @@ MonoBehaviour:
     pieces:
     - name: Pin Base Holder
       isActive: 1
-      position: {x: 56.155365, y: 319.34772}
+      position: {x: 56.155365, y: 319.34772, z: 0}
       rotation: {x: -0, y: -0, z: -0, w: 1}
       scale: {x: 1.5, y: 1.5, z: 1}
     - name: Pin Base Holder (1)
       isActive: 1
-      position: {x: 56.155365, y: 326.19772}
+      position: {x: 56.155365, y: 326.19772, z: 0}
       rotation: {x: -0, y: -0, z: -0, w: 1}
       scale: {x: 1.5, y: 1.5, z: 1}
     - name: Forward
       isActive: 1
-      position: {x: 56.125362, y: 311.0627}
+      position: {x: 56.125362, y: 311.0627, z: 0}
       rotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
       scale: {x: 1, y: 1, z: 1}
   - poolName: Release Pin Pool
@@ -139,17 +139,17 @@ MonoBehaviour:
     pieces:
     - name: Pin Base Holder
       isActive: 1
-      position: {x: 68.23, y: 318.67}
+      position: {x: 68.23, y: 318.67, z: 0}
       rotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
       scale: {x: 1.5, y: 1.5, z: 1}
     - name: Pin Base Holder (1)
       isActive: 1
-      position: {x: 56.55, y: 318.67}
+      position: {x: 56.55, y: 318.67, z: 0}
       rotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
       scale: {x: 1.5, y: 1.5, z: 1}
     - name: Forward
       isActive: 1
-      position: {x: 80.98317, y: 318.64}
+      position: {x: 80.98317, y: 318.64, z: 0}
       rotation: {x: -0, y: -0, z: -0, w: -1.0000001}
       scale: {x: 1, y: 1, z: 1}
   - poolName: Release Pin Pool
@@ -160,17 +160,17 @@ MonoBehaviour:
     pieces:
     - name: Pin Base Holder
       isActive: 1
-      position: {x: 68.23, y: 326.21}
+      position: {x: 68.23, y: 326.21, z: 0}
       rotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
       scale: {x: 1.5, y: 1.5, z: 1}
     - name: Pin Base Holder (1)
       isActive: 1
-      position: {x: 56.55, y: 326.21}
+      position: {x: 56.55, y: 326.21, z: 0}
       rotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
       scale: {x: 1.5, y: 1.5, z: 1}
     - name: Forward
       isActive: 1
-      position: {x: 80.98317, y: 326.18}
+      position: {x: 80.98317, y: 326.18, z: 0}
       rotation: {x: -0, y: -0, z: -0, w: -1.0000001}
       scale: {x: 1, y: 1, z: 1}
-  isUnlocked: 1
+  isUnlocked: 0

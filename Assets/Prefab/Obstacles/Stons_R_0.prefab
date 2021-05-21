@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8373457071576432977}
   - component: {fileID: 5679789677501817381}
-  - component: {fileID: 7568155673959364652}
   - component: {fileID: 5062097422755853970}
   - component: {fileID: 7913961859792042100}
+  - component: {fileID: 3232257698133900363}
   m_Layer: 0
   m_Name: Stons_R_0
   m_TagString: Untagged
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 62eaff66823316e4d976742d542e6e00, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c84092bca25116247b2ea216c3e25aa5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,40 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &7568155673959364652
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2150701219657344639}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.1, y: 1.88}
-    newSize: {x: 2.1, y: 1.88}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.034518898, y: 0.9080424}
-      - {x: -0.9568026, y: 0.5401651}
-      - {x: -1.048002, y: 0.10809511}
-      - {x: -0.91068506, y: -0.19404787}
-      - {x: -0.9267124, y: -0.5385259}
-      - {x: -0.573605, y: -0.9299084}
-      - {x: 0.36086357, y: -0.6340885}
-      - {x: 1.03, y: 0.03}
-      - {x: 0.7234357, y: 0.72346723}
 --- !u!50 &5062097422755853970
 Rigidbody2D:
   serializedVersion: 4
@@ -152,3 +118,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Stone 0
+  rockPoolParty: {fileID: 0}
+--- !u!58 &3232257698133900363
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2150701219657344639}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.95

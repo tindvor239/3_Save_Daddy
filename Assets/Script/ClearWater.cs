@@ -6,27 +6,10 @@ public class ClearWater : ClearLiquid
 {
     [SerializeField]
     private SpriteRenderer sprite;
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    public override void StartClear(LiquidPool liquidPool, Vector3 position)
     {
-        if (collision.tag == "Liquid" && collision.gameObject.GetComponent<Water>())
-        {
-            bool canCreate = true;
-            foreach (GameObject gameObject in liquidPoolParty.Smokes.PooledObjects)
-            {
-                if (gameObject.activeInHierarchy == true)
-                {
-                    canCreate = false;
-                    break;
-                }
-            }
-            if (canCreate)
-            {
-                liquidPoolParty.CreateSmoke(collision.transform.position);
-            }
-            liquidPoolParty.Obstacles.GetBackToPool(collision.gameObject);
-            ViewManager.Fading(sprite, 0, 4f);
-            Debug.Log("In");
-        }
+        base.StartClear(liquidPool, position);
+        ViewManager.Fading(sprite, 0, 4f);
     }
 
     private void OnEnable()

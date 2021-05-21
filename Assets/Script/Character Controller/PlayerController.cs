@@ -61,7 +61,7 @@ public class PlayerController : CharacterController
     }
     private void StartMoveToDestination(Transform destination)
     {
-        int index = GameManager.GetDestinationIndex(destination);
+        int index = GameManager.GetDestinationIndex(destination, GameManager.Instance.Destinations);
         if (index != -1)
         {
             GameManager.Instance.PassedDestinations.Add(GameManager.Instance.Destinations[index]);
@@ -69,7 +69,7 @@ public class PlayerController : CharacterController
             Move(destination.position, Ease.Linear);
             if (index > 0)
             {
-                index = GameManager.GetDestinationIndex(transform);
+                index = GameManager.GetDestinationIndex(transform, GameManager.Instance.Destinations);
                 GameManager.Instance.Destinations[index] = GameManager.Instance.PassedDestinations[0];
                 GameManager.Instance.PassedDestinations.Remove(GameManager.Instance.Destinations[index]);
             }

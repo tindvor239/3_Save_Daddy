@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7937597802642265374}
   - component: {fileID: 6100628060049767954}
   - component: {fileID: -6826049454743104210}
+  - component: {fileID: 5352873500296964678}
   m_Layer: 0
   m_Name: Down Semi Circle(Down)
   m_TagString: Untagged
@@ -95,3 +96,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Down Semi Circle
+--- !u!60 &5352873500296964678
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061161446870495298}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.45, y: 5.58}
+    newSize: {x: 6.68, y: 5.52}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -3.5587492, y: 2.6227071}
+      - {x: -3.186167, y: 2.5217109}
+      - {x: -2.868633, y: 2.0174246}
+      - {x: -2.551039, y: 1.5057505}
+      - {x: -1.9468555, y: 0.99948835}
+      - {x: -1.0213013, y: 0.5030731}
+      - {x: -0.01440664, y: 0.36918554}
+      - {x: 1.0779991, y: 0.49666953}
+      - {x: 2.015864, y: 0.91590655}
+      - {x: 2.6742132, y: 1.6082006}
+      - {x: 3.1024544, y: 2.3277135}
+      - {x: 3.3475072, y: 2.5746126}
+      - {x: 3.6227424, y: 2.6589923}
+      - {x: 5.223155, y: 2.6589475}
+      - {x: 5.228349, y: -2.778552}
+      - {x: -5.213339, y: -2.766654}
+      - {x: -5.2205734, y: 2.6293402}

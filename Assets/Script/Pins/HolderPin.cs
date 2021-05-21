@@ -19,9 +19,9 @@ public class HolderPin : Pin
             base.Unpin();
             collider.enabled = false;
             Vector2 destination = FlipFlop();
-            if(GameManager.Instance.IsBlocked(transform.position, locker.position, 1 << LayerMask.NameToLayer("Pin")) == false)
+            if(GameManager.Instance.IsBlocked(pinTransform.position, locker.position, 1 << LayerMask.NameToLayer("Pin")) == false)
             {
-                GameController.Instance.Move(transform, destination, unpinDuration);
+                GameController.Instance.Move(pinTransform, destination, unpinDuration);
             }
             collider.enabled = true;
         }
@@ -31,8 +31,8 @@ public class HolderPin : Pin
     {
         for (int i = 0; i < destinations.Length; i++)
         {
-            if (Mathf.Round(destinations[i].position.x) == Mathf.Round(transform.position.x) &&
-                Mathf.Round(destinations[i].position.y) == Mathf.Round(transform.position.y))
+            if (Mathf.Round(destinations[i].position.x) == Mathf.Round(pinTransform.position.x) &&
+                Mathf.Round(destinations[i].position.y) == Mathf.Round(pinTransform.position.y))
             {
                 if (i == destinations.Length - 1)
                 {

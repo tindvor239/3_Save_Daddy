@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 223d4e9336a07834f9a94caa995ea6b7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9d39ed1c38aae424abd35da40e6c2730, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +101,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.18, y: 0.74}
+    oldSize: {x: 1.17, y: 0.74}
     newSize: {x: 1.18, y: 0.74}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -109,13 +109,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.066202134, y: -0.34385514}
-      - {x: 0.37705937, y: -0.29262614}
-      - {x: 0.55236685, y: 0.021487623}
-      - {x: 0.19340576, y: 0.28520045}
-      - {x: -0.008421689, y: 0.333286}
-      - {x: -0.36010736, y: 0.28588623}
-      - {x: -0.5629406, y: -0.00056922436}
+    - - {x: 0.24347308, y: -0.349288}
+      - {x: 0.5536283, y: -0.13507152}
+      - {x: 0.5496489, y: 0.097548395}
+      - {x: 0.3020655, y: 0.36126146}
+      - {x: -0.013853818, y: 0.36859983}
+      - {x: -0.2541656, y: 0.31033438}
+      - {x: -0.54935837, y: 0.06734216}
       - {x: -0.46523184, y: -0.29345423}
 --- !u!50 &7274622941957626903
 Rigidbody2D:
@@ -151,3 +151,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Stone 4
+  rockPoolParty: {fileID: 0}

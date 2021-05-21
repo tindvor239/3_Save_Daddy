@@ -22,8 +22,8 @@ public class MovePin : Pin
     protected override void Unpin()
     {
         index = FlipFlop();
-        finishDuration = MoveDuration(transform.position, points[index].position);
-        GameController.Instance.Move(transform, points[index].position, finishDuration - 0.1f);
+        finishDuration = MoveDuration(pinTransform.position, points[index].position);
+        GameController.Instance.Move(pinTransform, points[index].position, finishDuration - 0.1f);
         base.Unpin();
     }
     private float MoveDuration(Vector2 fromPosition, Vector2 toPosition)

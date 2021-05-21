@@ -29,21 +29,40 @@ public class GameController : Singleton<GameController>
                     GameObject clickedObject = GetObjectByMouseRayCast();
                     if (clickedObject != null)
                     {
-                        if (clickedObject.GetComponent<Pin>() != null && canTrigger)
+                        Pin selectedPin = GetPinComponent(clickedObject);
+                        if(selectedPin != null)
                         {
-                            Debug.Log(clickedObject.GetComponent<Pin>());
-                            clickedObject.GetComponent<Pin>().Interact();
-                            unpinDelayTimer = unpinDelay;
-                        }
-                        else if (clickedObject.transform.parent.GetComponent<Pin>() != null && canTrigger)
-                        {
-                            clickedObject.transform.parent.GetComponent<Pin>().Interact();
-                            unpinDelayTimer = unpinDelay;
+                            selectedPin.Interact();
                         }
                     }
                 }
                 break;
         }
+    }
+
+    private Pin GetPinComponent(GameObject clickedObject)
+    {
+        Pin result = null;
+        Transform parent = clickedObject.transform.parent;
+        if (CanUnpin(clickedObject.GetComponent<Pin>()))
+        {
+            result = clickedObject.GetComponent<Pin>();
+        }
+        else if (CanUnpin(parent.GetComponentInChildren<Pin>()))
+        {
+            result = parent.GetComponentInChildren<Pin>();
+        }
+        else if(CanUnpin(parent.parent.gameObject.GetComponent<Pin>()))
+        {
+            result = parent.parent.gameObject.GetComponent<Pin>();
+        }
+        Debug.Log(CanUnpin(parent.parent.gameObject.GetComponent<Pin>()));
+        unpinDelayTimer = unpinDelay;
+        return result;
+    }
+    private bool CanUnpin(Pin pin)
+    {
+        return pin != null && canTrigger;
     }
     private void UnpinDelayCountDown()
     {

@@ -142,27 +142,27 @@ MonoBehaviour:
     pieces:
     - name: Pin Base Holder
       isActive: 1
-      position: {x: 95.53999, y: 166.98}
+      position: {x: 95.53999, y: 166.98, z: 0}
       rotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
       scale: {x: 1.5, y: 1.5, z: 1}
     - name: Pin Base Holder (1)
       isActive: 1
-      position: {x: 106.02, y: 166.98}
+      position: {x: 106.02, y: 166.98, z: 0}
       rotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
       scale: {x: 1.5, y: 1.5, z: 1}
     - name: Pin Base
       isActive: 1
-      position: {x: 100.2, y: 167.01}
+      position: {x: 100.2, y: 167.01, z: 0}
       rotation: {x: -0, y: -0, z: -1.0000001, w: 0}
       scale: {x: 2.1346881, y: 1.5000005, z: 1}
     - name: Close
       isActive: 1
-      position: {x: 100.2, y: 167.01}
+      position: {x: 100.2, y: 167.01, z: 0}
       rotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
       scale: {x: 1.5000006, y: 1.5000006, z: 1}
     - name: Open
       isActive: 1
-      position: {x: 89.399994, y: 166.98}
+      position: {x: 89.399994, y: 166.98, z: 0}
       rotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
       scale: {x: 1.5000006, y: 1.5000006, z: 1}
   - poolName: Release Pin Pool
@@ -173,17 +173,17 @@ MonoBehaviour:
     pieces:
     - name: Pin Base Holder
       isActive: 1
-      position: {x: 93.56951, y: 158.37921}
+      position: {x: 93.56951, y: 158.37921, z: 0}
       rotation: {x: -0, y: -0, z: -0, w: 1}
       scale: {x: 1.5, y: 1.5, z: 1}
     - name: Pin Base Holder (1)
       isActive: 1
-      position: {x: 93.56951, y: 165.22922}
+      position: {x: 93.56951, y: 165.22922, z: 0}
       rotation: {x: -0, y: -0, z: -0, w: 1}
       scale: {x: 1.5, y: 1.5, z: 1}
     - name: Forward
       isActive: 1
-      position: {x: 93.53951, y: 150.09421}
+      position: {x: 93.53951, y: 150.09421, z: 0}
       rotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
       scale: {x: 1, y: 1, z: 1}
-  isUnlocked: 1
+  isUnlocked: 0

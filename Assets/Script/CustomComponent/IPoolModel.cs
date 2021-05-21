@@ -89,14 +89,14 @@ public struct Piece
     }
     public static Piece Pack(GameObject gameObject)
     {
-        return new Piece(gameObject.name, gameObject.activeInHierarchy, gameObject.transform.position, gameObject.transform.rotation, gameObject.transform.localScale);
+        return new Piece(gameObject.name, gameObject.activeInHierarchy, gameObject.transform.localPosition, gameObject.transform.localRotation, gameObject.transform.localScale);
     }
     public static void Unpack(GameObject gameObject, Piece piece)
     {
         gameObject.name = piece.name;
         gameObject.SetActive(piece.isActive);
-        gameObject.transform.position = piece.position;
-        gameObject.transform.rotation = piece.rotation;
+        gameObject.transform.localPosition = piece.position;
+        gameObject.transform.localRotation = piece.rotation;
         gameObject.transform.localScale = piece.scale;
     }
 }

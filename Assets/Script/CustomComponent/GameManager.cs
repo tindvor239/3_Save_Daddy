@@ -130,11 +130,11 @@ public class GameManager : Singleton<GameManager>
         }
         return false;
     }
-    public static int GetDestinationIndex(Transform transform)
+    public static int GetDestinationIndex(Transform transform, List<Transform> destinations)
     {
-        for (int i = 0; i < Instance.destinations.Count; i++)
+        for (int i = 0; i < destinations.Count; i++)
         {
-            if (Instance.destinations[i] == transform)
+            if (destinations[i] == transform)
             {
                 return i;
             }
@@ -143,7 +143,7 @@ public class GameManager : Singleton<GameManager>
     }
     public static int GetNextDestinationIndex(CharacterController controller)
     {
-        int index = GetDestinationIndex(controller.transform);
+        int index = GetDestinationIndex(controller.transform, Instance.Destinations);
         controller.GetComponent<Collider2D>().enabled = false;
         if (index != -1 && index + 1 < Instance.destinations.Count)
         {

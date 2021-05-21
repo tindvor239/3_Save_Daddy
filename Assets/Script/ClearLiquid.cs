@@ -2,26 +2,20 @@
 
 public class ClearLiquid : MonoBehaviour
 {
-    [SerializeField]
-    protected LiquidPool liquidPoolParty;
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    public virtual void StartClear(LiquidPool liquidPool, Vector3 position)
     {
-        if(collision.tag == "Liquid")
+        bool canCreate = true;
+        foreach (GameObject gameObject in liquidPool.Smokes.PooledObjects)
         {
-            bool canCreate = true;
-            foreach (GameObject gameObject in liquidPoolParty.Smokes.PooledObjects)
+            if (gameObject.activeInHierarchy == true)
             {
-                if (gameObject.activeInHierarchy == true)
-                {
-                    canCreate = false;
-                    break;
-                }
+                canCreate = false;
+                break;
             }
-            if(canCreate)
-            {
-                liquidPoolParty.CreateSmoke(collision.transform.position);
-            }
-            liquidPoolParty.Obstacles.GetBackToPool(collision.gameObject);
+        }
+        if(canCreate)
+        {
+            liquidPool.CreateSmoke(position);
         }
     }
 }

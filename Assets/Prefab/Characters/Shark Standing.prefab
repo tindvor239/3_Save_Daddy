@@ -47,8 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Shark Standing Pool
-  moveSpeed: 0
+  moveSpeed: 9
   destinations: []
+  state: 0
+  attackRange: 10
 --- !u!60 &8399259286556451696
 PolygonCollider2D:
   m_ObjectHideFlags: 0

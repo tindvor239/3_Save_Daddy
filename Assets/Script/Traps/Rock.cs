@@ -5,6 +5,7 @@ using UnityEngine.CustomComponents;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Rock : Obstacle
 {
+    public RockPool rockPoolParty;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,8 @@ public class Rock : Obstacle
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.gameObject.tag == "Enemy" || collision.transform.gameObject.tag == "Player" || collision.transform.gameObject.tag == "Trap")
+        GameObject beenHitObject = collision.transform.gameObject;
+        if (beenHitObject.tag == "Enemy" || beenHitObject.tag == "Player" || beenHitObject.tag == "Trap")
         {
             OnHit(collision.transform.gameObject);
         }
@@ -33,10 +35,10 @@ public class Rock : Obstacle
             pool.GetBackToPool(beenHitObject);
             if(IsChildRock())
             {
-                ObjectPool childRockPool = GetRockSpawnerChildPool(gameObject);
-                if(childRockPool != null)
+                bool isHitCharacter = beenHitObject.tag == "Enemy" || beenHitObject.tag == "Player";
+                if (rockPoolParty != null && isHitCharacter)
                 {
-                    childRockPool.GetBackToPool(gameObject);
+                    rockPoolParty.GetAllRockToPool();
                 }
             }
             else
@@ -52,29 +54,8 @@ public class Rock : Obstacle
             }
         }
     }
-
     private bool IsChildRock()
     {
         return poolName == "Stone 0" || poolName == "Stone 1" || poolName == "Stone 2" || poolName == "Stone 3" || poolName == "Stone 4" ? true : false;
-    }
-    private ObjectPool GetRockSpawnerChildPool(GameObject currentObject)
-    {
-        foreach(GameObject gameObject in ObstaclePoolParty.Instance.Party.GetPool("Rock Spawner Pool").PooledObjects)
-        {
-            if(gameObject.GetComponent<RockPool>())
-            {
-                foreach(ObjectPool pool in gameObject.GetComponent<RockPool>().Party.Pools)
-                {
-                    foreach(GameObject rock in pool.PooledObjects)
-                    {
-                        if(rock == currentObject)
-                        {
-                            return pool;
-                        }
-                    }
-                }
-            }
-        }
-        return null;
     }
 }

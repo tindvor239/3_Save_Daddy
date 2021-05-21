@@ -10,11 +10,6 @@ public class RockPool : ObstaclePool
     public ObjectPool Rock4 { get => party.Pools[3]; }
     public ObjectPool Rock5 { get => party.Pools[4]; }
     #endregion
-    // Start is called before the first frame update
-    protected override void Start()
-    {
-        base.Start();
-    }
     protected override IEnumerator SpawnObstacle()
     {
         for (int i = 0; i < party.Pools.Count; i++)
@@ -26,7 +21,22 @@ public class RockPool : ObstaclePool
             {
                 newObject = party.Pools[i].CreatePooledObject();
             }
+            newObject.GetComponent<Rock>().rockPoolParty = this;
             newObject.transform.position = transform.position;
+        }
+    }
+    private void OnDisable()
+    {
+        GetAllRockToPool();
+    }
+    public void GetAllRockToPool()
+    {
+        foreach (ObjectPool pool in party.Pools)
+        {
+            foreach (GameObject gameObject in pool.PooledObjects)
+            {
+                pool.GetBackToPool(gameObject);
+            }
         }
     }
 }

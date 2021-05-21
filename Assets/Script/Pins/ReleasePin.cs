@@ -22,8 +22,7 @@ public class ReleasePin : Pin
             collider.enabled = false;
             if (GameManager.Instance.IsBlocked(lockers[0].position, lockers[1].position, 1 << LayerMask.NameToLayer("Pin")) == false)
             {
-                Vector2 pullDirection = (anchor.position - forward.position).normalized;
-                GameController.Instance.Move(transform, forward.transform.position, unpinDuration);
+                GameController.Instance.Move(pinTransform, forward.transform.position, unpinDuration);
             }
             collider.enabled = true;
         }

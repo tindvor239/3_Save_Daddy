@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 864329369754730594}
   - component: {fileID: -5386533223349091605}
   m_Layer: 9
-  m_Name: Angler Fish
+  m_Name: Fluffer Fish
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,6 +49,9 @@ MonoBehaviour:
   poolName: Angler Fish Pool
   moveSpeed: 9
   destinations: []
+  passedDestinations: []
+  state: 1
+  attackRange: 10
 --- !u!58 &864329369754730594
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -97,7 +100,7 @@ GameObject:
   - component: {fileID: 8544673686893825143}
   - component: {fileID: 4514930708005208916}
   m_Layer: 9
-  m_Name: GameObject
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7774497715707542762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.577, z: 0}
+  m_LocalPosition: {x: -0.145, y: 0.229, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 329759208372406898}
@@ -156,7 +159,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5dcb039504a73814b98cf4e1a3efb2c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 94691adc38779104daf4d69cdc635a9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
