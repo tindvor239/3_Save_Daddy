@@ -56,9 +56,9 @@ public class GameManager : Singleton<GameManager>
         }
         return null;
     }
-    public GameObject RayCastObject(Vector3 fromPosition, Vector3 direction, LayerMask ignoreLayer)
+    public GameObject RayCastObject(Vector3 fromPosition, Vector3 direction, float length, LayerMask layer)
     {
-        RaycastHit2D hit = Physics2D.Raycast(fromPosition, direction, Mathf.Infinity, ignoreLayer);
+        RaycastHit2D hit = Physics2D.Raycast(fromPosition, direction, length, layer);
         if (hit.collider != null)
         {
             Debug.Log("Hit");
@@ -69,7 +69,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition)
     {
         Vector3 direction = GetDirectionVector(fromPosition, toPosition);
-        GameObject destinateObject = RayCastObject(fromPosition, direction);
+        GameObject destinateObject = RayCastObject(fromPosition, direction, Vector3.Distance(fromPosition, toPosition));
         return destinateObject;
     }
     public GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition, float length)
@@ -78,10 +78,10 @@ public class GameManager : Singleton<GameManager>
         GameObject destinateObject = RayCastObject(fromPosition, direction, length);
         return destinateObject;
     }
-    public GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition, LayerMask ignoreLayer)
+    public GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition, LayerMask layer)
     {
         Vector3 direction = GetDirectionVector(fromPosition, toPosition);
-        GameObject destinateObject = RayCastObject(fromPosition, direction, ignoreLayer);
+        GameObject destinateObject = RayCastObject(fromPosition, direction, Vector3.Distance(fromPosition, toPosition), layer);
         return destinateObject;
     }
     #endregion
@@ -182,21 +182,6 @@ public class GameManager : Singleton<GameManager>
             }
         }
         return closestEnemy;
-    }
-
-    private static int GetPath(int startIndex, CharacterController controller)
-    {
-        controller.GetComponent<Collider2D>().enabled = false;
-        for (int i = startIndex; i < Instance.destinations.Count; i++)
-        {
-            bool isBlocked = Instance.IsBlocked(controller.transform.position, Instance.destinations[i].position);
-            if (!isBlocked)
-            {
-                controller.GetComponent<Collider2D>().enabled = true;
-                return i;
-            }
-        }
-        return -1;
     }
     public void GetDestinations()
     {

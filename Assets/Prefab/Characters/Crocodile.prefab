@@ -48,9 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Aligator Pool
   moveSpeed: 9
+  skeleton: {fileID: 0}
+  characters: []
+  state: 1
   destinations: []
   passedDestinations: []
-  state: 1
+  enemyState: 1
   attackRange: 10
 --- !u!60 &8399259286556451696
 PolygonCollider2D:

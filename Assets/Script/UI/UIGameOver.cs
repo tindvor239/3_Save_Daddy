@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Spine.Unity;
 public class UIGameOver : UISection
 {
     public Image characterIcon { get => (Image)displays[0].Value; }

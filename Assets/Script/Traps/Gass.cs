@@ -22,7 +22,7 @@ public class Gass : Trap
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= maxTimer)
+        if (timer >= maxTimer && isDisarmed == false)
         {
             CheckHit();
             timer = 0;
@@ -34,6 +34,14 @@ public class Gass : Trap
         if (beenBlocked)
         {
             Disarmed();
+        }
+        else
+        {
+            GameObject beenHitObject = GameManager.Instance.RayCastToObject(points[0].position, points[1].position);
+            if(beenHitObject != null)
+            {
+                OnHit(beenHitObject);
+            }
         }
     }
 }

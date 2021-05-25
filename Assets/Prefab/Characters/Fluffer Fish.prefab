@@ -48,9 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Angler Fish Pool
   moveSpeed: 9
+  skeleton: {fileID: 0}
+  characters: []
+  state: 1
   destinations: []
   passedDestinations: []
-  state: 1
+  enemyState: 1
   attackRange: 10
 --- !u!58 &864329369754730594
 CircleCollider2D:

@@ -63,6 +63,7 @@ MonoBehaviour:
       - DAILY_QUEST_UI
       - GAMEOVER_UI
       - GAMEPLAY_UI
+      - LEVELS_UI
       - LEVELUP_UI
       - LUCKYSPIN_POPUP
       - LUCKYSPIN_UI
@@ -81,9 +82,9 @@ MonoBehaviour:
       - WELCOME_BACK_UI
       - WIN_UI
       isExpanded:
-        m_Target: 0
+        m_Target: 1
         speed: 2
-        m_Value: 0
+        m_Value: 1
     categoryNames:
     - ~Custom Name~
     - Example 1 - SimpleScene

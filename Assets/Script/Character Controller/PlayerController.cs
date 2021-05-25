@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.CustomComponents;
 using DG.Tweening;
 public class PlayerController : CharacterController
 {
     private bool alreadyMoveCamera = false;
+    [SerializeField]
+    private float dangerRange;
     protected override void Awake()
     {
         base.Awake();
@@ -17,8 +20,9 @@ public class PlayerController : CharacterController
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
     }
     public void MovePlayerToNextDestination()
     {
@@ -40,6 +44,7 @@ public class PlayerController : CharacterController
         else if(alreadyMoveCamera == false)
         {
             MoveCamera();
+            Invoke("ScareAnimation", actingDelay);
             alreadyMoveCamera = true;
         }
     }
@@ -53,7 +58,7 @@ public class PlayerController : CharacterController
         StartCoroutine(MoveToDestination(destination));
     }
 
-    IEnumerator MoveToDestination(Transform destination)
+    private IEnumerator MoveToDestination(Transform destination)
     {
         yield return new WaitForSeconds(moveDuration);
         StartMoveToDestination(destination);
@@ -87,20 +92,58 @@ public class PlayerController : CharacterController
             }
         }
     }
-    IEnumerator CheckMoveCondition(float duration)
+
+    private void ScareAnimation()
+    {
+        state = IsDanger();
+        Action(state);
+    }
+    private CharacterState IsDanger()
+    {
+        foreach(ObjectPool pool in ObstaclePoolParty.Instance.Party.Pools)
+        {
+            foreach(GameObject pooledObject in pool.PooledObjects)
+            {
+                float currentDistance = Vector3.Distance(transform.position, pooledObject.transform.position);
+                if(pooledObject.activeInHierarchy && currentDistance <= dangerRange)
+                {
+                    return CharacterState.die;
+                }
+            }
+        }
+        foreach (ObjectPool pool in CharacterPoolParty.Instance.Party.Pools)
+        {
+            if(pool != CharacterPoolParty.Instance.PlayerPool)
+            {
+                foreach (GameObject pooledObject in pool.PooledObjects)
+                {
+                    float currentDistance = Vector3.Distance(transform.position, pooledObject.transform.position);
+                    if (pooledObject.activeInHierarchy && currentDistance <= dangerRange)
+                    {
+                        return CharacterState.die;
+                    }
+                }
+            }
+        }
+        return state;
+    }
+    private IEnumerator CheckMoveCondition(float duration)
     {
         yield return new WaitForSeconds(duration);
         if(!GameManager.isWin())
         {
             MovePlayerToNextDestination();
-            Debug.Log("Run second time");
         }
 
     }
-    //private void CheckCo
     public override void Interact()
     {
-        Debug.Log("Interact with player");
         CharacterPoolParty.Instance.PlayerPool.GetBackToPool(gameObject);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, dangerRange);
     }
 }

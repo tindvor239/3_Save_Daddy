@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using DG.Tweening;
 using DoozyUI;
-
+using Spine.Unity;
 public class ViewManager : Singleton<ViewManager>
 {
     // Start is called before the first frame update
@@ -82,6 +82,12 @@ public class ViewManager : Singleton<ViewManager>
     public static void Fading(SpriteRenderer sprite, float targetAlpha, float duration)
     {
         sprite.DOFade(targetAlpha, duration);
+    }
+    #endregion
+    #region Animation Handler
+    public static void Acting(SkeletonAnimation skeleton, AnimationReferenceAsset animation, bool isLoop, float timeScale)
+    {
+        skeleton.state.SetAnimation(0, animation, isLoop).TimeScale = timeScale;
     }
     #endregion
     #region UI Handler

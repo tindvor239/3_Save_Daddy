@@ -5,6 +5,8 @@ public class Trap : Obstacle
     protected Collider2D hitBox;
     [SerializeField]
     protected ParticleSystem effect;
+    [SerializeField]
+    protected bool isDisarmed = false;
     protected virtual void Awake()
     {
         if (GetComponent<Collider2D>())
@@ -35,7 +37,7 @@ public class Trap : Obstacle
     {
         if (beenHitObject.tag == "Player")
         {
-            CharacterPoolParty.Instance.PlayerPool.GetBackToPool(beenHitObject);
+            UIController.Instance.ShowGameOverUI(true);
         }
         else if(beenHitObject.tag == "Enemy")
         {
@@ -88,5 +90,6 @@ public class Trap : Obstacle
         {
             effect.Stop();
         }
+        isDisarmed = true;
     }
 }

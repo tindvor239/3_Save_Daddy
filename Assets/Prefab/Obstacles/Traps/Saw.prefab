@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2268436674062038555}
   - component: {fileID: 876891781821896151}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Weel (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9071754132089909399}
   - component: {fileID: 1718695452190037977}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Weel Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 3952435534725784560}
   - component: {fileID: 626424341326567517}
   - component: {fileID: 8431840076893049520}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Saw
   m_TagString: Trap
   m_Icon: {fileID: 0}
@@ -237,6 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Saw Pool
   effect: {fileID: 0}
+  isDisarmed: 0
   blades:
   - {fileID: 1446613700739794315}
   - {fileID: 876891781821896151}
@@ -251,7 +252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 749188036334583187}
   - component: {fileID: 1446613700739794315}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Weel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

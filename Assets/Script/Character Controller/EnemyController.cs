@@ -11,7 +11,7 @@ public class EnemyController : CharacterController
     [SerializeField]
     private List<Transform> passedDestinations = new List<Transform>();
     [SerializeField]
-    private EnemyState state;
+    private EnemyState enemyState;
     [SerializeField]
     private float attackRange;
     private float startSize;
@@ -43,7 +43,7 @@ public class EnemyController : CharacterController
         }
         else
         {
-            if(state == EnemyState.aggressive)
+            if(enemyState == EnemyState.aggressive)
             {
                 Transform path = GetPath();
 
@@ -173,7 +173,7 @@ public class EnemyController : CharacterController
     protected IEnumerator Kill(float duration)
     {
         yield return new WaitForSeconds(duration);
-        CharacterPoolParty.Instance.PlayerPool.GetBackToPool(GameManager.Instance.Player.gameObject);
+        UIController.Instance.ShowGameOverUI(true);
     }
 
     public override void Interact()

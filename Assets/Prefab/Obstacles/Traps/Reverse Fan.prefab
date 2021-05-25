@@ -77,6 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Reverse Fan Pool
   effect: {fileID: 0}
+  isDisarmed: 0
   target: {fileID: 3694165365864311492}
   blowingSpeed: 10
   isReverse: 1
@@ -150,7 +151,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 9adf53d4936387a4a92c59ff33a7af85, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc92533b44300744ea5699bea6a994f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -1,0 +1,2421 @@
+
+main.png
+size: 4160,344
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Clown/images/body_back
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Cowboy/images/accessories
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Cowboy/images/body_back
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Dracula/images/accessories
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Explorer/images/accessories
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Fisher/images/body_back
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Normal/images/accessories
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Normal/images/body_back
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Pirate/images/body_back
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Robinhood/images/accessories
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/body_back
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/accessories
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Superman/images/accessories
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Wizard/images/body_back
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Santa/images/body_back
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Viking/images/accessories
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Viking/images/body_back
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Mummy/images/accessories
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Mummy/images/body_back
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Astronaut/images/accessories
+  rotate: true
+  xy: 0, 0
+  size: 0, 0
+  orig: 0, 0
+  offset: 0, 0
+  index: -1
+Astronaut/images/Boat_back
+  rotate: true
+  xy: 2895, 131
+  size: 213, 42
+  orig: 272, 265
+  offset: 25, 45
+  index: -1
+Astronaut/images/Boat_front
+  rotate: true
+  xy: 774, 89
+  size: 255, 100
+  orig: 266, 123
+  offset: 2, 1
+  index: -1
+Astronaut/images/Head
+  rotate: true
+  xy: 2189, 117
+  size: 227, 192
+  orig: 269, 217
+  offset: 25, 1
+  index: -1
+Astronaut/images/LHand1
+  rotate: false
+  xy: 3933, 99
+  size: 36, 35
+  orig: 36, 35
+  offset: 0, 0
+  index: -1
+Astronaut/images/LHand2
+  rotate: false
+  xy: 4059, 299
+  size: 50, 45
+  orig: 50, 45
+  offset: 0, 0
+  index: -1
+Astronaut/images/Mouth_Happy
+  rotate: false
+  xy: 3546, 78
+  size: 40, 23
+  orig: 40, 24
+  offset: 0, 1
+  index: -1
+Astronaut/images/Mouth_Scare
+  rotate: false
+  xy: 3328, 70
+  size: 33, 26
+  orig: 33, 34
+  offset: 0, 8
+  index: -1
+Astronaut/images/RHand1
+  rotate: false
+  xy: 3930, 64
+  size: 36, 35
+  orig: 36, 35
+  offset: 0, 0
+  index: -1
+Astronaut/images/RHand2
+  rotate: true
+  xy: 3598, 101
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+Astronaut/images/body
+  rotate: true
+  xy: 306, 2
+  size: 76, 82
+  orig: 107, 99
+  offset: 21, 11
+  index: -1
+Astronaut/images/body_back
+  rotate: false
+  xy: 3224, 1
+  size: 75, 65
+  orig: 172, 164
+  offset: 37, 19
+  index: -1
+Clown/images/Boat_back
+  rotate: false
+  xy: 1739, 0
+  size: 235, 109
+  orig: 272, 265
+  offset: 22, 26
+  index: -1
+Clown/images/Boat_front
+  rotate: true
+  xy: 874, 90
+  size: 254, 87
+  orig: 266, 123
+  offset: 2, 0
+  index: -1
+Clown/images/Eye_Blink
+  rotate: true
+  xy: 1436, 10
+  size: 85, 40
+  orig: 85, 40
+  offset: 0, 0
+  index: -1
+Clown/images/Eyebrown_Idle
+  rotate: true
+  xy: 3224, 66
+  size: 80, 15
+  orig: 80, 15
+  offset: 0, 0
+  index: -1
+Clown/images/Eyebrown_Scare_Cry
+  rotate: true
+  xy: 2644, 31
+  size: 99, 19
+  orig: 99, 19
+  offset: 0, 0
+  index: -1
+Clown/images/Eyes
+  rotate: true
+  xy: 1556, 11
+  size: 84, 40
+  orig: 84, 40
+  offset: 0, 0
+  index: -1
+Clown/images/Head
+  rotate: false
+  xy: 2635, 130
+  size: 174, 214
+  orig: 269, 214
+  offset: 54, 0
+  index: -1
+Clown/images/LHand1
+  rotate: false
+  xy: 4002, 65
+  size: 34, 32
+  orig: 36, 35
+  offset: 0, 3
+  index: -1
+Clown/images/LHand2
+  rotate: true
+  xy: 3628, 51
+  size: 50, 45
+  orig: 51, 45
+  offset: 1, 0
+  index: -1
+Clown/images/MatP
+  rotate: false
+  xy: 3416, 70
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+Clown/images/MatT
+  rotate: false
+  xy: 3468, 70
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+Clown/images/Mouth_Happy
+  rotate: false
+  xy: 2670, 0
+  size: 49, 33
+  orig: 49, 33
+  offset: 0, 0
+  index: -1
+Clown/images/Mouth_Idle
+  rotate: false
+  xy: 1681, 96
+  size: 41, 13
+  orig: 41, 13
+  offset: 0, 0
+  index: -1
+Clown/images/Mouth_Scare
+  rotate: true
+  xy: 4109, 169
+  size: 41, 43
+  orig: 41, 43
+  offset: 0, 0
+  index: -1
+Clown/images/RHand1
+  rotate: false
+  xy: 4113, 69
+  size: 34, 32
+  orig: 36, 35
+  offset: 2, 3
+  index: -1
+Clown/images/RHand2
+  rotate: true
+  xy: 3418, 96
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+Clown/images/Water for boat
+  rotate: false
+  xy: 3299, 8
+  size: 149, 62
+  orig: 150, 63
+  offset: 1, 0
+  index: -1
+Astronaut/images/Water for boat
+  rotate: false
+  xy: 3299, 8
+  size: 149, 62
+  orig: 150, 63
+  offset: 1, 0
+  index: -1
+Cowboy/images/Water for boat
+  rotate: false
+  xy: 3299, 8
+  size: 149, 62
+  orig: 150, 63
+  offset: 1, 0
+  index: -1
+Dracula/images/Water for boat
+  rotate: false
+  xy: 3299, 8
+  size: 149, 62
+  orig: 150, 63
+  offset: 1, 0
+  index: -1
+Explorer/images/Water for boat
+  rotate: false
+  xy: 3299, 8
+  size: 149, 62
+  orig: 150, 63
+  offset: 1, 0
+  index: -1
+Fisher/images/Water for boat
+  rotate: false
+  xy: 3299, 8
+  size: 149, 62
+  orig: 150, 63
+  offset: 1, 0
+  index: -1
+Mummy/images/Water for boat
+  rotate: false
+  xy: 3299, 8
+  size: 149, 62
+  orig: 150, 63
+  offset: 1, 0
+  index: -1
+Normal/images/Water for boat
+  rotate: false
+  xy: 3299, 8
+  size: 149, 62
+  orig: 150, 63
+  offset: 1, 0
+  index: -1
+Pirate/images/Water for boat
+  rotate: false
+  xy: 3299, 8
+  size: 149, 62
+  orig: 150, 63
+  offset: 1, 0
+  index: -1
+Robinhood/images/Water for boat
+  rotate: false
+  xy: 3299, 8
+  size: 149, 62
+  orig: 150, 63
+  offset: 1, 0
+  index: -1
+Santa/images/Water for boat
+  rotate: false
+  xy: 3299, 8
+  size: 149, 62
+  orig: 150, 63
+  offset: 1, 0
+  index: -1
+SherlockHolmes/images/Water for boat
+  rotate: false
+  xy: 3299, 8
+  size: 149, 62
+  orig: 150, 63
+  offset: 1, 0
+  index: -1
+Superman/images/Water for boat
+  rotate: false
+  xy: 3299, 8
+  size: 149, 62
+  orig: 150, 63
+  offset: 1, 0
+  index: -1
+Viking/images/Water for boat
+  rotate: false
+  xy: 3299, 8
+  size: 149, 62
+  orig: 150, 63
+  offset: 1, 0
+  index: -1
+Wizard/images/Water for boat
+  rotate: false
+  xy: 3299, 8
+  size: 149, 62
+  orig: 150, 63
+  offset: 1, 0
+  index: -1
+Clown/images/Wrinkel1
+  rotate: true
+  xy: 2381, 126
+  size: 218, 66
+  orig: 218, 66
+  offset: 0, 0
+  index: -1
+Astronaut/images/Wrinkel1
+  rotate: true
+  xy: 2381, 126
+  size: 218, 66
+  orig: 218, 66
+  offset: 0, 0
+  index: -1
+Cowboy/images/Wrinkel1
+  rotate: true
+  xy: 2381, 126
+  size: 218, 66
+  orig: 218, 66
+  offset: 0, 0
+  index: -1
+Dracula/images/Wrinkel1
+  rotate: true
+  xy: 2381, 126
+  size: 218, 66
+  orig: 218, 66
+  offset: 0, 0
+  index: -1
+Explorer/images/Wrinkel1
+  rotate: true
+  xy: 2381, 126
+  size: 218, 66
+  orig: 218, 66
+  offset: 0, 0
+  index: -1
+Fisher/images/Wrinkel1
+  rotate: true
+  xy: 2381, 126
+  size: 218, 66
+  orig: 218, 66
+  offset: 0, 0
+  index: -1
+Mummy/images/Wrinkel1
+  rotate: true
+  xy: 2381, 126
+  size: 218, 66
+  orig: 218, 66
+  offset: 0, 0
+  index: -1
+Normal/images/Wrinkel1
+  rotate: true
+  xy: 2381, 126
+  size: 218, 66
+  orig: 218, 66
+  offset: 0, 0
+  index: -1
+Pirate/images/Wrinkel1
+  rotate: true
+  xy: 2381, 126
+  size: 218, 66
+  orig: 218, 66
+  offset: 0, 0
+  index: -1
+Robinhood/images/Wrinkel1
+  rotate: true
+  xy: 2381, 126
+  size: 218, 66
+  orig: 218, 66
+  offset: 0, 0
+  index: -1
+Santa/images/Wrinkel1
+  rotate: true
+  xy: 2381, 126
+  size: 218, 66
+  orig: 218, 66
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/Wrinkel1
+  rotate: true
+  xy: 2381, 126
+  size: 218, 66
+  orig: 218, 66
+  offset: 0, 0
+  index: -1
+Superman/images/Wrinkel1
+  rotate: true
+  xy: 2381, 126
+  size: 218, 66
+  orig: 218, 66
+  offset: 0, 0
+  index: -1
+Viking/images/Wrinkel1
+  rotate: true
+  xy: 2381, 126
+  size: 218, 66
+  orig: 218, 66
+  offset: 0, 0
+  index: -1
+Wizard/images/Wrinkel1
+  rotate: true
+  xy: 2381, 126
+  size: 218, 66
+  orig: 218, 66
+  offset: 0, 0
+  index: -1
+Clown/images/Wrinkel2
+  rotate: false
+  xy: 2904, 0
+  size: 168, 51
+  orig: 168, 51
+  offset: 0, 0
+  index: -1
+Astronaut/images/Wrinkel2
+  rotate: false
+  xy: 2904, 0
+  size: 168, 51
+  orig: 168, 51
+  offset: 0, 0
+  index: -1
+Cowboy/images/Wrinkel2
+  rotate: false
+  xy: 2904, 0
+  size: 168, 51
+  orig: 168, 51
+  offset: 0, 0
+  index: -1
+Dracula/images/Wrinkel2
+  rotate: false
+  xy: 2904, 0
+  size: 168, 51
+  orig: 168, 51
+  offset: 0, 0
+  index: -1
+Explorer/images/Wrinkel2
+  rotate: false
+  xy: 2904, 0
+  size: 168, 51
+  orig: 168, 51
+  offset: 0, 0
+  index: -1
+Fisher/images/Wrinkel2
+  rotate: false
+  xy: 2904, 0
+  size: 168, 51
+  orig: 168, 51
+  offset: 0, 0
+  index: -1
+Mummy/images/Wrinkel2
+  rotate: false
+  xy: 2904, 0
+  size: 168, 51
+  orig: 168, 51
+  offset: 0, 0
+  index: -1
+Normal/images/Wrinkel2
+  rotate: false
+  xy: 2904, 0
+  size: 168, 51
+  orig: 168, 51
+  offset: 0, 0
+  index: -1
+Pirate/images/Wrinkel2
+  rotate: false
+  xy: 2904, 0
+  size: 168, 51
+  orig: 168, 51
+  offset: 0, 0
+  index: -1
+Robinhood/images/Wrinkel2
+  rotate: false
+  xy: 2904, 0
+  size: 168, 51
+  orig: 168, 51
+  offset: 0, 0
+  index: -1
+Santa/images/Wrinkel2
+  rotate: false
+  xy: 2904, 0
+  size: 168, 51
+  orig: 168, 51
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/Wrinkel2
+  rotate: false
+  xy: 2904, 0
+  size: 168, 51
+  orig: 168, 51
+  offset: 0, 0
+  index: -1
+Superman/images/Wrinkel2
+  rotate: false
+  xy: 2904, 0
+  size: 168, 51
+  orig: 168, 51
+  offset: 0, 0
+  index: -1
+Viking/images/Wrinkel2
+  rotate: false
+  xy: 2904, 0
+  size: 168, 51
+  orig: 168, 51
+  offset: 0, 0
+  index: -1
+Wizard/images/Wrinkel2
+  rotate: false
+  xy: 2904, 0
+  size: 168, 51
+  orig: 168, 51
+  offset: 0, 0
+  index: -1
+Clown/images/Wrinkel3
+  rotate: true
+  xy: 2608, 10
+  size: 120, 36
+  orig: 120, 36
+  offset: 0, 0
+  index: -1
+Astronaut/images/Wrinkel3
+  rotate: true
+  xy: 2608, 10
+  size: 120, 36
+  orig: 120, 36
+  offset: 0, 0
+  index: -1
+Cowboy/images/Wrinkel3
+  rotate: true
+  xy: 2608, 10
+  size: 120, 36
+  orig: 120, 36
+  offset: 0, 0
+  index: -1
+Dracula/images/Wrinkel3
+  rotate: true
+  xy: 2608, 10
+  size: 120, 36
+  orig: 120, 36
+  offset: 0, 0
+  index: -1
+Explorer/images/Wrinkel3
+  rotate: true
+  xy: 2608, 10
+  size: 120, 36
+  orig: 120, 36
+  offset: 0, 0
+  index: -1
+Fisher/images/Wrinkel3
+  rotate: true
+  xy: 2608, 10
+  size: 120, 36
+  orig: 120, 36
+  offset: 0, 0
+  index: -1
+Mummy/images/Wrinkel3
+  rotate: true
+  xy: 2608, 10
+  size: 120, 36
+  orig: 120, 36
+  offset: 0, 0
+  index: -1
+Normal/images/Wrinkel3
+  rotate: true
+  xy: 2608, 10
+  size: 120, 36
+  orig: 120, 36
+  offset: 0, 0
+  index: -1
+Pirate/images/Wrinkel3
+  rotate: true
+  xy: 2608, 10
+  size: 120, 36
+  orig: 120, 36
+  offset: 0, 0
+  index: -1
+Robinhood/images/Wrinkel3
+  rotate: true
+  xy: 2608, 10
+  size: 120, 36
+  orig: 120, 36
+  offset: 0, 0
+  index: -1
+Santa/images/Wrinkel3
+  rotate: true
+  xy: 2608, 10
+  size: 120, 36
+  orig: 120, 36
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/Wrinkel3
+  rotate: true
+  xy: 2608, 10
+  size: 120, 36
+  orig: 120, 36
+  offset: 0, 0
+  index: -1
+Superman/images/Wrinkel3
+  rotate: true
+  xy: 2608, 10
+  size: 120, 36
+  orig: 120, 36
+  offset: 0, 0
+  index: -1
+Viking/images/Wrinkel3
+  rotate: true
+  xy: 2608, 10
+  size: 120, 36
+  orig: 120, 36
+  offset: 0, 0
+  index: -1
+Wizard/images/Wrinkel3
+  rotate: true
+  xy: 2608, 10
+  size: 120, 36
+  orig: 120, 36
+  offset: 0, 0
+  index: -1
+Clown/images/accessories
+  rotate: true
+  xy: 3896, 133
+  size: 35, 37
+  orig: 117, 79
+  offset: 44, 7
+  index: -1
+Clown/images/body
+  rotate: true
+  xy: 0, 3
+  size: 69, 78
+  orig: 107, 99
+  offset: 23, 11
+  index: -1
+Cowboy/images/Boat_back
+  rotate: true
+  xy: 2853, 131
+  size: 213, 42
+  orig: 272, 265
+  offset: 34, 46
+  index: -1
+Normal/images/Boat_back
+  rotate: true
+  xy: 2853, 131
+  size: 213, 42
+  orig: 272, 265
+  offset: 34, 46
+  index: -1
+SherlockHolmes/images/Boat_back
+  rotate: true
+  xy: 2853, 131
+  size: 213, 42
+  orig: 272, 265
+  offset: 34, 46
+  index: -1
+Cowboy/images/Boat_front
+  rotate: true
+  xy: 1516, 95
+  size: 249, 83
+  orig: 266, 123
+  offset: 1, 0
+  index: -1
+Fisher/images/Boat_front
+  rotate: true
+  xy: 1516, 95
+  size: 249, 83
+  orig: 266, 123
+  offset: 1, 0
+  index: -1
+Normal/images/Boat_front
+  rotate: true
+  xy: 1516, 95
+  size: 249, 83
+  orig: 266, 123
+  offset: 1, 0
+  index: -1
+SherlockHolmes/images/Boat_front
+  rotate: true
+  xy: 1516, 95
+  size: 249, 83
+  orig: 266, 123
+  offset: 1, 0
+  index: -1
+Cowboy/images/Head
+  rotate: true
+  xy: 3476, 152
+  size: 192, 189
+  orig: 269, 214
+  offset: 53, 0
+  index: -1
+Cowboy/images/LHand1
+  rotate: false
+  xy: 3894, 64
+  size: 36, 34
+  orig: 36, 34
+  offset: 0, 0
+  index: -1
+Cowboy/images/LHand2
+  rotate: false
+  xy: 4009, 210
+  size: 50, 44
+  orig: 50, 44
+  offset: 0, 0
+  index: -1
+Cowboy/images/RHand1
+  rotate: true
+  xy: 3996, 29
+  size: 36, 34
+  orig: 36, 34
+  offset: 0, 0
+  index: -1
+Cowboy/images/RHand2
+  rotate: true
+  xy: 3493, 19
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+Cowboy/images/body
+  rotate: false
+  xy: 2761, 48
+  size: 75, 82
+  orig: 107, 99
+  offset: 18, 12
+  index: -1
+Dracula/images/Eye_Blink
+  rotate: true
+  xy: 1516, 10
+  size: 85, 40
+  orig: 85, 40
+  offset: 0, 0
+  index: -1
+Dracula/images/Eyebrown_Idle
+  rotate: true
+  xy: 2867, 50
+  size: 81, 15
+  orig: 81, 15
+  offset: 0, 0
+  index: -1
+Dracula/images/Eyebrown_Scare_Cry
+  rotate: true
+  xy: 2852, 49
+  size: 82, 15
+  orig: 82, 15
+  offset: 0, 0
+  index: -1
+Dracula/images/Eyes
+  rotate: true
+  xy: 1596, 11
+  size: 84, 40
+  orig: 84, 40
+  offset: 0, 0
+  index: -1
+Dracula/images/Head
+  rotate: true
+  xy: 2457, 0
+  size: 118, 151
+  orig: 269, 214
+  offset: 85, 0
+  index: -1
+Dracula/images/LHand1
+  rotate: false
+  xy: 4109, 134
+  size: 38, 35
+  orig: 38, 36
+  offset: 0, 1
+  index: -1
+Dracula/images/LHand2
+  rotate: false
+  xy: 4059, 210
+  size: 50, 44
+  orig: 50, 44
+  offset: 0, 0
+  index: -1
+Dracula/images/MatP
+  rotate: false
+  xy: 3442, 70
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+Dracula/images/MatT
+  rotate: false
+  xy: 3520, 75
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+Dracula/images/Mouth_Happy
+  rotate: false
+  xy: 3538, 0
+  size: 41, 24
+  orig: 41, 24
+  offset: 0, 0
+  index: -1
+Dracula/images/Mouth_Idle
+  rotate: false
+  xy: 2447, 118
+  size: 35, 12
+  orig: 35, 12
+  offset: 0, 0
+  index: -1
+Dracula/images/Mouth_Scare
+  rotate: true
+  xy: 4113, 101
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+Dracula/images/RHand1
+  rotate: true
+  xy: 3859, 23
+  size: 37, 35
+  orig: 37, 36
+  offset: 0, 1
+  index: -1
+Dracula/images/RHand2
+  rotate: false
+  xy: 4109, 299
+  size: 50, 45
+  orig: 50, 45
+  offset: 0, 0
+  index: -1
+Dracula/images/body
+  rotate: false
+  xy: 843, 1
+  size: 85, 88
+  orig: 107, 99
+  offset: 15, 11
+  index: -1
+Dracula/images/body_back
+  rotate: false
+  xy: 1974, 2
+  size: 170, 113
+  orig: 170, 163
+  offset: 0, 50
+  index: -1
+Explorer/images/Boat_back
+  rotate: true
+  xy: 961, 91
+  size: 253, 126
+  orig: 272, 265
+  offset: 5, 6
+  index: -1
+Superman/images/Boat_back
+  rotate: true
+  xy: 961, 91
+  size: 253, 126
+  orig: 272, 265
+  offset: 5, 6
+  index: -1
+Explorer/images/Boat_front
+  rotate: false
+  xy: 613, 0
+  size: 230, 80
+  orig: 266, 123
+  offset: 23, 0
+  index: -1
+Superman/images/Boat_front
+  rotate: false
+  xy: 613, 0
+  size: 230, 80
+  orig: 266, 123
+  offset: 23, 0
+  index: -1
+Explorer/images/Head
+  rotate: false
+  xy: 3310, 147
+  size: 166, 197
+  orig: 269, 214
+  offset: 60, 0
+  index: -1
+Explorer/images/LHand1
+  rotate: false
+  xy: 3859, 134
+  size: 37, 34
+  orig: 37, 34
+  offset: 0, 0
+  index: -1
+Explorer/images/LHand2
+  rotate: false
+  xy: 3015, 100
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+Explorer/images/RHand1
+  rotate: false
+  xy: 3970, 134
+  size: 37, 34
+  orig: 37, 34
+  offset: 0, 0
+  index: -1
+Explorer/images/RHand2
+  rotate: true
+  xy: 3508, 101
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+Explorer/images/body
+  rotate: false
+  xy: 472, 0
+  size: 75, 79
+  orig: 107, 99
+  offset: 20, 11
+  index: -1
+Explorer/images/body_back
+  rotate: true
+  xy: 1636, 0
+  size: 96, 103
+  orig: 170, 163
+  offset: 34, 16
+  index: -1
+Fisher/images/Boat_back
+  rotate: true
+  xy: 1681, 109
+  size: 235, 221
+  orig: 272, 265
+  offset: 12, 0
+  index: -1
+Fisher/images/Head
+  rotate: false
+  xy: 2981, 145
+  size: 166, 199
+  orig: 269, 214
+  offset: 60, 0
+  index: -1
+Fisher/images/LHand1
+  rotate: false
+  xy: 3933, 134
+  size: 37, 34
+  orig: 37, 34
+  offset: 0, 0
+  index: -1
+Fisher/images/LHand2
+  rotate: false
+  xy: 3015, 55
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+Fisher/images/RHand1
+  rotate: false
+  xy: 3969, 99
+  size: 36, 35
+  orig: 36, 35
+  offset: 0, 0
+  index: -1
+Fisher/images/RHand2
+  rotate: true
+  xy: 3538, 24
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+Fisher/images/accessories
+  rotate: true
+  xy: 2144, 0
+  size: 116, 58
+  orig: 117, 79
+  offset: 0, 11
+  index: -1
+Fisher/images/body
+  rotate: false
+  xy: 2882, 51
+  size: 67, 80
+  orig: 107, 99
+  offset: 23, 11
+  index: -1
+Mummy/images/Boat_back
+  rotate: true
+  xy: 2809, 131
+  size: 213, 44
+  orig: 272, 265
+  offset: 27, 44
+  index: -1
+Dracula/images/Boat_back
+  rotate: true
+  xy: 2809, 131
+  size: 213, 44
+  orig: 272, 265
+  offset: 27, 44
+  index: -1
+Mummy/images/Boat_front
+  rotate: true
+  xy: 1433, 95
+  size: 249, 83
+  orig: 266, 123
+  offset: 0, 0
+  index: -1
+Dracula/images/Boat_front
+  rotate: true
+  xy: 1433, 95
+  size: 249, 83
+  orig: 266, 123
+  offset: 0, 0
+  index: -1
+Mummy/images/Eye_Blink
+  rotate: true
+  xy: 1313, 9
+  size: 85, 41
+  orig: 85, 41
+  offset: 0, 0
+  index: -1
+Mummy/images/Eyes
+  rotate: true
+  xy: 1395, 9
+  size: 85, 41
+  orig: 85, 41
+  offset: 0, 0
+  index: -1
+Mummy/images/Head
+  rotate: true
+  xy: 3072, 7
+  size: 138, 152
+  orig: 269, 217
+  offset: 83, 0
+  index: -1
+Mummy/images/LHand1
+  rotate: false
+  xy: 4070, 65
+  size: 34, 32
+  orig: 34, 32
+  offset: 0, 0
+  index: -1
+Mummy/images/LHand2
+  rotate: true
+  xy: 3643, 102
+  size: 50, 45
+  orig: 50, 45
+  offset: 0, 0
+  index: -1
+Mummy/images/MatP
+  rotate: true
+  xy: 3389, 70
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+Mummy/images/MatT
+  rotate: false
+  xy: 3494, 70
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+Mummy/images/RHand1
+  rotate: true
+  xy: 4098, 3
+  size: 34, 32
+  orig: 34, 32
+  offset: 0, 0
+  index: -1
+Mummy/images/RHand2
+  rotate: true
+  xy: 3448, 19
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+Mummy/images/body
+  rotate: false
+  xy: 3239, 70
+  size: 67, 76
+  orig: 107, 99
+  offset: 23, 11
+  index: -1
+Normal/images/Head
+  rotate: true
+  xy: 3688, 2
+  size: 155, 171
+  orig: 269, 214
+  offset: 71, 0
+  index: -1
+Superman/images/Head
+  rotate: true
+  xy: 3688, 2
+  size: 155, 171
+  orig: 269, 214
+  offset: 71, 0
+  index: -1
+Normal/images/LHand1
+  rotate: true
+  xy: 3859, 97
+  size: 37, 35
+  orig: 37, 35
+  offset: 0, 0
+  index: -1
+Normal/images/LHand2
+  rotate: false
+  xy: 2753, 1
+  size: 50, 46
+  orig: 50, 46
+  offset: 0, 0
+  index: -1
+Normal/images/RHand1
+  rotate: false
+  xy: 4007, 132
+  size: 37, 34
+  orig: 37, 34
+  offset: 0, 0
+  index: -1
+Normal/images/RHand2
+  rotate: false
+  xy: 2803, 2
+  size: 50, 46
+  orig: 50, 46
+  offset: 0, 0
+  index: -1
+Normal/images/body
+  rotate: true
+  xy: 142, 4
+  size: 68, 80
+  orig: 107, 99
+  offset: 23, 11
+  index: -1
+Pirate/images/Boat_back
+  rotate: true
+  xy: 0, 72
+  size: 272, 237
+  orig: 272, 265
+  offset: 0, 28
+  index: -1
+Pirate/images/Boat_front
+  rotate: true
+  xy: 551, 80
+  size: 264, 100
+  orig: 266, 123
+  offset: 1, 0
+  index: -1
+Pirate/images/Head
+  rotate: false
+  xy: 2447, 130
+  size: 188, 214
+  orig: 269, 214
+  offset: 45, 0
+  index: -1
+Pirate/images/LHand1
+  rotate: false
+  xy: 3966, 65
+  size: 36, 34
+  orig: 36, 34
+  offset: 0, 0
+  index: -1
+Pirate/images/LHand2
+  rotate: false
+  xy: 4109, 210
+  size: 50, 44
+  orig: 50, 44
+  offset: 0, 0
+  index: -1
+Pirate/images/RHand1
+  rotate: true
+  xy: 4030, 29
+  size: 36, 34
+  orig: 36, 34
+  offset: 0, 0
+  index: -1
+Pirate/images/RHand2
+  rotate: false
+  xy: 4009, 254
+  size: 50, 45
+  orig: 50, 45
+  offset: 0, 0
+  index: -1
+Pirate/images/accessories
+  rotate: true
+  xy: 78, 3
+  size: 69, 64
+  orig: 117, 79
+  offset: 2, 15
+  index: -1
+Pirate/images/body
+  rotate: true
+  xy: 1226, 3
+  size: 91, 87
+  orig: 107, 99
+  offset: 0, 0
+  index: -1
+Robinhood/images/Boat_back
+  rotate: false
+  xy: 2241, 10
+  size: 216, 107
+  orig: 272, 265
+  offset: 29, 43
+  index: -1
+Robinhood/images/Boat_front
+  rotate: true
+  xy: 1599, 96
+  size: 248, 82
+  orig: 266, 123
+  offset: 1, 0
+  index: -1
+Robinhood/images/Head
+  rotate: true
+  xy: 353, 79
+  size: 265, 198
+  orig: 269, 214
+  offset: 4, 0
+  index: -1
+Robinhood/images/LHand1
+  rotate: true
+  xy: 3894, 28
+  size: 36, 34
+  orig: 36, 34
+  offset: 0, 0
+  index: -1
+Robinhood/images/LHand2
+  rotate: false
+  xy: 4009, 166
+  size: 50, 44
+  orig: 50, 44
+  offset: 0, 0
+  index: -1
+Robinhood/images/RHand1
+  rotate: false
+  xy: 4041, 97
+  size: 36, 34
+  orig: 36, 34
+  offset: 0, 0
+  index: -1
+Robinhood/images/RHand2
+  rotate: false
+  xy: 4059, 166
+  size: 50, 44
+  orig: 50, 44
+  offset: 0, 0
+  index: -1
+Robinhood/images/body
+  rotate: false
+  xy: 388, 0
+  size: 84, 79
+  orig: 107, 99
+  offset: 17, 12
+  index: -1
+Robinhood/images/body_back
+  rotate: true
+  xy: 1026, 0
+  size: 91, 119
+  orig: 170, 163
+  offset: 19, 14
+  index: -1
+Santa/images/Boat_back
+  rotate: true
+  xy: 1288, 94
+  size: 250, 145
+  orig: 272, 265
+  offset: 6, 7
+  index: -1
+Santa/images/Boat_front
+  rotate: true
+  xy: 1902, 115
+  size: 229, 80
+  orig: 266, 123
+  offset: 22, 0
+  index: -1
+Santa/images/Eye_Blink
+  rotate: true
+  xy: 1476, 10
+  size: 85, 40
+  orig: 85, 40
+  offset: 0, 0
+  index: -1
+Astronaut/images/Eye_Blink
+  rotate: true
+  xy: 1476, 10
+  size: 85, 40
+  orig: 85, 40
+  offset: 0, 0
+  index: -1
+Cowboy/images/Eye_Blink
+  rotate: true
+  xy: 1476, 10
+  size: 85, 40
+  orig: 85, 40
+  offset: 0, 0
+  index: -1
+Explorer/images/Eye_Blink
+  rotate: true
+  xy: 1476, 10
+  size: 85, 40
+  orig: 85, 40
+  offset: 0, 0
+  index: -1
+Fisher/images/Eye_Blink
+  rotate: true
+  xy: 1476, 10
+  size: 85, 40
+  orig: 85, 40
+  offset: 0, 0
+  index: -1
+Normal/images/Eye_Blink
+  rotate: true
+  xy: 1476, 10
+  size: 85, 40
+  orig: 85, 40
+  offset: 0, 0
+  index: -1
+Pirate/images/Eye_Blink
+  rotate: true
+  xy: 1476, 10
+  size: 85, 40
+  orig: 85, 40
+  offset: 0, 0
+  index: -1
+Robinhood/images/Eye_Blink
+  rotate: true
+  xy: 1476, 10
+  size: 85, 40
+  orig: 85, 40
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/Eye_Blink
+  rotate: true
+  xy: 1476, 10
+  size: 85, 40
+  orig: 85, 40
+  offset: 0, 0
+  index: -1
+Superman/images/Eye_Blink
+  rotate: true
+  xy: 1476, 10
+  size: 85, 40
+  orig: 85, 40
+  offset: 0, 0
+  index: -1
+Viking/images/Eye_Blink
+  rotate: true
+  xy: 1476, 10
+  size: 85, 40
+  orig: 85, 40
+  offset: 0, 0
+  index: -1
+Wizard/images/Eye_Blink
+  rotate: true
+  xy: 1476, 10
+  size: 85, 40
+  orig: 85, 40
+  offset: 0, 0
+  index: -1
+Santa/images/Eyebrown_Idle
+  rotate: true
+  xy: 2836, 49
+  size: 82, 16
+  orig: 82, 16
+  offset: 0, 0
+  index: -1
+Astronaut/images/Eyebrown_Idle
+  rotate: true
+  xy: 2836, 49
+  size: 82, 16
+  orig: 82, 16
+  offset: 0, 0
+  index: -1
+Cowboy/images/Eyebrown_Idle
+  rotate: true
+  xy: 2836, 49
+  size: 82, 16
+  orig: 82, 16
+  offset: 0, 0
+  index: -1
+Explorer/images/Eyebrown_Idle
+  rotate: true
+  xy: 2836, 49
+  size: 82, 16
+  orig: 82, 16
+  offset: 0, 0
+  index: -1
+Fisher/images/Eyebrown_Idle
+  rotate: true
+  xy: 2836, 49
+  size: 82, 16
+  orig: 82, 16
+  offset: 0, 0
+  index: -1
+Mummy/images/Eyebrown_Idle
+  rotate: true
+  xy: 2836, 49
+  size: 82, 16
+  orig: 82, 16
+  offset: 0, 0
+  index: -1
+Normal/images/Eyebrown_Idle
+  rotate: true
+  xy: 2836, 49
+  size: 82, 16
+  orig: 82, 16
+  offset: 0, 0
+  index: -1
+Pirate/images/Eyebrown_Idle
+  rotate: true
+  xy: 2836, 49
+  size: 82, 16
+  orig: 82, 16
+  offset: 0, 0
+  index: -1
+Robinhood/images/Eyebrown_Idle
+  rotate: true
+  xy: 2836, 49
+  size: 82, 16
+  orig: 82, 16
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/Eyebrown_Idle
+  rotate: true
+  xy: 2836, 49
+  size: 82, 16
+  orig: 82, 16
+  offset: 0, 0
+  index: -1
+Superman/images/Eyebrown_Idle
+  rotate: true
+  xy: 2836, 49
+  size: 82, 16
+  orig: 82, 16
+  offset: 0, 0
+  index: -1
+Viking/images/Eyebrown_Idle
+  rotate: true
+  xy: 2836, 49
+  size: 82, 16
+  orig: 82, 16
+  offset: 0, 0
+  index: -1
+Wizard/images/Eyebrown_Idle
+  rotate: true
+  xy: 2836, 49
+  size: 82, 16
+  orig: 82, 16
+  offset: 0, 0
+  index: -1
+Santa/images/Eyebrown_Scare_Cry
+  rotate: true
+  xy: 2745, 47
+  size: 83, 16
+  orig: 83, 16
+  offset: 0, 0
+  index: -1
+Astronaut/images/Eyebrown_Scare_Cry
+  rotate: true
+  xy: 2745, 47
+  size: 83, 16
+  orig: 83, 16
+  offset: 0, 0
+  index: -1
+Cowboy/images/Eyebrown_Scare_Cry
+  rotate: true
+  xy: 2745, 47
+  size: 83, 16
+  orig: 83, 16
+  offset: 0, 0
+  index: -1
+Explorer/images/Eyebrown_Scare_Cry
+  rotate: true
+  xy: 2745, 47
+  size: 83, 16
+  orig: 83, 16
+  offset: 0, 0
+  index: -1
+Fisher/images/Eyebrown_Scare_Cry
+  rotate: true
+  xy: 2745, 47
+  size: 83, 16
+  orig: 83, 16
+  offset: 0, 0
+  index: -1
+Mummy/images/Eyebrown_Scare_Cry
+  rotate: true
+  xy: 2745, 47
+  size: 83, 16
+  orig: 83, 16
+  offset: 0, 0
+  index: -1
+Normal/images/Eyebrown_Scare_Cry
+  rotate: true
+  xy: 2745, 47
+  size: 83, 16
+  orig: 83, 16
+  offset: 0, 0
+  index: -1
+Pirate/images/Eyebrown_Scare_Cry
+  rotate: true
+  xy: 2745, 47
+  size: 83, 16
+  orig: 83, 16
+  offset: 0, 0
+  index: -1
+Robinhood/images/Eyebrown_Scare_Cry
+  rotate: true
+  xy: 2745, 47
+  size: 83, 16
+  orig: 83, 16
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/Eyebrown_Scare_Cry
+  rotate: true
+  xy: 2745, 47
+  size: 83, 16
+  orig: 83, 16
+  offset: 0, 0
+  index: -1
+Superman/images/Eyebrown_Scare_Cry
+  rotate: true
+  xy: 2745, 47
+  size: 83, 16
+  orig: 83, 16
+  offset: 0, 0
+  index: -1
+Viking/images/Eyebrown_Scare_Cry
+  rotate: true
+  xy: 2745, 47
+  size: 83, 16
+  orig: 83, 16
+  offset: 0, 0
+  index: -1
+Wizard/images/Eyebrown_Scare_Cry
+  rotate: true
+  xy: 2745, 47
+  size: 83, 16
+  orig: 83, 16
+  offset: 0, 0
+  index: -1
+Santa/images/Eyes
+  rotate: true
+  xy: 1354, 9
+  size: 85, 41
+  orig: 85, 41
+  offset: 0, 0
+  index: -1
+Astronaut/images/Eyes
+  rotate: true
+  xy: 1354, 9
+  size: 85, 41
+  orig: 85, 41
+  offset: 0, 0
+  index: -1
+Cowboy/images/Eyes
+  rotate: true
+  xy: 1354, 9
+  size: 85, 41
+  orig: 85, 41
+  offset: 0, 0
+  index: -1
+Explorer/images/Eyes
+  rotate: true
+  xy: 1354, 9
+  size: 85, 41
+  orig: 85, 41
+  offset: 0, 0
+  index: -1
+Fisher/images/Eyes
+  rotate: true
+  xy: 1354, 9
+  size: 85, 41
+  orig: 85, 41
+  offset: 0, 0
+  index: -1
+Normal/images/Eyes
+  rotate: true
+  xy: 1354, 9
+  size: 85, 41
+  orig: 85, 41
+  offset: 0, 0
+  index: -1
+Pirate/images/Eyes
+  rotate: true
+  xy: 1354, 9
+  size: 85, 41
+  orig: 85, 41
+  offset: 0, 0
+  index: -1
+Robinhood/images/Eyes
+  rotate: true
+  xy: 1354, 9
+  size: 85, 41
+  orig: 85, 41
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/Eyes
+  rotate: true
+  xy: 1354, 9
+  size: 85, 41
+  orig: 85, 41
+  offset: 0, 0
+  index: -1
+Superman/images/Eyes
+  rotate: true
+  xy: 1354, 9
+  size: 85, 41
+  orig: 85, 41
+  offset: 0, 0
+  index: -1
+Viking/images/Eyes
+  rotate: true
+  xy: 1354, 9
+  size: 85, 41
+  orig: 85, 41
+  offset: 0, 0
+  index: -1
+Wizard/images/Eyes
+  rotate: true
+  xy: 1354, 9
+  size: 85, 41
+  orig: 85, 41
+  offset: 0, 0
+  index: -1
+Santa/images/Head
+  rotate: false
+  xy: 3665, 157
+  size: 171, 187
+  orig: 269, 214
+  offset: 39, 0
+  index: -1
+Santa/images/LHand1
+  rotate: false
+  xy: 4036, 65
+  size: 34, 32
+  orig: 36, 35
+  offset: 0, 3
+  index: -1
+Santa/images/LHand2
+  rotate: false
+  xy: 2853, 4
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+Santa/images/MatP
+  rotate: false
+  xy: 2644, 3
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Astronaut/images/MatP
+  rotate: false
+  xy: 2644, 3
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Cowboy/images/MatP
+  rotate: false
+  xy: 2644, 3
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Explorer/images/MatP
+  rotate: false
+  xy: 2644, 3
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Fisher/images/MatP
+  rotate: false
+  xy: 2644, 3
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Normal/images/MatP
+  rotate: false
+  xy: 2644, 3
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Pirate/images/MatP
+  rotate: false
+  xy: 2644, 3
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Robinhood/images/MatP
+  rotate: false
+  xy: 2644, 3
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/MatP
+  rotate: false
+  xy: 2644, 3
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Superman/images/MatP
+  rotate: false
+  xy: 2644, 3
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Viking/images/MatP
+  rotate: false
+  xy: 2644, 3
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Wizard/images/MatP
+  rotate: false
+  xy: 2644, 3
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Santa/images/MatT
+  rotate: true
+  xy: 3361, 70
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Astronaut/images/MatT
+  rotate: true
+  xy: 3361, 70
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Cowboy/images/MatT
+  rotate: true
+  xy: 3361, 70
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Explorer/images/MatT
+  rotate: true
+  xy: 3361, 70
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Fisher/images/MatT
+  rotate: true
+  xy: 3361, 70
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Normal/images/MatT
+  rotate: true
+  xy: 3361, 70
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Pirate/images/MatT
+  rotate: true
+  xy: 3361, 70
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Robinhood/images/MatT
+  rotate: true
+  xy: 3361, 70
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/MatT
+  rotate: true
+  xy: 3361, 70
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Superman/images/MatT
+  rotate: true
+  xy: 3361, 70
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Viking/images/MatT
+  rotate: true
+  xy: 3361, 70
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Wizard/images/MatT
+  rotate: true
+  xy: 3361, 70
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+Santa/images/Mouth_Happy
+  rotate: false
+  xy: 3579, 0
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+Cowboy/images/Mouth_Happy
+  rotate: false
+  xy: 3579, 0
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+Explorer/images/Mouth_Happy
+  rotate: false
+  xy: 3579, 0
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+Fisher/images/Mouth_Happy
+  rotate: false
+  xy: 3579, 0
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+Mummy/images/Mouth_Happy
+  rotate: false
+  xy: 3579, 0
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+Normal/images/Mouth_Happy
+  rotate: false
+  xy: 3579, 0
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+Pirate/images/Mouth_Happy
+  rotate: false
+  xy: 3579, 0
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+Robinhood/images/Mouth_Happy
+  rotate: false
+  xy: 3579, 0
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/Mouth_Happy
+  rotate: false
+  xy: 3579, 0
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+Superman/images/Mouth_Happy
+  rotate: false
+  xy: 3579, 0
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+Viking/images/Mouth_Happy
+  rotate: false
+  xy: 3579, 0
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+Wizard/images/Mouth_Happy
+  rotate: false
+  xy: 3579, 0
+  size: 40, 24
+  orig: 40, 24
+  offset: 0, 0
+  index: -1
+Santa/images/Mouth_Idle
+  rotate: false
+  xy: 774, 81
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+Astronaut/images/Mouth_Idle
+  rotate: false
+  xy: 774, 81
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+Cowboy/images/Mouth_Idle
+  rotate: false
+  xy: 774, 81
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+Explorer/images/Mouth_Idle
+  rotate: false
+  xy: 774, 81
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+Fisher/images/Mouth_Idle
+  rotate: false
+  xy: 774, 81
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+Mummy/images/Mouth_Idle
+  rotate: false
+  xy: 774, 81
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+Normal/images/Mouth_Idle
+  rotate: false
+  xy: 774, 81
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+Pirate/images/Mouth_Idle
+  rotate: false
+  xy: 774, 81
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+Robinhood/images/Mouth_Idle
+  rotate: false
+  xy: 774, 81
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/Mouth_Idle
+  rotate: false
+  xy: 774, 81
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+Superman/images/Mouth_Idle
+  rotate: false
+  xy: 774, 81
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+Viking/images/Mouth_Idle
+  rotate: false
+  xy: 774, 81
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+Wizard/images/Mouth_Idle
+  rotate: false
+  xy: 774, 81
+  size: 34, 8
+  orig: 34, 8
+  offset: 0, 0
+  index: -1
+Santa/images/Mouth_Scare
+  rotate: true
+  xy: 2719, 0
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+Cowboy/images/Mouth_Scare
+  rotate: true
+  xy: 2719, 0
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+Explorer/images/Mouth_Scare
+  rotate: true
+  xy: 2719, 0
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+Fisher/images/Mouth_Scare
+  rotate: true
+  xy: 2719, 0
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+Mummy/images/Mouth_Scare
+  rotate: true
+  xy: 2719, 0
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+Normal/images/Mouth_Scare
+  rotate: true
+  xy: 2719, 0
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+Pirate/images/Mouth_Scare
+  rotate: true
+  xy: 2719, 0
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+Robinhood/images/Mouth_Scare
+  rotate: true
+  xy: 2719, 0
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/Mouth_Scare
+  rotate: true
+  xy: 2719, 0
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+Superman/images/Mouth_Scare
+  rotate: true
+  xy: 2719, 0
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+Viking/images/Mouth_Scare
+  rotate: true
+  xy: 2719, 0
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+Wizard/images/Mouth_Scare
+  rotate: true
+  xy: 2719, 0
+  size: 33, 34
+  orig: 33, 34
+  offset: 0, 0
+  index: -1
+Santa/images/RHand1
+  rotate: false
+  xy: 4104, 37
+  size: 34, 32
+  orig: 36, 35
+  offset: 2, 3
+  index: -1
+Santa/images/RHand2
+  rotate: true
+  xy: 3463, 96
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+Santa/images/accessories
+  rotate: true
+  xy: 3306, 88
+  size: 58, 22
+  orig: 117, 79
+  offset: 28, 0
+  index: -1
+Santa/images/body
+  rotate: true
+  xy: 222, 5
+  size: 67, 84
+  orig: 107, 99
+  offset: 23, 11
+  index: -1
+SherlockHolmes/images/Head
+  rotate: false
+  xy: 3147, 146
+  size: 163, 198
+  orig: 269, 214
+  offset: 63, 0
+  index: -1
+SherlockHolmes/images/LHand1
+  rotate: true
+  xy: 3928, 28
+  size: 36, 34
+  orig: 36, 34
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/LHand2
+  rotate: true
+  xy: 3628, 1
+  size: 50, 45
+  orig: 50, 45
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/RHand1
+  rotate: true
+  xy: 4064, 29
+  size: 36, 34
+  orig: 36, 34
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/RHand2
+  rotate: false
+  xy: 4059, 254
+  size: 50, 45
+  orig: 50, 45
+  offset: 0, 0
+  index: -1
+SherlockHolmes/images/body
+  rotate: true
+  xy: 2663, 33
+  size: 97, 82
+  orig: 107, 99
+  offset: 10, 10
+  index: -1
+Superman/images/LHand1
+  rotate: true
+  xy: 3962, 28
+  size: 36, 34
+  orig: 36, 34
+  offset: 0, 0
+  index: -1
+Superman/images/LHand2
+  rotate: false
+  xy: 4009, 299
+  size: 50, 45
+  orig: 50, 45
+  offset: 0, 0
+  index: -1
+Superman/images/RHand1
+  rotate: false
+  xy: 4077, 97
+  size: 36, 34
+  orig: 36, 34
+  offset: 0, 0
+  index: -1
+Superman/images/RHand2
+  rotate: false
+  xy: 4109, 254
+  size: 50, 45
+  orig: 50, 45
+  offset: 0, 0
+  index: -1
+Superman/images/body
+  rotate: false
+  xy: 2949, 60
+  size: 66, 80
+  orig: 107, 99
+  offset: 24, 11
+  index: -1
+Superman/images/body_back
+  rotate: false
+  xy: 928, 0
+  size: 98, 90
+  orig: 170, 163
+  offset: 35, 0
+  index: -1
+Viking/images/Boat_back
+  rotate: false
+  xy: 1982, 116
+  size: 207, 228
+  orig: 272, 265
+  offset: 22, 37
+  index: -1
+Viking/images/Boat_front
+  rotate: true
+  xy: 237, 78
+  size: 266, 116
+  orig: 266, 123
+  offset: 0, 0
+  index: -1
+Viking/images/Head
+  rotate: false
+  xy: 3836, 168
+  size: 173, 176
+  orig: 269, 214
+  offset: 58, 0
+  index: -1
+Viking/images/LHand1
+  rotate: false
+  xy: 4044, 131
+  size: 36, 35
+  orig: 36, 35
+  offset: 0, 0
+  index: -1
+Viking/images/LHand2
+  rotate: true
+  xy: 3328, 96
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+Viking/images/RHand1
+  rotate: false
+  xy: 4005, 97
+  size: 36, 35
+  orig: 36, 35
+  offset: 0, 0
+  index: -1
+Viking/images/RHand2
+  rotate: true
+  xy: 3553, 101
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+Viking/images/body
+  rotate: true
+  xy: 1145, 2
+  size: 92, 81
+  orig: 107, 99
+  offset: 11, 10
+  index: -1
+Wizard/images/Boat_back
+  rotate: true
+  xy: 2937, 140
+  size: 204, 44
+  orig: 272, 265
+  offset: 28, 33
+  index: -1
+Wizard/images/Boat_front
+  rotate: true
+  xy: 651, 85
+  size: 259, 123
+  orig: 266, 123
+  offset: 7, 0
+  index: -1
+Wizard/images/Head
+  rotate: true
+  xy: 1087, 94
+  size: 250, 201
+  orig: 269, 214
+  offset: 0, 0
+  index: -1
+Wizard/images/LHand1
+  rotate: true
+  xy: 3859, 60
+  size: 37, 35
+  orig: 37, 35
+  offset: 0, 0
+  index: -1
+Wizard/images/LHand2
+  rotate: true
+  xy: 3373, 96
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+Wizard/images/RHand1
+  rotate: false
+  xy: 3894, 98
+  size: 36, 35
+  orig: 36, 35
+  offset: 0, 0
+  index: -1
+Wizard/images/RHand2
+  rotate: true
+  xy: 3583, 27
+  size: 51, 45
+  orig: 51, 45
+  offset: 0, 0
+  index: -1
+Wizard/images/accessories
+  rotate: true
+  xy: 2202, 1
+  size: 116, 39
+  orig: 117, 79
+  offset: 1, 11
+  index: -1
+Wizard/images/body
+  rotate: false
+  xy: 547, 0
+  size: 66, 79
+  orig: 107, 99
+  offset: 24, 12
+  index: -1

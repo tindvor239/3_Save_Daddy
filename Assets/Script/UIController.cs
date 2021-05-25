@@ -6,23 +6,31 @@ using DoozyUI;
 
 public class UIController : Singleton<UIController>
 {
+    [SerializeField]
+    private ProcessInfoUI processInfo;
+    [SerializeField]
+    private UILevelManager levelManager;
+
+    private GameManager gameManager;
+    private CharacterPoolParty characterParty;
+    private CameraController cam;
+    private ObstaclePoolParty obstacleParty;
+    private MapEditor editor;
     protected override void Awake()
     {
         #region Singleton
         base.Awake();
         #endregion
     }
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-
+        gameManager = GameManager.Instance;
+        characterParty = CharacterPoolParty.Instance;
+        cam = CameraController.Instance;
+        obstacleParty = ObstaclePoolParty.Instance;
+        editor = MapEditor.Instance;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void ShowMenuUI(bool isActive)
     {
         GameManager.State = GameManager.GameState.menu;
@@ -31,60 +39,32 @@ public class UIController : Singleton<UIController>
     public void ShowGamePlayUI(bool isActive)
     {
         GameManager.State = GameManager.GameState.play;
-        Map currentMap = GetNextLevel();
-        if (currentMap != null)
-        {
-            MapEditor.Instance.Load();
-            GetPlayerController();
-            GetEnemyControllers();
-            SpawnObstaclesOnPlay();
-            Invoke("MovePlayer", 0.5f);
-        }
-        ViewManager.ShowUI("MENU_UI", false);
-        ViewManager.ShowUI("WIN_UI", false);
+        ViewManager.ShowUI("MENU_UI", !isActive);
+        ViewManager.ShowUI("WIN_UI", !isActive);
+        ViewManager.ShowUI("LEVELS_UI", !isActive);
         ViewManager.ShowUI("GAMEPLAY_UI", isActive);
     }
-    private void MovePlayer()
+
+
+    public void Play(bool isActive)
     {
-        //DON'T TOUCH!!!!
-        GameManager.Instance.Player.MovePlayerToNextDestination();
+        ShowGamePlayUI(isActive);
+        Load(null);
     }
-    private void GetEnemyControllers()
+    public void Load(Map map)
     {
-        GameManager.Instance.Enemies = new List<EnemyController>();
-        foreach (ObjectPool pool in CharacterPoolParty.Instance.Party.Pools)
+        if(map == null)
         {
-            if(pool != CharacterPoolParty.Instance.PlayerPool)
-            {
-                foreach(GameObject gameObject in pool.PooledObjects)
-                {
-                    if(gameObject.activeInHierarchy)
-                    {
-                        GameManager.Instance.Enemies.Add(gameObject.GetComponent<EnemyController>());
-                    }
-                }
-            }
+            GetNextLevel();
         }
+        editor.Load();
+        processInfo.DisplayProcess();
+        GetPlayerController();
+        GetEnemyControllers();
+        SpawnObstaclesOnPlay();
+        Invoke("MovePlayer", 0.5f);
     }
-    private void GetPlayerController()
-    {
-        GameManager.Instance.Player = CharacterPoolParty.Instance.PlayerPool.PooledObjects[0].GetComponent<PlayerController>();
-        CameraController.Instance.Player = GameManager.Instance.Player;
-        CameraController.Instance.gameObject.transform.position = new Vector3(GameManager.Instance.Player.transform.position.x, GameManager.Instance.Player.transform.position.y, CameraController.Instance.gameObject.transform.position.z);
-    }
-    private void SpawnObstaclesOnPlay()
-    {
-        foreach (ObjectPool pool in ObstaclePoolParty.Instance.Party.Pools)
-        {
-            foreach(GameObject gameObject in pool.PooledObjects)
-            {
-                if(gameObject.GetComponent<ObstaclePool>() != null && gameObject.activeInHierarchy)
-                {
-                    gameObject.GetComponent<ObstaclePool>().SpawnObstaclesOnLoad();
-                }
-            }
-        }
-    }
+
     public void ShowSettingUI(bool isActive)
     {
         if(isActive)
@@ -107,18 +87,68 @@ public class UIController : Singleton<UIController>
     {
         GameManager.State = GameManager.GameState.win;
         ViewManager.ShowUI("WIN_UI", isActive);
+        processInfo.ShowProcess();
+    }
+    public void ShowLevelUI(bool isActive)
+    {
+        GameManager.State = GameManager.GameState.menu;
+        ViewManager.ShowUI("GAMEPLAY_UI", !isActive);
+        ViewManager.ShowUI("LEVELS_UI", isActive);
+    }
+    private void MovePlayer()
+    {
+        //DON'T TOUCH!!!!
+        gameManager.Player.MovePlayerToNextDestination();
+    }
+    private void GetEnemyControllers()
+    {
+        gameManager.Enemies = new List<EnemyController>();
+        foreach (ObjectPool pool in characterParty.Party.Pools)
+        {
+            if(pool != characterParty.PlayerPool)
+            {
+                foreach(GameObject gameObject in pool.PooledObjects)
+                {
+                    if(gameObject.activeInHierarchy)
+                    {
+                        gameManager.Enemies.Add(gameObject.GetComponent<EnemyController>());
+                    }
+                }
+            }
+        }
+    }
+    private void GetPlayerController()
+    {
+        gameManager.Player = characterParty.PlayerPool.PooledObjects[0].GetComponent<PlayerController>();
+        PlayerController player = gameManager.Player;
+        cam.Player = player;
+        Vector3 newPosition = new Vector3(player.transform.position.x, player.transform.position.y, cam.gameObject.transform.position.z);
+        cam.gameObject.transform.position = newPosition;
+    }
+    private void SpawnObstaclesOnPlay()
+    {
+        foreach (ObjectPool pool in obstacleParty.Party.Pools)
+        {
+            foreach(GameObject gameObject in pool.PooledObjects)
+            {
+                if(gameObject.GetComponent<ObstaclePool>() != null && gameObject.activeInHierarchy)
+                {
+                    gameObject.GetComponent<ObstaclePool>().SpawnObstaclesOnLoad();
+                }
+            }
+        }
     }
     private Map GetNextLevel()
     {
-        for(int i = 0; i < GameManager.Instance.MapData.Count; i++)
+        for(int i = 0; i < gameManager.MapData.Count; i++)
         {
-            if(!GameManager.Instance.MapData[i].isUnlocked && i - 1 >= 0)
+            if(!gameManager.MapData[i].isUnlocked && i - 1 >= 0)
             {
-                MapEditor.Instance.currentMap = GameManager.Instance.MapData[i - 1];
-                return MapEditor.Instance.currentMap;
+                editor.currentMap = gameManager.MapData[i - 1];
+                return editor.currentMap;
             }
         }
-        MapEditor.Instance.currentMap = GameManager.Instance.MapData[GameManager.Instance.MapData.Count - 1];
-        return MapEditor.Instance.currentMap;
+        editor.currentMap = gameManager.MapData[gameManager.MapData.Count - 1];
+        return editor.currentMap;
     }
 }

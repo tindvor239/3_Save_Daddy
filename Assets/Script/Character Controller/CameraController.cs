@@ -6,6 +6,7 @@ public class CameraController : CharacterController
 {
     private CharacterPoolParty characterPoolParty;
     private PinPoolParty pinPoolParty;
+    private ObstaclePoolParty obstaclePoolParty;
     [SerializeField]
     private Vector3 offset;
     [SerializeField]
@@ -36,6 +37,8 @@ public class CameraController : CharacterController
         cam = GetComponent<Camera>();
         characterPoolParty = CharacterPoolParty.Instance;
         pinPoolParty = PinPoolParty.Instance;
+        obstaclePoolParty = ObstaclePoolParty.Instance;
+
         cameraSize = new Vector3(Camera.main.aspect * Camera.main.orthographicSize * 2, Camera.main.orthographicSize * 2);
     }
     private void LateUpdate()
@@ -78,10 +81,11 @@ public class CameraController : CharacterController
     }
     private void GetTargets()
     {
-        SearchPooledObject(pinPoolParty.Party.Pools);
-        SearchPooledObject(characterPoolParty.Party.Pools);
+        GetObjectsInCamera(pinPoolParty.Party.Pools);
+        GetObjectsInCamera(characterPoolParty.Party.Pools);
+        GetObjectsInCamera(obstaclePoolParty.Party.Pools);
     }
-    private void SearchPooledObject(List<ObjectPool> objectPools)
+    private void GetObjectsInCamera(List<ObjectPool> objectPools)
     {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(gameObject.transform.position, cameraSize, 0);
         foreach (ObjectPool pool in objectPools)
@@ -93,9 +97,21 @@ public class CameraController : CharacterController
                     
                     foreach(Collider2D collide in colliders)
                     {
-                        if (collide.gameObject == pooledObject || collide.gameObject.transform.parent == pooledObject.transform || collide.gameObject.transform == pooledObject.GetComponentInChildren<Transform>())
+                        GameObject collideObject = collide.gameObject;
+                        Transform collideTransform = collide.transform;
+                        Transform collideParent = collideTransform.parent;
+                        Transform collideGrandparent = collideParent.parent;
+                        if (collideObject == pooledObject)
                         {
-                            targets.Add(collide.transform);
+                            targets.Add(collideTransform);
+                        }
+                        else if(collideParent.gameObject == pooledObject)
+                        {
+                            targets.Add(collideParent);
+                        }
+                        else if(collideGrandparent.gameObject == pooledObject)
+                        {
+                            targets.Add(collideGrandparent);
                         }
                     }
                 }

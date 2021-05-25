@@ -27,6 +27,7 @@ public class GameController : Singleton<GameController>
                 if (Input.GetMouseButtonDown(0))
                 {
                     GameObject clickedObject = GetObjectByMouseRayCast();
+                    Debug.Log(clickedObject);
                     if (clickedObject != null)
                     {
                         Pin selectedPin = GetPinComponent(clickedObject);
@@ -56,7 +57,6 @@ public class GameController : Singleton<GameController>
         {
             result = parent.parent.gameObject.GetComponent<Pin>();
         }
-        Debug.Log(CanUnpin(parent.parent.gameObject.GetComponent<Pin>()));
         unpinDelayTimer = unpinDelay;
         return result;
     }
@@ -82,7 +82,7 @@ public class GameController : Singleton<GameController>
     #region Inputs
     public static GameObject GetObjectByMouseRayCast()
     {
-        return GameManager.Instance.RayCastObject(GetMousePosition(), Vector3.forward);
+        return GameManager.Instance.RayCastObject(GetMousePosition(), Vector3.forward, Mathf.Infinity, 1 << LayerMask.NameToLayer("Pin"));
     }
     public static Vector3 GetMousePosition()
     {

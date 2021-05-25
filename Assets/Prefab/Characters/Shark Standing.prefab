@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 329759208372406908}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 10.58, y: -2.89, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children:
   - {fileID: 8544673686893825143}
   m_Father: {fileID: 0}
@@ -48,8 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Shark Standing Pool
   moveSpeed: 9
-  destinations: []
+  skeleton: {fileID: 0}
+  characters: []
   state: 0
+  destinations: []
+  passedDestinations: []
+  enemyState: 0
   attackRange: 10
 --- !u!60 &8399259286556451696
 PolygonCollider2D:
@@ -76,24 +80,29 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.8456116, y: 0.3796819}
-      - {x: 1.0304229, y: 0.35881358}
-      - {x: 1.1177362, y: 0.112736985}
-      - {x: 1.331747, y: -0.15024358}
-      - {x: 1.407887, y: 0.43473685}
-      - {x: 1.7193483, y: 1.1625519}
-      - {x: 1.0684731, y: 0.6060487}
-      - {x: 0.7931588, y: 0.59254134}
+    - - {x: 0.9267549, y: 0.034823567}
+      - {x: 1.1229508, y: 0.04777413}
+      - {x: 1.5115533, y: -0.31398705}
+      - {x: 1.8914622, y: -0.34143597}
+      - {x: 1.5740432, y: 0.002340056}
+      - {x: 1.58198, y: 0.10734919}
+      - {x: 1.7289867, y: 0.2234875}
+      - {x: 2.2939465, y: 0.9090527}
+      - {x: 1.7867209, y: 0.8257481}
+      - {x: 1.2494665, y: 0.43798575}
+      - {x: 0.92372286, y: 0.45163426}
       - {x: 0.4464493, y: 0.84059554}
-      - {x: 0.5146351, y: 1.0536001}
-      - {x: 0.8424765, y: 1.4235644}
-      - {x: 0.2820104, y: 1.3571064}
-      - {x: -0.14245877, y: 1.1545384}
-      - {x: -1.5862075, y: 1.1117821}
-      - {x: -1.7027202, y: 1.0201187}
-      - {x: -1.40467, y: 0.5139196}
-      - {x: -1.0770772, y: 0.04646744}
-      - {x: -0.100173354, y: -0.02595723}
+      - {x: -0.08286005, y: 1.2119722}
+      - {x: 0.093808115, y: 1.5603404}
+      - {x: -0.3010874, y: 1.4938824}
+      - {x: -0.5383893, y: 1.356103}
+      - {x: -1.2694638, y: 1.414129}
+      - {x: -1.7531115, y: 1.2216834}
+      - {x: -2.18373, y: 1.2761774}
+      - {x: -2.2813954, y: 0.933808}
+      - {x: -1.7718059, y: -0.054780126}
+      - {x: -0.81072384, y: -0.42145002}
+      - {x: 0.036602587, y: -0.23472048}
 --- !u!50 &-8691649102428884498
 Rigidbody2D:
   serializedVersion: 4
@@ -126,7 +135,7 @@ GameObject:
   - component: {fileID: 8544673686893825143}
   - component: {fileID: 4514930708005208916}
   m_Layer: 9
-  m_Name: GameObject
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,7 +194,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9f6377740a7bbfa4d8a67d0e1196cdd6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b962cf7665f256b49839f9e971e65eee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
