@@ -1,0 +1,83 @@
+
+Croc.png
+size: 864,316
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Jaw_Low
+  rotate: false
+  xy: 463, 15
+  size: 312, 133
+  orig: 312, 133
+  offset: 0, 0
+  index: -1
+Jaw_Up
+  rotate: false
+  xy: 463, 148
+  size: 346, 165
+  orig: 346, 165
+  offset: 0, 0
+  index: -1
+MainBody copy
+  rotate: false
+  xy: 0, 101
+  size: 463, 212
+  orig: 463, 212
+  offset: 0, 0
+  index: -1
+chansau_1
+  rotate: true
+  xy: 120, 0
+  size: 101, 98
+  orig: 122, 117
+  offset: 9, 1
+  index: -1
+chansau_2
+  rotate: false
+  xy: 386, 12
+  size: 74, 89
+  orig: 74, 89
+  offset: 0, 0
+  index: -1
+chansau_3
+  rotate: false
+  xy: 775, 14
+  size: 87, 134
+  orig: 87, 134
+  offset: 0, 0
+  index: -1
+chantruoc_1
+  rotate: false
+  xy: 218, 13
+  size: 84, 88
+  orig: 89, 91
+  offset: 4, 1
+  index: -1
+chantruoc_2
+  rotate: false
+  xy: 302, 17
+  size: 84, 84
+  orig: 84, 84
+  offset: 0, 0
+  index: -1
+chantruoc_3
+  rotate: true
+  xy: 0, 14
+  size: 87, 120
+  orig: 87, 120
+  offset: 0, 0
+  index: -1
+mat_bth
+  rotate: true
+  xy: 809, 241
+  size: 72, 54
+  orig: 76, 56
+  offset: 2, 1
+  index: -1
+mat_chet
+  rotate: true
+  xy: 809, 169
+  size: 72, 54
+  orig: 76, 56
+  offset: 2, 1
+  index: -1

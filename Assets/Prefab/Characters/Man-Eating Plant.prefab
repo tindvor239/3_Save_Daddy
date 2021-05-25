@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 329759208372406898}
-  - component: {fileID: 8399259286556451696}
   - component: {fileID: 2923583309857551802}
   - component: {fileID: 4036969316790197114}
+  - component: {fileID: 2942080238332767483}
   m_Layer: 9
   m_Name: Man-Eating Plant
   m_TagString: Enemy
@@ -30,56 +30,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -1.5, y: 1.5, z: 1}
   m_Children:
-  - {fileID: 8544673686893825143}
+  - {fileID: 4177207566396748577}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &8399259286556451696
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 329759208372406908}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.64, y: 1.72}
-    newSize: {x: 3.64, y: 1.72}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.33733678, y: 0.11400351}
-      - {x: -0.56293654, y: 0.4554241}
-      - {x: -0.6144389, y: 0.5897507}
-      - {x: -0.46681762, y: 0.8098217}
-      - {x: -0.39969882, y: 0.546844}
-      - {x: 0.00028615817, y: 0.09599924}
-      - {x: 0.3458448, y: 0.09913171}
-      - {x: 0.10788286, y: 0.49835575}
-      - {x: 0.05451715, y: 0.9743758}
-      - {x: -0.027662873, y: 1.0816312}
-      - {x: 0.14467625, y: 1.0760832}
-      - {x: 0.5206706, y: 1.2770115}
-      - {x: 0.7553641, y: 1.4901522}
-      - {x: 0.40711087, y: 1.6555572}
-      - {x: -0.23869023, y: 1.4144795}
-      - {x: -0.56321263, y: 0.9264343}
-      - {x: -0.7081562, y: 0.6206184}
-      - {x: -0.68197936, y: 0.4301376}
-      - {x: -0.53897905, y: 0.14389402}
-      - {x: -0.57667345, y: -0.25198352}
-      - {x: -0.3536619, y: -0.261445}
 --- !u!114 &2923583309857551802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Man-Eating Plant Pool
   moveSpeed: 0
+  skeleton: {fileID: 0}
+  characters: []
+  state: 0
   attackRange: 2
 --- !u!50 &4036969316790197114
 Rigidbody2D:
@@ -116,7 +73,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!1 &7774497715707542762
+--- !u!58 &2942080238332767483
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329759208372406908}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.19173157, y: 1.589114}
+  serializedVersion: 2
+  m_Radius: 0.5659936
+--- !u!1 &2408809202476812772
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,48 +97,58 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8544673686893825143}
-  - component: {fileID: 4514930708005208916}
-  m_Layer: 9
-  m_Name: GameObject
+  - component: {fileID: 4177207566396748577}
+  - component: {fileID: 1440461348977323461}
+  - component: {fileID: 8078026101257843497}
+  - component: {fileID: 7211161940742586326}
+  m_Layer: 0
+  m_Name: Spine GameObject (Plant)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8544673686893825143
+--- !u!4 &4177207566396748577
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7774497715707542762}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.577, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 2408809202476812772}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: -0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 329759208372406898}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4514930708005208916
-SpriteRenderer:
+--- !u!33 &1440461348977323461
+MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7774497715707542762}
+  m_GameObject: {fileID: 2408809202476812772}
+  m_Mesh: {fileID: 0}
+--- !u!23 &8078026101257843497
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2408809202476812772}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6f8df0a7df9130f44a729b6c8e93348c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -178,7 +161,7 @@ SpriteRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -186,14 +169,40 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7303d3c256b4e5d489cc56d026a51f38, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 3.64, y: 1.72}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+--- !u!114 &7211161940742586326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2408809202476812772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonDataAsset: {fileID: 11400000, guid: b78931d461cec02498949b841d5a648e, type: 2}
+  initialSkinName: 
+  initialFlipX: 0
+  initialFlipY: 0
+  updateWhenInvisible: 3
+  separatorSlotNames: []
+  zSpacing: 0
+  useClipping: 1
+  immutableTriangles: 0
+  pmaVertexColors: 1
+  clearStateOnDisable: 0
+  tintBlack: 0
+  singleSubmesh: 0
+  fixDrawOrder: 0
+  addNormals: 0
+  calculateTangents: 0
+  maskInteraction: 0
+  maskMaterials:
+    materialsMaskDisabled: []
+    materialsInsideMask: []
+    materialsOutsideMask: []
+  disableRenderingOnOverride: 1
+  _animationName: 1_Idle
+  loop: 1
+  timeScale: 1

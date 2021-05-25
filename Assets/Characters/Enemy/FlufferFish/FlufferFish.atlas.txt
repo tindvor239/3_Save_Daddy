@@ -1,0 +1,48 @@
+
+FlufferFish.png
+size: 432,280
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+BODY
+  rotate: true
+  xy: 0, 0
+  size: 277, 287
+  orig: 277, 287
+  offset: 0, 0
+  index: -1
+Eye_Die
+  rotate: true
+  xy: 353, 105
+  size: 84, 73
+  orig: 84, 73
+  offset: 0, 0
+  index: -1
+Eye_Pupil
+  rotate: true
+  xy: 287, 12
+  size: 84, 73
+  orig: 86, 75
+  offset: 1, 1
+  index: -1
+Fin
+  rotate: true
+  xy: 287, 189
+  size: 88, 71
+  orig: 94, 78
+  offset: 5, 2
+  index: -1
+Mouth
+  rotate: false
+  xy: 358, 204
+  size: 71, 73
+  orig: 73, 75
+  offset: 1, 1
+  index: -1
+Tail
+  rotate: false
+  xy: 287, 96
+  size: 66, 93
+  orig: 69, 96
+  offset: 1, 1
+  index: -1

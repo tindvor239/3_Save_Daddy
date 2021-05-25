@@ -58,11 +58,18 @@ public class EnemyController : CharacterController
     private Transform GetPath()
     {
         destinations = FindClosestDestinations();
-        foreach(Transform destination in destinations)
+
+        if (destinations.Contains(transform))
+        {
+            Debug.Log("In");
+            destinations.Remove(transform);
+        }
+        foreach (Transform destination in destinations)
         {
             bool pathIsBlocked = CheckPathIsBlocked(transform.position, destination.position);
             if (!pathIsBlocked)
             {
+                Debug.Log(destination);
                 return destination;
             }
         }
@@ -123,7 +130,7 @@ public class EnemyController : CharacterController
         foreach(Transform destination in GameManager.Instance.Destinations)
         {
             float currentDistance = Vector2.Distance(transform.position, destination.position);
-            if(currentDistance <= attackRange)
+            if(currentDistance <= attackRange && destination.transform.position != transform.position)
             {
                 result.Add(destination);
             }
