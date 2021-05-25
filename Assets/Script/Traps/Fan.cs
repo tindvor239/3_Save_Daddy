@@ -13,10 +13,8 @@ public class Fan : Trap
     private float timer = 0;
     private float maxTimer = 0.15f;
 
+    private int count = 0;
     private GameObject blowedObject;
-    private delegate void OnBlowing();
-    private OnBlowing onBlowing;
-
     // Update is called once per frame
     private void Update()
     {
@@ -29,48 +27,44 @@ public class Fan : Trap
     }
     private void FixedUpdate()
     {
-        if(onBlowing != null)
-        {
-            onBlowing.Invoke();
-        }
+        Blowing();
     }
     private void CheckHit()
     {
         GameObject beenHitObject = GameManager.Instance.RayCastToObject(transform.position, target.position, Vector2.Distance(transform.position, target.position));
         Debug.DrawRay(transform.position, GameManager.Instance.GetDirectionVector(transform.position, target.position), Color.red, Vector2.Distance(transform.position, target.position) / 2);
+        OnHit(beenHitObject);
         if (beenHitObject != null && (beenHitObject.tag == "Player" || beenHitObject.tag == "Enemy"))
         {
-            OnHit(beenHitObject);
-            if (beenHitObject.GetComponent<PlayerController>() != null)
+            if (beenHitObject.GetComponent<PlayerController>() != null && count == 0)
             {
-                StartCoroutine(MoveNext(beenHitObject.GetComponent<PlayerController>(), beenHitObject.GetComponent<PlayerController>().MoveDuration(beenHitObject.transform.position, target.position)));
+                StartCoroutine(MoveNext(beenHitObject.GetComponent<PlayerController>(), beenHitObject.GetComponent<PlayerController>().MoveDuration(beenHitObject.transform.position, target.position) + 1));
+                count++;
             }
-        }
-        else
-        {
-            onBlowing = null;
         }
     }
 
     protected override void OnHit(GameObject beenHitObject)
     {
         blowedObject = beenHitObject;
-        if(beenHitObject.GetComponent<CharacterController>())
+        if(beenHitObject != null && beenHitObject.GetComponent<CharacterController>())
         {
             beenHitObject.GetComponent<CharacterController>().Stop();
         }
-        onBlowing += Blowing;
     }
     protected void Blowing()
     {
         Vector3 direction = GameManager.Instance.GetDirectionVector(transform.position, target.position);
-        if (isReverse)
+        if(blowedObject != null && (blowedObject.tag == "Player" || blowedObject.tag == "Enemy"))
         {
-            blowedObject.transform.position -= direction * Time.deltaTime * speedMultiplier * blowingSpeed;
-        }
-        else
-        {
-            blowedObject.transform.position += direction * Time.deltaTime * speedMultiplier * blowingSpeed;
+            if (isReverse)
+            {
+                blowedObject.transform.position -= direction * Time.deltaTime * speedMultiplier * blowingSpeed;
+            }
+            else
+            {
+                blowedObject.transform.position += direction * Time.deltaTime * speedMultiplier * blowingSpeed;
+            }
         }
     }
 
@@ -82,6 +76,6 @@ public class Fan : Trap
     private void OnEnable()
     {
         timer = 0;
-        onBlowing = null;
+        count = 0;
     }
 }

@@ -79,7 +79,7 @@ MonoBehaviour:
   effect: {fileID: 0}
   isDisarmed: 0
   target: {fileID: 3694165365864311492}
-  blowingSpeed: 10
+  blowingSpeed: 150
   isReverse: 0
 --- !u!1 &7558390558790400528
 GameObject:

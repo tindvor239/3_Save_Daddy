@@ -64,7 +64,6 @@ public abstract class Pin : Model, IInteractable
         {
             enemy.GetPlayer();
         }
-        Debug.Log("Move");
         GameManager.Instance.Player.MovePlayerToNextDestination();
     }
     public void Interact()

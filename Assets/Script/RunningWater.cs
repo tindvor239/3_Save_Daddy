@@ -15,6 +15,9 @@ public class RunningWater : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         material = sprite.material;
+        float width = Screen.width;
+        float widthRatio = transform.localScale.x / width;
+        transform.localScale = new Vector3(widthRatio * width, widthRatio * width, 1);
     }
     // Update is called once per frame
     private void Update()
