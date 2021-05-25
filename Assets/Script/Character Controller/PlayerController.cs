@@ -26,10 +26,6 @@ public class PlayerController : CharacterController
     }
     public void MovePlayerToNextDestination()
     {
-        if(!sequence.IsActive())
-        {
-            sequence = DOTween.Sequence();
-        }
         int index = GameManager.GetNextDestinationIndex(this);
         if (index != -1)
         {
