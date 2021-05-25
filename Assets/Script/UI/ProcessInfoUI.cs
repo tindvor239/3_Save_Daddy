@@ -5,6 +5,10 @@ using UnityEngine.UI;
 public class ProcessInfoUI : MonoBehaviour
 {
     [SerializeField]
+    private Text levelInfo;
+    [SerializeField]
+    private Button box;
+    [SerializeField]
     private Slider slider;
     [SerializeField]
     private Button button;
@@ -14,13 +18,16 @@ public class ProcessInfoUI : MonoBehaviour
     private Sprite mapComplete, mapUncomplete, bossMap, tick, bossButton, normalButton;
     [SerializeField]
     private GameObject levelProcessDisplayParent;
-
+    [SerializeField]
+    private ParticleSystem winParticle;
     private Image buttonImage;
     private Text buttonText;
     private void Start()
     {
         buttonImage = button.GetComponent<Image>();
         buttonText = button.GetComponentInChildren<Text>();
+        box.gameObject.SetActive(false);
+        slider.maxValue = 5;
     }
 
     public void DisplayProcess()
@@ -54,18 +61,25 @@ public class ProcessInfoUI : MonoBehaviour
         {
             buttonImage.sprite = bossButton;
             buttonText.text = "Fight Boss";
+            box.gameObject.SetActive(false);
         }
         else if(indexOfProcess == 5)
         {
             buttonImage.sprite = bossButton;
+            box.gameObject.SetActive(true);
             buttonText.text = "Open Box";
         }
         else
         {
             buttonImage.sprite = normalButton;
             buttonText.text = "Next";
+            box.gameObject.SetActive(false);
         }
-        slider.value = indexOfProcess;
+        string levelName = "Level ";
+        winParticle.Play();
+        levelName += GameManager.Instance.MapData.IndexOf(MapEditor.Instance.currentMap).ToString();
+        levelInfo.text = levelName;
+        slider.value = indexOfProcess + 1;
     }
 
     private List<Map> GetMapsInProcess()

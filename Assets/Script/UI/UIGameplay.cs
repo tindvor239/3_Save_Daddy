@@ -8,12 +8,14 @@ public class UIGameplay : UISection
     [SerializeField]
     private List<Sprite> sprites;
 
+    #region Properties
     public List<Image> Stars { get => GetStars(); }
     public List<Image> Keys { get => GetKeys(); }
     public Sprite StarOn { get => sprites[0]; }
     public Sprite StarOff { get => sprites[1]; }
     public Sprite KeyOn { get => sprites[2]; }
     public Sprite KeyOff { get => sprites[3]; }
+    #endregion
     private List<Image> GetStars()
     {
         List<Image> images = new List<Image>();
