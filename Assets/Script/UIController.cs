@@ -9,6 +9,8 @@ public class UIController : Singleton<UIController>
     [SerializeField]
     private ProcessInfoUI processInfo;
     [SerializeField]
+    private UIGameplay gameplay;
+    [SerializeField]
     private UILevelManager levelManager;
 
     private GameManager gameManager;
@@ -16,6 +18,12 @@ public class UIController : Singleton<UIController>
     private CameraController cam;
     private ObstaclePoolParty obstacleParty;
     private MapEditor editor;
+
+    #region Properties
+    public ProcessInfoUI ProcessInfo { get => processInfo; }
+    public UIGameplay Gameplay { get => gameplay; }
+    public UILevelManager LevelManager { get => levelManager; }
+    #endregion
     protected override void Awake()
     {
         #region Singleton
@@ -29,6 +37,7 @@ public class UIController : Singleton<UIController>
         cam = CameraController.Instance;
         obstacleParty = ObstaclePoolParty.Instance;
         editor = MapEditor.Instance;
+        processInfo.DisplayProcess();
     }
 
     public void ShowMenuUI(bool isActive)
@@ -58,7 +67,7 @@ public class UIController : Singleton<UIController>
             GetNextLevel();
         }
         editor.Load();
-        processInfo.DisplayProcess();
+        gameplay.OnShowGameplay();
         GetPlayerController();
         GetEnemyControllers();
         SpawnObstaclesOnPlay();

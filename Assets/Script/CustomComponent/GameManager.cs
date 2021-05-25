@@ -220,7 +220,6 @@ public class GameManager : Singleton<GameManager>
                 && Instance.mapDatas[i] == MapEditor.Instance.currentMap)
             {
                 Instance.mapDatas[i + 1].isUnlocked = true;
-                MapEditor.Instance.currentMap = Instance.mapDatas[i + 1];
                 break;
             }
         }

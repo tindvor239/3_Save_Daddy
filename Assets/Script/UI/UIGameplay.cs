@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +14,27 @@ public class UIGameplay : UISection
     public Sprite StarOff { get => sprites[1]; }
     public Sprite KeyOn { get => sprites[2]; }
     public Sprite KeyOff { get => sprites[3]; }
+    public string LevelName
+    {
+        get
+        {
+            Text ui = (Text)displays[6].Value;
+            return ui.text;
+        }
+        private set
+        {
+            Text ui = (Text)displays[6].Value;
+            ui.text = value;
+        }
+    }
     #endregion
+    public void OnShowGameplay()
+    {
+        MapEditor editor = MapEditor.Instance;
+        GameManager gameManager = GameManager.Instance;
+        int mapIndex = gameManager.MapData.IndexOf(editor.currentMap);
+        LevelName = string.Format("Level {0}", mapIndex);
+    }
     private List<Image> GetStars()
     {
         List<Image> images = new List<Image>();

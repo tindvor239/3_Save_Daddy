@@ -62,33 +62,43 @@ public class ProcessInfoUI : MonoBehaviour
             buttonImage.sprite = bossButton;
             buttonText.text = "Fight Boss";
             box.gameObject.SetActive(false);
+            slider.value = indexOfProcess + 1;
         }
-        else if(indexOfProcess == 5)
+        else if(indexOfProcess == 0)
         {
             buttonImage.sprite = bossButton;
             box.gameObject.SetActive(true);
             buttonText.text = "Open Box";
+            slider.value = 5;
         }
         else
         {
             buttonImage.sprite = normalButton;
             buttonText.text = "Next";
             box.gameObject.SetActive(false);
+            slider.value = indexOfProcess + 1;
         }
-        string levelName = "Level ";
         winParticle.Play();
-        levelName += GameManager.Instance.MapData.IndexOf(MapEditor.Instance.currentMap).ToString();
-        levelInfo.text = levelName;
-        slider.value = indexOfProcess + 1;
+        levelInfo.text = UIController.Instance.Gameplay.LevelName;
     }
 
     private List<Map> GetMapsInProcess()
     {
         List<Map> result = new List<Map>();
         int startIndex = GetStartIndexOfProcess();
-        for (int i = startIndex; i < startIndex + 5; i++)
+        if((startIndex + 1) % 5 == 0)
         {
-            result.Add(GameManager.Instance.MapData[i]);
+            for (int i = startIndex - 5; i <= startIndex; i++)
+            {
+                result.Add(GameManager.Instance.MapData[i]);
+            }
+        }
+        else
+        {
+            for (int i = startIndex; i < startIndex + 5; i++)
+            {
+                result.Add(GameManager.Instance.MapData[i]);
+            }
         }
         return result;
     }
