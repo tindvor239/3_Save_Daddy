@@ -1,35 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ManEaterPlantController : CharacterController
+public class ManEaterPlantController : EnemyController
 {
-    [SerializeField]
-    private float attackRange;
+    private float timer = 0;
+    private float maxTimer = 0.15f;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
     }
-
     // Update is called once per frame
     protected override void Update()
     {
-        if(GameManager.Instance.Player != null)
+        switch(state)
         {
-            GameObject target = GameManager.Instance.RayCastToObject(transform.position, new Vector3(transform.position.x - attackRange, transform.position.y));
-            if(target != null && target.tag == "Player" && target.GetComponent<PlayerController>() != null)
-            {
-                CharacterPoolParty.Instance.PlayerPool.GetBackToPool(target);
-            }
-            else
-            {
-                target = GameManager.Instance.RayCastToObject(transform.position, new Vector3(transform.position.x + attackRange, transform.position.y));
-                if (target != null && target.tag == "Player" && target.GetComponent<PlayerController>() != null)
+            case CharacterState.die:
+                break;
+            default:
+                timer += Time.deltaTime;
+                if (timer >= maxTimer)
                 {
-                    CharacterPoolParty.Instance.PlayerPool.GetBackToPool(target);
+                    GetPlayer();
+                    timer = 0;
                 }
-            }
+                break;
+        }    
+    }
+    protected GameObject CastCircle()
+    {
+        RaycastHit2D hit;
+        hit = Physics2D.CircleCast(transform.position, attackRange, transform.right, attackRange, 1 << LayerMask.NameToLayer("Player"));
+        return hit.collider.gameObject;
+    }
+
+    public override void GetPlayer()
+    {
+        GameObject beenHitObject = CastCircle();
+        if(beenHitObject.GetComponent<PlayerController>())
+        {
+            Kill(1);
+            Invoke("OnMove", actingDelay);
         }
     }
+    
 }

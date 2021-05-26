@@ -7,7 +7,7 @@ public class ProcessInfoUI : MonoBehaviour
     [SerializeField]
     private Text levelInfo;
     [SerializeField]
-    private Button box;
+    private GameObject box;
     [SerializeField]
     private Slider slider;
     [SerializeField]
@@ -26,7 +26,7 @@ public class ProcessInfoUI : MonoBehaviour
     {
         buttonImage = button.GetComponent<Image>();
         buttonText = button.GetComponentInChildren<Text>();
-        box.gameObject.SetActive(false);
+        box.SetActive(false);
         slider.maxValue = 5;
     }
 
@@ -57,38 +57,48 @@ public class ProcessInfoUI : MonoBehaviour
     public void ShowProcess()
     {
         int indexOfProcess = GetIndexOfProcess();
-        if(indexOfProcess == 4)
+        box.SetActive(false);
+        slider.value = indexOfProcess + 1;
+        button.onClick.RemoveAllListeners();
+        if (indexOfProcess == 4)
         {
             buttonImage.sprite = bossButton;
             buttonText.text = "Fight Boss";
-            box.gameObject.SetActive(false);
-            slider.value = indexOfProcess + 1;
+            button.onClick.AddListener(NextLevel);
         }
         else if(indexOfProcess == 0)
         {
             buttonImage.sprite = bossButton;
-            box.gameObject.SetActive(true);
+            box.SetActive(true);
             buttonText.text = "Open Box";
+            button.onClick.AddListener(ChestRoom);
             slider.value = 5;
         }
         else
         {
             buttonImage.sprite = normalButton;
             buttonText.text = "Next";
-            box.gameObject.SetActive(false);
-            slider.value = indexOfProcess + 1;
+            button.onClick.AddListener(NextLevel);
         }
         winParticle.Play();
         levelInfo.text = UIController.Instance.Gameplay.LevelName;
     }
 
+    private void NextLevel()
+    {
+        UIController.Instance.Play(true);
+    }
+    private void ChestRoom()
+    {
+        UIController.Instance.ShowChestRoomUI(true);
+    }
     private List<Map> GetMapsInProcess()
     {
         List<Map> result = new List<Map>();
         int startIndex = GetStartIndexOfProcess();
         if((startIndex + 1) % 5 == 0)
         {
-            for (int i = startIndex - 5; i <= startIndex; i++)
+            for (int i = startIndex - 4; i <= startIndex; i++)
             {
                 result.Add(GameManager.Instance.MapData[i]);
             }
@@ -104,8 +114,8 @@ public class ProcessInfoUI : MonoBehaviour
     }
     private int GetIndexOfProcess()
     {
-        int levelProcessIndex = GetCurrentLevelIndex();
-        return levelProcessIndex % 5;
+        int levelIndex = GameManager.CurrentLevelIndex();
+        return levelIndex % 5;
     }
     private int GetStartIndexOfProcess()
     {

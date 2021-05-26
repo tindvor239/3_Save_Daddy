@@ -86,8 +86,12 @@ MonoBehaviour:
   poolName: Player Pool
   moveSpeed: 8
   skeleton: {fileID: 9156197775886363022}
-  characters:
-  - {fileID: 11400000, guid: 12e2be84ad0dd524a932b8dd743040d0, type: 2}
+  animationSet:
+  - {fileID: 11400000, guid: b671bf43c1ea47848a767cdc78c5e2b5, type: 2}
+  - {fileID: 11400000, guid: 306cea94059893b44836d9f30f76ad5f, type: 2}
+  - {fileID: 11400000, guid: ffec250cbef02f44eba73ce3d067aaeb, type: 2}
+  - {fileID: 11400000, guid: 617713aedb59f5b42916389154d37922, type: 2}
+  - {fileID: 11400000, guid: d94fc0bb5867c664fb12ea753209cba4, type: 2}
   state: 0
   dangerRange: 7
 --- !u!1 &5105414248674064696

@@ -45,20 +45,37 @@ public class UIController : Singleton<UIController>
         GameManager.State = GameManager.GameState.menu;
         ViewManager.ShowUI("MENU_UI", isActive);
     }
-    public void ShowGamePlayUI(bool isActive)
+    public void ShowGameplayUI(bool isActive)
     {
         GameManager.State = GameManager.GameState.play;
         ViewManager.ShowUI("MENU_UI", !isActive);
         ViewManager.ShowUI("WIN_UI", !isActive);
         ViewManager.ShowUI("LEVELS_UI", !isActive);
+        ViewManager.ShowUI("LUCKYSPIN_UI", !isActive);
         ViewManager.ShowUI("GAMEPLAY_UI", isActive);
     }
 
-
     public void Play(bool isActive)
     {
-        ShowGamePlayUI(isActive);
+        ShowGameplayUI(isActive);
         Load(null);
+    }
+    public void Retry()
+    {
+        GameManager.Instance.Player.state = CharacterController.CharacterState.idle;
+        ShowGameplayUI(true);
+        ShowGameOverUI(false);
+        GameManager.State = GameManager.GameState.play;
+        Load(editor.currentMap);
+    }
+    public void Skip()
+    {
+        GameManager.UnlockNextLevel();
+        bool isDoneShowAds = ShowAds();
+        if(isDoneShowAds)
+        {
+            ShowLevelUpUI(true);
+        }
     }
     public void Load(Map map)
     {
@@ -98,11 +115,39 @@ public class UIController : Singleton<UIController>
         ViewManager.ShowUI("WIN_UI", isActive);
         processInfo.ShowProcess();
     }
+    public void ShowLevelUpUI(bool isActive)
+    {
+        GameManager.State = GameManager.GameState.pause;
+        ViewManager.ShowUI("GAMEPLAY_UI", !isActive);
+        ViewManager.ShowUI("LEVELUP_UI", isActive);
+        Debug.Log("Loading Map");
+    }
     public void ShowLevelUI(bool isActive)
     {
         GameManager.State = GameManager.GameState.menu;
         ViewManager.ShowUI("GAMEPLAY_UI", !isActive);
         ViewManager.ShowUI("LEVELS_UI", isActive);
+    }
+    public void ShowChestRoomUI(bool isActive)
+    {
+        ViewManager.ShowUI("LUCKYSPIN_UI", isActive);
+        ViewManager.ShowUI("WIN_UI", !isActive);
+        ViewManager.ShowUI("GAMEPLAY_UI", !isActive);
+
+        UIChestRoom.Instance.SetupPrize();
+        UIChestRoom.SetKeys();
+    }
+
+    private bool ShowAds()
+    {
+        bool videoIsReady = true;
+        bool videoIsDone = false;
+        if(videoIsReady)
+        {
+            Debug.Log("Show ads");
+            videoIsDone = true;
+        }
+        return videoIsDone;
     }
     private void MovePlayer()
     {
@@ -133,6 +178,8 @@ public class UIController : Singleton<UIController>
         cam.Player = player;
         Vector3 newPosition = new Vector3(player.transform.position.x, player.transform.position.y, cam.gameObject.transform.position.z);
         cam.gameObject.transform.position = newPosition;
+        gameManager.Skins.AddRange(player.Skeleton.Skeleton.Data.Skins);
+        ViewManager.SetSkin(player.Skeleton, gameManager.Skins[GameManager.UsingSkin]);
     }
     private void SpawnObstaclesOnPlay()
     {

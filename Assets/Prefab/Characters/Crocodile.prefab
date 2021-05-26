@@ -48,8 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Aligator Pool
   moveSpeed: 9
-  skeleton: {fileID: 0}
-  characters: []
+  skeleton: {fileID: 5815546954884008452}
+  animationSet:
+  - {fileID: 11400000, guid: d3f46cbda05adc84da5332272da21e9d, type: 2}
+  - {fileID: 11400000, guid: ef8412e1a82bb8d468fd2c8c46e197f8, type: 2}
+  - {fileID: 11400000, guid: 2e8d8ee9f63a0d94ca27911917dcb906, type: 2}
   state: 1
   destinations: []
   passedDestinations: []

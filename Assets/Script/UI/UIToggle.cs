@@ -13,16 +13,29 @@ public class UIToggle : MonoBehaviour
     {
         get
         {
-            bool isChecked = GetComponent<Image>().sprite == spriteTrue ? true : false;
+            Image image = GetComponent<Image>();
+            bool isChecked = image.sprite == spriteTrue ? true : false;
             if(isChecked)
             {
-                GetComponent<Image>().sprite = spriteTrue;
+                image.sprite = spriteTrue;
             }
             if (isChecked)
             {
-                GetComponent<Image>().sprite = spriteFalse;
+                image.sprite = spriteFalse;
             }
             return isChecked;
         }
+        set
+        {
+            Image image = GetComponent<Image>();
+            image.sprite = value == false ? spriteFalse : spriteTrue;
+        }
+    }
+
+    public void Initialize(Sprite on, Sprite off)
+    {
+        spriteTrue = on;
+        spriteFalse = off;
+        isCheck = false;
     }
 }

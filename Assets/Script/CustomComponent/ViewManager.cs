@@ -90,6 +90,12 @@ public class ViewManager : Singleton<ViewManager>
         skeleton.state.SetAnimation(0, animation, isLoop).TimeScale = timeScale;
     }
     #endregion
+    #region Appearence Handler
+    public static void SetSkin(SkeletonAnimation skeleton, Spine.Skin skin)
+    {
+        skeleton.initialSkinName = skin.Name;
+    }
+    #endregion
     #region UI Handler
     public static void ShowUI(string UIname , bool isActive)
     {

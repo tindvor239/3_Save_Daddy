@@ -7,14 +7,14 @@ using DG.Tweening;
 public class EnemyController : CharacterController
 {
     [SerializeField]
-    private List<Transform> destinations = new List<Transform>();
+    protected List<Transform> destinations = new List<Transform>();
     [SerializeField]
-    private List<Transform> passedDestinations = new List<Transform>();
+    protected List<Transform> passedDestinations = new List<Transform>();
     [SerializeField]
-    private EnemyState enemyState;
+    protected EnemyState enemyState;
     [SerializeField]
-    private float attackRange;
-    private float startSize;
+    protected float attackRange;
+    protected float startSize;
     protected override void Awake()
     {
         base.Awake();
@@ -24,32 +24,27 @@ public class EnemyController : CharacterController
         base.Start();
         startSize = transform.localScale.x;
     }
-    public void GetPlayer()
+    public virtual void GetPlayer()
     {
         PlayerController player = GameManager.Instance.Player;
+        Transform path = GetPath();
         if (!sequence.IsActive())
         {
             moveDuration = 0;
         }
-
-        if (!CheckPathIsBlocked(transform.position, player.transform.position) && Vector2.Distance(transform.position, player.transform.position) <= attackRange)
+        if (path != null)
         {
-            bool isBlocked = GameManager.Instance.IsBlocked(transform.position, GameManager.Instance.Player.transform.position, 1 << LayerMask.NameToLayer("Player"));
-            if (!isBlocked && gameObject.activeInHierarchy)
+            if(path == player.transform)
             {
-                StartCoroutine(MoveToDestination(GameManager.Instance.Player.transform));
-                StartCoroutine(Kill(moveDuration));
+                StartCoroutine(MoveToDestination(player.transform));
+                StartCoroutine(Kill(MoveDuration(transform.position, player.transform.position)));
             }
-        }
-        else
-        {
-            if(enemyState == EnemyState.aggressive)
+            else
             {
-                Transform path = GetPath();
-
-                if (path != null && path != transform)
+                if(enemyState == EnemyState.aggressive)
                 {
                     StartCoroutine(MoveToDestination(path));
+                    StartCoroutine(SwitchingState(CharacterState.idle, moveDuration));
                 }
             }
         }
@@ -58,10 +53,8 @@ public class EnemyController : CharacterController
     private Transform GetPath()
     {
         destinations = FindClosestDestinations();
-
         if (destinations.Contains(transform))
         {
-            Debug.Log("In");
             destinations.Remove(transform);
         }
         foreach (Transform destination in destinations)
@@ -69,7 +62,6 @@ public class EnemyController : CharacterController
             bool pathIsBlocked = CheckPathIsBlocked(transform.position, destination.position);
             if (!pathIsBlocked)
             {
-                Debug.Log(destination);
                 return destination;
             }
         }
@@ -127,7 +119,7 @@ public class EnemyController : CharacterController
     private List<Transform> GetInRangePaths(List<Transform> paths)
     {
         List<Transform> result = new List<Transform>();
-        foreach(Transform destination in GameManager.Instance.Destinations)
+        foreach(Transform destination in paths)
         {
             float currentDistance = Vector2.Distance(transform.position, destination.position);
             if(currentDistance <= attackRange && destination.transform.position != transform.position)
@@ -171,22 +163,54 @@ public class EnemyController : CharacterController
             transform.localScale = negativeScale;
         }
     }
-    private void OnDrawGizmos()
+    protected void OnEnable()
+    {
+        passedDestinations = new List<Transform>();
+        destinations = new List<Transform>();
+        StartCoroutine(SwitchingState(CharacterState.idle, 0.01f));
+    }
+
+    protected void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
-
     protected IEnumerator Kill(float duration)
     {
         yield return new WaitForSeconds(duration);
+        Acting(animationSet[1], false);
         UIController.Instance.ShowGameOverUI(true);
+    }
+    protected override IEnumerator OnBeenKilled(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        CharacterPoolParty.Instance.Party.GetPool(poolName).GetBackToPool(gameObject);
+    }
+    protected enum EnemyState { standing, aggressive, partrolling }
+    protected override void Action()
+    {
+        if (skeleton != null)
+        {
+            switch (state)
+            {
+                case CharacterState.idle:
+                    Acting(animationSet[0], true);
+                    break;
+                case CharacterState.move:
+                    Acting(animationSet[0], true);
+                    break;
+                case CharacterState.die:
+                    Acting(animationSet[2], false);
+                    break;
+            }
+        }
     }
 
     public override void Interact()
     {
-        CharacterPoolParty.Instance.SharkPool.GetBackToPool(gameObject);
+        state = CharacterState.die;
+        Action();
+        StartCoroutine(OnBeenKilled(1.3f));
     }
 
-    private enum EnemyState { standing, aggressive, partrolling }
 }

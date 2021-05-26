@@ -2,12 +2,14 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.CustomComponents;
+using Spine.Unity;
 using DG.Tweening;
 public class PlayerController : CharacterController
 {
     private bool alreadyMoveCamera = false;
     [SerializeField]
     private float dangerRange;
+
     protected override void Awake()
     {
         base.Awake();
@@ -18,35 +20,74 @@ public class PlayerController : CharacterController
         base.Start();
         poolName = CharacterPoolParty.Instance.PlayerPool.Name;
     }
-
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
     }
-    public void MovePlayerToNextDestination()
+    protected override void Action()
     {
-        int index = GameManager.GetNextDestinationIndex(this);
-        if (index != -1)
+        if (skeleton != null)
         {
-            alreadyMoveCamera = false;
-            CameraController.Instance.center = CameraController.Instance.RestartCenter();
-            Vector3 pathPosition = GameManager.Instance.Destinations[index].position;
-            if (!CheckPathIsBlocked(transform.position, pathPosition))
+            switch (state)
             {
-                bool isBlocked = GameManager.Instance.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Enemy"));
-                if (!isBlocked)
-                {
-                    ContinueMoving(GameManager.Instance.Destinations[index]);
-                }
+                case CharacterState.idle:
+                    Acting(animationSet[0], true);
+                    break;
+                case CharacterState.move:
+                    SwitchAction(animationSet[1], animationSet[2]);
+                    StartCoroutine(SwitchingState(CharacterState.idle, 1));
+                    break;
+                case CharacterState.die:
+                    SwitchAction(animationSet[3], animationSet[4]);
+                    break;
             }
         }
-        else if(alreadyMoveCamera == false)
+    }
+    protected override IEnumerator OnBeenKilled(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        UIController.Instance.ShowGameOverUI(true);
+    }
+    protected override void SwitchAction(AnimationReferenceAsset startAnimation, AnimationReferenceAsset endAnimation)
+    {
+        actingDelay = 2;
+        StartCoroutine(SwitchingAct(endAnimation, false, 1));
+        ViewManager.Acting(skeleton, startAnimation, false, 1);
+    }
+
+    public void MovePlayerToNextDestination()
+    {
+        if(state != CharacterState.die)
         {
-            MoveCamera();
-            Invoke("ScareAnimation", actingDelay);
-            alreadyMoveCamera = true;
+            int index = GameManager.GetNextDestinationIndex(this);
+            if (index != -1)
+            {
+                alreadyMoveCamera = false;
+                CameraController.Instance.center = CameraController.Instance.RestartCenter();
+                Vector3 pathPosition = GameManager.Instance.Destinations[index].position;
+                if (!CheckPathIsBlocked(transform.position, pathPosition))
+                {
+                    bool isBlocked = GameManager.Instance.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Enemy"));
+                    if (!isBlocked)
+                    {
+                        ContinueMoving(GameManager.Instance.Destinations[index]);
+                    }
+                }
+            }
+            else if(alreadyMoveCamera == false)
+            {
+                MoveCamera();
+                Invoke("ScareAnimation", actingDelay);
+                alreadyMoveCamera = true;
+            }
         }
+    }
+    public override void Interact()
+    {
+        state = CharacterState.die;
+        Action();
+        StartCoroutine(OnBeenKilled(1.3f));
     }
 
     private void ContinueMoving(Transform destination)
@@ -57,13 +98,11 @@ public class PlayerController : CharacterController
         }
         StartCoroutine(MoveToDestination(destination));
     }
-
     private IEnumerator MoveToDestination(Transform destination)
     {
         yield return new WaitForSeconds(moveDuration);
         StartMoveToDestination(destination);
         StartCoroutine(CheckMoveCondition(moveDuration));
-        Debug.Log("Checking");
     }
     private void StartMoveToDestination(Transform destination)
     {
@@ -93,13 +132,15 @@ public class PlayerController : CharacterController
             }
         }
     }
-
     private void ScareAnimation()
     {
-        state = IsDanger();
-        Action(state);
+        if(IsDanger())
+        {
+            SwitchAction(animationSet[3], animationSet[4]);
+            Invoke("ScareAnimation", actingDelay);
+        }
     }
-    private CharacterState IsDanger()
+    private bool IsDanger()
     {
         foreach(ObjectPool pool in ObstaclePoolParty.Instance.Party.Pools)
         {
@@ -108,7 +149,7 @@ public class PlayerController : CharacterController
                 float currentDistance = Vector3.Distance(transform.position, pooledObject.transform.position);
                 if(pooledObject.activeInHierarchy && currentDistance <= dangerRange)
                 {
-                    return CharacterState.die;
+                    return true;
                 }
             }
         }
@@ -121,12 +162,12 @@ public class PlayerController : CharacterController
                     float currentDistance = Vector3.Distance(transform.position, pooledObject.transform.position);
                     if (pooledObject.activeInHierarchy && currentDistance <= dangerRange)
                     {
-                        return CharacterState.die;
+                        return true;
                     }
                 }
             }
         }
-        return state;
+        return false;
     }
     private IEnumerator CheckMoveCondition(float duration)
     {
@@ -137,11 +178,6 @@ public class PlayerController : CharacterController
         }
 
     }
-    public override void Interact()
-    {
-        CharacterPoolParty.Instance.PlayerPool.GetBackToPool(gameObject);
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

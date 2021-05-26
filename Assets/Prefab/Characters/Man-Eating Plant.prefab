@@ -48,10 +48,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Man-Eating Plant Pool
   moveSpeed: 0
-  skeleton: {fileID: 0}
-  characters: []
+  skeleton: {fileID: 7211161940742586326}
+  animationSet:
+  - {fileID: 11400000, guid: 8220a1c51cb38284f88ef3d5dfb69b3a, type: 2}
+  - {fileID: 11400000, guid: 257cc0c90a1ecc448a26cddbd2905f16, type: 2}
+  - {fileID: 11400000, guid: 61b0c6988efb2614b95f5e22eec75882, type: 2}
   state: 0
-  attackRange: 2
+  destinations: []
+  passedDestinations: []
+  enemyState: 0
+  attackRange: 4
 --- !u!50 &4036969316790197114
 Rigidbody2D:
   serializedVersion: 4

@@ -48,9 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Angler Fish Pool
   moveSpeed: 9
-  skeleton: {fileID: 0}
-  characters: []
-  state: 1
+  skeleton: {fileID: 6960197380985195994}
+  animationSet:
+  - {fileID: 11400000, guid: 64f14b8cbd3005944a26acf0daf021e4, type: 2}
+  - {fileID: 11400000, guid: 55a062f7de89bc44989a46644fd12f37, type: 2}
+  - {fileID: 11400000, guid: 2544ef95a4e086d49b2f5762d7001727, type: 2}
+  state: 0
   destinations: []
   passedDestinations: []
   enemyState: 1

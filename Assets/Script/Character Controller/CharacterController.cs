@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using UnityEngine;
+using UnityEngine.CustomComponents;
 using Spine.Unity;
 using System.Collections.Generic;
 using System.Collections;
@@ -11,14 +12,14 @@ public class CharacterController : Controller, IInteractable
     [SerializeField]
     protected SkeletonAnimation skeleton;
     [SerializeField]
-    protected List<Character> characters;
-    [SerializeField]
-    protected CharacterState state;
+    protected List<AnimationReferenceAsset> animationSet;
+    public CharacterState state;
     protected float actingDelay;
 
     #region Properties
     public new Component collider { get; private set; }
     public Sequence Sequence { get => sequence; }
+    public SkeletonAnimation Skeleton { get => skeleton; }
     #endregion
     protected virtual void Awake()
     {
@@ -43,14 +44,21 @@ public class CharacterController : Controller, IInteractable
     }
     public void Move(in Vector2 destination, in Ease ease)
     {
-        moveDuration = MoveDuration(transform.position, destination);
-        GameController.Instance.Move(in sequence, transform, destination, moveDuration, ease);
-        Invoke("OnMove", actingDelay);
+        if(state != CharacterState.die)
+        {
+            moveDuration = MoveDuration(transform.position, destination);
+            GameController.Instance.Move(in sequence, transform, destination, moveDuration, ease);
+            Invoke("OnMove", actingDelay);
+        }
     }
     public override void Move(in Vector3 destination)
     {
-        moveDuration = MoveDuration(transform.position, destination);
-        GameController.Instance.Move(in sequence, transform, destination, moveDuration);
+        if (state != CharacterState.die)
+        {
+            moveDuration = MoveDuration(transform.position, destination);
+            GameController.Instance.Move(in sequence, transform, destination, moveDuration);
+            Invoke("OnMove", actingDelay);
+        }
     }
     public void Stop()
     {
@@ -61,29 +69,14 @@ public class CharacterController : Controller, IInteractable
         
     }
 
-    protected void Action(CharacterState state)
+    protected virtual void Action()
     {
-        if(characters.Count != 0)
-        {
-            switch(state)
-            {
-                case CharacterState.idle:
-                    ActingLoop(characters[0].Data.Idle);
-                    break;
-                case CharacterState.die:
-                    SwitchAction(characters[0].Data.Die, characters[0].Data.DieToMove);
-                    break;
-                case CharacterState.move:
-                    SwitchAction(characters[0].Data.IdleToMove, characters[0].Data.Move);
-                    StartCoroutine(SwitchingState(CharacterState.idle, 1));
-                    break;
-            }
-        }
+        
     }
     protected void OnMove()
     {
         state = CharacterState.move;
-        Action(state);
+        Action();
     }
     protected virtual void SwitchAction(AnimationReferenceAsset startAnimation, AnimationReferenceAsset endAnimation)
     {
@@ -92,26 +85,32 @@ public class CharacterController : Controller, IInteractable
         StartCoroutine(SwitchingState(2));
         ViewManager.Acting(skeleton, startAnimation, false, 1);
     }
-    protected virtual void ActingLoop(AnimationReferenceAsset animation)
+    protected virtual void Acting(AnimationReferenceAsset animation, bool isLooping)
     {
-        ViewManager.Acting(skeleton, animation, true, 1);
+        ViewManager.Acting(skeleton, animation, isLooping, 1);
     }
-    private IEnumerator SwitchingAct(AnimationReferenceAsset animation, bool isLooping, float startSecond)
+
+    protected IEnumerator SwitchingAct(AnimationReferenceAsset animation, bool isLooping, float startSecond)
     {
         yield return new WaitForSeconds(startSecond);
         ViewManager.Acting(skeleton, animation, isLooping, 1);
     }
-    private IEnumerator SwitchingState(CharacterState state, float startSecond)
+    protected IEnumerator SwitchingState(CharacterState state, float startSecond)
     {
         yield return new WaitForSeconds(startSecond);
         this.state = state;
-        Action(state);
+        Action();
     }
-    private IEnumerator SwitchingState(float startSecond)
+    protected IEnumerator SwitchingState(float startSecond)
     {
         yield return new WaitForSeconds(startSecond);
-        Action(state);
+        Action();
     }
+    protected virtual IEnumerator OnBeenKilled(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+    }
+
     public enum CharacterState { idle, die, move}
     
 }

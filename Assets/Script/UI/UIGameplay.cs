@@ -30,9 +30,7 @@ public class UIGameplay : UISection
     #endregion
     public void OnShowGameplay()
     {
-        MapEditor editor = MapEditor.Instance;
-        GameManager gameManager = GameManager.Instance;
-        int mapIndex = gameManager.MapData.IndexOf(editor.currentMap);
+        int mapIndex = GameManager.CurrentLevelIndex();
         LevelName = string.Format("Level {0}", mapIndex);
     }
     private List<Image> GetStars()

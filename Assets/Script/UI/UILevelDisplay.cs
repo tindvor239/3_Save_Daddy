@@ -25,7 +25,7 @@ public class UILevelDisplay : MonoBehaviour
         MapEditor.Instance.currentMap = map;
         if(map.isUnlocked)
         {
-            UIController.Instance.ShowGamePlayUI(true);
+            UIController.Instance.ShowGameplayUI(true);
             UIController.Instance.Load(map);
         }
     }

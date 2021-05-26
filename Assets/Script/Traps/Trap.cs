@@ -35,35 +35,12 @@ public class Trap : Obstacle
 
     protected override void OnHit(GameObject beenHitObject)
     {
-        if (beenHitObject.tag == "Player")
+        CharacterController character = beenHitObject.GetComponent<CharacterController>();
+        bool isCharacter = character != null;
+        if (isCharacter && character.state != CharacterController.CharacterState.die)
         {
-            UIController.Instance.ShowGameOverUI(true);
+            character.Interact();
         }
-        else if(beenHitObject.tag == "Enemy")
-        {
-            ObjectPool pool = GetCharacterPool(beenHitObject);
-            if(pool != null)
-            {
-                pool.GetBackToPool(beenHitObject);
-            }
-        }
-    }
-    private ObjectPool GetCharacterPool(GameObject gameObject)
-    {
-        foreach (ObjectPool pool in CharacterPoolParty.Instance.Party.Pools)
-        {
-            if (pool != CharacterPoolParty.Instance.PlayerPool)
-            {
-                foreach (GameObject pooledObject in pool.PooledObjects)
-                {
-                    if (pooledObject == gameObject && pooledObject.activeInHierarchy)
-                    {
-                        return pool;
-                    }
-                }
-            }
-        }
-        return null;
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {

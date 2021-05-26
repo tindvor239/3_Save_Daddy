@@ -27,7 +27,6 @@ public class GameController : Singleton<GameController>
                 if (Input.GetMouseButtonDown(0))
                 {
                     GameObject clickedObject = GetObjectByMouseRayCast();
-                    Debug.Log(clickedObject);
                     if (clickedObject != null)
                     {
                         Pin selectedPin = GetPinComponent(clickedObject);

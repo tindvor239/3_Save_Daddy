@@ -60,7 +60,7 @@ public abstract class Pin : Model, IInteractable
     {
         yield return new WaitForSeconds(duration);
         EnemyController enemy = GameManager.GetClosestEnemy();
-        if(enemy != null && enemy.gameObject.activeInHierarchy)
+        if(enemy != null && enemy.gameObject.activeInHierarchy && enemy.GetComponent<ManEaterPlantController>() == null)
         {
             enemy.GetPlayer();
         }

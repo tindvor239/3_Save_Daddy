@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.CustomComponents;
+using Spine.Unity;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -13,12 +13,12 @@ public class GameManager : Singleton<GameManager>
     private List<Transform> passedDestinations = new List<Transform>();
     [SerializeField]
     protected GameState gameState;
-
     [Header("Game Data")]
     [SerializeField]
     private PathPoolParty pathPoolParty;
     [SerializeField]
     private List<Map> mapDatas = new List<Map>();
+    private List<Spine.Skin> skins = new List<Spine.Skin>();
     #region Properties
     #region Movement
     public List<Transform> Destinations { get => destinations; }
@@ -28,6 +28,30 @@ public class GameManager : Singleton<GameManager>
     #endregion
     #region Data
     public List<Map> MapData { get => mapDatas; }
+    public List<Spine.Skin> Skins { get => skins; }
+    public static long Money
+    {
+        get => long.Parse(PlayerPrefs.GetString("money"));
+        set
+        {
+            PlayerPrefs.SetString("money", value.ToString());
+            UIChestRoom.Money = value;
+        }
+    }
+    public static int UsingSkin
+    {
+        get => PlayerPrefs.GetInt("skinIndex");
+        set => PlayerPrefs.SetInt("skinIndex", value);
+    }
+    public static int CurrentKey
+    {
+        get => PlayerPrefs.GetInt("key");
+        set
+        {
+            PlayerPrefs.SetInt("key", value);
+            UIChestRoom.SetKeys();
+        }
+    }
     #endregion
     public static GameState State { get => Instance.gameState; set => Instance.gameState = value; }
     #endregion
@@ -36,6 +60,8 @@ public class GameManager : Singleton<GameManager>
         #region Singleton
         base.Awake();
         #endregion
+        Money = 100;
+        CurrentKey = 3;
     }
     #region Raycasting
     public GameObject RayCastObject(Vector3 fromPosition, Vector3 direction)
@@ -61,7 +87,6 @@ public class GameManager : Singleton<GameManager>
         RaycastHit2D hit = Physics2D.Raycast(fromPosition, direction, length, layer);
         if (hit.collider != null)
         {
-            Debug.Log("Hit");
             return hit.collider.gameObject;
         }
         return null;
@@ -212,7 +237,7 @@ public class GameManager : Singleton<GameManager>
     }
     #endregion
     #region Map Handle
-    private static void UnlockNextLevel()
+    public static void UnlockNextLevel()
     {
         for(int i = 0; i < Instance.mapDatas.Count; i++)
         {
@@ -223,6 +248,11 @@ public class GameManager : Singleton<GameManager>
                 break;
             }
         }
+    }
+    public static int CurrentLevelIndex()
+    {
+        int result = Instance.mapDatas.IndexOf(MapEditor.Instance.currentMap) + 1;
+        return result;
     }
     #endregion
     public enum GameState {menu, play, pause, win, gameover }
