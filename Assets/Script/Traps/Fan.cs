@@ -31,7 +31,7 @@ public class Fan : Trap
     }
     private void CheckHit()
     {
-        GameObject beenHitObject = GameManager.Instance.RayCastToObject(transform.position, target.position, Vector2.Distance(transform.position, target.position));
+        GameObject beenHitObject = RayCastingToObject();
         Debug.DrawRay(transform.position, GameManager.Instance.GetDirectionVector(transform.position, target.position), Color.red, Vector2.Distance(transform.position, target.position) / 2);
         OnHit(beenHitObject);
         if (beenHitObject != null && (beenHitObject.tag == "Player" || beenHitObject.tag == "Enemy"))
@@ -67,7 +67,20 @@ public class Fan : Trap
             }
         }
     }
-
+    private GameObject RayCastingToObject()
+    {
+        GameManager gameManager = GameManager.Instance;
+        GameObject beenHitObject = gameManager.RayCastToObject(transform.position, target.position, 1 << LayerMask.NameToLayer("Pin"));
+        if (beenHitObject == null)
+        {
+            beenHitObject = gameManager.RayCastToObject(transform.position, target.position, 1 << LayerMask.NameToLayer("Player"));
+            if (beenHitObject == null)
+            {
+                beenHitObject = gameManager.RayCastToObject(transform.position, target.position, 1 << LayerMask.NameToLayer("Enemy"));
+            }
+        }
+        return beenHitObject;
+    }
     private IEnumerator MoveNext(PlayerController player, float duration)
     {
         yield return new WaitForSeconds(duration);

@@ -70,8 +70,8 @@ public class EnemyController : CharacterController
     private List<Transform> FindClosestDestinations()
     {
         //Get Closest Destination Is Closest To Player
-        List<Transform> pathsToPlayer = GetPathToPlayer();
-        List<Transform> inRangePaths = GetInRangePaths(pathsToPlayer);
+        List<Transform> paths = GetPaths();
+        List<Transform> inRangePaths = GetInRangePaths(paths);
         //Sort Closest Destination Is Closest To Enemy
         List<Transform> closestPathsToPlayer = SortClosestDestinationsToEnemy(inRangePaths);
         return closestPathsToPlayer;
@@ -98,21 +98,13 @@ public class EnemyController : CharacterController
         }
         return result.ToList();
     }
-    private List<Transform> GetPathToPlayer()
+    private List<Transform> GetPaths()
     {
         List<Transform> result = new List<Transform>();
         List<Transform> paths = GameManager.Instance.Destinations;
         for (int i = 0; i < paths.Count; i++)
         {
-            PlayerController player = GameManager.Instance.Player;
-            if (paths[i] == player.transform)
-            {
-                for(int j = i; j < paths.Count; j++)
-                {
-                    result.Add(paths[j]);
-                }
-                return result;
-            }
+            result.Add(paths[i]);
         }
         return result;
     }

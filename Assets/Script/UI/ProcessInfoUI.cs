@@ -98,14 +98,24 @@ public class ProcessInfoUI : MonoBehaviour
         int startIndex = GetStartIndexOfProcess();
         if((startIndex + 1) % 5 == 0)
         {
-            for (int i = startIndex - 4; i <= startIndex; i++)
+            int startI = startIndex - 4;
+            if(startIndex - 4 < 0)
+            {
+                startI = 0;
+            }
+            for (int i = startI; i <= startIndex; i++)
             {
                 result.Add(GameManager.Instance.MapData[i]);
             }
         }
         else
         {
-            for (int i = startIndex; i < startIndex + 5; i++)
+            int endI = startIndex + 5;
+            if(endI > GameManager.Instance.MapData.Count - 1)
+            {
+                endI = GameManager.Instance.MapData.Count - 1;
+            }
+            for (int i = startIndex; i < endI; i++)
             {
                 result.Add(GameManager.Instance.MapData[i]);
             }
