@@ -15,6 +15,8 @@ public class ProcessInfoUI : MonoBehaviour
     [SerializeField]
     private GameObject levelProcessDisplayPrefab;
     [SerializeField]
+    private List<LevelProcessDisplayUI> processDisplays = new List<LevelProcessDisplayUI>();
+    [SerializeField]
     private Sprite mapComplete, mapUncomplete, bossMap, tick, bossButton, normalButton;
     [SerializeField]
     private GameObject levelProcessDisplayParent;
@@ -27,38 +29,38 @@ public class ProcessInfoUI : MonoBehaviour
         buttonImage = button.GetComponent<Image>();
         buttonText = button.GetComponentInChildren<Text>();
         box.SetActive(false);
-        slider.maxValue = 5;
+        SetupProcess();
+        slider.maxValue = 4;
     }
 
-    public void DisplayProcess()
+    private void DisplayProcess()
     {
         List<Map> maps = GetMapsInProcess();
-        foreach(Map map in maps)
+        Debug.Log(maps.Count);
+        for(int i = 0; i < maps.Count; i++)
         {
-            GameObject newObject = Instantiate(levelProcessDisplayPrefab, levelProcessDisplayParent.transform);
-            LevelProcessDisplayUI levelProcessDisplay = newObject.GetComponent<LevelProcessDisplayUI>();
-            if(map.isUnlocked)
+            if(maps[i].isUnlocked)
             {
-                levelProcessDisplay.MainImage = mapComplete;
+                processDisplays[i].MainImage = mapComplete;
             }
-            else if(maps.IndexOf(map) == 4)
+            else if(maps.IndexOf(maps[i]) == 4)
             {
-                levelProcessDisplay.MainImage = bossMap;
-                levelProcessDisplay.transform.localScale = new Vector3(2, 2);
+                processDisplays[i].MainImage = bossMap;
+                processDisplays[i].transform.localScale = new Vector3(2, 2);
             }
             else
             {
-                levelProcessDisplay.MainImage = mapUncomplete;
+                processDisplays[i].MainImage = mapUncomplete;
             }
-            levelProcessDisplay.IsTick = map.isUnlocked;
+            processDisplays[i].IsTick = maps[i].isUnlocked;
         }    
     }
-
-    public void ShowProcess()
+    public void OnShowProcess()
     {
         int indexOfProcess = GetIndexOfProcess();
         box.SetActive(false);
-        slider.value = indexOfProcess + 1;
+        DisplayProcess();
+        slider.value = indexOfProcess;
         button.onClick.RemoveAllListeners();
         if (indexOfProcess == 4)
         {
@@ -72,7 +74,7 @@ public class ProcessInfoUI : MonoBehaviour
             box.SetActive(true);
             buttonText.text = "Open Box";
             button.onClick.AddListener(ChestRoom);
-            slider.value = 5;
+            slider.value = slider.maxValue;
         }
         else
         {
@@ -84,6 +86,15 @@ public class ProcessInfoUI : MonoBehaviour
         levelInfo.text = UIController.Instance.Gameplay.LevelName;
     }
 
+    private void SetupProcess()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject newObject = Instantiate(levelProcessDisplayPrefab, levelProcessDisplayParent.transform);
+            LevelProcessDisplayUI levelProcessDisplay = newObject.GetComponent<LevelProcessDisplayUI>();
+            processDisplays.Add(levelProcessDisplay);
+        }
+    }
     private void NextLevel()
     {
         UIController.Instance.Play(true);
@@ -130,11 +141,11 @@ public class ProcessInfoUI : MonoBehaviour
     private int GetStartIndexOfProcess()
     {
         int levelStack = GetProcessIndex();
-        return levelStack * 5;
+        return GetCurrentLevelIndex() + 1 - levelStack;
     }
     private int GetProcessIndex()
     {
-        int levelProcessIndex = GetCurrentLevelIndex();
+        int levelProcessIndex = GetCurrentLevelIndex() + 1;
         return levelProcessIndex / 5;
     }
     private int GetCurrentLevelIndex()

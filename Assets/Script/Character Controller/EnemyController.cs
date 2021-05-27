@@ -24,6 +24,12 @@ public class EnemyController : CharacterController
         base.Start();
         startSize = transform.localScale.x;
     }
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        destinations = new List<Transform>();
+        passedDestinations = new List<Transform>();
+    }
     public virtual void GetPlayer()
     {
         PlayerController player = GameManager.Instance.Player;
@@ -154,12 +160,6 @@ public class EnemyController : CharacterController
             Vector3 negativeScale = new Vector3(startSize, transform.localScale.y, transform.localScale.z);
             transform.localScale = negativeScale;
         }
-    }
-    protected void OnEnable()
-    {
-        passedDestinations = new List<Transform>();
-        destinations = new List<Transform>();
-        StartCoroutine(SwitchingState(CharacterState.idle, 0.01f));
     }
 
     protected void OnDrawGizmos()

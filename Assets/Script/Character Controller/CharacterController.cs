@@ -17,14 +17,14 @@ public class CharacterController : Controller, IInteractable
     protected float actingDelay;
 
     #region Properties
-    public new Component collider { get; private set; }
+    public Component Collider { get; private set; }
     public Sequence Sequence { get => sequence; }
     public SkeletonAnimation Skeleton { get => skeleton; }
     #endregion
     protected virtual void Awake()
     {
         sequence = DOTween.Sequence();
-        collider = GetComponent<Collider2D>();
+        Collider = GetComponent<Collider2D>();
     }
     protected override void Start()
     {
@@ -35,6 +35,11 @@ public class CharacterController : Controller, IInteractable
     {
         Mathf.Clamp(actingDelay, 0, 3);
         actingDelay -= Time.deltaTime;
+    }
+    protected virtual void OnEnable()
+    {
+        sequence = DOTween.Sequence();
+        StartCoroutine(SwitchingState(CharacterState.idle, 0.01f));
     }
     public bool CheckPathIsBlocked(in Vector3 from, in Vector3 to)
     {

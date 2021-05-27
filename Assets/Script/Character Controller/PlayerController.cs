@@ -25,6 +25,10 @@ public class PlayerController : CharacterController
     {
         base.Update();
     }
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+    }
     protected override void Action()
     {
         if (skeleton != null)

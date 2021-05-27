@@ -1,6 +1,5 @@
-﻿using System;
-using UnityEngine;
-
+﻿using UnityEngine;
+using System;
 [RequireComponent(typeof(SpriteRenderer))]
 public class MovePin : Pin
 {
@@ -33,10 +32,31 @@ public class MovePin : Pin
     private int FlipFlop()
     {
         index++;
-        if(index >= 2)
+        if(index > 1)
         {
             index = 0;
         }
         return index;
+    }
+    private int GetIndex()
+    {
+        for(int i = 0; i < points.Length; i++)
+        {
+            Vector2 currentPosition = transform.localPosition;
+            Vector2 point = points[i].localPosition;
+            double roundedCurX = Math.Round(currentPosition.x, 2);
+            double roundedCurY = Math.Round(currentPosition.y, 2);
+            double roundedPointX = Math.Round(point.x, 2);
+            double roundedPointY = Math.Round(point.y, 2);
+            if (roundedCurX == roundedPointX && roundedCurY == roundedPointY)
+            {
+                return index = i;
+            }
+        }
+        return index = 0;
+    }
+    private void OnEnable()
+    {
+        Invoke("GetIndex", 0.1f);
     }
 }

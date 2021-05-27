@@ -37,7 +37,6 @@ public class UIController : Singleton<UIController>
         cam = CameraController.Instance;
         obstacleParty = ObstaclePoolParty.Instance;
         editor = MapEditor.Instance;
-        processInfo.DisplayProcess();
     }
 
     public void ShowMenuUI(bool isActive)
@@ -113,7 +112,7 @@ public class UIController : Singleton<UIController>
     {
         GameManager.State = GameManager.GameState.win;
         ViewManager.ShowUI("WIN_UI", isActive);
-        processInfo.ShowProcess();
+        processInfo.OnShowProcess();
     }
     public void ShowLevelUpUI(bool isActive)
     {

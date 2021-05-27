@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    Component collider { get; }
+    Component Collider { get; }
     void Interact();
 }

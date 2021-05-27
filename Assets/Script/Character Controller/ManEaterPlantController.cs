@@ -30,13 +30,17 @@ public class ManEaterPlantController : EnemyController
     {
         RaycastHit2D hit;
         hit = Physics2D.CircleCast(transform.position, attackRange, transform.right, attackRange, 1 << LayerMask.NameToLayer("Player"));
-        return hit.collider.gameObject;
+        if(hit.collider != null)
+        {
+            return hit.collider.gameObject;
+        }
+        return null;
     }
 
     public override void GetPlayer()
     {
         GameObject beenHitObject = CastCircle();
-        if(beenHitObject.GetComponent<PlayerController>())
+        if(beenHitObject != null && beenHitObject.GetComponent<PlayerController>())
         {
             Kill(1);
             Invoke("OnMove", actingDelay);

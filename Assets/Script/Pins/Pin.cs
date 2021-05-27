@@ -16,6 +16,8 @@ public abstract class Pin : Model, IInteractable
 
     [SerializeField]
     protected float unpinDuration = 0.8f;
+    [SerializeField]
+    protected new Collider2D collider;
     protected bool isAlreadyUnpin = false;
     protected float finishDuration = 0.8f;
     protected float unpinDelay = 1f;
@@ -23,7 +25,7 @@ public abstract class Pin : Model, IInteractable
     #region Properties
     public Transform MainTransform { get => mainTransform; }
     public bool IsLoopingPin { protected get => isLoopingPin; set => isLoopingPin = value; }
-    public new Behaviour collider { get; private set; }
+    public Component Collider { get => collider; }
     #endregion
     protected delegate void OnUnpinTriggered();
     protected event OnUnpinTriggered onUnpinTrigger;

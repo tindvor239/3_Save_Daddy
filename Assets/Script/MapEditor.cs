@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.CustomComponents;
 
@@ -126,30 +125,6 @@ public class MapEditor : Singleton<MapEditor>
                 }
                 removeModels.Add(model);
             }
-        }
-    }
-}
-
-[CustomEditor(typeof(MapEditor))]
-public class MapScriptEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-        MapEditor scriptEditor = (MapEditor)target;
-        
-
-        if (GUILayout.Button("Save"))
-        {
-            scriptEditor.currentMap.Save();
-        }
-        if(GUILayout.Button("Load"))
-        {
-            scriptEditor.Load();
-        }
-        if (GUILayout.Button("Clear"))
-        {
-            scriptEditor.Clear();
         }
     }
 }
