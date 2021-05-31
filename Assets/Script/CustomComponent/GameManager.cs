@@ -1,7 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-using Spine.Unity;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -9,8 +9,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private List<Transform> destinations = new List<Transform>();
     [SerializeField]
-    private List<EnemyController> enemies = new List<EnemyController>();
     private List<Transform> passedDestinations = new List<Transform>();
+    [SerializeField]
+    private List<EnemyController> enemies = new List<EnemyController>();
     [SerializeField]
     protected GameState gameState;
     [Header("Game Data")]
@@ -64,7 +65,7 @@ public class GameManager : Singleton<GameManager>
         CurrentKey = 3;
     }
     #region Raycasting
-    public GameObject RayCastObject(Vector3 fromPosition, Vector3 direction)
+    public static GameObject RayCastObject(Vector3 fromPosition, Vector3 direction)
     {
         RaycastHit2D hit = Physics2D.Raycast(fromPosition, direction);
         if (hit.collider != null)
@@ -73,7 +74,7 @@ public class GameManager : Singleton<GameManager>
         }
         return null;
     }
-    public GameObject RayCastObject(Vector3 fromPosition, Vector3 direction, float length)
+    public static GameObject RayCastObject(Vector3 fromPosition, Vector3 direction, float length)
     {
         RaycastHit2D hit = Physics2D.Raycast(fromPosition, direction, length);
         if (hit.collider != null)
@@ -82,7 +83,7 @@ public class GameManager : Singleton<GameManager>
         }
         return null;
     }
-    public GameObject RayCastObject(Vector3 fromPosition, Vector3 direction, float length, LayerMask layer)
+    public static GameObject RayCastObject(Vector3 fromPosition, Vector3 direction, float length, LayerMask layer)
     {
         RaycastHit2D hit = Physics2D.Raycast(fromPosition, direction, length, layer);
         if (hit.collider != null)
@@ -91,23 +92,62 @@ public class GameManager : Singleton<GameManager>
         }
         return null;
     }
-    public GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition)
+    public static GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition)
     {
-        Vector3 direction = GetDirectionVector(fromPosition, toPosition);
+        Vector3 direction = Instance.GetDirectionVector(fromPosition, toPosition);
         GameObject destinateObject = RayCastObject(fromPosition, direction, Vector3.Distance(fromPosition, toPosition));
         return destinateObject;
     }
-    public GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition, float length)
+    public static GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition, float length)
     {
-        Vector3 direction = GetDirectionVector(fromPosition, toPosition);
+        Vector3 direction = Instance.GetDirectionVector(fromPosition, toPosition);
         GameObject destinateObject = RayCastObject(fromPosition, direction, length);
         return destinateObject;
     }
-    public GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition, LayerMask layer)
+    public static GameObject RayCastToObject(Vector3 fromPosition, Vector3 toPosition, LayerMask layer)
     {
-        Vector3 direction = GetDirectionVector(fromPosition, toPosition);
+        Vector3 direction = Instance.GetDirectionVector(fromPosition, toPosition);
         GameObject destinateObject = RayCastObject(fromPosition, direction, Vector3.Distance(fromPosition, toPosition), layer);
         return destinateObject;
+    }
+
+    public static GameObject CircleCast(Vector3 origin, float radius, Vector3 direction)
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(origin, radius, direction);
+        if(hit.collider != null)
+        {
+            return hit.collider.gameObject;
+        }
+        return null;
+    }
+    public static GameObject CircleCast(Vector3 origin, float radius, Vector3 direction, float distance, LayerMask layer)
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(origin, radius, direction, distance, layer);
+        if (hit.collider != null)
+        {
+            return hit.collider.gameObject;
+        }
+        return null;
+    }
+    public static List<GameObject> CircleCastAll(Vector3 origin, float radius, Vector3 direction, float distance)
+    {
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(origin, radius, direction, distance);
+        List<GameObject> hitObjects = new List<GameObject>();
+        foreach(RaycastHit2D hit in hits)
+        {
+            hitObjects.Add(hit.collider.gameObject);
+        }
+        return hitObjects;
+    }
+    public static List<GameObject> CircleCastAll(Vector3 origin, float radius, Vector3 direction, float distance, LayerMask layer)
+    {
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(origin, radius, direction, distance, layer);
+        List<GameObject> hitObjects = new List<GameObject>();
+        foreach (RaycastHit2D hit in hits)
+        {
+            hitObjects.Add(hit.collider.gameObject);
+        }
+        return hitObjects;
     }
     #endregion
     #region Linecasting
@@ -155,38 +195,65 @@ public class GameManager : Singleton<GameManager>
         }
         return false;
     }
-    public static int GetDestinationIndex(Transform transform, List<Transform> destinations)
+    public static int GetCurrentPosIndex(Transform transform, List<Transform> destinations)
     {
+        float roundedX = (float)Math.Round(transform.position.x, 2);
+        float roundedY = (float)Math.Round(transform.position.y, 2);
+        Vector2 roundedPos = new Vector2(roundedX, roundedY);
         for (int i = 0; i < destinations.Count; i++)
         {
-            if (destinations[i] == transform)
+            Vector2 currentDestination = destinations[i].position;
+            float roundedDesX = (float)Math.Round(currentDestination.x, 2);
+            float roundedDesY = (float)Math.Round(currentDestination.y, 2);
+            currentDestination = new Vector2(roundedDesX, roundedDesY);
+            if (destinations[i] == transform || roundedPos == currentDestination)
             {
                 return i;
+            }
+            else if (i - 1 >= 0)
+            {
+                Vector2 lastDestination = destinations[i - 1].position;
+                float roundedLastDesX = (float)Math.Round(lastDestination.x, 2);
+                float roundedLastDesY = (float)Math.Round(lastDestination.y, 2);
+                lastDestination = new Vector2(roundedLastDesX, roundedLastDesY);
+                bool isBetweenDestinationX = currentDestination.x >= transform.position.x &&
+                    transform.position.x >= lastDestination.x;
+                bool isBetwwenDestinationY = currentDestination.y >= transform.position.y &&
+                    transform.position.y >= lastDestination.y;
+                if (isBetweenDestinationX && isBetwwenDestinationY)
+                {
+                    Debug.Log(i);
+                    return i;
+                }
             }
         }
         return -1;
     }
     public static int GetNextDestinationIndex(CharacterController controller)
     {
-        int index = GetDestinationIndex(controller.transform, Instance.Destinations);
-        controller.GetComponent<Collider2D>().enabled = false;
-        if (index != -1 && index + 1 < Instance.destinations.Count)
+        int index = GetCurrentPosIndex(controller.transform, Instance.Destinations);
+        if (index != -1 && index < Instance.destinations.Count - 1)
         {
             for (int i = index + 1; i < Instance.destinations.Count; i++)
             {
                 bool isBlocked = controller.CheckPathIsBlocked(Instance.destinations[index].position, Instance.destinations[i].position);
                 if (!isBlocked)
                 {
-                    controller.GetComponent<Collider2D>().enabled = true;
+                    Debug.Log("Found: "+i);
                     return i;
                 }
             }
-            controller.GetComponent<Collider2D>().enabled = true;
+            Debug.Log(-1);
+            return -1;
+        }
+        else if(index == Instance.destinations.Count - 1)
+        {
+            Debug.Log(-1 + "(2)");
             return -1;
         }
         else
         {
-            controller.GetComponent<Collider2D>().enabled = true;
+            Debug.Log(0);
             return 0;
         }
     }
@@ -226,7 +293,8 @@ public class GameManager : Singleton<GameManager>
     #region State Handle
     public static bool isWin()
     {
-        if(Instance.destinations[Instance.destinations.Count - 1].GetComponent<CharacterController>() != null)
+        int playerIndex = GetCurrentPosIndex(Instance.Player.transform, Instance.destinations);
+        if (playerIndex == Instance.destinations.Count -1)
         {
             Instance.gameState = GameState.win;
             UnlockNextLevel();
@@ -253,6 +321,17 @@ public class GameManager : Singleton<GameManager>
     {
         int result = Instance.mapDatas.IndexOf(MapEditor.Instance.currentMap) + 1;
         return result;
+    }
+    #endregion
+    #region Hit Handler
+    public void OnHitCallBack(ref float timer, in float maxTime, Action action)
+    {
+        timer += Time.deltaTime;
+        if(timer >= maxTime)
+        {
+            action();
+            timer = 0;
+        }
     }
     #endregion
     public enum GameState {menu, play, pause, win, gameover }

@@ -29,10 +29,10 @@ public class Rock : Obstacle
 
     protected override void OnHit(GameObject beenHitObject)
     {
-        if(beenHitObject.GetComponent<CharacterController>() != null)
+        CharacterController characterController = beenHitObject.GetComponent<CharacterController>();
+        if (characterController != null)
         {
-            ObjectPool pool = CharacterPoolParty.Instance.Party.GetPool(beenHitObject);
-            pool.GetBackToPool(beenHitObject);
+            characterController.Interact();
             if(IsChildRock())
             {
                 bool isHitCharacter = beenHitObject.tag == "Enemy" || beenHitObject.tag == "Player";

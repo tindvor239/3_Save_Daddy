@@ -278,6 +278,7 @@ MonoBehaviour:
   mainTransform: {fileID: 6351393589669881010}
   isLoopingPin: 0
   unpinDuration: 0.8
+  collider: {fileID: 0}
   anchor: {fileID: 6351393591205928743}
   forward: {fileID: 6351393591161881215}
   lockers:

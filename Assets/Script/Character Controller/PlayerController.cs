@@ -106,23 +106,11 @@ public class PlayerController : CharacterController
     {
         yield return new WaitForSeconds(moveDuration);
         StartMoveToDestination(destination);
-        StartCoroutine(CheckMoveCondition(moveDuration));
     }
     private void StartMoveToDestination(Transform destination)
     {
-        int index = GameManager.GetDestinationIndex(destination, GameManager.Instance.Destinations);
-        if (index != -1)
-        {
-            GameManager.Instance.PassedDestinations.Add(GameManager.Instance.Destinations[index]);
-            GameManager.Instance.Destinations[index] = transform;
-            Move(destination.position, Ease.Linear);
-            if (index > 0)
-            {
-                index = GameManager.GetDestinationIndex(transform, GameManager.Instance.Destinations);
-                GameManager.Instance.Destinations[index] = GameManager.Instance.PassedDestinations[0];
-                GameManager.Instance.PassedDestinations.Remove(GameManager.Instance.Destinations[index]);
-            }
-        }
+        Move(destination.position, Ease.Linear);
+        StartCoroutine(OnMovedToDestination(moveDuration));
     }
     private void MoveCamera()
     {
@@ -173,7 +161,7 @@ public class PlayerController : CharacterController
         }
         return false;
     }
-    private IEnumerator CheckMoveCondition(float duration)
+    private IEnumerator OnMovedToDestination(float duration)
     {
         yield return new WaitForSeconds(duration);
         if(!GameManager.isWin())

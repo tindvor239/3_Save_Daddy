@@ -130,7 +130,7 @@ public class EnemyController : CharacterController
     private IEnumerator MoveToDestination(Transform destination)
     {
         yield return new WaitForSeconds(moveDuration);
-        int index = GameManager.GetDestinationIndex(destination, destinations);
+        int index = GameManager.GetCurrentPosIndex(destination, destinations);
         if (index != -1)
         {
             if (!passedDestinations.Contains(destinations[index]))
@@ -142,7 +142,7 @@ public class EnemyController : CharacterController
             Rotate(destination.position);
             if (index > 0)
             {
-                index = GameManager.GetDestinationIndex(transform, destinations);
+                index = GameManager.GetCurrentPosIndex(transform, destinations);
                 destinations[index] = passedDestinations[0];
                 passedDestinations.Remove(destinations[index]);
             }

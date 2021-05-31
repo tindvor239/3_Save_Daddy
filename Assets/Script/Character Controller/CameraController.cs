@@ -72,12 +72,16 @@ public class CameraController : CharacterController
     }
     private float GetGreatestDistance()
     {
-        Bounds bounds = new Bounds(targets[0].position, Vector3.zero);
-        for(int i = 0; i < targets.Count; i++)
+        if(targets[0] != null)
         {
-            bounds.Encapsulate(targets[i].position);
+            Bounds bounds = new Bounds(targets[0].position, Vector3.zero);
+            for(int i = 0; i < targets.Count; i++)
+            {
+                bounds.Encapsulate(targets[i].position);
+            }
+            return bounds.size.x;
         }
-        return bounds.size.x;
+        return 0;
     }
     private void GetTargets()
     {

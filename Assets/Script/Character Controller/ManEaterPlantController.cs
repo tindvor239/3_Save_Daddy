@@ -28,11 +28,19 @@ public class ManEaterPlantController : EnemyController
     }
     protected GameObject CastCircle()
     {
-        RaycastHit2D hit;
-        hit = Physics2D.CircleCast(transform.position, attackRange, transform.right, attackRange, 1 << LayerMask.NameToLayer("Player"));
-        if(hit.collider != null)
+        GameObject hitObject;
+        hitObject = GameManager.CircleCast(transform.position, attackRange, transform.right, 0, 1 << LayerMask.NameToLayer("Default"));
+        if(hitObject == null)
         {
-            return hit.collider.gameObject;
+            hitObject = GameManager.CircleCast(transform.position, attackRange, transform.right, 0, 1 << LayerMask.NameToLayer("Pin"));
+            if (hitObject == null)
+            {
+                hitObject = GameManager.CircleCast(transform.position, attackRange, transform.right, 0, 1 << LayerMask.NameToLayer("Player"));
+                if(hitObject != null)
+                {
+                    return hitObject;
+                }
+            }
         }
         return null;
     }

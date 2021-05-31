@@ -82,7 +82,7 @@ public class GameController : Singleton<GameController>
     #region Inputs
     public static GameObject GetObjectByMouseRayCast()
     {
-        return GameManager.Instance.RayCastObject(GetMousePosition(), Vector3.forward, Mathf.Infinity, 1 << LayerMask.NameToLayer("Pin"));
+        return GameManager.RayCastObject(GetMousePosition(), Vector3.forward, Mathf.Infinity, 1 << LayerMask.NameToLayer("Pin"));
     }
     public static Vector3 GetMousePosition()
     {

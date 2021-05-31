@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using DG.Tweening;
+using System.Collections;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class ReleasePin : Pin
@@ -23,8 +23,37 @@ public class ReleasePin : Pin
             if (GameManager.Instance.IsBlocked(lockers[0].position, lockers[1].position, 1 << LayerMask.NameToLayer("Pin")) == false)
             {
                 GameController.Instance.Move(pinTransform, forward.transform.position, unpinDuration);
+                StartCoroutine(Disapear(1f));
             }
             collider.enabled = true;
+        }
+    }
+
+    private void OnEnable()
+    {
+        if(gameObject.activeInHierarchy != true)
+        {
+            VisiblePin(true);
+        }
+    }
+
+    private IEnumerator Disapear(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        VisiblePin(false);
+    }
+    private void VisiblePin(bool isVisible)
+    {
+        Transform parent = gameObject.transform.parent;
+        SpriteRenderer[] sprites = parent.GetComponentsInChildren<SpriteRenderer>();
+        Collider2D[] colliders = parent.GetComponentsInChildren<Collider2D>();
+        foreach (SpriteRenderer sprite in sprites)
+        {
+            sprite.enabled = isVisible;
+        }
+        foreach(Collider2D collider in colliders)
+        {
+            collider.enabled = isVisible;
         }
     }
 }

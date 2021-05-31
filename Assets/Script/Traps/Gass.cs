@@ -7,7 +7,7 @@ public class Gass : Trap
     [SerializeField]
     private Transform[] points = new Transform[2];
     private float timer = 0;
-    private float maxTimer = 0.15f;
+    private static float maxTimer = 0.2f;
     protected override void Awake()
     {
         base.Awake();
@@ -21,12 +21,7 @@ public class Gass : Trap
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= maxTimer && isDisarmed == false)
-        {
-            CheckHit();
-            timer = 0;
-        }
+        GameManager.Instance.OnHitCallBack(ref timer, in maxTimer, CheckHit);
     }
     private void CheckHit()
     {
@@ -37,7 +32,7 @@ public class Gass : Trap
         }
         else
         {
-            GameObject beenHitObject = GameManager.Instance.RayCastToObject(points[0].position, points[1].position);
+            GameObject beenHitObject = GameManager.RayCastToObject(points[0].position, points[1].position);
             if(beenHitObject != null)
             {
                 OnHit(beenHitObject);

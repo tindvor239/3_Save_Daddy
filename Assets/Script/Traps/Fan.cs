@@ -69,14 +69,13 @@ public class Fan : Trap
     }
     private GameObject RayCastingToObject()
     {
-        GameManager gameManager = GameManager.Instance;
-        GameObject beenHitObject = gameManager.RayCastToObject(transform.position, target.position, 1 << LayerMask.NameToLayer("Pin"));
+        GameObject beenHitObject = GameManager.RayCastToObject(transform.position, target.position, 1 << LayerMask.NameToLayer("Pin"));
         if (beenHitObject == null)
         {
-            beenHitObject = gameManager.RayCastToObject(transform.position, target.position, 1 << LayerMask.NameToLayer("Player"));
+            beenHitObject = GameManager.RayCastToObject(transform.position, target.position, 1 << LayerMask.NameToLayer("Player"));
             if (beenHitObject == null)
             {
-                beenHitObject = gameManager.RayCastToObject(transform.position, target.position, 1 << LayerMask.NameToLayer("Enemy"));
+                beenHitObject = GameManager.RayCastToObject(transform.position, target.position, 1 << LayerMask.NameToLayer("Enemy"));
             }
         }
         return beenHitObject;
