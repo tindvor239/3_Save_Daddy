@@ -1,0 +1,62 @@
+
+Shark.png
+size: 688,204
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+body
+  rotate: false
+  xy: 0, 0
+  size: 359, 204
+  orig: 361, 204
+  offset: 1, 0
+  index: -1
+eyes_angry
+  rotate: false
+  xy: 522, 1
+  size: 86, 71
+  orig: 93, 74
+  offset: 2, 2
+  index: -1
+eyes_die
+  rotate: true
+  xy: 608, 5
+  size: 86, 71
+  orig: 93, 74
+  offset: 2, 2
+  index: -1
+fin
+  rotate: false
+  xy: 436, 26
+  size: 86, 41
+  orig: 88, 43
+  offset: 1, 1
+  index: -1
+jaw_low
+  rotate: true
+  xy: 490, 72
+  size: 132, 78
+  orig: 135, 80
+  offset: 2, 1
+  index: -1
+palate
+  rotate: true
+  xy: 568, 91
+  size: 113, 119
+  orig: 113, 119
+  offset: 0, 0
+  index: -1
+tail
+  rotate: true
+  xy: 359, 67
+  size: 137, 131
+  orig: 150, 133
+  offset: 11, 1
+  index: -1
+tongue
+  rotate: false
+  xy: 359, 12
+  size: 77, 55
+  orig: 79, 57
+  offset: 1, 1
+  index: -1
