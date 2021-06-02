@@ -14,6 +14,8 @@ public class UIController : Singleton<UIController>
     private UILevelManager levelManager;
     [SerializeField]
     private UILevelSkip levelSkip;
+    [SerializeField]
+    private UIMapProcessing mapProcessing;
 
     private GameManager gameManager;
     private CharacterPoolParty characterParty;
@@ -49,23 +51,22 @@ public class UIController : Singleton<UIController>
     public void ShowGameplayUI(bool isActive)
     {
         GameManager.State = GameManager.GameState.play;
-        ViewManager.ShowUI("MENU_UI", !isActive);
-        ViewManager.ShowUI("WIN_UI", !isActive);
-        ViewManager.ShowUI("LEVELS_UI", !isActive);
-        ViewManager.ShowUI("LUCKYSPIN_UI", !isActive);
         ViewManager.ShowUI("GAMEPLAY_UI", isActive);
     }
 
     public void Play(bool isActive)
     {
-        ShowGameplayUI(isActive);
+        ShowProcessUI(isActive);
+        mapProcessing.Process();
         Load(null);
     }
     public void Retry()
     {
         GameManager.Instance.Player.state = CharacterController.CharacterState.idle;
-        ShowGameplayUI(true);
+        GameManager.Instance.Player.Stop();
         ShowGameOverUI(false);
+        ShowProcessUI(true);
+        mapProcessing.Process();
         GameManager.State = GameManager.GameState.play;
         Load(editor.currentMap);
     }
@@ -85,11 +86,7 @@ public class UIController : Singleton<UIController>
             GetNextLevel();
         }
         editor.Load();
-        gameplay.OnShowGameplay();
-        GetPlayerController();
-        GetEnemyControllers();
-        SpawnObstaclesOnPlay();
-        Invoke("MovePlayer", 0.5f);
+        StartCoroutine(LoadLevelOnTime());
     }
 
     public void ShowSettingUI(bool isActive)
@@ -112,16 +109,18 @@ public class UIController : Singleton<UIController>
     }
     public void ShowWinUI(bool isActive)
     {
-        GameManager.State = GameManager.GameState.win;
         ViewManager.ShowUI("WIN_UI", isActive);
-        processInfo.OnShowProcess();
+        if(isActive)
+        {
+            GameManager.State = GameManager.GameState.win;
+            processInfo.OnShowProcess();
+        }
     }
     public void ShowLevelUpUI(bool isActive)
     {
         GameManager.State = GameManager.GameState.pause;
         ViewManager.ShowUI("GAMEPLAY_UI", !isActive);
         ViewManager.ShowUI("LEVELUP_UI", isActive);
-        Debug.Log("Loading Map");
     }
     public void ShowLevelUI(bool isActive)
     {
@@ -133,18 +132,35 @@ public class UIController : Singleton<UIController>
     {
         ViewManager.ShowUI("LUCKYSPIN_UI", isActive);
         ViewManager.ShowUI("WIN_UI", !isActive);
+        if(!isActive == false)
+        {
+            Debug.Log("Show Chest Room");
+        }
         ViewManager.ShowUI("GAMEPLAY_UI", !isActive);
 
         UIChestRoom.Instance.SetupPrize();
         UIChestRoom.SetKeys();
     }
-
-
-    private IEnumerator LoadLevelOnTime(float duration)
+    public void ShowProcessUI(bool isActive)
     {
-        yield return new WaitForSeconds(duration);
-        ShowLevelUpUI(false);
-        Load(null);
+        ViewManager.ShowUI("MENU_UI", false);
+        ViewManager.ShowUI("WIN_UI", false);
+        ViewManager.ShowUI("LEVELS_UI", false);
+        ViewManager.ShowUI("LUCKYSPIN_UI", false);
+        ViewManager.ShowUI("PROCESS_UI", isActive);
+    }
+
+    private IEnumerator LoadLevelOnTime()
+    {
+        while(editor.Process != 100 || editor.isDoneClear == false)
+        {
+            yield return null;
+        }
+        gameplay.OnShowGameplay();
+        GetPlayerController();
+        GetEnemyControllers();
+        SpawnObstaclesOnPlay();
+        Invoke("MovePlayer", 0.5f);
     }
     private bool ShowAds()
     {
@@ -171,7 +187,7 @@ public class UIController : Singleton<UIController>
             {
                 foreach(GameObject gameObject in pool.PooledObjects)
                 {
-                    if(gameObject.activeInHierarchy)
+                    if(gameObject != null && gameObject.activeInHierarchy)
                     {
                         gameManager.Enemies.Add(gameObject.GetComponent<EnemyController>());
                     }
@@ -184,6 +200,7 @@ public class UIController : Singleton<UIController>
         gameManager.Player = characterParty.PlayerPool.PooledObjects[0].GetComponent<PlayerController>();
         PlayerController player = gameManager.Player;
         cam.Player = player;
+        Debug.Log(player);
         Vector3 newPosition = new Vector3(player.transform.position.x, player.transform.position.y, cam.gameObject.transform.position.z);
         cam.gameObject.transform.position = newPosition;
         gameManager.Skins.AddRange(player.Skeleton.Skeleton.Data.Skins);

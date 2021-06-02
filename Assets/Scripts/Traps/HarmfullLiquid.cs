@@ -28,7 +28,6 @@ public class HarmfullLiquid : Liquid
                 {
                     CharacterController character = hitObject.GetComponent<CharacterController>();
                     character.Interact();
-                    return;
                 }
             }
         }

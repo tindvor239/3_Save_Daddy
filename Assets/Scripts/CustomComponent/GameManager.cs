@@ -180,6 +180,7 @@ public class GameManager : Singleton<GameManager>
         RaycastHit2D hit = Physics2D.Linecast(fromPosition, toPosition, layerIndex);
         if (hit.collider != null)
         {
+            Debug.Log(hit.collider.gameObject);
             if (hit.collider.transform.position == toPosition)
             {
                 return false;
@@ -210,13 +211,21 @@ public class GameManager : Singleton<GameManager>
         float roundedX = (float)Math.Round(transform.position.x, 2);
         float roundedY = (float)Math.Round(transform.position.y, 2);
         Vector2 roundedPos = new Vector2(roundedX, roundedY);
+        Debug.Log(roundedPos);
         for (int i = 0; i < destinations.Count; i++)
         {
             Vector2 currentDestination = destinations[i].position;
             float roundedDesX = (float)Math.Round(currentDestination.x, 2);
             float roundedDesY = (float)Math.Round(currentDestination.y, 2);
             currentDestination = new Vector2(roundedDesX, roundedDesY);
+            Debug.Log(currentDestination);
             if (destinations[i] == transform || roundedPos == currentDestination)
+            {
+                Debug.Log(i);
+                return i;
+            }
+            else if((roundedPos.x == currentDestination.x && roundedPos.y != currentDestination.y)
+                || (roundedPos.x != currentDestination.x && roundedPos.y == currentDestination.y))
             {
                 return i;
             }
@@ -232,8 +241,8 @@ public class GameManager : Singleton<GameManager>
                     transform.position.y >= lastDestination.y;
                 if (isBetweenDestinationX && isBetwwenDestinationY)
                 {
-                    Debug.Log(i);
-                    return i;
+                    Debug.Log(i-1);
+                    return i-1;
                 }
             }
         }
@@ -242,16 +251,14 @@ public class GameManager : Singleton<GameManager>
     public int GetNextDestinationIndex(CharacterController controller)
     {
         int index = GetCurrentPosIndex(controller.transform, Instance.Destinations);
+        Debug.Log(index);
         if (index != -1 && index < Instance.destinations.Count - 1)
         {
-            for (int i = index + 1; i < Instance.destinations.Count; i++)
+            bool isBlocked = controller.CheckPathIsBlocked(controller.transform.position, Instance.destinations[index + 1].position);
+            if (!isBlocked)
             {
-                bool isBlocked = controller.CheckPathIsBlocked(Instance.destinations[index].position, Instance.destinations[i].position);
-                if (!isBlocked)
-                {
-                    Debug.Log("Found: "+i);
-                    return i;
-                }
+                Debug.Log("Found: "+ index + 1);
+                return index + 1;
             }
             Debug.Log(-1);
             return -1;
@@ -306,9 +313,9 @@ public class GameManager : Singleton<GameManager>
         int playerIndex = GetCurrentPosIndex(Instance.Player.transform, Instance.destinations);
         if (playerIndex == Instance.destinations.Count -1)
         {
-            Instance.gameState = GameState.win;
             UnlockNextLevel();
             UIController.Instance.ShowWinUI(true);
+            Debug.Log("In");
             return true;
         }
         return false;

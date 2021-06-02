@@ -15,7 +15,6 @@ public class GameController : Singleton<GameController>
     }
     private void Start()
     {
-        //player.MovePlayerToNextDestination();
         player = GameManager.Instance.Player;
     }
     private void Update()

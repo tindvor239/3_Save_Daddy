@@ -73,7 +73,10 @@ public class EnemyController : CharacterController
     {
         foreach(Transform destination in destinations)
         {
-            Destroy(destination.gameObject);
+            if(enemyState == EnemyState.partrolling)
+            {
+                Destroy(destination.gameObject);
+            }
         }
     }
     protected override void OnEnable()

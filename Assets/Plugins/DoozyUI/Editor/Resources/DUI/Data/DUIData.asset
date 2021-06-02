@@ -72,6 +72,7 @@ MonoBehaviour:
       - NO_COIN_UI
       - POP_UP_BOOST_UI
       - POP_UP_QUEST_UI
+      - PROCESS_UI
       - QUIT_UI
       - RATE_UI
       - SETTINGS_UI

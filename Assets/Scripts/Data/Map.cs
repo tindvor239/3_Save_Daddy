@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.CustomComponents;
@@ -20,11 +20,18 @@ public class Map : Data
         #endif
         Debug.Log("Saved");
     }
-    public void Load(List<PoolParty> poolParties)
+    public void Load(List<PoolParty> poolParties, GameManager gameManager)
     {
         if(isUnlocked)
         {
-            UnpackAllModels(packages, pinPackages, poolParties);
+            if(Application.isPlaying)
+            {
+                MapEditor.Instance.StartCoroutine(UnpackAllModels(packages, pinPackages, poolParties, gameManager));
+            }
+            else
+            {
+                UnpackAllModelsInstance(packages, pinPackages, poolParties);
+            }
         }
     }
 }

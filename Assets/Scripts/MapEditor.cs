@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.CustomComponents;
+using System.Collections;
 
 public class MapEditor : Singleton<MapEditor>
 {
@@ -19,6 +20,10 @@ public class MapEditor : Singleton<MapEditor>
     private PathPoolParty pathPoolParty;
     [SerializeField]
     private LandPoolParty landPoolParty;
+
+    public bool isDoneClear = false;
+    public int processValue = 0;
+    public int processMaxValue = 0;
     #region Properties
     public CharacterPoolParty CharacterPoolParty { get => characterPoolParty; }
     public ObstaclePoolParty ObstaclePoolParty { get => obstaclePoolParty; }
@@ -27,6 +32,20 @@ public class MapEditor : Singleton<MapEditor>
     public LandPoolParty LandPoolParty { get => landPoolParty; }
     public GameManager GameManager { get => gameManager; }
     public List<PoolParty> PoolParties { get => GetPoolParties(); }
+    public int Process
+    {
+        get
+        {
+            try
+            {
+                return ((processValue * 100) / processMaxValue);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+    }
     #endregion
     private List<PoolParty> GetPoolParties()
     {
@@ -51,6 +70,8 @@ public class MapEditor : Singleton<MapEditor>
     {
         if(currentMap != null)
         {
+            processMaxValue = currentMap.packages.Count + currentMap.pinPackages.Count - 2;
+            processValue = 0;
             foreach (PoolParty poolParty in PoolParties)
             {
                 foreach (ObjectPool pool in poolParty.Pools)
@@ -59,8 +80,14 @@ public class MapEditor : Singleton<MapEditor>
                 }
             }
             Clear();
-            currentMap.Load(PoolParties);
-            gameManager.GetDestinations();
+            if (Application.isPlaying)
+            {
+                StartCoroutine(OnWaitingClearModels());
+            }
+            else
+            {
+                currentMap.Load(PoolParties, gameManager);
+            }
         }
         else
         {
@@ -70,29 +97,72 @@ public class MapEditor : Singleton<MapEditor>
     public void Clear()
     {
         List<PoolParty> poolParties = PoolParties;
-        List<Model> models = FindObjectsOfType<Model>().ToList();
-        List<Model> removeModels = new List<Model>();
-        foreach(PoolParty poolParty in poolParties)
+        isDoneClear = false;
+        if(Application.isPlaying)
         {
-            foreach(ObjectPool pool in poolParty.Pools)
+            StartCoroutine(OnClearingModels(poolParties));
+        }
+        else
+        {
+            Debug.Log("Editor Mode");
+            foreach (PoolParty poolParty in poolParties)
             {
-                foreach(GameObject gameObject in pool.PooledObjects)
+                foreach (ObjectPool pool in poolParty.Pools)
                 {
-                    GetModelsBackToPool(ref models, ref removeModels, gameObject);
+                    foreach (GameObject gameObject in pool.PooledObjects)
+                    {
+                        pool.GetBackToPool(gameObject);
+                    }
                 }
             }
-        }
-        foreach(Model model in removeModels)
-        {
-            if(models.Contains(model))
+
+            List<Model> models = FindObjectsOfType<Model>().Where(f => f.gameObject.activeInHierarchy).ToList();
+            if (models.Count != 0)
             {
-                models.Remove(model);
+                ClearModel(models);
+                //Clear Models NOT in pool
             }
         }
-        foreach(Model remainModel in models)
+    }
+    private IEnumerator OnWaitingClearModels()
+    {
+        while(isDoneClear == false)
+        {
+            yield return null;
+        }
+        currentMap.Load(PoolParties, gameManager);
+    }
+    private IEnumerator OnClearingModels(List<PoolParty> poolParties)
+    {
+        while (isDoneClear == false)
+        {
+            foreach (PoolParty poolParty in poolParties)
+            {
+                foreach (ObjectPool pool in poolParty.Pools)
+                {
+                    foreach (GameObject gameObject in pool.PooledObjects)
+                    {
+                        pool.GetBackToPool(gameObject);
+                        yield return null;
+                    }
+                }
+            }
+
+            List<Model> models = FindObjectsOfType<Model>().Where(f => f.gameObject.activeInHierarchy).ToList();
+            if (models.Count != 0)
+            {
+                ClearModel(models);
+                //Clear Models NOT in pool
+            }
+            isDoneClear = true;
+        }
+    }
+    private void ClearModel(List<Model> models)
+    {
+        foreach (Model remainModel in models)
         {
             bool isCamera = remainModel is CameraController;
-            if(!isCamera)
+            if (!isCamera)
             {
                 if (remainModel is Pin)
                 {
@@ -103,27 +173,6 @@ public class MapEditor : Singleton<MapEditor>
                 {
                     DestroyImmediate(remainModel.gameObject);
                 }
-            }
-        }
-    }
-
-    private static void GetModelsBackToPool(ref List<Model> models, ref List<Model> removeModels, GameObject gameObject)
-    {
-        foreach (Model model in models)
-        {
-            bool isCamera = model is CameraController;
-            if (!isCamera && model.gameObject.activeInHierarchy && gameObject == model.gameObject)
-            {
-                if (model is Pin)
-                {
-                    Pin pin = (Pin)model;
-                    pin.MainTransform.gameObject.SetActive(false);
-                }
-                else
-                {
-                    model.gameObject.SetActive(false);
-                }
-                removeModels.Add(model);
             }
         }
     }

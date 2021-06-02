@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.CustomComponents;
 
@@ -27,7 +28,7 @@ public abstract class Data : ScriptableObject
             }
         }
     }
-    public void UnpackAllModels(List<Package> packages, List<PinPackage> pinPackages, List<PoolParty> poolParties)
+    public void UnpackAllModelsInstance(List<Package> packages, List<PinPackage> pinPackages, List<PoolParty> poolParties)
     {
         foreach (Package package in packages)
         {
@@ -37,14 +38,38 @@ public abstract class Data : ScriptableObject
                 SpawnPooledObject(package, pool);
             }
         }
+        foreach (PinPackage pinPackage in pinPackages)
+        {
+            ObjectPool pool = GetPool(pinPackage, poolParties);
+            if (pool != null)
+            {
+                SpawnPooledObject(pinPackage, pool);
+            }
+        }
+    }
+    public IEnumerator UnpackAllModels(List<Package> packages, List<PinPackage> pinPackages, List<PoolParty> poolParties, GameManager gameManager)
+    {
+        foreach (Package package in packages)
+        {
+            ObjectPool pool = GetPool(package, poolParties);
+            if (pool != null)
+            {
+                SpawnPooledObject(package, pool);
+                MapEditor.Instance.processValue++;
+                yield return null;
+            }
+        }
         foreach(PinPackage pinPackage in pinPackages)
         {
             ObjectPool pool = GetPool(pinPackage, poolParties);
             if(pool != null)
             {
                 SpawnPooledObject(pinPackage, pool);
+                MapEditor.Instance.processValue++;
+                yield return null;
             }
         }
+        gameManager.GetDestinations();
     }
 
     private ObjectPool GetPool(Package package, List<PoolParty> poolParties)
