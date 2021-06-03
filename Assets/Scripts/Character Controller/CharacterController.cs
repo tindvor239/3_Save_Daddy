@@ -97,8 +97,11 @@ public class CharacterController : Controller, IInteractable
 
     protected IEnumerator SwitchingAct(AnimationReferenceAsset animation, bool isLooping, float startSecond)
     {
-        yield return new WaitForSeconds(startSecond);
-        ViewManager.Acting(skeleton, animation, isLooping, 1);
+        if(gameObject.activeInHierarchy)
+        {
+            yield return new WaitForSeconds(startSecond);
+            ViewManager.Acting(skeleton, animation, isLooping, 1);
+        }
     }
     protected IEnumerator SwitchingState(CharacterState state, float startSecond)
     {

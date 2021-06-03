@@ -31,16 +31,27 @@ public class ReleasePin : Pin
 
     private void OnEnable()
     {
-        if(gameObject.activeInHierarchy != true)
-        {
-            VisiblePin(true);
-        }
+        StartCoroutine(SetVisible());
     }
 
     private IEnumerator Disapear(float duration)
     {
         yield return new WaitForSeconds(duration);
         VisiblePin(false);
+    }
+    private IEnumerator SetVisible()
+    {
+        if(MapEditor.Instance != null)
+        {
+            while(MapEditor.Instance.Process < 100)
+            {
+                yield return null;
+            }
+            Debug.Log("Visible");
+            VisiblePin(true);
+            gameObject.transform.parent.localPosition = new Vector3();
+            isAlreadyUnpin = false;
+        }
     }
     private void VisiblePin(bool isVisible)
     {

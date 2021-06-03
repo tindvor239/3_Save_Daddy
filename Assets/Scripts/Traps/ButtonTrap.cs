@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,7 +41,18 @@ public class ButtonTrap : Trap
         isDisarmed = false;
         timer = 0;
         arrows = new List<Arrow>();
-        arrows = FindObjectsOfType<Arrow>().Where(f => f.gameObject.activeInHierarchy).ToList();
+        StartCoroutine(GetArrows());
+    }
+    private IEnumerator GetArrows()
+    {
+        if(MapEditor.Instance != null)
+        {
+            while(MapEditor.Instance.Process < 100)
+            {
+                yield return null;
+            }
+            arrows = FindObjectsOfType<Arrow>().Where(f => f.gameObject.activeInHierarchy).ToList();
+        }
     }
 #if UNITY_EDITOR
     private void OnDrawGizmos()

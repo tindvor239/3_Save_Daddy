@@ -165,5 +165,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   liquidPool: {fileID: 0}
-  radius: 0.5
-  moveSpeed: 2
+  radius: 0.25
+  moveSpeed: 1.2
