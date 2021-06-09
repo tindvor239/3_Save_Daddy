@@ -7,8 +7,6 @@ using DG.Tweening;
 public class EnemyController : CharacterController
 {
     [SerializeField]
-    protected List<Transform> destinations = new List<Transform>();
-    [SerializeField]
     protected List<Transform> passedDestinations = new List<Transform>();
     [SerializeField]
     protected EnemyState enemyState;
@@ -73,7 +71,7 @@ public class EnemyController : CharacterController
     {
         foreach(Transform destination in destinations)
         {
-            if(enemyState == EnemyState.partrolling)
+            if(enemyState == EnemyState.partrolling && destination != null)
             {
                 Destroy(destination.gameObject);
             }
@@ -131,18 +129,15 @@ public class EnemyController : CharacterController
     private Transform GetPath()
     {
         bool pathIsBlocked;
+        Transform player = CheckPathToPlayer();
+        pathIsBlocked = player == null;
+        if(!pathIsBlocked)
+        {
+            return player;
+        }
         switch(enemyState)
         {
             case EnemyState.partrolling:
-                PlayerController player = GameManager.Instance.Player;
-                if(player != null)
-                {
-                    pathIsBlocked = CheckPathIsBlocked(transform.position, player.transform.position);
-                    if(!pathIsBlocked)
-                    {
-                        return player.transform;
-                    }
-                }
                 break;
             default:
                 destinations = FindClosestDestinations();
@@ -159,6 +154,19 @@ public class EnemyController : CharacterController
                     }
                 }
                 break;
+        }
+        return null;
+    }
+    private Transform CheckPathToPlayer()
+    {
+        PlayerController player = GameManager.Instance.Player;
+        if (player != null)
+        {
+            bool pathIsBlocked = CheckPathIsBlocked(transform.position, player.transform.position);
+            if (!pathIsBlocked)
+            {
+                return player.transform;
+            }
         }
         return null;
     }
@@ -262,6 +270,11 @@ public class EnemyController : CharacterController
     {
         yield return new WaitForSeconds(duration);
         Acting(animationSet[1], false);
+        StartCoroutine(ShowGameOverUI());
+    }
+    private IEnumerator ShowGameOverUI()
+    {
+        yield return new WaitForSeconds(1);
         UIController.Instance.ShowGameOverUI(true);
     }
     protected override IEnumerator OnBeenKilled(float duration)

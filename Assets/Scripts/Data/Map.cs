@@ -22,16 +22,16 @@ public class Map : Data
     }
     public void Load(List<PoolParty> poolParties, GameManager gameManager)
     {
-        if(isUnlocked)
-        {
             if(Application.isPlaying)
             {
-                MapEditor.Instance.StartCoroutine(UnpackAllModels(packages, pinPackages, poolParties, gameManager));
+                if(isUnlocked)
+                {
+                    MapEditor.Instance.StartCoroutine(UnpackAllModels(packages, pinPackages, poolParties, gameManager));
+                }
             }
             else
             {
                 UnpackAllModelsInstance(packages, pinPackages, poolParties);
             }
-        }
     }
 }

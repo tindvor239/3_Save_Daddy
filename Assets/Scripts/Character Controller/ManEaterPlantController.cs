@@ -40,6 +40,7 @@ public class ManEaterPlantController : EnemyController
     }
     protected override void OnEnable()
     {
+        base.OnEnable();
         maxTimer = 0.15f;
     }
 
@@ -48,8 +49,7 @@ public class ManEaterPlantController : EnemyController
         GameObject beenHitObject = CastCircle();
         if(beenHitObject != null && beenHitObject.GetComponent<PlayerController>())
         {
-            Kill(1);
-            Invoke("OnMove", actingDelay);
+            StartCoroutine(Kill(0));
         }
         timer = 0;
     }

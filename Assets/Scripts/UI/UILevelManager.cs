@@ -8,15 +8,18 @@ public class UILevelManager : MonoBehaviour
     [SerializeField]
     private Transform levelContent;
     [SerializeField]
-    private GameObject levelDisplayPrefab;
+    private GameObject levelStackPrefab;
     [SerializeField]
     private Text page;
     [SerializeField]
-    private List<Color> lockColors;
-    private List<UILevelDisplay> levelDisplays = new List<UILevelDisplay>();
+    private List<Sprite> lockImages;
+    [SerializeField]
+    private List<StackUIDisplay> levelStacks = new List<StackUIDisplay>();
 
     [SerializeField]
-    private int mapPerPage;
+    private int stackPerPage;
+    [SerializeField]
+    private int mapPerStack;
 
     #region Properties
     public int Page
@@ -28,66 +31,79 @@ public class UILevelManager : MonoBehaviour
         }
         private set => page.text = string.Format("Page - {0}", value + 1);
     }
-    public Color unlockColor { get => lockColors[1]; }
-    public Color lockColor { get => lockColors[0]; }
+    public Sprite lockColor { get => lockImages[0]; }
+    public Sprite unlockColor { get => lockImages[1]; }
+    public Sprite mapNullColor { get => lockImages[2]; }
     #endregion
 
     // Start is called before the first frame update
     private void Start()
     {
         Page = 0;
-        SpawnLevelTiles();
+        InitiateStacks();
     }
 
-    private void SpawnLevelTiles()
+    private void InitiateStacks()
     {
-        List<Map> maps = GameManager.Instance.MapData;
-        int mapsPages = GetPageIndex(maps.Count);
-        for(int i = GetMapStartIndex(); i < mapPerPage; i++)
+        for(int i = 0; i < stackPerPage; i++)
         {
-            GameObject newObject = Instantiate(levelDisplayPrefab, levelContent);
-            UILevelDisplay levelDisplay = newObject.GetComponent<UILevelDisplay>();
-            if(i < maps.Count)
-            {
-                levelDisplay.Initialize(maps[i], (i + 1).ToString(), SetLevelColor(maps[i]));
-            }
-            levelDisplays.Add(levelDisplay);
+            GameObject newObject = Instantiate(levelStackPrefab, levelContent);
+            StackUIDisplay newStack = newObject.GetComponent<StackUIDisplay>();
+            levelStacks.Add(newStack);
+            newStack.Initiate(mapPerStack);
         }
     }
-    private void SetupLevels()
+    private void DisplayStacks(int startIndex)
+    {
+        foreach (StackUIDisplay stackUI in levelStacks)
+        {
+            if(stackUI != null)
+            {
+                List<Map> maps = new List<Map>();
+                List<string> names = new List<string>();
+                GetMapStack(ref startIndex, mapPerStack, maps, names);
+                Debug.Log(startIndex);
+                stackUI.DisplayLevels(maps, names);
+            }
+        }
+    }
+    private void GetMapStack(ref int startIndex, int length, List<Map> result, List<string> mapName)
+    {
+        //int mapsPerPage = mapPerStack * stackPerPage;
+        List<Map> maps = GameManager.Instance.MapData;
+        for (int i = 0; i < length; i++)
+        {
+            Map map = null;
+            int remainMaps = GameManager.Instance.MapData.Count - startIndex;
+            if(remainMaps > 0)
+            {
+                map = maps[startIndex];
+            }
+            result.Add(map);
+            mapName.Add((startIndex + 1).ToString());
+            startIndex++;
+        }
+    }
+    private int MaxPage()
     {
         List<Map> maps = GameManager.Instance.MapData;
-        int startIndex = GetMapStartIndex();
-        for (int i = startIndex; i < startIndex + mapPerPage; i++)
-        {
-            levelDisplays[GetPageIndex(i)].Initialize(maps[i], i.ToString(), SetLevelColor(maps[i]));
-        }
+        return maps.Count / (stackPerPage * mapPerStack);
     }
     private int GetMapStartIndex()
     {
-        return Page * mapPerPage;
+        return Page * mapPerStack;
     }
-    private int GetPageIndex(int mapIndex)
+    
+    public void SetupLevels()
     {
-        return mapIndex / mapPerPage;
+        int startIndex = GetMapStartIndex();
+        DisplayStacks(startIndex);
     }
-    private Color SetLevelColor(Map map)
-    {
-        Color result = Color.red;
-        if (map.isUnlocked)
-        {
-            result = unlockColor;
-        }
-        else
-        {
-            result = lockColor;
-        }
-        return result;
-    }
-
     public void TurnPage(int side)
     {
         Page += side;
+        Page = Mathf.Clamp(Page, 0, MaxPage());
+        Debug.Log(Page);
         SetupLevels();
     }
 }

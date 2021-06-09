@@ -180,7 +180,6 @@ public class GameManager : Singleton<GameManager>
         RaycastHit2D hit = Physics2D.Linecast(fromPosition, toPosition, layerIndex);
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.gameObject);
             if (hit.collider.transform.position == toPosition)
             {
                 return false;
@@ -211,23 +210,23 @@ public class GameManager : Singleton<GameManager>
         float roundedX = (float)Math.Round(transform.position.x, 2);
         float roundedY = (float)Math.Round(transform.position.y, 2);
         Vector2 roundedPos = new Vector2(roundedX, roundedY);
-        Debug.Log(roundedPos);
+        int destinationIndex = -1;
         for (int i = 0; i < destinations.Count; i++)
         {
             Vector2 currentDestination = destinations[i].position;
             float roundedDesX = (float)Math.Round(currentDestination.x, 2);
             float roundedDesY = (float)Math.Round(currentDestination.y, 2);
             currentDestination = new Vector2(roundedDesX, roundedDesY);
-            Debug.Log(currentDestination);
+
             if (destinations[i] == transform || roundedPos == currentDestination)
             {
                 Debug.Log(i);
                 return i;
             }
-            else if((roundedPos.x == currentDestination.x && roundedPos.y != currentDestination.y)
-                || (roundedPos.x != currentDestination.x && roundedPos.y == currentDestination.y))
+            else if ((roundedPos.x == currentDestination.x && roundedPos.y != currentDestination.y && roundedPos.y > currentDestination.y)
+                || (roundedPos.x != currentDestination.x && roundedPos.x > currentDestination.x && roundedPos.y == currentDestination.y))
             {
-                return i;
+                destinationIndex = i;
             }
             else if (i - 1 >= 0)
             {
@@ -239,42 +238,37 @@ public class GameManager : Singleton<GameManager>
                     transform.position.x >= lastDestination.x;
                 bool isBetwwenDestinationY = currentDestination.y >= transform.position.y &&
                     transform.position.y >= lastDestination.y;
+
                 if (isBetweenDestinationX && isBetwwenDestinationY)
                 {
-                    Debug.Log(i-1);
-                    return i-1;
+                    destinationIndex = i - 1;
                 }
             }
         }
-        return -1;
+        return destinationIndex;
     }
     public int GetNextDestinationIndex(CharacterController controller)
     {
         int index = GetCurrentPosIndex(controller.transform, Instance.Destinations);
-        Debug.Log(index);
         if (index != -1 && index < Instance.destinations.Count - 1)
         {
             bool isBlocked = controller.CheckPathIsBlocked(controller.transform.position, Instance.destinations[index + 1].position);
             if (!isBlocked)
             {
-                Debug.Log("Found: "+ index + 1);
+                Debug.Log(index + 1);
                 return index + 1;
             }
-            Debug.Log(-1);
             return -1;
         }
         else if(index == Instance.destinations.Count - 1)
         {
-            Debug.Log(-1 + "(2)");
             return -1;
         }
         else
         {
-            Debug.Log(0);
             return 0;
         }
     }
-    
     public EnemyController GetClosestEnemy()
     {
         EnemyController closestEnemy = null;
@@ -315,7 +309,7 @@ public class GameManager : Singleton<GameManager>
         {
             UnlockNextLevel();
             UIController.Instance.ShowWinUI(true);
-            Debug.Log("In");
+            SetMapStar(3);
             return true;
         }
         return false;
@@ -338,6 +332,13 @@ public class GameManager : Singleton<GameManager>
     {
         int result = Instance.mapDatas.IndexOf(MapEditor.Instance.currentMap) + 1;
         return result;
+    }
+
+    private void SetMapStar(int starAmount)
+    {
+        int mapIndex = mapDatas.IndexOf(MapEditor.Instance.currentMap);
+        string mapName = (mapIndex + 1).ToString();
+        PlayerPrefs.SetInt(mapName, starAmount);
     }
     #endregion
     #region Hit Handler

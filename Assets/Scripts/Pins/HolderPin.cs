@@ -27,6 +27,10 @@ public class HolderPin : Pin
         }
     }
 
+    private void OnEnable()
+    {
+        pinTransform.localPosition = destinations[1].localPosition;
+    }
     private Vector2 FlipFlop()
     {
         for (int i = 0; i < destinations.Length; i++)

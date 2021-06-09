@@ -32,7 +32,7 @@ public class UIToggle : MonoBehaviour
         }
     }
 
-    public void Initialize(Sprite on, Sprite off)
+    public void Initiate(Sprite on, Sprite off)
     {
         spriteTrue = on;
         spriteFalse = off;

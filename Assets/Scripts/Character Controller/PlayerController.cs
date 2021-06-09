@@ -31,7 +31,7 @@ public class PlayerController : CharacterController
     }
     protected override void Action()
     {
-        if (skeleton != null)
+        if (skeleton != null && gameObject.activeInHierarchy)
         {
             switch (state)
             {
@@ -55,9 +55,12 @@ public class PlayerController : CharacterController
     }
     protected override void SwitchAction(AnimationReferenceAsset startAnimation, AnimationReferenceAsset endAnimation)
     {
-        actingDelay = 2;
-        StartCoroutine(SwitchingAct(endAnimation, false, 1));
-        ViewManager.Acting(skeleton, startAnimation, false, 1);
+        if(gameObject.activeInHierarchy)
+        {
+            actingDelay = 2;
+            StartCoroutine(SwitchingAct(endAnimation, false, 1));
+            ViewManager.Acting(skeleton, startAnimation, false, 1);
+        }
     }
 
     public void MovePlayerToNextDestination()
@@ -68,7 +71,7 @@ public class PlayerController : CharacterController
             if (index != -1)
             {
                 alreadyMoveCamera = false;
-                CameraController.Instance.center = CameraController.Instance.RestartCenter();
+                CameraController.Instance.RestartCenter();
                 Vector3 pathPosition = GameManager.Instance.Destinations[index].position;
                 if (!CheckPathIsBlocked(transform.position, pathPosition))
                 {
@@ -81,7 +84,7 @@ public class PlayerController : CharacterController
             }
             else if(alreadyMoveCamera == false)
             {
-                MoveCamera();
+                Invoke("MoveCamera", 0.5f);
                 Invoke("ScareAnimation", actingDelay);
                 alreadyMoveCamera = true;
             }
@@ -119,14 +122,14 @@ public class PlayerController : CharacterController
             if(Math.Round(transform.position.x, 2) == Math.Round(destination.position.x, 2) &&
                 Math.Round(transform.position.y, 2) == Math.Round(destination.position.y, 2))
             {
-                CameraController.Instance.center = CameraController.Instance.GetCenterPoint();
+                CameraController.Instance.ZoomCenterPoint();
                 break;
             }
         }
     }
     private void ScareAnimation()
     {
-        if(IsDanger())
+        if(IsDanger() && gameObject.activeInHierarchy)
         {
             SwitchAction(animationSet[3], animationSet[4]);
             Invoke("ScareAnimation", actingDelay);

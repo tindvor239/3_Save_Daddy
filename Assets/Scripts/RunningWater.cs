@@ -11,27 +11,36 @@ public class RunningWater : MonoBehaviour
     private float speedDivider = 6f;
     [SerializeField]
     private float runningDivider = 20f;
+    float startWidth, startHeight;
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
         material = sprite.material;
-        float width = Screen.width;
-        float widthRatio = transform.localScale.x / width;
-        transform.localScale = new Vector3(widthRatio * width, widthRatio * width, 1);
+        startWidth = sprite.bounds.size.x;
+        startHeight = sprite.bounds.size.y;
     }
     // Update is called once per frame
     private void Update()
     {
-        material.mainTextureOffset -= new Vector2(Time.deltaTime / speedDivider, 0);
-        material.mainTextureOffset = ClampOffset(material.mainTextureOffset);
+        if (GameManager.State == GameManager.GameState.play)
+        {
+            material.mainTextureOffset -= new Vector2(Time.deltaTime / speedDivider, 0);
+            material.mainTextureOffset = ClampOffset(material.mainTextureOffset);
+        }
     }
     void LateUpdate()
     {
-        if(GameManager.Instance.Player != null)
+        if (GameManager.State == GameManager.GameState.play)
         {
-            Vector2 offset = ((Vector2)GameManager.Instance.Player.transform.position - lastPosition) / runningDivider;
-            material.mainTextureOffset += offset;
-            lastPosition = GameManager.Instance.Player.transform.position;
+            float height = Camera.main.orthographicSize * 2;
+            float width = height * Screen.width / Screen.height;
+            transform.localScale = new Vector3(width * 2, height, 1);
+            if (GameManager.Instance.Player != null)
+            {
+                Vector2 offset = ((Vector2)GameManager.Instance.Player.transform.position - lastPosition) / runningDivider;
+                material.mainTextureOffset += offset;
+                lastPosition = GameManager.Instance.Player.transform.position;
+            }
         }
     }
 

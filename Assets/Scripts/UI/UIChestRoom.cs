@@ -65,6 +65,7 @@ public class UIChestRoom : Singleton<UIChestRoom>
             Instance.topPrize.text = result;
         }
     }
+    public Text MoneyText { get => money; }
     public static long Money
     {
         get
@@ -97,7 +98,7 @@ public class UIChestRoom : Singleton<UIChestRoom>
         {
             GameObject newGameObject = Instantiate(boxPrefab, boxParent);
             UIChest newChest = newGameObject.GetComponent<UIChest>();
-            newChest.Initialize(openedBox, normalBox);
+            newChest.Initiate(openedBox, normalBox);
             chests.Add(newChest);
         }
     }
@@ -105,7 +106,7 @@ public class UIChestRoom : Singleton<UIChestRoom>
     {
         foreach(UIToggle key in keys)
         {
-            key.Initialize(this.key, missingKey);
+            key.Initiate(this.key, missingKey);
         }
     }
 

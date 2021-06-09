@@ -47,9 +47,8 @@ public class ReleasePin : Pin
             {
                 yield return null;
             }
-            Debug.Log("Visible");
             VisiblePin(true);
-            gameObject.transform.parent.localPosition = new Vector3();
+            pinTransform.localPosition = new Vector3();
             isAlreadyUnpin = false;
         }
     }

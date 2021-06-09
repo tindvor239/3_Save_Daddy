@@ -5,18 +5,6 @@ using DoozyUI;
 using Spine.Unity;
 public class ViewManager : Singleton<ViewManager>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     #region Movement
     public void MoveOutput(Sequence sequence, Transform moveObject, Vector2 destination, float duration)
     {
@@ -78,6 +66,12 @@ public class ViewManager : Singleton<ViewManager>
         sequence.Append(transform.DORotate(target, duration)).SetEase(ease);
     }
     #endregion
+    #region Scale
+    public static void Scale(Transform transform, Vector3 targetScale, float duration)
+    {
+        transform.DOScale(targetScale, duration);
+    }
+    #endregion
     #region Sprite Handler
     public static void Fading(SpriteRenderer sprite, float targetAlpha, float duration)
     {
@@ -97,6 +91,14 @@ public class ViewManager : Singleton<ViewManager>
     }
     #endregion
     #region UI Handler
+    public static void JoinAction(Sequence sequence, Tween tween)
+    {
+        sequence.Join(tween);
+    }
+    public static Tween DoColor(MaskableGraphic graphic, Color color, float duration)
+    {
+        return graphic.DOColor(color, duration);
+    }
     public static void ShowUI(string UIname , bool isActive)
     {
         if(isActive)

@@ -13,6 +13,8 @@ public class CharacterController : Controller, IInteractable
     protected SkeletonAnimation skeleton;
     [SerializeField]
     protected List<AnimationReferenceAsset> animationSet;
+    [SerializeField]
+    protected List<Transform> destinations = new List<Transform>();
     public CharacterState state;
     protected float actingDelay;
 

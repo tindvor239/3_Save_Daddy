@@ -36,6 +36,13 @@ public class GameController : Singleton<GameController>
                         }
                     }
                 }
+#if UNITY_EDITOR
+                if(Input.GetKeyDown(KeyCode.Escape))
+                {
+                    //UIController.Instance.ShowChestRoomUI(true);
+                    //UIController.Instance.ShowWinUI(true);
+                }
+#endif
                 break;
         }
     }

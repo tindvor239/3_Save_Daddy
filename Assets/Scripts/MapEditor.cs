@@ -70,7 +70,7 @@ public class MapEditor : Singleton<MapEditor>
     {
         if(currentMap != null)
         {
-            processMaxValue = currentMap.packages.Count + currentMap.pinPackages.Count - 2;
+            processMaxValue = currentMap.packages.Count + currentMap.pinPackages.Count;
             processValue = 0;
             foreach (PoolParty poolParty in PoolParties)
             {

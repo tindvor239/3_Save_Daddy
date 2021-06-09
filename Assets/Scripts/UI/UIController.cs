@@ -7,7 +7,7 @@ using DoozyUI;
 public class UIController : Singleton<UIController>
 {
     [SerializeField]
-    private ProcessInfoUI processInfo;
+    private WinInfoUI processInfo;
     [SerializeField]
     private UIGameplay gameplay;
     [SerializeField]
@@ -24,9 +24,10 @@ public class UIController : Singleton<UIController>
     private MapEditor editor;
 
     #region Properties
-    public ProcessInfoUI ProcessInfo { get => processInfo; }
+    public WinInfoUI ProcessInfo { get => processInfo; }
     public UIGameplay Gameplay { get => gameplay; }
     public UILevelManager LevelManager { get => levelManager; }
+    public UIMapProcessing MapProcessing { get => mapProcessing; }
     #endregion
     protected override void Awake()
     {
@@ -57,7 +58,6 @@ public class UIController : Singleton<UIController>
     public void Play(bool isActive)
     {
         ShowProcessUI(isActive);
-        mapProcessing.Process();
         Load(null);
     }
     public void Retry()
@@ -66,7 +66,6 @@ public class UIController : Singleton<UIController>
         GameManager.Instance.Player.Stop();
         ShowGameOverUI(false);
         ShowProcessUI(true);
-        mapProcessing.Process();
         GameManager.State = GameManager.GameState.play;
         Load(editor.currentMap);
     }
@@ -86,6 +85,7 @@ public class UIController : Singleton<UIController>
             GetNextLevel();
         }
         editor.Load();
+        mapProcessing.Process();
         StartCoroutine(LoadLevelOnTime());
     }
 
@@ -113,7 +113,7 @@ public class UIController : Singleton<UIController>
         if(isActive)
         {
             GameManager.State = GameManager.GameState.win;
-            processInfo.OnShowProcess();
+            processInfo.DisplayProcessUI();
         }
     }
     public void ShowLevelUpUI(bool isActive)
@@ -125,13 +125,15 @@ public class UIController : Singleton<UIController>
     public void ShowLevelUI(bool isActive)
     {
         GameManager.State = GameManager.GameState.menu;
-        ViewManager.ShowUI("GAMEPLAY_UI", !isActive);
+        ViewManager.ShowUI("GAMEPLAY_UI", false);
         ViewManager.ShowUI("LEVELS_UI", isActive);
+        levelManager.SetupLevels();
     }
     public void ShowChestRoomUI(bool isActive)
     {
         ViewManager.ShowUI("LUCKYSPIN_UI", isActive);
         ViewManager.ShowUI("WIN_UI", !isActive);
+        ViewManager.ShowUI("MENU_UI", false);
         if(!isActive == false)
         {
             Debug.Log("Show Chest Room");
@@ -159,7 +161,7 @@ public class UIController : Singleton<UIController>
         gameplay.OnShowGameplay();
         GetPlayerController();
         GetEnemyControllers();
-        SpawnObstaclesOnPlay();
+        StartCoroutine(SpawnObstaclesOnPlay());
         Invoke("MovePlayer", 0.5f);
     }
     private bool ShowAds()
@@ -206,8 +208,12 @@ public class UIController : Singleton<UIController>
         gameManager.Skins.AddRange(player.Skeleton.Skeleton.Data.Skins);
         ViewManager.SetSkin(player.Skeleton, gameManager.Skins[GameManager.UsingSkin]);
     }
-    private void SpawnObstaclesOnPlay()
+    private IEnumerator SpawnObstaclesOnPlay()
     {
+        while(editor.Process < 100)
+        {
+            yield return null;
+        }
         foreach (ObjectPool pool in obstacleParty.Party.Pools)
         {
             foreach(GameObject gameObject in pool.PooledObjects)
