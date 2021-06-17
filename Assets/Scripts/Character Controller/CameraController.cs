@@ -5,28 +5,20 @@ using UnityEngine.CustomComponents;
 
 public class CameraController : CharacterController
 {
-    private CharacterPoolParty characterPoolParty;
-    private PinPoolParty pinPoolParty;
-    private List<ObjectPool> uShapes = new List<ObjectPool>();
     [SerializeField]
     private Vector3 offset;
     [SerializeField]
-    private float maxZoom = 15f;
-    [SerializeField]
-    private float minZoom = 10f;
-    [SerializeField]
-    private float zoomLimiter = 50f;
-    [SerializeField]
-    private Vector3 center = new Vector3();
+    private float size;
     private Camera cam;
     private float smoothTime = .5f;
     private Vector3 velocity = new Vector3();
-    private Vector3 cameraSize = new Vector3();
-    private float greatestDistance;
 
+    private float defaultResolution = 1280f / 720f;
+    private float currentResolution;
     #region Properties
-    public static CameraController Instance {get; private set;}
+    public static CameraController Instance { get; private set; }
     public PlayerController Player { get; set; }
+    public Vector3 FixedOffset { get; set; }
     #endregion
     // Start is called before the first frame update
     protected override void Awake()
@@ -36,137 +28,72 @@ public class CameraController : CharacterController
     protected override void Start()
     {
         cam = GetComponent<Camera>();
-        characterPoolParty = CharacterPoolParty.Instance;
-        pinPoolParty = PinPoolParty.Instance;
-        uShapes.Add(LandPoolParty.Instance.TerrainUpHole);
-        uShapes.Add(LandPoolParty.Instance.TerrainUpHole2);
-        uShapes.Add(LandPoolParty.Instance.TerrainUpHole3);
-
-
-        cameraSize = new Vector3(Camera.main.aspect * Camera.main.orthographicSize * 2, Camera.main.orthographicSize * 2);
+        currentResolution = (float)Screen.height / (float)Screen.width;
+        FixedOffset = offset;
     }
-    private void LateUpdate()
+    protected override void Update()
     {
-        if(Player != null && GameManager.State == GameManager.GameState.play)
+        if (Player != null && GameManager.State == GameManager.GameState.play)
         {
-            Move();
+            Moving();
         }
     }
 
-    private void Move()
+    private void Moving()
     {
         Vector3 target = new Vector3();
-        float defaultResolution = 1280f / 720f;
-        float defaultMaxZoom = maxZoom;
-        float currentResolution = (float)Screen.height / (float)Screen.width;
-        float newMaxZoom = currentResolution * defaultMaxZoom / defaultResolution;
+#if UNITY_EDITOR
+        if (Application.isPlaying)
+        {
+            currentResolution = (float)Screen.height / (float)Screen.width;
+        }
+#endif
+        float size = this.size;
         if (destinations.Count == 0)
         {
-            target = new Vector3(Player.transform.position.x + offset.x, Player.transform.position.y + offset.y, transform.position.z);
-            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newMaxZoom, Time.deltaTime);
+            Debug.Log(FixedOffset);
+            target = new Vector3(Player.transform.position.x + FixedOffset.x, Player.transform.position.y + FixedOffset.y, transform.position.z);
+            target = new Vector3(target.x + moveSpeed, target.y, target.z);
         }
         else
         {
-            target = new Vector3(center.x + offset.x, center.y + offset.y, transform.position.z);
-            Zoom();
+            CameraPath cameraPath = destinations[0].GetComponent<CameraPath>();
+            size = cameraPath.Size * currentResolution / defaultResolution;
+            target = new Vector3(cameraPath.Center.x, cameraPath.Center.y, transform.position.z);
         }
+        cam.orthographicSize = ViewManager.Instance.SmoothFloat(cam.orthographicSize, size, Time.deltaTime);
         ViewManager.Instance.SetSmoothPosition(transform, target, ref velocity, smoothTime);
     }
-    private void Zoom()
+    private Transform ClosestPath()
     {
-        float defaultResolution = 1280f / 720f;
-        float defaultMaxZoom = maxZoom;
-        float currentResolution = (float)Screen.height / (float)Screen.width;
-        float newMaxZoom = currentResolution * defaultMaxZoom / defaultResolution;
+        CameraPath closestPath = null;
+        float closestDistance = 0;
+        foreach (CameraPath cameraPath in GameManager.Instance.CameraPaths)
+        {
+            float currentDistance = Vector3.Distance(transform.position, cameraPath.transform.position);
+            if (closestDistance == 0 || closestDistance > currentDistance)
+            {
+                closestDistance = currentDistance;
+                closestPath = cameraPath;
+            }
+        }
+        return closestPath.transform;
+    }
 
-        float newZoom = Mathf.Lerp(newMaxZoom, minZoom, greatestDistance / zoomLimiter);
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
-    }
-    private float GetGreatestDistance()
-    {
-        if(destinations[0] != null)
-        {
-            Bounds bounds = new Bounds(destinations[0].position, Vector3.zero);
-            for(int i = 0; i < destinations.Count; i++)
-            {
-                bounds.Encapsulate(destinations[i].position);
-            }
-            return bounds.size.x;
-        }
-        return 0;
-    }
-    private void GetTargets()
-    {
-        destinations.Add(Player.transform.GetChild(0));
-        GetObjectsInCamera(pinPoolParty.Party.Pools);
-        GetObjectsInCamera(characterPoolParty.Party.Pools);
-        GetObjectsInCamera(uShapes);
-    }
-    private void GetObjectsInCamera(List<ObjectPool> objectPools)
-    {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(gameObject.transform.position, cameraSize, 0);
-        foreach(Collider2D collide in colliders)
-        {
-            foreach (ObjectPool pool in objectPools)
-            {
-                foreach (GameObject pooledObject in pool.PooledObjects)
-                {
-                    if (pooledObject != null && pooledObject.activeInHierarchy && pooledObject != Player.gameObject)
-                    {
-
-                        GameObject collideObject = collide.gameObject;
-                        Transform collideTransform = collide.transform;
-                        Transform collideParent = collideTransform.parent;
-                        Transform collideGrandparent = collideParent.parent;
-                        if (collideObject == pooledObject || collideParent.gameObject == pooledObject || collideGrandparent.gameObject == pooledObject)
-                        {
-                            if(objectPools == characterPoolParty.Party.Pools)
-                            {
-                                destinations.Add(collideTransform.GetChild(0));
-                            }
-                            else
-                            {
-                                destinations.Add(collideTransform);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
-        //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-        Gizmos.DrawWireCube((Vector2)transform.position, new Vector3(Camera.main.aspect * Camera.main.orthographicSize * 2, Camera.main.orthographicSize * 2));
-    }
-    private Vector3 GetCenterPoint()
-    {
-        GetTargets();
-        if(destinations.Count == 1)
-        {
-            return destinations[0].position;
-        }
-        if(destinations.Count != 0)
-        {
-            var bound = new Bounds(destinations[0].position, Vector3.zero);
-            for(int i = 0; i < destinations.Count; i++)
-            {
-                bound.Encapsulate(destinations[i].position);
-            }
-            return bound.center;
-        }
-        return new Vector3();
-    }
     public void ZoomCenterPoint()
     {
-        center = GetCenterPoint();
-        greatestDistance = GetGreatestDistance();
+        destinations.Add(ClosestPath());
     }
-    public void RestartCenter()
+    public void Move()
     {
         destinations = new List<Transform>();
-        center = new Vector3();
+        FixedOffset = offset;
+    }
+    public void MoveKeepCenter()
+    {
+        FixedOffset = destinations[0].GetComponent<CameraPath>().Center - Player.transform.position;
+        FixedOffset = new Vector3(FixedOffset.x - moveSpeed, FixedOffset.y);
+        Debug.Log(FixedOffset);
+        destinations = new List<Transform>();
     }
 }

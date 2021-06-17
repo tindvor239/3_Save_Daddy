@@ -90,6 +90,12 @@ public class ViewManager : Singleton<ViewManager>
         skeleton.initialSkinName = skin.Name;
     }
     #endregion
+    #region Math
+    public float SmoothFloat(float from, float to, float factor)
+    {
+        return Mathf.Lerp(from, to, Time.deltaTime);
+    }
+    #endregion
     #region UI Handler
     public static void JoinAction(Sequence sequence, Tween tween)
     {

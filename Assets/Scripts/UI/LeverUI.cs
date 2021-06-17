@@ -15,17 +15,20 @@ public class LeverUI : MonoBehaviour
     public bool isActive;
     public void OnCLicked()
     {
-        isActive = !isActive;
-        if(isActive == false)
+        if(GameManager.State == GameManager.GameState.pause)
         {
-            GameController.Instance.Move(buttonIcon.transform, transforms[0].position, timer);
+            isActive = !isActive;
+            if(isActive == false)
+            {
+                GameController.Instance.Move(buttonIcon.transform, transforms[0].position, timer);
+            }
+            else
+            {
+                GameController.Instance.Move(buttonIcon.transform, transforms[1].position, timer);
+            }
+            float iconChangeTimer = timer - 0.2f;
+            StartCoroutine(ChangeButtonIcon(iconChangeTimer));
         }
-        else
-        {
-            GameController.Instance.Move(buttonIcon.transform, transforms[1].position, timer);
-        }
-        float iconChangeTimer = timer - 0.2f;
-        StartCoroutine(ChangeButtonIcon(iconChangeTimer));
     }
 
     private IEnumerator ChangeButtonIcon(float time)

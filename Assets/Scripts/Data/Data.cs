@@ -5,10 +5,11 @@ using UnityEngine.CustomComponents;
 
 public abstract class Data : ScriptableObject
 {
-    public void PackAllModels(ref List<Package> packages, ref List<PinPackage> pinPackages)
+    public void PackAllModels(ref List<Package> packages, ref List<PinPackage> pinPackages, ref List<CameraPathPackage> cameraPathPackages)
     {
         packages = new List<Package>();
         pinPackages = new List<PinPackage>();
+        cameraPathPackages = new List<CameraPathPackage>();
         Model[] models = FindObjectsOfType<Model>();
         foreach (Model model in models)
         {
@@ -16,10 +17,16 @@ public abstract class Data : ScriptableObject
             if (!isCamera && model.gameObject.activeInHierarchy)
             {
                 bool isPin = model is Pin;
-                if (isPin)
+                bool isCameraPath = model is CameraPath;
+                if (isPin && !isCameraPath)
                 {
                     Pin pin = (Pin)model;
                     pinPackages.Add(pin.Pack());
+                }
+                else if(!isPin && isCameraPath)
+                {
+                    CameraPath cameraPath = (CameraPath)model;
+                    cameraPathPackages.Add(cameraPath.Pack());
                 }
                 else
                 {
@@ -28,7 +35,7 @@ public abstract class Data : ScriptableObject
             }
         }
     }
-    public void UnpackAllModelsInstance(List<Package> packages, List<PinPackage> pinPackages, List<PoolParty> poolParties)
+    public void UnpackAllModelsInstance(List<Package> packages, List<PinPackage> pinPackages, List<CameraPathPackage> cameraPathPackages, List<PoolParty> poolParties)
     {
         foreach (Package package in packages)
         {
@@ -46,8 +53,16 @@ public abstract class Data : ScriptableObject
                 SpawnPooledObject(pinPackage, pool);
             }
         }
+        foreach(CameraPathPackage cameraPathPackage in cameraPathPackages)
+        {
+            ObjectPool pool = GetPool(cameraPathPackage, poolParties);
+            if(pool != null)
+            {
+                SpawnPooledObject(cameraPathPackage, pool);
+            }
+        }
     }
-    public IEnumerator UnpackAllModels(List<Package> packages, List<PinPackage> pinPackages, List<PoolParty> poolParties, GameManager gameManager)
+    public IEnumerator UnpackAllModels(List<Package> packages, List<PinPackage> pinPackages, List<CameraPathPackage> cameraPathPackages, List<PoolParty> poolParties, GameManager gameManager)
     {
         foreach (Package package in packages)
         {
@@ -69,7 +84,18 @@ public abstract class Data : ScriptableObject
                 yield return null;
             }
         }
+        foreach (CameraPathPackage cameraPathPackage in cameraPathPackages)
+        {
+            ObjectPool pool = GetPool(cameraPathPackage, poolParties);
+            if (pool != null)
+            {
+                SpawnPooledObject(cameraPathPackage, pool);
+                MapEditor.Instance.processValue++;
+                yield return null;
+            }
+        }
         gameManager.GetDestinations();
+        gameManager.GetCameraPaths();
     }
 
     private ObjectPool GetPool(Package package, List<PoolParty> poolParties)
@@ -99,13 +125,22 @@ public abstract class Data : ScriptableObject
     }
     private void SpawnPooledObject(Package package, ObjectPool pool)
     {
-        if(package is PinPackage)
+        if (package is PinPackage)
         {
             PinPackage pinPackage = (PinPackage)package;
             Pin pin = GetPooledObject<Pin>(pool);
             if (pin != null)
             {
                 pin.Unpack(pinPackage, pool);
+            }
+        }
+        else if (package is CameraPathPackage)
+        {
+            CameraPathPackage camPackage = (CameraPathPackage)package;
+            CameraPath camPath = GetPooledObject<CameraPath>(pool);
+            if(camPath != null)
+            {
+                camPath.Unpack(camPackage, pool);
             }
         }
         else

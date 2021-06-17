@@ -7,6 +7,8 @@ public class GameController : Singleton<GameController>
     private static bool canTrigger = false;
     private static float unpinDelay = 1f;
     private static float unpinDelayTimer = 1f;
+
+    public GameManager.GameState lastState;
     protected override void Awake()
     {
         #region Singleton
@@ -37,14 +39,16 @@ public class GameController : Singleton<GameController>
                     }
                 }
 #if UNITY_EDITOR
-                if(Input.GetKeyDown(KeyCode.Escape))
+                if(Input.GetKeyDown(KeyCode.T))
                 {
-                    //UIController.Instance.ShowChestRoomUI(true);
+                    GameManager.CurrentKey = 3;
+                    UIController.Instance.ShowChestRoomUI(true);
                     //UIController.Instance.ShowWinUI(true);
                 }
-#endif
                 break;
+#endif
         }
+        BackHandle();
     }
 
     private Pin GetPinComponent(GameObject clickedObject)
@@ -148,5 +152,23 @@ public class GameController : Singleton<GameController>
         ViewManager.Instance.Rotating(gameObject.transform, lookRotation, min, max);
     }
     #endregion
+    private void BackHandle()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            switch(GameManager.State)
+            {
+                case GameManager.GameState.play:
+                    UIController.Instance.ShowSettingUI(true);
+                    break;
+                case GameManager.GameState.menu:
+                    UIController.Instance.ShowBeforeExitUI(true);
+                    break;
+                case GameManager.GameState.ask:
+                    UIController.Instance.ShowBeforeExitUI(false);
+                    break;
+            }
+        }
+    }
     #endregion
 }

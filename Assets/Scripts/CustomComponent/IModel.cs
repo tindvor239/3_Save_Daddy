@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IModel
 {
-    Vector2 Position { get; }
+    Vector3 Position { get; }
     Quaternion Rotation { get; }
 }

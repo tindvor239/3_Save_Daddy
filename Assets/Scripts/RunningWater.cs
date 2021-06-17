@@ -33,8 +33,8 @@ public class RunningWater : MonoBehaviour
         if (GameManager.State == GameManager.GameState.play)
         {
             float height = Camera.main.orthographicSize * 2;
-            float width = height * Screen.width / Screen.height;
-            transform.localScale = new Vector3(width * 2, height, 1);
+            float width = height * 1.5f;
+            transform.localScale = new Vector3(width, height, 1);
             if (GameManager.Instance.Player != null)
             {
                 Vector2 offset = ((Vector2)GameManager.Instance.Player.transform.position - lastPosition) / runningDivider;

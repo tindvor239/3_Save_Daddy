@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1282518305087118330}
   - component: {fileID: 9219155015317586245}
   - component: {fileID: 7402449800203323960}
+  - component: {fileID: 7641839202453962769}
   m_Layer: 0
   m_Name: Up L Shape Left
   m_TagString: Untagged
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10.24, y: 9.55}
+  m_Size: {x: 10.54, y: 9.89}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -95,3 +96,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Up L Shape
+--- !u!60 &7641839202453962769
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6745083046450190838}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.54, y: 9.89}
+    newSize: {x: 10.54, y: 9.89}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.9451771, y: -1.1736803}
+      - {x: -0.9523759, y: -4.9293036}
+      - {x: 5.1961603, y: -4.9399114}
+      - {x: 5.176388, y: 4.892885}
+      - {x: -5.3364606, y: 4.9045815}
+      - {x: -5.3329844, y: -1.1705391}

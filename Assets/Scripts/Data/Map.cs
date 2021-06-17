@@ -9,29 +9,30 @@ public class Map : Data
 {
     public List<Package> packages;
     public List<PinPackage> pinPackages;
+    public List<CameraPathPackage> cameraPathPackages;
     [SerializeField]
     public bool isUnlocked;
+    #if UNITY_EDITOR
     public void Save()
     {
-        PackAllModels( ref packages, ref pinPackages);
-        #if UNITY_EDITOR
+        PackAllModels( ref packages, ref pinPackages, ref cameraPathPackages);
             EditorUtility.SetDirty(this);
             AssetDatabase.SaveAssets();
-        #endif
         Debug.Log("Saved");
     }
+    #endif
     public void Load(List<PoolParty> poolParties, GameManager gameManager)
     {
-            if(Application.isPlaying)
+        if(Application.isPlaying)
+        {
+            if(isUnlocked)
             {
-                if(isUnlocked)
-                {
-                    MapEditor.Instance.StartCoroutine(UnpackAllModels(packages, pinPackages, poolParties, gameManager));
-                }
+                MapEditor.Instance.StartCoroutine(UnpackAllModels(packages, pinPackages, cameraPathPackages, poolParties, gameManager));
             }
-            else
-            {
-                UnpackAllModelsInstance(packages, pinPackages, poolParties);
-            }
+        }
+        else
+        {
+            UnpackAllModelsInstance(packages, pinPackages, cameraPathPackages, poolParties);
+        }
     }
 }

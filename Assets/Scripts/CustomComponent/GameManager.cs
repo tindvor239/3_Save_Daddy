@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private List<Transform> destinations = new List<Transform>();
     [SerializeField]
-    private List<Transform> passedDestinations = new List<Transform>();
+    private List<CameraPath> cameraPaths = new List<CameraPath>();
     [SerializeField]
     private List<EnemyController> enemies = new List<EnemyController>();
     [SerializeField]
@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
     #region Properties
     #region Movement
     public List<Transform> Destinations { get => destinations; }
-    public List<Transform> PassedDestinations { get => passedDestinations; }
+    public List<CameraPath> CameraPaths { get => cameraPaths; }
     public List<EnemyController> Enemies { get => enemies; set => enemies = value; }
     public PlayerController Player { get; set; }
     #endregion
@@ -300,6 +300,19 @@ public class GameManager : Singleton<GameManager>
         destinations = newDestinations.ToList();
         destinations.RemoveAll(x => x == null);
     }
+    public void GetCameraPaths()
+    {
+        List<CameraPath> newCamPaths = new List<CameraPath>();
+        List<GameObject> pooledObjects = pathPoolParty.CameraPathPool.PooledObjects;
+        for (int i = 0; i < pooledObjects.Count; i++)
+        {
+            if(pooledObjects[i].activeInHierarchy)
+            {
+                newCamPaths.Add(pooledObjects[i].GetComponent<CameraPath>());
+            }
+        }
+        cameraPaths = newCamPaths;
+    }
     #endregion
     #region State Handle
     public bool isWin()
@@ -351,5 +364,5 @@ public class GameManager : Singleton<GameManager>
         }
     }
     #endregion
-    public enum GameState {menu, play, pause, win, gameover }
+    public enum GameState {menu, play, pause, win, gameover, ask }
 }

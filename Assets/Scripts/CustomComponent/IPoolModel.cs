@@ -23,7 +23,7 @@ public class Package : IPoolModel
     #region Properties
     public string PoolName { get => poolName; }
     public string Name { get => name; }
-    public Vector2 Position { get => position; }
+    public Vector3 Position { get => position; }
     public Quaternion Rotation { get => rotation; }
     #endregion
     public Package(string poolName, string name, Vector3 position, Quaternion rotation)
@@ -52,6 +52,26 @@ public class PinPackage : Package
     {
         this.scale = scale;
         this.pieces = pieces;
+    }
+}
+
+[Serializable]
+public class CameraPathPackage : Package
+{
+    #region Field
+    [SerializeField]
+    private Vector3 center;
+    [SerializeField]
+    private float size;
+    #endregion
+    #region Properies
+    public Vector3 Center { get => center; }
+    public float Size { get => size; }
+    #endregion
+    public CameraPathPackage(string poolName, string name, Vector3 position, Quaternion rotation, Vector3 center, float size) : base(poolName, name, position, rotation)
+    {
+        this.center = center;
+        this.size = size;
     }
 }
 

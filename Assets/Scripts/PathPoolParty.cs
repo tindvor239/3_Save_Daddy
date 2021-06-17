@@ -10,6 +10,7 @@ public class PathPoolParty : Singleton<PathPoolParty>
     #region Properties
     public PoolParty Party { get => party; }
     public ObjectPool PathPool { get => party.Pools[0]; }
+    public ObjectPool CameraPathPool { get => party.Pools[1]; }
     #endregion
     protected override void Awake()
     {

@@ -76,13 +76,15 @@ public class UIController : Singleton<UIController>
         if(isDoneShowAds)
         {
             ShowLevelUpUI(true);
+            Load(GetNextMap());
+            ShowProcessUI(false);
         }
     }
     public void Load(Map map)
     {
         if(map == null)
         {
-            GetNextLevel();
+            ContinuePlay();
         }
         editor.Load();
         mapProcessing.Process();
@@ -151,6 +153,50 @@ public class UIController : Singleton<UIController>
         ViewManager.ShowUI("LUCKYSPIN_UI", false);
         ViewManager.ShowUI("PROCESS_UI", isActive);
     }
+    public void ShowBeforeExitUI(bool isActive)
+    {
+        
+        if(GameManager.State == GameManager.GameState.pause)
+        {
+            ViewManager.ShowUI("SETTINGS_UI", !isActive);
+        }
+        ViewManager.ShowUI("BEFOREEXIT_UI", isActive);
+        if (isActive)
+        {
+            GameController.Instance.lastState = GameManager.State;
+            GameManager.State = GameManager.GameState.ask;
+        }
+        else
+        {
+            GameManager.State = GameController.Instance.lastState;
+            if (GameManager.State == GameManager.GameState.pause)
+            {
+                ViewManager.ShowUI("SETTINGS_UI", !isActive);
+            }
+        }
+    }
+    public void BeforeExitAsk(bool isActive)
+    {
+        if(isActive)
+        {
+            switch(GameController.Instance.lastState)
+            {
+                case GameManager.GameState.menu:
+                    Application.Quit();
+                    break;
+                case GameManager.GameState.pause:
+                    GameManager.State = GameManager.GameState.menu;
+                    GameController.Instance.lastState = GameManager.GameState.pause;
+                    ShowMenuUI(isActive);
+                    ShowBeforeExitUI(!isActive);
+                    break;
+            }
+        }
+        else
+        {
+            ShowBeforeExitUI(false);
+        }
+    }
 
     private IEnumerator LoadLevelOnTime()
     {
@@ -158,6 +204,7 @@ public class UIController : Singleton<UIController>
         {
             yield return null;
         }
+        ViewManager.ShowUI("LEVELUP_UI", false);
         gameplay.OnShowGameplay();
         GetPlayerController();
         GetEnemyControllers();
@@ -205,6 +252,7 @@ public class UIController : Singleton<UIController>
         Debug.Log(player);
         Vector3 newPosition = new Vector3(player.transform.position.x, player.transform.position.y, cam.gameObject.transform.position.z);
         cam.gameObject.transform.position = newPosition;
+        cam.Move();
         gameManager.Skins.AddRange(player.Skeleton.Skeleton.Data.Skins);
         ViewManager.SetSkin(player.Skeleton, gameManager.Skins[GameManager.UsingSkin]);
     }
@@ -225,7 +273,7 @@ public class UIController : Singleton<UIController>
             }
         }
     }
-    private Map GetNextLevel()
+    private Map ContinuePlay()
     {
         for(int i = 0; i < gameManager.MapData.Count; i++)
         {
@@ -236,6 +284,15 @@ public class UIController : Singleton<UIController>
             }
         }
         editor.currentMap = gameManager.MapData[gameManager.MapData.Count - 1];
+        return editor.currentMap;
+    }
+    private Map GetNextMap()
+    {
+        int index = gameManager.MapData.IndexOf(editor.currentMap);
+        if (index + 1 < gameManager.MapData.Count)
+        {
+            editor.currentMap = gameManager.MapData[index + 1];
+        }
         return editor.currentMap;
     }
 }

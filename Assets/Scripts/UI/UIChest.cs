@@ -48,6 +48,7 @@ public class UIChest : UIToggle
         foreach (ParticleSystem particle in loopingEffects)
         {
             particle.Stop();
+            particle.gameObject.SetActive(false);
         }
         prizeBackground.SetActive(false);
     }
@@ -57,6 +58,7 @@ public class UIChest : UIToggle
         coins.Play();
         foreach(ParticleSystem particle in loopingEffects)
         {
+            particle.gameObject.SetActive(true);
             particle.Play();
         }
         if (GameManager.CurrentKey > 0)

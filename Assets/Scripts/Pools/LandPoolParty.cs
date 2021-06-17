@@ -18,9 +18,9 @@ public class LandPoolParty : Singleton<LandPoolParty>
     public ObjectPool TerrainUp3 { get => parties[0].Pools[2]; }
     public ObjectPool TerrainUpLeft { get => parties[0].Pools[3]; }
     public ObjectPool TerrainUpRight { get =>  parties[0].Pools[4]; }
-    public ObjectPool TerrainUpHole { get => parties[0].Pools[5]; }
-    public ObjectPool TerrainUpHole2 { get => parties[0].Pools[7]; }
-    public ObjectPool TerrainUpHole3 { get => parties[0].Pools[8]; }
+    public ObjectPool TerrainUpHole { get => parties[0].Pools[6]; }
+    public ObjectPool TerrainUpHole2 { get => parties[0].Pools[8]; }
+    public ObjectPool TerrainUpHole3 { get => parties[0].Pools[9]; }
     #endregion
     #region Down Terrains
     public ObjectPool TerrainDown1 { get => parties[1].Pools[0]; }

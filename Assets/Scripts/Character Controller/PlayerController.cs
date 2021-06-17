@@ -71,7 +71,7 @@ public class PlayerController : CharacterController
             if (index != -1)
             {
                 alreadyMoveCamera = false;
-                CameraController.Instance.RestartCenter();
+                CameraController.Instance.Move();
                 Vector3 pathPosition = GameManager.Instance.Destinations[index].position;
                 if (!CheckPathIsBlocked(transform.position, pathPosition))
                 {
@@ -84,7 +84,7 @@ public class PlayerController : CharacterController
             }
             else if(alreadyMoveCamera == false)
             {
-                Invoke("MoveCamera", 0.5f);
+                CameraController.Instance.ZoomCenterPoint();
                 Invoke("ScareAnimation", actingDelay);
                 alreadyMoveCamera = true;
             }
@@ -114,18 +114,6 @@ public class PlayerController : CharacterController
     {
         Move(destination.position, Ease.Linear);
         StartCoroutine(OnMovedToDestination(moveDuration));
-    }
-    private void MoveCamera()
-    {
-        foreach(Transform destination in GameManager.Instance.Destinations)
-        {
-            if(Math.Round(transform.position.x, 2) == Math.Round(destination.position.x, 2) &&
-                Math.Round(transform.position.y, 2) == Math.Round(destination.position.y, 2))
-            {
-                CameraController.Instance.ZoomCenterPoint();
-                break;
-            }
-        }
     }
     private void ScareAnimation()
     {
