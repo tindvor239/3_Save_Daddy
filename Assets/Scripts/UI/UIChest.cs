@@ -9,9 +9,9 @@ public class UIChest : UIToggle
     [SerializeField]
     private GameObject prizeBackground;
     [SerializeField]
-    private ParticleSystem coins;
+    protected ParticleSystem coins;
     [SerializeField]
-    private ParticleSystem[] loopingEffects;
+    protected ParticleSystem[] loopingEffects;
     private Animator animator;
     #region Properties
     public long Prize
@@ -38,13 +38,13 @@ public class UIChest : UIToggle
     public void Open()
     {
         animator.SetTrigger("Open");
-        StartCoroutine(SpreadCoins(1f));
+        StartCoroutine(Animate(1f));
     }
-    public void Restart(int randomPrize)
+    public void Restart(int prize)
     {
-        Prize = randomPrize;
+        Prize = prize;
         isCheck = false;
-        prize.color = new Color(prize.color.r, prize.color.g, prize.color.b, 1);
+        this.prize.color = new Color(this.prize.color.r, this.prize.color.g, this.prize.color.b, 1);
         foreach (ParticleSystem particle in loopingEffects)
         {
             particle.Stop();
@@ -52,7 +52,8 @@ public class UIChest : UIToggle
         }
         prizeBackground.SetActive(false);
     }
-    private IEnumerator SpreadCoins(float duration)
+
+    protected IEnumerator Animate(float duration)
     {
         yield return new WaitForSeconds(duration);
         coins.Play();
@@ -77,9 +78,15 @@ public class UIChest : UIToggle
             prizeBackground.SetActive(true);
         }
     }
+
     private void Start()
     {
         animator = GetComponent<Animator>();
         prizeBackground.SetActive(false);
+        foreach (ParticleSystem particle in loopingEffects)
+        {
+            particle.Stop();
+            particle.gameObject.SetActive(false);
+        }
     }
 }

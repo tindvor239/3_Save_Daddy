@@ -79,7 +79,7 @@ public class UIChestRoom : Singleton<UIChestRoom>
                 return 0;
             }
         }
-        set => Instance.money.text = string.Format("$ {0}", value);
+        set => Instance.money.text = value.ToString();
     }
     #endregion
     protected override void Awake()

@@ -16,8 +16,8 @@ public class Map : Data
     public void Save()
     {
         PackAllModels( ref packages, ref pinPackages, ref cameraPathPackages);
-            EditorUtility.SetDirty(this);
-            AssetDatabase.SaveAssets();
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
         Debug.Log("Saved");
     }
     #endif

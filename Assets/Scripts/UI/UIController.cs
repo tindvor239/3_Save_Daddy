@@ -205,7 +205,9 @@ public class UIController : Singleton<UIController>
             yield return null;
         }
         ViewManager.ShowUI("LEVELUP_UI", false);
-        gameplay.OnShowGameplay();
+        int stackIndex = StackUIDisplay.MapInStack(editor.currentMap);
+        string stackName = StackUIDisplay.StackName(stackIndex);
+        gameplay.OnShowGameplay(StackUIDisplay.KeyCount(stackName));
         GetPlayerController();
         GetEnemyControllers();
         StartCoroutine(SpawnObstaclesOnPlay());

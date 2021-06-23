@@ -45,8 +45,8 @@ public class GameController : Singleton<GameController>
                     UIController.Instance.ShowChestRoomUI(true);
                     //UIController.Instance.ShowWinUI(true);
                 }
-                break;
 #endif
+                break;
         }
         BackHandle();
     }
@@ -160,6 +160,9 @@ public class GameController : Singleton<GameController>
             {
                 case GameManager.GameState.play:
                     UIController.Instance.ShowSettingUI(true);
+                    break;
+                case GameManager.GameState.pause:
+                    UIController.Instance.ShowSettingUI(false);
                     break;
                 case GameManager.GameState.menu:
                     UIController.Instance.ShowBeforeExitUI(true);

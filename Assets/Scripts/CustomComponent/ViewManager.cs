@@ -71,6 +71,10 @@ public class ViewManager : Singleton<ViewManager>
     {
         transform.DOScale(targetScale, duration);
     }
+    public static void Scale(Transform transform, Vector3 targetScale, float duration, Sequence sequence)
+    {
+        sequence.Append(transform.DOScale(targetScale, duration));
+    }    
     #endregion
     #region Sprite Handler
     public static void Fading(SpriteRenderer sprite, float targetAlpha, float duration)

@@ -17,6 +17,7 @@ public class UILevelDisplay : MonoBehaviour
     private Map map;
     #region Properties
     public int Star { get => star; }
+    public Map Map { get => map; }
     #endregion
     public void Initiate(Map map, string levelName, Sprite sprite)
     {

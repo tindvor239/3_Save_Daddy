@@ -22,6 +22,7 @@ public class UILevelManager : MonoBehaviour
     private int mapPerStack;
 
     #region Properties
+    public List<StackUIDisplay> LevelStacks { get => levelStacks; }
     public int Page
     {
         get
