@@ -161,6 +161,10 @@ public class GameController : Singleton<GameController>
                 case GameManager.GameState.play:
                     UIController.Instance.ShowSettingUI(true);
                     break;
+                case GameManager.GameState.level:
+                    UIController.Instance.ShowLevelUI(false);
+                    UIController.Instance.ShowMenuUI(true);
+                    break;
                 case GameManager.GameState.pause:
                     UIController.Instance.ShowSettingUI(false);
                     break;
