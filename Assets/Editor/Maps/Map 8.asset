@@ -182,6 +182,7 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: -0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
+<<<<<<< HEAD
   cameraPathPackages:
   - poolName: Camera Path Pool
     name: cam
@@ -189,4 +190,6 @@ MonoBehaviour:
     rotation: {x: 0, y: 0, z: 0, w: 1}
     center: {x: 0, y: 0, z: 0}
     size: 13
+=======
+>>>>>>> parent of 16be21c (Fix Back Handle UI, Fan)
   isUnlocked: 0

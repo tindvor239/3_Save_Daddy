@@ -54,6 +54,7 @@ public class UIController : Singleton<UIController>
         GameManager.State = GameManager.GameState.play;
         ViewManager.ShowUI("GAMEPLAY_UI", isActive);
     }
+
     public void Play(bool isActive)
     {
         ShowProcessUI(isActive);
@@ -125,12 +126,9 @@ public class UIController : Singleton<UIController>
     }
     public void ShowLevelUI(bool isActive)
     {
+        GameManager.State = GameManager.GameState.menu;
         ViewManager.ShowUI("GAMEPLAY_UI", false);
         ViewManager.ShowUI("LEVELS_UI", isActive);
-        if (isActive)
-        {
-            GameManager.State = GameManager.GameState.levels;
-        }
         levelManager.SetupLevels();
     }
     public void ShowChestRoomUI(bool isActive)
