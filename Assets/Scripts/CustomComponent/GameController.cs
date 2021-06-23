@@ -170,6 +170,10 @@ public class GameController : Singleton<GameController>
                 case GameManager.GameState.ask:
                     UIController.Instance.ShowBeforeExitUI(false);
                     break;
+                case GameManager.GameState.levels:
+                    UIController.Instance.ShowLevelUI(false);
+                    UIController.Instance.ShowMenuUI(true);
+                    break;
             }
         }
     }
