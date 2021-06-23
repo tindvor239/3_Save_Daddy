@@ -15,6 +15,7 @@ public class Fan : Trap
 
     private int count = 0;
     private GameObject blowedObject;
+
     // Update is called once per frame
     private void Update()
     {
@@ -23,24 +24,6 @@ public class Fan : Trap
         {
             CheckHit();
             timer = 0;
-        }
-    }
-    private void FixedUpdate()
-    {
-        Blowing();
-    }
-    private void CheckHit()
-    {
-        GameObject beenHitObject = RayCastingToObject();
-        Debug.DrawRay(transform.position, GameManager.Instance.GetDirectionVector(transform.position, target.position), Color.red, Vector2.Distance(transform.position, target.position) / 2);
-        OnHit(beenHitObject);
-        if (beenHitObject != null && (beenHitObject.tag == "Player" || beenHitObject.tag == "Enemy"))
-        {
-            if (beenHitObject.GetComponent<PlayerController>() != null && count == 0)
-            {
-                StartCoroutine(MoveNext(beenHitObject.GetComponent<PlayerController>(), beenHitObject.GetComponent<PlayerController>().MoveDuration(beenHitObject.transform.position, target.position) + 1));
-                count++;
-            }
         }
     }
 
@@ -64,6 +47,29 @@ public class Fan : Trap
             else
             {
                 blowedObject.transform.position += direction * Time.deltaTime * speedMultiplier * blowingSpeed;
+            }
+            if(blowedObject.tag == "Player")
+            {
+                CameraController.Instance.MoveKeepCenter();
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        Blowing();
+    }
+    private void CheckHit()
+    {
+        GameObject beenHitObject = RayCastingToObject();
+        Debug.DrawRay(transform.position, GameManager.Instance.GetDirectionVector(transform.position, target.position), Color.red, Vector2.Distance(transform.position, target.position) / 2);
+        OnHit(beenHitObject);
+        if (beenHitObject != null && (beenHitObject.tag == "Player" || beenHitObject.tag == "Enemy"))
+        {
+            if (beenHitObject.GetComponent<PlayerController>() != null && count == 0)
+            {
+                StartCoroutine(MoveNext(beenHitObject.GetComponent<PlayerController>(), beenHitObject.GetComponent<PlayerController>().MoveDuration(beenHitObject.transform.position, target.position) + 1));
+                count++;
             }
         }
     }

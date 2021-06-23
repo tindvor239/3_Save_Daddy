@@ -364,5 +364,5 @@ public class GameManager : Singleton<GameManager>
         }
     }
     #endregion
-    public enum GameState {menu, play, pause, win, gameover, ask }
+    public enum GameState {menu, levels, play, pause, win, gameover, ask }
 }
