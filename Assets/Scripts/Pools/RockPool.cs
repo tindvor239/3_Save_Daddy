@@ -14,7 +14,7 @@ public class RockPool : ObstaclePool
     {
         for (int i = 0; i < party.Pools.Count; i++)
         {
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.2f);
 
             GameObject newObject = party.Pools[i].GetPooledObject();
             if (newObject == null)

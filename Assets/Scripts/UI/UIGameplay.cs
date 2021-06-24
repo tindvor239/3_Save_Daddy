@@ -6,6 +6,8 @@ public class UIGameplay : UISection
 {
     [SerializeField]
     private List<Sprite> sprites;
+    [SerializeField]
+    private AudioClip gameplayBackground;
     #region Properties
     public List<Image> Stars { get => GetStarImages(); }
     public List<Image> Keys { get => GetKeyImages(); }
@@ -13,6 +15,7 @@ public class UIGameplay : UISection
     public Sprite KeyOff { get => sprites[1]; }
     public Sprite StarOn { get => sprites[2]; }
     public Sprite StarOff { get => sprites[3]; }
+    public AudioClip GameplayBackground { get => gameplayBackground; }
     public string LevelName
     {
         get

@@ -7,7 +7,7 @@ using DoozyUI;
 public class UIController : Singleton<UIController>
 {
     [SerializeField]
-    private WinInfoUI processInfo;
+    private WinInfoUI winInfo;
     [SerializeField]
     private UIGameplay gameplay;
     [SerializeField]
@@ -16,7 +16,10 @@ public class UIController : Singleton<UIController>
     private UILevelSkip levelSkip;
     [SerializeField]
     private UIMapProcessing mapProcessing;
-
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip menuBackground;
     private GameManager gameManager;
     private CharacterPoolParty characterParty;
     private CameraController cam;
@@ -24,10 +27,11 @@ public class UIController : Singleton<UIController>
     private MapEditor editor;
 
     #region Properties
-    public WinInfoUI ProcessInfo { get => processInfo; }
+    public WinInfoUI ProcessInfo { get => winInfo; }
     public UIGameplay Gameplay { get => gameplay; }
     public UILevelManager LevelManager { get => levelManager; }
     public UIMapProcessing MapProcessing { get => mapProcessing; }
+    public AudioSource AudioSource { get => audioSource; }
     #endregion
     protected override void Awake()
     {
@@ -42,19 +46,25 @@ public class UIController : Singleton<UIController>
         cam = CameraController.Instance;
         obstacleParty = ObstaclePoolParty.Instance;
         editor = MapEditor.Instance;
+        audioSource = GetComponent<AudioSource>();
+        ShowMenuUI(true);
     }
 
     public void ShowMenuUI(bool isActive)
     {
         GameManager.State = GameManager.GameState.menu;
+        audioSource.clip = menuBackground;
+        audioSource.Play();
         ViewManager.ShowUI("MENU_UI", isActive);
+        ViewManager.ShowUI("MAINBACKGROUND_UI", isActive);
     }
     public void ShowGameplayUI(bool isActive)
     {
         GameManager.State = GameManager.GameState.play;
+        audioSource.clip = gameplay.GameplayBackground;
+        audioSource.Play();
         ViewManager.ShowUI("GAMEPLAY_UI", isActive);
     }
-
     public void Play(bool isActive)
     {
         ShowProcessUI(isActive);
@@ -90,7 +100,6 @@ public class UIController : Singleton<UIController>
         mapProcessing.Process();
         StartCoroutine(LoadLevelOnTime());
     }
-
     public void ShowSettingUI(bool isActive)
     {
         if(isActive)
@@ -115,7 +124,8 @@ public class UIController : Singleton<UIController>
         if(isActive)
         {
             GameManager.State = GameManager.GameState.win;
-            processInfo.DisplayProcessUI();
+            audioSource.PlayOneShot(winInfo.WinSound);
+            winInfo.DisplayProcessUI();
         }
     }
     public void ShowLevelUpUI(bool isActive)
@@ -155,6 +165,7 @@ public class UIController : Singleton<UIController>
         ViewManager.ShowUI("LEVELS_UI", false);
         ViewManager.ShowUI("LUCKYSPIN_UI", false);
         ViewManager.ShowUI("PROCESS_UI", isActive);
+        ViewManager.ShowUI("MAINBACKGROUND_UI", isActive);
     }
     public void ShowBeforeExitUI(bool isActive)
     {

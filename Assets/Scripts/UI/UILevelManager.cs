@@ -63,7 +63,7 @@ public class UILevelManager : MonoBehaviour
                 List<Map> maps = new List<Map>();
                 List<string> names = new List<string>();
                 GetMapStack(ref startIndex, mapPerStack, maps, names);
-                Debug.Log(startIndex);
+                //Debug.Log(startIndex);
                 stackUI.DisplayLevels(maps, names);
             }
         }

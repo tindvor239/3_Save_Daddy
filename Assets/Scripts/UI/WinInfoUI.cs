@@ -25,9 +25,19 @@ public class WinInfoUI : MonoBehaviour
     [SerializeField]
     private ParticleSystem[] sparkles;
     [SerializeField]
+    private AudioClip winSound;
+    [SerializeField]
     private GameObject[] stars;
+    [SerializeField]
+    private AudioClip[] starSounds;
+
     private Image buttonImage;
     private Text buttonText;
+
+    #region Properties
+    public AudioClip WinSound { get => winSound; }
+    #endregion
+
     private void Start()
     {
         buttonImage = button.GetComponent<Image>();
@@ -190,6 +200,7 @@ public class WinInfoUI : MonoBehaviour
             yield return new WaitForSeconds(showDuration);
             stars[count].SetActive(true);
             ViewManager.Scale(stars[count].transform, new Vector3(1, 1, 1), 0.3f);
+            UIController.Instance.AudioSource.PlayOneShot(starSounds[Random.Range(0, starSounds.Length)]);
             count++;
         }
     }

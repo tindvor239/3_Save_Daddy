@@ -68,6 +68,7 @@ MonoBehaviour:
       - LEVELUP_UI
       - LUCKYSPIN_POPUP
       - LUCKYSPIN_UI
+      - MAINBACKGROUND_UI
       - MENU_UI
       - MOVE_MACHINE_UI
       - NO_COIN_UI

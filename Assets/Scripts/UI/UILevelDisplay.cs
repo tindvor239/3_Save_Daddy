@@ -35,7 +35,7 @@ public class UILevelDisplay : MonoBehaviour
     public void Load()
     {
         MapEditor.Instance.currentMap = map;
-        if(map.isUnlocked)
+        if(map != null && map.isUnlocked)
         {
             UIController.Instance.ShowLevelUI(false);
             UIController.Instance.ShowProcessUI(true);
