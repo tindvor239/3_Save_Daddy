@@ -3,7 +3,11 @@ using UnityEngine.UI;
 using Spine.Unity;
 public class UIGameOver : UISection
 {
+    [SerializeField]
+    private AudioClip lose;
+    #region Properties
     public Image characterIcon { get => (Image)displays[0].Value; }
+    #endregion
     public void SkipLevel()
     {
         Debug.Log("Skip level");

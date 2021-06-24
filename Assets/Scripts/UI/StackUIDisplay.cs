@@ -63,7 +63,7 @@ public class StackUIDisplay : MonoBehaviour
         if(isSet != 1)
         {
             ResetKeys();
-            //PlayerPrefs.SetInt(Name, 1);
+            PlayerPrefs.SetInt(Name, 1);
         }
         foreach (UIKeyChest keyChest in keyChests)
         {
@@ -130,7 +130,7 @@ public class StackUIDisplay : MonoBehaviour
         //check ui key chest index.
         int index = keyChests.IndexOf(uIKeyChest);
         int canOpenCount = ((int)slider.value / 5) - 1;
-        if (index != -1 && canOpenCount <= index && GetKey(index) == 1)
+        if (index != -1 && canOpenCount >= index && GetKey(index) == 1)
         {
             // and star count reach ui key chest index => open chest.
             uIKeyChest.Open();
@@ -153,7 +153,7 @@ public class StackUIDisplay : MonoBehaviour
         for(int i = 0; i < 3; i++)
         {
             int key = PlayerPrefs.GetInt(name + i);
-            if(key == 1)
+            if(key != 1)
             {
                 count++;
             }

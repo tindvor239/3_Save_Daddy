@@ -13,9 +13,13 @@ public class EnemyController : CharacterController
     [SerializeField]
     protected float attackRange;
     protected float startSize;
-
     protected float timer = 0;
     protected float maxTimer = 4f;
+    [SerializeField]
+    private AudioClip attackSound;
+    [SerializeField]
+    private AudioClip normalSound;
+    private AudioSource audioSource;
     protected override void Awake()
     {
         base.Awake();
@@ -24,7 +28,7 @@ public class EnemyController : CharacterController
     {
         base.Start();
         startSize = transform.localScale.x;
-
+        audioSource = GetComponent<AudioSource>();
     }
     protected override void Update()
     {
@@ -291,9 +295,13 @@ public class EnemyController : CharacterController
             {
                 case CharacterState.idle:
                     Acting(animationSet[0], true);
+                    audioSource.clip = normalSound;
+                    audioSource.Play();
                     break;
                 case CharacterState.move:
                     Acting(animationSet[0], true);
+                    audioSource.Stop();
+                    audioSource.PlayOneShot(attackSound);
                     break;
                 case CharacterState.die:
                     Acting(animationSet[2], false);

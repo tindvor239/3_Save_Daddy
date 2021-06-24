@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.CustomComponents;
 using Spine.Unity;
@@ -9,6 +8,11 @@ public class PlayerController : CharacterController
     private bool alreadyMoveCamera = false;
     [SerializeField]
     private float dangerRange;
+    [SerializeField]
+    private AudioClip afraid;
+    [SerializeField]
+    private AudioClip[] laughs;
+    private AudioSource audioSource;
 
     protected override void Awake()
     {
@@ -18,6 +22,7 @@ public class PlayerController : CharacterController
     protected override void Start()
     {
         base.Start();
+        audioSource = GetComponent<AudioSource>();
         poolName = CharacterPoolParty.Instance.PlayerPool.Name;
     }
     // Update is called once per frame
@@ -40,6 +45,8 @@ public class PlayerController : CharacterController
                     break;
                 case CharacterState.move:
                     SwitchAction(animationSet[1], animationSet[2]);
+                    int randomIndex = Random.Range(0, laughs.Length);
+                    audioSource.PlayOneShot(laughs[randomIndex]);
                     StartCoroutine(SwitchingState(CharacterState.idle, 1));
                     break;
                 case CharacterState.die:
@@ -120,8 +127,13 @@ public class PlayerController : CharacterController
         if(IsDanger() && gameObject.activeInHierarchy)
         {
             SwitchAction(animationSet[3], animationSet[4]);
+            Invoke("ScareSound", 0.4f);
             Invoke("ScareAnimation", actingDelay);
         }
+    }
+    private void ScareSound()
+    {
+        audioSource.PlayOneShot(afraid);
     }
     private bool IsDanger()
     {
