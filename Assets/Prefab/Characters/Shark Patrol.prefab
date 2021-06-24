@@ -179,6 +179,7 @@ MonoBehaviour:
   attackRange: 10
   attackSound: {fileID: 8300000, guid: f81bfcb320057124db6202ddf2dfba7a, type: 3}
   normalSound: {fileID: 8300000, guid: 1f943305b5a6f184d9d137ffbf94fe99, type: 3}
+  deathSound: {fileID: 8300000, guid: 0a80318130a404740bc1cca982fd74d1, type: 3}
 --- !u!50 &8841341863305075452
 Rigidbody2D:
   serializedVersion: 4

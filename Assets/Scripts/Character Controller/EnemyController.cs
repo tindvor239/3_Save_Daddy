@@ -19,6 +19,8 @@ public class EnemyController : CharacterController
     private AudioClip attackSound;
     [SerializeField]
     private AudioClip normalSound;
+    [SerializeField]
+    private AudioClip deathSound;
     private AudioSource audioSource;
     protected override void Awake()
     {
@@ -295,8 +297,9 @@ public class EnemyController : CharacterController
             {
                 case CharacterState.idle:
                     Acting(animationSet[0], true);
-                    audioSource.clip = normalSound;
-                    audioSource.Play();
+                    //audioSource.clip = normalSound;
+                    //audioSource.Play();
+                    //audioSource.loop = true;
                     break;
                 case CharacterState.move:
                     Acting(animationSet[0], true);
@@ -305,6 +308,7 @@ public class EnemyController : CharacterController
                     break;
                 case CharacterState.die:
                     Acting(animationSet[2], false);
+                    audioSource.PlayOneShot(deathSound);
                     break;
             }
         }

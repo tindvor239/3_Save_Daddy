@@ -61,6 +61,7 @@ MonoBehaviour:
   attackRange: 10
   attackSound: {fileID: 8300000, guid: a3ea4eb8eabb6f542a82388284b7e880, type: 3}
   normalSound: {fileID: 8300000, guid: 1f943305b5a6f184d9d137ffbf94fe99, type: 3}
+  deathSound: {fileID: 8300000, guid: 0a80318130a404740bc1cca982fd74d1, type: 3}
 --- !u!58 &864329369754730594
 CircleCollider2D:
   m_ObjectHideFlags: 0
