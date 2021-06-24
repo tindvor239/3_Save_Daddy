@@ -91,7 +91,14 @@ public class CameraController : CharacterController
     }
     public void MoveKeepCenter()
     {
-        FixedOffset = destinations[0].GetComponent<CameraPath>().Center - Player.transform.position;
+        if(destinations.Count >= 1)
+        {
+            FixedOffset = destinations[0].GetComponent<CameraPath>().Center - Player.transform.position;
+        }
+        else
+        {
+            FixedOffset = new Vector3();
+        }
         FixedOffset = new Vector3(FixedOffset.x - moveSpeed, FixedOffset.y);
         Debug.Log(FixedOffset);
         destinations = new List<Transform>();

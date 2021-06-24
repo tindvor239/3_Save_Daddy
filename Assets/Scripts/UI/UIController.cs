@@ -126,7 +126,10 @@ public class UIController : Singleton<UIController>
     }
     public void ShowLevelUI(bool isActive)
     {
-        GameManager.State = GameManager.GameState.menu;
+        if(isActive)
+        {
+            GameManager.State = GameManager.GameState.level;
+        }
         ViewManager.ShowUI("GAMEPLAY_UI", false);
         ViewManager.ShowUI("LEVELS_UI", isActive);
         levelManager.SetupLevels();

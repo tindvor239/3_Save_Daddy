@@ -65,6 +65,10 @@ public class Fan : Trap
             {
                 blowedObject.transform.position += direction * Time.deltaTime * speedMultiplier * blowingSpeed;
             }
+            if(blowedObject.tag == "Player")
+            {
+                CameraController.Instance.MoveKeepCenter();
+            }
         }
     }
     private GameObject RayCastingToObject()
