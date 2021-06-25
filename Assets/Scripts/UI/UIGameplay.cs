@@ -35,7 +35,7 @@ public class UIGameplay : UISection
         int mapIndex = GameManager.Instance.CurrentLevelIndex();
         LevelName = string.Format("Level {0}", mapIndex);
         //Get correct keys
-        Debug.Log(keyCount);
+        //Debug.Log("keys: "+ keyCount);
         SetKey(keyCount);
     }
 

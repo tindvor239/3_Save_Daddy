@@ -51,7 +51,7 @@ public class CameraController : CharacterController
         float size = this.size;
         if (destinations.Count == 0)
         {
-            Debug.Log(FixedOffset);
+            //Debug.Log(FixedOffset);
             target = new Vector3(Player.transform.position.x + FixedOffset.x, Player.transform.position.y + FixedOffset.y, transform.position.z);
             target = new Vector3(target.x + moveSpeed, target.y, target.z);
         }

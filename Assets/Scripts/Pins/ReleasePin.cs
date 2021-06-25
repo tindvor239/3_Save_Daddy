@@ -18,6 +18,7 @@ public class ReleasePin : Pin
     {
         if (isAlreadyUnpin == false)
         {
+            finishDuration = unpinDuration + 0.1f;
             base.Unpin();
             collider.enabled = false;
             if (GameManager.Instance.IsBlocked(lockers[0].position, lockers[1].position, 1 << LayerMask.NameToLayer("Pin")) == false)

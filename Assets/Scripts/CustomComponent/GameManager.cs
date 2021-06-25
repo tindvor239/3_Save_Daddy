@@ -220,7 +220,7 @@ public class GameManager : Singleton<GameManager>
 
             if (destinations[i] == transform || roundedPos == currentDestination)
             {
-                Debug.Log(i);
+                //Debug.Log("current Pos: "+i);
                 return i;
             }
             else if ((roundedPos.x == currentDestination.x && roundedPos.y != currentDestination.y && roundedPos.y > currentDestination.y)
@@ -250,13 +250,17 @@ public class GameManager : Singleton<GameManager>
     public int GetNextDestinationIndex(CharacterController controller)
     {
         int index = GetCurrentPosIndex(controller.transform, Instance.Destinations);
+        //Debug.Log("current pos: " + index);
         if (index != -1 && index < Instance.destinations.Count - 1)
         {
-            bool isBlocked = controller.CheckPathIsBlocked(controller.transform.position, Instance.destinations[index + 1].position);
-            if (!isBlocked)
+            for(int i = index + 1; i < destinations.Count; i++)
             {
-                Debug.Log(index + 1);
-                return index + 1;
+                bool isBlocked = controller.CheckPathIsBlocked(controller.transform.position, Instance.destinations[i].position);
+                if (!isBlocked)
+                {
+                    //Debug.Log("next destination: " + i);
+                    return i;
+                }
             }
             return -1;
         }
@@ -331,14 +335,11 @@ public class GameManager : Singleton<GameManager>
     #region Map Handle
     public void UnlockNextLevel()
     {
-        for(int i = 0; i < Instance.mapDatas.Count; i++)
+        int index = Instance.mapDatas.IndexOf(MapEditor.Instance.currentMap);
+        if (index != -1 && index + 1 < Instance.mapDatas.Count)
         {
-            if(i + 1 < Instance.mapDatas.Count && MapEditor.Instance.currentMap != null
-                && Instance.mapDatas[i] == MapEditor.Instance.currentMap)
-            {
-                Instance.mapDatas[i + 1].isUnlocked = true;
-                break;
-            }
+            Debug.Log("index: "+index);
+            Instance.mapDatas[index + 1].isUnlocked = true;
         }
     }
     public int CurrentLevelIndex()

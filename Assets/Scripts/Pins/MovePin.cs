@@ -24,6 +24,7 @@ public class MovePin : Pin
         finishDuration = MoveDuration(pinTransform.position, points[index].position);
         GameController.Instance.Move(pinTransform, points[index].position, finishDuration / 1.25f, DG.Tweening.Ease.Linear);
         CameraController.Instance.MoveKeepCenter();
+        finishDuration += 0.2f;
         base.Unpin();
     }
     private float MoveDuration(Vector2 fromPosition, Vector2 toPosition)

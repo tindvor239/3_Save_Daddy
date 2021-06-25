@@ -65,6 +65,7 @@ public abstract class Pin : Model, IInteractable
         if(enemy != null && enemy.gameObject.activeInHierarchy && enemy.GetComponent<ManEaterPlantController>() == null)
         {
             enemy.GetPlayer();
+            Debug.Log("Move");
         }
         GameManager.Instance.Player.MovePlayerToNextDestination();
     }

@@ -86,7 +86,7 @@ public class WinInfoUI : MonoBehaviour
     private void DisplayProcess()
     {
         List<Map> maps = GetMapsInProcess();
-        Debug.Log(maps.Count);
+        //Debug.Log(maps.Count);
         for(int i = 0; i < maps.Count; i++)
         {
             if(maps[i].isUnlocked)
