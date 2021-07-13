@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
-
+using DoozyUI;
+using System.Collections.Generic;
 public class GameController : Singleton<GameController>
 {
     private PlayerController player;
@@ -154,9 +156,10 @@ public class GameController : Singleton<GameController>
     #endregion
     private void BackHandle()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        bool isActive;
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            switch(GameManager.State)
+            switch (GameManager.State)
             {
                 case GameManager.GameState.play:
                     UIController.Instance.ShowSettingUI(true);
@@ -166,13 +169,17 @@ public class GameController : Singleton<GameController>
                     UIController.Instance.ShowMenuUI(true);
                     break;
                 case GameManager.GameState.pause:
-                    UIController.Instance.ShowSettingUI(false);
+                    isActive = UIElement.IsUIElementVisible("SETTINGS_UI");
+                    if(isActive)
+                        UIController.Instance.ShowSettingUI(false);
+                    else
+                    {
+                        UIController.Instance.ShowBeforeExitUI(false);
+                    }
                     break;
                 case GameManager.GameState.menu:
-                    UIController.Instance.ShowBeforeExitUI(true);
-                    break;
-                case GameManager.GameState.ask:
-                    UIController.Instance.ShowBeforeExitUI(false);
+                    isActive = UIElement.IsUIElementVisible("BEFOREEXIT_UI");
+                    UIController.Instance.ShowBeforeExitUI(!isActive);
                     break;
             }
         }

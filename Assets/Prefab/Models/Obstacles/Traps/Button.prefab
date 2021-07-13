@@ -122,6 +122,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Button Pool
+  sound:
+    clip: {fileID: 8300000, guid: d2e74fbc79b2d894085b82784245a8c6, type: 3}
+    source: {fileID: 0}
   effect: {fileID: 0}
   isDisarmed: 0
   arrows: []

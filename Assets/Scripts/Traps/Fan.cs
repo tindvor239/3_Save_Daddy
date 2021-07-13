@@ -11,19 +11,14 @@ public class Fan : Trap
     private bool isReverse;
     private float speedMultiplier = 0.002f;
     private float timer = 0;
-    private float maxTimer = 0.15f;
+    private float maxTime = 0.15f;
 
     private int count = 0;
     private GameObject blowedObject;
     // Update is called once per frame
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= maxTimer)
-        {
-            CheckHit();
-            timer = 0;
-        }
+        GameManager.Instance.OnHitCallBack(ref timer, in maxTime, CheckHit);
     }
     private void FixedUpdate()
     {
@@ -89,8 +84,10 @@ public class Fan : Trap
         yield return new WaitForSeconds(duration);
         player.MovePlayerToNextDestination();
     }
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+        sound.PlayLoop(sound.clip);
         timer = 0;
         count = 0;
     }

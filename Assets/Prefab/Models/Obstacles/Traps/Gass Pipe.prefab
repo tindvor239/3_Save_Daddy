@@ -4912,6 +4912,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Gass Pool
+  sound:
+    clip: {fileID: 8300000, guid: 17a76bee46fdaef43862c229a8ef1b44, type: 3}
+    source: {fileID: 0}
   effect: {fileID: 0}
   isDisarmed: 0
   points:

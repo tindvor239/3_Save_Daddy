@@ -13,6 +13,7 @@ public class ButtonTrap : Trap
     private float maxTimer = .2f;
     protected override void Start()
     {
+        base.Start();
         arrows = FindObjectsOfType<Arrow>().Where(f => f.gameObject.activeInHierarchy).ToList();
     }
     private void Update()
@@ -36,8 +37,9 @@ public class ButtonTrap : Trap
         }
         timer = 0;
     }
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         isDisarmed = false;
         timer = 0;
         arrows = new List<Arrow>();
@@ -67,6 +69,7 @@ public class ButtonTrap : Trap
         {
             arrow.Disarmed();
         }
+        sound.PlayOnce(sound.clip);
         isDisarmed = true;
     }
 }

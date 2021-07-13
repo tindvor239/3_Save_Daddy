@@ -460,7 +460,7 @@ namespace QuickEditor
         /// <param name="height">Set texture height.</param>
         public static void DrawTexture(Texture texture, float width, float height)
         {
-            if(texture == null) { Debug.Log("[QUI] Texture is null!"); return; }
+            if(texture == null) { /*Debug.Log("[QUI] Texture is null!");*/ return; }
             Rect rect = GUILayoutUtility.GetRect(0f, 0f);
             rect.width = width;
             rect.height = height;

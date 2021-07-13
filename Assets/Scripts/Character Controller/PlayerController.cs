@@ -12,7 +12,6 @@ public class PlayerController : CharacterController
     private AudioClip afraid;
     [SerializeField]
     private AudioClip[] laughs;
-    private AudioSource audioSource;
 
     protected override void Awake()
     {
@@ -22,7 +21,6 @@ public class PlayerController : CharacterController
     protected override void Start()
     {
         base.Start();
-        audioSource = GetComponent<AudioSource>();
         poolName = CharacterPoolParty.Instance.PlayerPool.Name;
     }
     // Update is called once per frame
@@ -36,7 +34,7 @@ public class PlayerController : CharacterController
     }
     protected override void Action()
     {
-        if (skeleton != null && gameObject.activeInHierarchy)
+        if (skeletonAnimation != null && gameObject.activeInHierarchy && GameManager.State == GameManager.GameState.play)
         {
             switch (state)
             {
@@ -46,7 +44,7 @@ public class PlayerController : CharacterController
                 case CharacterState.move:
                     SwitchAction(animationSet[1], animationSet[2]);
                     int randomIndex = Random.Range(0, laughs.Length);
-                    audioSource.PlayOneShot(laughs[randomIndex]);
+                    sound.PlayOnce(laughs[randomIndex]);
                     StartCoroutine(SwitchingState(CharacterState.idle, 1));
                     break;
                 case CharacterState.die:
@@ -66,7 +64,7 @@ public class PlayerController : CharacterController
         {
             actingDelay = 2;
             StartCoroutine(SwitchingAct(endAnimation, false, 1));
-            ViewManager.Acting(skeleton, startAnimation, false, 1);
+            ViewManager.Acting(skeletonAnimation, startAnimation, false, 1);
         }
     }
 
@@ -92,7 +90,7 @@ public class PlayerController : CharacterController
             else if(alreadyMoveCamera == false)
             {
                 CameraController.Instance.ZoomCenterPoint();
-                Invoke("ScareAnimation", actingDelay);
+                //Invoke("ScareAnimation", actingDelay);
                 alreadyMoveCamera = true;
             }
         }
@@ -106,11 +104,14 @@ public class PlayerController : CharacterController
 
     private void ContinueMoving(Transform destination)
     {
-        if (!sequence.IsActive())
+        if(GameManager.State == GameManager.GameState.play)
         {
-            moveDuration = 0;
+            if (!sequence.IsActive())
+            {
+                moveDuration = 0;
+            }
+            StartCoroutine(MoveToDestination(destination));
         }
-        StartCoroutine(MoveToDestination(destination));
     }
     private IEnumerator MoveToDestination(Transform destination)
     {
@@ -133,7 +134,7 @@ public class PlayerController : CharacterController
     }
     private void ScareSound()
     {
-        audioSource.PlayOneShot(afraid);
+        sound.PlayOnce(afraid);
     }
     private bool IsDanger()
     {

@@ -92,7 +92,7 @@ public class UILevelManager : MonoBehaviour
     }
     private int GetMapStartIndex()
     {
-        return Page * mapPerStack;
+        return Page * (mapPerStack * stackPerPage);
     }
     
     public void SetupLevels()

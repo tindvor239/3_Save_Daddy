@@ -1,0 +1,34 @@
+
+Fan.png
+size: 332,140
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Center
+  rotate: true
+  xy: 305, 88
+  size: 52, 27
+  orig: 52, 27
+  offset: 0, 0
+  index: -1
+Group 51
+  rotate: false
+  xy: 124, 60
+  size: 181, 80
+  orig: 181, 80
+  offset: 0, 0
+  index: -1
+Group 51 copy
+  rotate: false
+  xy: 124, 0
+  size: 181, 60
+  orig: 181, 60
+  offset: 0, 0
+  index: -1
+Layer 15
+  rotate: true
+  xy: 0, 9
+  size: 131, 124
+  orig: 131, 124
+  offset: 0, 0
+  index: -1

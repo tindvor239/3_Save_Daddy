@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.CustomComponents;
 using DoozyUI;
 
@@ -8,6 +9,8 @@ public class UIController : Singleton<UIController>
 {
     [SerializeField]
     private WinInfoUI winInfo;
+    [SerializeField]
+    private UIGameOver gameOver;
     [SerializeField]
     private UIGameplay gameplay;
     [SerializeField]
@@ -17,9 +20,9 @@ public class UIController : Singleton<UIController>
     [SerializeField]
     private UIMapProcessing mapProcessing;
     [SerializeField]
-    private AudioSource audioSource;
+    private UISkinReward skinReward;
     [SerializeField]
-    private AudioClip menuBackground;
+    private Sound sound;
     private GameManager gameManager;
     private CharacterPoolParty characterParty;
     private CameraController cam;
@@ -31,7 +34,6 @@ public class UIController : Singleton<UIController>
     public UIGameplay Gameplay { get => gameplay; }
     public UILevelManager LevelManager { get => levelManager; }
     public UIMapProcessing MapProcessing { get => mapProcessing; }
-    public AudioSource AudioSource { get => audioSource; }
     #endregion
     protected override void Awake()
     {
@@ -39,6 +41,7 @@ public class UIController : Singleton<UIController>
         base.Awake();
         #endregion
     }
+
     private void Start()
     {
         gameManager = GameManager.Instance;
@@ -46,23 +49,37 @@ public class UIController : Singleton<UIController>
         cam = CameraController.Instance;
         obstacleParty = ObstaclePoolParty.Instance;
         editor = MapEditor.Instance;
-        audioSource = GetComponent<AudioSource>();
+        sound.Initiate(gameObject, SoundManager.Instance.Music);
+        sound.source.loop = true;
         ShowMenuUI(true);
     }
 
+    public void ShowShop(bool isActive)
+    {
+        if(isActive)
+        {
+            GameManager.State = GameManager.GameState.shop;
+            ViewManager.ShowUI("MAINBACKGROUND_UI", isActive);
+        }
+        ViewManager.ShowUI("SHOP_UI", isActive);
+        ShowMenuUI(!isActive);
+    }
     public void ShowMenuUI(bool isActive)
     {
-        GameManager.State = GameManager.GameState.menu;
-        audioSource.clip = menuBackground;
-        audioSource.Play();
+        if(isActive)
+        {
+            GameManager.State = GameManager.GameState.menu;
+            sound.source.clip = sound.clip;
+            sound.source.Play();
+            ViewManager.ShowUI("MAINBACKGROUND_UI", isActive);
+        }
         ViewManager.ShowUI("MENU_UI", isActive);
-        ViewManager.ShowUI("MAINBACKGROUND_UI", isActive);
     }
     public void ShowGameplayUI(bool isActive)
     {
         GameManager.State = GameManager.GameState.play;
-        audioSource.clip = gameplay.GameplayBackground;
-        audioSource.Play();
+        sound.source.clip = gameplay.GameplayBackground;
+        sound.source.Play();
         ViewManager.ShowUI("GAMEPLAY_UI", isActive);
     }
     public void Play(bool isActive)
@@ -105,11 +122,26 @@ public class UIController : Singleton<UIController>
         if(isActive)
         {
             GameManager.State = GameManager.GameState.pause;
+            sound.source.Pause();
+            SoundManager.Instance.Sound.Pause();
+            gameManager.Player.Pause();
+            foreach (var enemy in gameManager.Enemies)
+            {
+                enemy.Pause();
+            }
         }
         else
         {
             GameManager.State = GameManager.GameState.play;
+            sound.source.Play();
+            SoundManager.Instance.Sound.Play();
+            gameManager.Player.Continue();
+            foreach (var enemy in gameManager.Enemies)
+            {
+                enemy.Continue();
+            }
         }
+        Debug.Log("Turn Setting");
         ViewManager.ShowUI("GAMEPLAY_UI", !isActive);
         ViewManager.ShowUI("SETTINGS_UI", isActive);
     }
@@ -117,6 +149,10 @@ public class UIController : Singleton<UIController>
     {
         GameManager.State = GameManager.GameState.gameover;
         ViewManager.ShowUI("GAMEOVER_UI", isActive);
+        if(isActive)
+        {
+            sound.PlayOnce(gameOver.LoseSound);
+        }
     }
     public void ShowWinUI(bool isActive)
     {
@@ -124,7 +160,7 @@ public class UIController : Singleton<UIController>
         if(isActive)
         {
             GameManager.State = GameManager.GameState.win;
-            audioSource.PlayOneShot(winInfo.WinSound);
+            sound.source.PlayOneShot(winInfo.WinSound);
             winInfo.DisplayProcessUI();
         }
     }
@@ -170,47 +206,59 @@ public class UIController : Singleton<UIController>
     }
     public void ShowBeforeExitUI(bool isActive)
     {
-        
-        if(GameManager.State == GameManager.GameState.pause)
-        {
-            ViewManager.ShowUI("SETTINGS_UI", !isActive);
-        }
+        // Avoid Button Overlaying
         ViewManager.ShowUI("BEFOREEXIT_UI", isActive);
-        if (isActive)
+        switch(GameManager.State)
         {
-            GameController.Instance.lastState = GameManager.State;
-            GameManager.State = GameManager.GameState.ask;
-        }
-        else
-        {
-            GameManager.State = GameController.Instance.lastState;
-            if (GameManager.State == GameManager.GameState.pause)
-            {
+            case GameManager.GameState.pause:
                 ViewManager.ShowUI("SETTINGS_UI", !isActive);
-            }
+                break;
+            case GameManager.GameState.menu:
+                List<UIElement> uiElements = UIElement.GetUIElements("MENU_UI");
+                foreach (UIElement uiElement in uiElements)
+                {
+                    uiElement.GetComponent<GraphicRaycaster>().enabled = !isActive;
+                }
+                break;
         }
     }
-    public void BeforeExitAsk(bool isActive)
+    public void BeforeExit(bool isActive)
     {
-        if(isActive)
+        switch (GameManager.State)
         {
-            switch(GameController.Instance.lastState)
-            {
-                case GameManager.GameState.menu:
-                    Application.Quit();
-                    break;
-                case GameManager.GameState.pause:
-                    GameManager.State = GameManager.GameState.menu;
-                    GameController.Instance.lastState = GameManager.GameState.pause;
+            case GameManager.GameState.pause:
+                ViewManager.ShowUI("SETTINGS_UI", !isActive);
+                ViewManager.ShowUI("BEFOREEXIT_UI", !isActive);
+                if(isActive)
+                {
                     ShowMenuUI(isActive);
-                    ShowBeforeExitUI(!isActive);
-                    break;
-            }
+                    editor.Clear();
+                }
+                break;
+            case GameManager.GameState.menu:
+                ShowBeforeExitUI(isActive);
+                break;
         }
-        else
+    }
+    public void ShowSkinReward(bool isActive, Skin skin)
+    {
+        ShowSkinReward(isActive);
+        if (isActive)
         {
-            ShowBeforeExitUI(false);
+            skinReward.ShowUI(skin);
         }
+    }
+    public void ShowSkinReward(bool isActive)
+    {
+        ViewManager.ShowUI("VIDEO_REWARD_UI", isActive);
+        if(isActive == false)
+        {
+            ShowWinUI(!isActive);
+        }
+    }
+    public void ShowSkinReward(bool isActive, int index)
+    {
+        ShowSkinReward(isActive, GameManager.PlayerSkins[index]);
     }
 
     private IEnumerator LoadLevelOnTime()
@@ -269,9 +317,8 @@ public class UIController : Singleton<UIController>
         Debug.Log(player);
         Vector3 newPosition = new Vector3(player.transform.position.x, player.transform.position.y, cam.gameObject.transform.position.z);
         cam.gameObject.transform.position = newPosition;
-        cam.Move();
-        gameManager.Skins.AddRange(player.Skeleton.Skeleton.Data.Skins);
-        ViewManager.SetSkin(player.Skeleton, gameManager.Skins[GameManager.UsingSkin]);
+        cam.Move();;
+        ViewManager.SetSkin(player.SkeletonAnimation.skeleton, GameManager.PlayerSkins[GameManager.UsingSkin]);
     }
     private IEnumerator SpawnObstaclesOnPlay()
     {

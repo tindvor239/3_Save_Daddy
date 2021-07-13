@@ -12,14 +12,13 @@ public class Gass : Trap
     {
         base.Awake();
     }
-    // Start is called before the first frame update
     protected override void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         GameManager.Instance.OnHitCallBack(ref timer, in maxTimer, CheckHit);
     }
@@ -29,6 +28,7 @@ public class Gass : Trap
         if (beenBlocked)
         {
             Disarmed();
+            sound.source.Stop();
         }
         else
         {
@@ -47,5 +47,11 @@ public class Gass : Trap
             }
         }
         timer = 0;
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        sound.PlayLoop(sound.clip);
     }
 }

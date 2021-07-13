@@ -8,17 +8,21 @@ public class Fire : MonoBehaviour
     [SerializeField]
     private Transform[] transforms = new Transform[2];
     private float timer = 0;
-    private float maxTimer = 0.15f;
+    private float maxTime = 0.15f;
+    [SerializeField]
+    private ParticleSystem spark;
+    [SerializeField]
+    private ParticleSystem fire;
+    [SerializeField]
+    private ParticleSystem darkerFire;
+    [SerializeField]
+    private ParticleSystem smoke;
     // Update is called once per frame
     void Update()
     {
         line.SetPosition(0, transforms[0].position);
-        timer += Time.deltaTime;
-        if (timer >= maxTimer)
-        {
-            CheckHit();
-            timer = 0;
-        }
+        SetFire();
+        GameManager.Instance.OnHitCallBack(ref timer, in maxTime, CheckHit);
     }
     private void CheckHit()
     {
@@ -68,5 +72,18 @@ public class Fire : MonoBehaviour
             }
         }
         return null;
+    }
+
+    private void SetFire()
+    {
+        var velocity = spark.velocityOverLifetime;
+        Vector2 endPosition = transform.TransformPoint(line.GetPosition(1));
+        velocity.y = endPosition.y + 0.5f;
+        velocity = fire.velocityOverLifetime;
+        velocity.y = endPosition.y;
+        velocity = darkerFire.velocityOverLifetime;
+        velocity.y = endPosition.y + 0.5f;
+        velocity = smoke.velocityOverLifetime;
+        velocity.y = endPosition.y + 0.5f;
     }
 }

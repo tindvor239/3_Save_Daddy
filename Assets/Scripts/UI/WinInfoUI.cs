@@ -200,7 +200,7 @@ public class WinInfoUI : MonoBehaviour
             yield return new WaitForSeconds(showDuration);
             stars[count].SetActive(true);
             ViewManager.Scale(stars[count].transform, new Vector3(1, 1, 1), 0.3f);
-            UIController.Instance.AudioSource.PlayOneShot(starSounds[Random.Range(0, starSounds.Length)]);
+            SoundManager.Instance.Sound.PlayOneShot(starSounds[Random.Range(0, starSounds.Length)]);
             count++;
         }
     }

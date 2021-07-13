@@ -1,10 +1,11 @@
 {
   "dependencies": {
     "com.coffee.ui-effect": {
-      "version": "file:C:/Users/tindv/Downloads/UIEffect-4.0.0-preview.9",
+      "version": "https://github.com/mob-sakai/UIEffect.git",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "b43e40508b167d143330d8b9eff0d5c9965cdf3c"
     },
     "com.unity.2d.animation": {
       "version": "3.2.5",

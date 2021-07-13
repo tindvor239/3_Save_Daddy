@@ -60,6 +60,11 @@ public class Arrow : Trap
         timer = 0;
     }
 
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
+
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {

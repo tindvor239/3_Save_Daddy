@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 3952435534725784560}
   - component: {fileID: 626424341326567517}
   - component: {fileID: 8431840076893049520}
+  - component: {fileID: 1427223133092614044}
   m_Layer: 10
   m_Name: Saw
   m_TagString: Trap
@@ -236,12 +237,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Saw Pool
+  sound:
+    clip: {fileID: 8300000, guid: 2b90ef23152d5254692fd4cd0755ca7e, type: 3}
+    source: {fileID: 0}
   effect: {fileID: 0}
   isDisarmed: 0
   blades:
   - {fileID: 1446613700739794315}
   - {fileID: 876891781821896151}
   spinSpeed: 800
+--- !u!95 &1427223133092614044
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4551910809943732124}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ed9510628dffc0045aceafc9bdf6403d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7938074930531090241
 GameObject:
   m_ObjectHideFlags: 0

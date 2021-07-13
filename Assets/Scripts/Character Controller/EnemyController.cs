@@ -7,8 +7,6 @@ using DG.Tweening;
 public class EnemyController : CharacterController
 {
     [SerializeField]
-    protected List<Transform> passedDestinations = new List<Transform>();
-    [SerializeField]
     protected EnemyState enemyState;
     [SerializeField]
     protected float attackRange;
@@ -21,7 +19,6 @@ public class EnemyController : CharacterController
     private AudioClip normalSound;
     [SerializeField]
     private AudioClip deathSound;
-    private AudioSource audioSource;
     protected override void Awake()
     {
         base.Awake();
@@ -30,7 +27,6 @@ public class EnemyController : CharacterController
     {
         base.Start();
         startSize = transform.localScale.x;
-        audioSource = GetComponent<AudioSource>();
     }
     protected override void Update()
     {
@@ -88,12 +84,10 @@ public class EnemyController : CharacterController
         base.OnEnable();
         OnStartPartrol();
         timer = 0;
-        passedDestinations = new List<Transform>();
     }
 
     public virtual void GetPlayer()
     {
-        PlayerController player = GameManager.Instance.Player;
         Transform path = GetPath();
         if (!sequence.IsActive())
         {
@@ -101,22 +95,26 @@ public class EnemyController : CharacterController
         }
         if (path != null)
         {
-            if(path == player.transform)
+            MoveToTarget(path);
+        }
+    }
+    private void MoveToTarget(Transform path)
+    {
+        PlayerController player = GameManager.Instance.Player;
+        if (path == player.transform)
+        {
+            StartCoroutine(MoveToDestination(player.transform));
+            StartCoroutine(Kill(moveDuration));
+        }
+        else
+        {
+            if (enemyState == EnemyState.aggressive)
             {
-                StartCoroutine(MoveToDestination(player.transform));
-                StartCoroutine(Kill(MoveDuration(transform.position, player.transform.position)));
-            }
-            else
-            {
-                if(enemyState == EnemyState.aggressive)
-                {
-                    StartCoroutine(MoveToDestination(path));
-                    StartCoroutine(SwitchingState(CharacterState.idle, moveDuration));
-                }
+                StartCoroutine(MoveToDestination(path));
+                StartCoroutine(SwitchingState(CharacterState.idle, moveDuration));
             }
         }
     }
-    
     private void OnStartPartrol()
     {
         destinations = new List<Transform>();
@@ -171,6 +169,8 @@ public class EnemyController : CharacterController
             bool pathIsBlocked = CheckPathIsBlocked(transform.position, player.transform.position);
             if (!pathIsBlocked)
             {
+                sound.source.Stop();
+                sound.PlayOnce(attackSound);
                 return player.transform;
             }
         }
@@ -234,20 +234,34 @@ public class EnemyController : CharacterController
     {
         yield return new WaitForSeconds(moveDuration);
         int index = GameManager.Instance.GetCurrentPosIndex(destination, destinations);
+        Debug.Log(index);
         if (index != -1)
         {
-            if (!passedDestinations.Contains(destinations[index]))
-            {
-                passedDestinations.Add(destinations[index]);
-            }
-            destinations[index] = transform;
-            Move(destination.position, Ease.Linear);
+            destinations.RemoveAt(index);
+            StartMoveToDestination(destination);
             Rotate(destination.position);
-            if (index > 0)
+            //if (index > 0)
+            //{
+            //    index = GameManager.Instance.GetCurrentPosIndex(transform, destinations);
+            //    destinations[index] = passedDestinations[0];
+            //    passedDestinations.Remove(destinations[index]);
+            //}
+        }
+    }
+    private void StartMoveToDestination(Transform destination)
+    {
+        Move(destination.position, Ease.Linear);
+        StartCoroutine(OnMovedToDestination(moveDuration));
+    }
+    private IEnumerator OnMovedToDestination(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        foreach(var destination in destinations)
+        {
+            if(!CheckPathIsBlocked(transform.position, destination.position) && destination != transform)
             {
-                index = GameManager.Instance.GetCurrentPosIndex(transform, destinations);
-                destinations[index] = passedDestinations[0];
-                passedDestinations.Remove(destinations[index]);
+                MoveToTarget(destination);
+                break;
             }
         }
     }
@@ -291,7 +305,7 @@ public class EnemyController : CharacterController
     protected enum EnemyState { standing, aggressive, partrolling }
     protected override void Action()
     {
-        if (skeleton != null)
+        if (skeletonAnimation != null)
         {
             switch (state)
             {
@@ -303,12 +317,16 @@ public class EnemyController : CharacterController
                     break;
                 case CharacterState.move:
                     Acting(animationSet[0], true);
-                    audioSource.Stop();
-                    audioSource.PlayOneShot(attackSound);
+                    sound.source.Stop();
+                    sound.PlayOnce(normalSound);
                     break;
                 case CharacterState.die:
-                    Acting(animationSet[2], false);
-                    audioSource.PlayOneShot(deathSound);
+                    if(deathCount <= 0)
+                    {
+                        Acting(animationSet[2], false);
+                        sound.PlayOnce(deathSound);
+                        deathCount++;
+                    }
                     break;
             }
         }
@@ -320,5 +338,4 @@ public class EnemyController : CharacterController
         Action();
         StartCoroutine(OnBeenKilled(1.3f));
     }
-
 }

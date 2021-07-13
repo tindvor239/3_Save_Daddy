@@ -22,6 +22,8 @@ public abstract class Pin : Model, IInteractable
     protected float finishDuration = 0.8f;
     protected float unpinDelay = 1f;
     protected float triggerDuration = 0;
+    [SerializeField]
+    protected Sound sound;
     #region Properties
     public Transform MainTransform { get => mainTransform; }
     public bool IsLoopingPin { protected get => isLoopingPin; set => isLoopingPin = value; }
@@ -33,6 +35,7 @@ public abstract class Pin : Model, IInteractable
     protected virtual void Start()
     {
         collider = GetComponent<Collider2D>();
+        sound.Initiate(gameObject, SoundManager.Instance.Sound);
     }
     protected virtual void Update()
     {
@@ -47,6 +50,7 @@ public abstract class Pin : Model, IInteractable
     {
         isAlreadyUnpin = true;
         onUnpinTrigger += OnTrigger;
+        sound.PlayOnce(sound.clip);
         StartCoroutine(StartMoveObject(finishDuration));
     }
     private void OnTrigger()

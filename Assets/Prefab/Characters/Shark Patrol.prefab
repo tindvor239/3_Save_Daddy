@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 8841341863305075452}
   - component: {fileID: 1844188054223270236}
   - component: {fileID: 6176003039800077700}
-  - component: {fileID: 1708583181626009841}
   m_Layer: 9
   m_Name: Shark Patrol
   m_TagString: Enemy
@@ -167,19 +166,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: Shark Patrol Pool
   moveSpeed: 9
-  skeleton: {fileID: 7102087755880195169}
+  destinations: []
+  skeletonAnimation: {fileID: 7102087755880195169}
   animationSet:
   - {fileID: 11400000, guid: edec7c3f5fdf605479ea54b5426dcff3, type: 2}
   - {fileID: 11400000, guid: 7a902ce6e42101342be49c133b3c69cb, type: 2}
   - {fileID: 11400000, guid: d7f94ade1d51ba74d87185a590d265ba, type: 2}
-  destinations: []
   state: 0
-  passedDestinations: []
+  sound:
+    clip: {fileID: 0}
+    source: {fileID: 0}
   enemyState: 2
   attackRange: 10
-  attackSound: {fileID: 8300000, guid: f81bfcb320057124db6202ddf2dfba7a, type: 3}
-  normalSound: {fileID: 8300000, guid: 1f943305b5a6f184d9d137ffbf94fe99, type: 3}
-  deathSound: {fileID: 8300000, guid: 0a80318130a404740bc1cca982fd74d1, type: 3}
+  attackSound: {fileID: 8300000, guid: 4fe05da7c903d8547a7704f4c2d46c4a, type: 3}
+  normalSound: {fileID: 8300000, guid: 43e4178e326d71d4489b50c458bbf5ca, type: 3}
+  deathSound: {fileID: 8300000, guid: 6a779e132fca23344b83af40a36c397a, type: 3}
 --- !u!50 &8841341863305075452
 Rigidbody2D:
   serializedVersion: 4
@@ -233,99 +234,3 @@ CircleCollider2D:
   m_Offset: {x: -0.08097464, y: 0.4517287}
   serializedVersion: 2
   m_Radius: 0.8392917
---- !u!82 &1708583181626009841
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8737059029064835438}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4

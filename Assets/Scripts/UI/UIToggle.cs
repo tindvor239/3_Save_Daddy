@@ -19,7 +19,7 @@ public class UIToggle : MonoBehaviour
             {
                 image.sprite = spriteTrue;
             }
-            if (isChecked)
+            else
             {
                 image.sprite = spriteFalse;
             }

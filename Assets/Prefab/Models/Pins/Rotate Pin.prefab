@@ -432,6 +432,10 @@ MonoBehaviour:
   mainTransform: {fileID: 9183092428455751510}
   isLoopingPin: 1
   unpinDuration: 0.8
+  collider: {fileID: 0}
+  sound:
+    clip: {fileID: 8300000, guid: be2b85445cb49b642bacf7b3a4ee7d40, type: 3}
+    source: {fileID: 0}
   pinLocks:
   - {fileID: 9183092427418544552}
   - {fileID: 9183092427038249010}
@@ -632,7 +636,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 0.24}
+    oldSize: {x: 4.096, y: 0.24}
     newSize: {x: 4, y: 0.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

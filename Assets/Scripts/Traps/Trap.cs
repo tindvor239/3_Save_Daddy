@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.CustomComponents;
 public class Trap : Obstacle
 {
     protected Collider2D hitBox;
@@ -19,15 +18,13 @@ public class Trap : Obstacle
         }
         else
         {
-            if(GetComponentInChildren<ParticleSystem>())
+            if (GetComponentInChildren<ParticleSystem>())
             {
                 effect = GetComponentInChildren<ParticleSystem>();
             }
         }
     }
-    protected virtual void Start()
-    {
-    }
+
     public override void OnBeingHit(GameObject hitObject)
     {
         Debug.Log("Destroy Self");
@@ -57,16 +54,18 @@ public class Trap : Obstacle
             collision.GetComponent<PlayerController>().Interact();
         }
     }
+
     public virtual void Disarmed()
     {
-        if(hitBox != null)
+        if (hitBox != null)
         {
             hitBox.enabled = false;
         }
-        if(effect != null)
+        if (effect != null)
         {
             effect.Stop();
         }
         isDisarmed = true;
     }
+
 }

@@ -164,5 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4e3b597faf10649b1bc231e41a7bbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: 8bdbcb4286b8c664ebb1b16002ecbb38, type: 3}
   liquidPool: {fileID: 0}
   radius: 0.45

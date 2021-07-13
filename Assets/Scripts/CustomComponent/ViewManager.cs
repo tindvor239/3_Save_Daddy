@@ -89,9 +89,9 @@ public class ViewManager : Singleton<ViewManager>
     }
     #endregion
     #region Appearence Handler
-    public static void SetSkin(SkeletonAnimation skeleton, Spine.Skin skin)
+    public static void SetSkin(Spine.Skeleton skeleton, Skin skin)
     {
-        skeleton.initialSkinName = skin.Name;
+        skeleton.SetSkin(skin.initialSkinName);
     }
     #endregion
     #region Math

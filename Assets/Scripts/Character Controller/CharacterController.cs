@@ -9,19 +9,27 @@ public class CharacterController : Controller, IInteractable
 {
     protected Sequence sequence;
     protected float moveDuration;
-    [SerializeField]
-    protected SkeletonAnimation skeleton;
-    [SerializeField]
-    protected List<AnimationReferenceAsset> animationSet;
+    [Header("Movement")]
     [SerializeField]
     protected List<Transform> destinations = new List<Transform>();
-    public CharacterState state;
-    protected float actingDelay;
+    [Header("Animation")]
+    [SerializeField]
+    protected SkeletonAnimation skeletonAnimation;
+    [SerializeField]
+    protected List<AnimationReferenceAsset> animationSet;
 
+    public CharacterState state;
+
+    [Header("Sound")]
+    [SerializeField]
+    protected Sound sound;
+
+    protected float actingDelay;
+    protected int deathCount = 0;
     #region Properties
     public Component Collider { get; private set; }
     public Sequence Sequence { get => sequence; }
-    public SkeletonAnimation Skeleton { get => skeleton; }
+    public SkeletonAnimation SkeletonAnimation { get => skeletonAnimation; }
     #endregion
     protected virtual void Awake()
     {
@@ -30,8 +38,7 @@ public class CharacterController : Controller, IInteractable
     }
     protected override void Start()
     {
-        base.Start();
-
+        sound.Initiate(gameObject, SoundManager.Instance.Sound);
     }
     protected virtual void Update()
     {
@@ -42,6 +49,7 @@ public class CharacterController : Controller, IInteractable
     {
         sequence = DOTween.Sequence();
         StartCoroutine(SwitchingState(CharacterState.idle, 0.01f));
+        deathCount = 0;
     }
     public bool CheckPathIsBlocked(in Vector3 from, in Vector3 to)
     {
@@ -71,6 +79,14 @@ public class CharacterController : Controller, IInteractable
     {
         transform.DOKill();
     }
+    public void Pause()
+    {
+        transform.DOPause();
+    }
+    public void Continue()
+    {
+        transform.DOPlay();
+    }
     public virtual void Interact()
     {
         
@@ -90,11 +106,11 @@ public class CharacterController : Controller, IInteractable
         actingDelay = 2;
         StartCoroutine(SwitchingAct(endAnimation, false, 1));
         StartCoroutine(SwitchingState(2));
-        ViewManager.Acting(skeleton, startAnimation, false, 1);
+        ViewManager.Acting(skeletonAnimation, startAnimation, false, 1);
     }
     protected virtual void Acting(AnimationReferenceAsset animation, bool isLooping)
     {
-        ViewManager.Acting(skeleton, animation, isLooping, 1);
+        ViewManager.Acting(skeletonAnimation, animation, isLooping, 1);
     }
 
     protected IEnumerator SwitchingAct(AnimationReferenceAsset animation, bool isLooping, float startSecond)
@@ -102,7 +118,7 @@ public class CharacterController : Controller, IInteractable
         if(gameObject.activeInHierarchy)
         {
             yield return new WaitForSeconds(startSecond);
-            ViewManager.Acting(skeleton, animation, isLooping, 1);
+            ViewManager.Acting(skeletonAnimation, animation, isLooping, 1);
         }
     }
     protected IEnumerator SwitchingState(CharacterState state, float startSecond)

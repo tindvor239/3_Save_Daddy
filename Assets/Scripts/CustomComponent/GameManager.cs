@@ -19,7 +19,15 @@ public class GameManager : Singleton<GameManager>
     private PathPoolParty pathPoolParty;
     [SerializeField]
     private List<Map> mapDatas = new List<Map>();
-    private List<Spine.Skin> skins = new List<Spine.Skin>();
+    [SerializeField]
+    private List<Skin> playerSkins = new List<Skin>();
+    [SerializeField]
+    private Material laserMaterial;
+    [SerializeField]
+    private bool isVibration;
+    private int winCount = 0;
+    private float speed = 2;
+    public bool startParalax = false;
     #region Properties
     #region Movement
     public List<Transform> Destinations { get => destinations; }
@@ -29,7 +37,7 @@ public class GameManager : Singleton<GameManager>
     #endregion
     #region Data
     public List<Map> MapData { get => mapDatas; }
-    public List<Spine.Skin> Skins { get => skins; }
+    public static List<Skin> PlayerSkins { get => Instance.playerSkins; }
     public static long Money
     {
         get => long.Parse(PlayerPrefs.GetString("money"));
@@ -53,6 +61,15 @@ public class GameManager : Singleton<GameManager>
             UIChestRoom.SetKeys();
         }
     }
+    public static bool IsVibration
+    {
+        get => PlayerPrefs.GetInt("isVibration") == 1 ? true : false;
+        set
+        {
+            int volume = value == true ? 1 : 0;
+            PlayerPrefs.SetInt("isVibration", volume);
+        }
+    }
     #endregion
     public static GameState State { get => Instance.gameState; set => Instance.gameState = value; }
     #endregion
@@ -61,8 +78,19 @@ public class GameManager : Singleton<GameManager>
         #region Singleton
         base.Awake();
         #endregion
-        Money = 100;
+        Money = 2000;
         CurrentKey = 3;
+    }
+    protected void Update()
+    {
+        if(laserMaterial != null && startParalax)
+        {
+            laserMaterial.mainTextureOffset -= new Vector2(Time.deltaTime * speed, 0);
+            if(laserMaterial.mainTextureOffset.x <= -0.1f)
+            {
+                laserMaterial.mainTextureOffset = new Vector2(1, laserMaterial.mainTextureOffset.y);
+            }
+        }
     }
     #region Raycasting
     public GameObject RayCastObject(Vector3 fromPosition, Vector3 direction)
@@ -322,14 +350,50 @@ public class GameManager : Singleton<GameManager>
     public bool isWin()
     {
         int playerIndex = GetCurrentPosIndex(Instance.Player.transform, Instance.destinations);
-        if (playerIndex == Instance.destinations.Count -1)
+        if (playerIndex == Instance.destinations.Count - 1)
         {
             UnlockNextLevel();
-            UIController.Instance.ShowWinUI(true);
+            winCount = 6;
+            if (winCount == 6)
+            {
+                ShowSkinOnWin();
+            }
+            else
+            {
+                UIController.Instance.ShowWinUI(true);
+                winCount++;
+            }
             SetMapStar(3);
             return true;
         }
         return false;
+    }
+
+    private void ShowSkinOnWin()
+    {
+        //Show Skin.
+        int index = RandomUnSoldSkin();
+        UIController.Instance.ShowSkinReward(true, index);
+        Debug.Log(playerSkins[index]);
+        winCount = 0;
+    }
+    private int RandomUnSoldSkin()
+    {
+        List<Skin> unSoldSkin = UnSoldSkins();
+        int random = UnityEngine.Random.Range(0, unSoldSkin.Count);
+        return playerSkins.IndexOf(unSoldSkin[random]);
+    }
+    private List<Skin> UnSoldSkins()
+    {
+        List<Skin> result = new List<Skin>();
+        foreach(var skin in playerSkins)
+        {
+            if(skin.isSold == false)
+            {
+                result.Add(skin);
+            }
+        }
+        return result;
     }
     #endregion
     #region Map Handle
@@ -365,5 +429,5 @@ public class GameManager : Singleton<GameManager>
         }
     }
     #endregion
-    public enum GameState {menu, level, play, pause, win, gameover, ask }
+    public enum GameState {menu, level, shop, play, pause, win, gameover }
 }

@@ -134,4 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Spike Ball Pool
+  clip: {fileID: 8300000, guid: e6d0ffe3f3df64c4680e768fa6c0328a, type: 3}
   rockPoolParty: {fileID: 0}

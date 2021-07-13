@@ -6,12 +6,6 @@ using UnityEngine.CustomComponents;
 public class Rock : Obstacle
 {
     public RockPool rockPoolParty;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -45,12 +39,14 @@ public class Rock : Obstacle
             {
                 ObstaclePoolParty.Instance.Party.GetPool(poolName).GetBackToPool(gameObject);
             }
+            sound.PlayOnce(sound.clip);
         }
         else
         {
             if (beenHitObject.GetComponent<Trap>() != null)
             {
                 beenHitObject.GetComponent<Trap>().OnBeingHit(gameObject);
+                sound.PlayOnce(sound.clip);
             }
         }
     }

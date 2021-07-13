@@ -8,22 +8,32 @@ public class Laser : Trap
     private LineRenderer line;
     [SerializeField]
     private Transform[] transforms = new Transform[2];
+    [SerializeField]
+    private ParticleSystem beamSparkle;
     private float timer = 0;
     private float maxTimer = 0.15f;
-    // Start is called before the first frame update
+
     protected override void Start()
     {
-    }
+        base.Start();
+        if(GameManager.Instance != null)
+        {
+            GameManager.Instance.startParalax = true;
+        }
 
+    }
     // Update is called once per frame
     void Update()
     {
-        line.SetPosition(0, transforms[0].position);
-        timer += Time.deltaTime;
-        if(timer >= maxTimer)
+        if(GameManager.State == GameManager.GameState.play)
         {
-            CheckHit();
-            timer = 0;
+            line.SetPosition(0, transforms[0].position);
+            timer += Time.deltaTime;
+            if(timer >= maxTimer)
+            {
+                CheckHit();
+                timer = 0;
+            }
         }
     }
     private void CheckHit()
@@ -40,6 +50,30 @@ public class Laser : Trap
         else
         {
             line.SetPosition(1, transforms[1].position);
+        }
+        beamSparkle.transform.position = line.GetPosition(1);
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        if(GameManager.Instance != null)
+        {
+            GameManager.Instance.startParalax = true;
+        }
+        sound.PlayLoop(sound.clip);
+    }
+    protected void OnDisable()
+    {
+        GameManager.Instance.startParalax = false;
+    }
+
+    public override void Disarmed()
+    {
+        base.Disarmed();
+        if(beamSparkle != null)
+        {
+            beamSparkle.Stop();
         }
     }
 }

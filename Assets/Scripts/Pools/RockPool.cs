@@ -22,6 +22,7 @@ public class RockPool : ObstaclePool
                 newObject = party.Pools[i].CreatePooledObject();
             }
             newObject.GetComponent<Rock>().rockPoolParty = this;
+            newObject.GetComponent<Rock>().Sound.clip = clip;
             newObject.transform.position = transform.position;
         }
     }

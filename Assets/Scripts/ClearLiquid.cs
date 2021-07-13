@@ -2,6 +2,11 @@
 
 public class ClearLiquid : MonoBehaviour
 {
+    [SerializeField]
+    private AudioClip sound;
+    #region Property
+    public AudioClip Sound { get => sound; }
+    #endregion
     public virtual void StartClear(LiquidPool liquidPool, Vector3 position)
     {
         bool canCreate = true;

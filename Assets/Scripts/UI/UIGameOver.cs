@@ -4,9 +4,10 @@ using Spine.Unity;
 public class UIGameOver : UISection
 {
     [SerializeField]
-    private AudioClip lose;
+    private AudioClip loseSound;
     #region Properties
     public Image characterIcon { get => (Image)displays[0].Value; }
+    public AudioClip LoseSound { get => loseSound; }
     #endregion
     public void SkipLevel()
     {

@@ -154,4 +154,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Stone 1
+  clip: {fileID: 8300000, guid: af5adfa1aad113643807fc35806eb9e3, type: 3}
   rockPoolParty: {fileID: 0}

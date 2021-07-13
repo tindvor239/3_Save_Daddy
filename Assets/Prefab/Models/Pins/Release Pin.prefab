@@ -245,7 +245,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 0.24}
+    oldSize: {x: 4.096, y: 0.24}
     newSize: {x: 6.27, y: 0.6}
     adaptiveTilingThreshold: 0.435
     drawMode: 0
@@ -279,6 +279,9 @@ MonoBehaviour:
   isLoopingPin: 0
   unpinDuration: 0.8
   collider: {fileID: 0}
+  sound:
+    clip: {fileID: 8300000, guid: be2b85445cb49b642bacf7b3a4ee7d40, type: 3}
+    source: {fileID: 0}
   anchor: {fileID: 6351393591205928743}
   forward: {fileID: 6351393591161881215}
   lockers:
