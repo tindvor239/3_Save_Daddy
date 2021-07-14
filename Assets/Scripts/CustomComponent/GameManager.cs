@@ -38,28 +38,10 @@ public class GameManager : Singleton<GameManager>
     #region Data
     public List<Map> MapData { get => mapDatas; }
     public static List<Skin> PlayerSkins { get => Instance.playerSkins; }
-    public static long Money
-    {
-        get => long.Parse(PlayerPrefs.GetString("money"));
-        set
-        {
-            PlayerPrefs.SetString("money", value.ToString());
-            UIChestRoom.Money = value;
-        }
-    }
     public static int UsingSkin
     {
         get => PlayerPrefs.GetInt("skinIndex");
         set => PlayerPrefs.SetInt("skinIndex", value);
-    }
-    public static int CurrentKey
-    {
-        get => PlayerPrefs.GetInt("key");
-        set
-        {
-            PlayerPrefs.SetInt("key", value);
-            UIChestRoom.SetKeys();
-        }
     }
     public static bool IsVibration
     {
@@ -78,8 +60,6 @@ public class GameManager : Singleton<GameManager>
         #region Singleton
         base.Awake();
         #endregion
-        Money = 2000;
-        CurrentKey = 3;
     }
     protected void Update()
     {
@@ -363,6 +343,8 @@ public class GameManager : Singleton<GameManager>
                 UIController.Instance.ShowWinUI(true);
                 winCount++;
             }
+            int index = MapData.IndexOf(MapEditor.Instance.currentMap);
+            ZenSDK.instance.TrackLevelCompleted(index + 1);
             SetMapStar(3);
             return true;
         }

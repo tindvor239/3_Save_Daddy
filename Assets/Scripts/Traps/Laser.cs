@@ -12,7 +12,6 @@ public class Laser : Trap
     private ParticleSystem beamSparkle;
     private float timer = 0;
     private float maxTimer = 0.15f;
-
     protected override void Start()
     {
         base.Start();
@@ -22,19 +21,9 @@ public class Laser : Trap
         }
 
     }
-    // Update is called once per frame
-    void Update()
+    public override void OnBeingHit(GameObject hitObject)
     {
-        if(GameManager.State == GameManager.GameState.play)
-        {
-            line.SetPosition(0, transforms[0].position);
-            timer += Time.deltaTime;
-            if(timer >= maxTimer)
-            {
-                CheckHit();
-                timer = 0;
-            }
-        }
+        ObstaclePoolParty.Instance.Party.GetPool(poolName).GetBackToPool(gameObject);
     }
     private void CheckHit()
     {
@@ -53,11 +42,20 @@ public class Laser : Trap
         }
         beamSparkle.transform.position = line.GetPosition(1);
     }
-
+    protected override void Triggering()
+    {
+        line.SetPosition(0, transforms[0].position);
+        timer += Time.deltaTime;
+        if (timer >= maxTimer)
+        {
+            CheckHit();
+            timer = 0;
+        }
+    }
     protected override void OnEnable()
     {
         base.OnEnable();
-        if(GameManager.Instance != null)
+        if (GameManager.Instance != null)
         {
             GameManager.Instance.startParalax = true;
         }

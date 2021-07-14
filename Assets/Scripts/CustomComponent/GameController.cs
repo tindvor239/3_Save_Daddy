@@ -40,14 +40,6 @@ public class GameController : Singleton<GameController>
                         }
                     }
                 }
-#if UNITY_EDITOR
-                if(Input.GetKeyDown(KeyCode.T))
-                {
-                    GameManager.CurrentKey = 3;
-                    UIController.Instance.ShowChestRoomUI(true);
-                    //UIController.Instance.ShowWinUI(true);
-                }
-#endif
                 break;
         }
         BackHandle();

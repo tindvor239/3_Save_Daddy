@@ -93,7 +93,7 @@ public class UIController : Singleton<UIController>
         GameManager.Instance.Player.Stop();
         ShowGameOverUI(false);
         ShowProcessUI(true);
-        GameManager.State = GameManager.GameState.play;
+        GameManager.State = GameManager.GameState.pause;
         Load(editor.currentMap);
     }
     public void Skip()
@@ -191,9 +191,6 @@ public class UIController : Singleton<UIController>
             Debug.Log("Show Chest Room");
         }
         ViewManager.ShowUI("GAMEPLAY_UI", !isActive);
-
-        UIChestRoom.Instance.SetupPrize();
-        UIChestRoom.SetKeys();
     }
     public void ShowProcessUI(bool isActive)
     {
@@ -268,9 +265,7 @@ public class UIController : Singleton<UIController>
             yield return null;
         }
         ViewManager.ShowUI("LEVELUP_UI", false);
-        int stackIndex = StackUIDisplay.MapInStack(editor.currentMap);
-        string stackName = StackUIDisplay.StackName(stackIndex);
-        gameplay.OnShowGameplay(StackUIDisplay.KeyCount(stackName));
+        gameplay.OnShowGameplay();
         GetPlayerController();
         GetEnemyControllers();
         StartCoroutine(SpawnObstaclesOnPlay());

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 public class Trap : Obstacle
 {
     protected Collider2D hitBox;
@@ -6,6 +7,7 @@ public class Trap : Obstacle
     protected ParticleSystem effect;
     [SerializeField]
     protected bool isDisarmed = false;
+
     protected virtual void Awake()
     {
         if (GetComponent<Collider2D>())
@@ -24,12 +26,57 @@ public class Trap : Obstacle
             }
         }
     }
-
-    public override void OnBeingHit(GameObject hitObject)
+    protected virtual void Update()
     {
-        Debug.Log("Destroy Self");
+        OnTriggered(Triggering);
     }
 
+    public virtual void Disarmed()
+    {
+        if (hitBox != null)
+        {
+            hitBox.enabled = false;
+        }
+        if (effect != null)
+        {
+            effect.Stop();
+        }
+        isDisarmed = true;
+    }
+    public override void OnBeingHit(GameObject hitObject)
+    {
+    }
+
+    protected void OnTriggered(Action action)
+    {
+        if (GameManager.State == GameManager.GameState.play)
+        {
+            action();
+        }
+    }
+    protected virtual void Triggering()
+    {
+        if (GetComponent<Rigidbody2D>() != null)
+        {
+            Rigidbody2D rigid = GetComponent<Rigidbody2D>();
+            if (rigid.simulated == false)
+            {
+                rigid.simulated = true;
+            }
+        }
+    }
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        EnableRigid();
+    }
+    protected void EnableRigid()
+    {
+        if (GetComponent<Rigidbody2D>() != null)
+        {
+            GetComponent<Rigidbody2D>().simulated = false;
+        }
+    }
     protected override void OnHit(GameObject beenHitObject)
     {
         CharacterController character = beenHitObject.GetComponent<CharacterController>();
@@ -54,18 +101,4 @@ public class Trap : Obstacle
             collision.GetComponent<PlayerController>().Interact();
         }
     }
-
-    public virtual void Disarmed()
-    {
-        if (hitBox != null)
-        {
-            hitBox.enabled = false;
-        }
-        if (effect != null)
-        {
-            effect.Stop();
-        }
-        isDisarmed = true;
-    }
-
 }

@@ -12,17 +12,19 @@ public class Fan : Trap
     private float speedMultiplier = 0.002f;
     private float timer = 0;
     private float maxTime = 0.15f;
-
     private int count = 0;
     private GameObject blowedObject;
     // Update is called once per frame
-    private void Update()
+    protected override void Update()
     {
-        GameManager.Instance.OnHitCallBack(ref timer, in maxTime, CheckHit);
+        if(GameManager.State == GameManager.GameState.play)
+        {
+            GameManager.Instance.OnHitCallBack(ref timer, in maxTime, CheckHit);
+        }
     }
     private void FixedUpdate()
     {
-        Blowing();
+        OnTriggered(Blowing);
     }
     private void CheckHit()
     {
@@ -47,6 +49,7 @@ public class Fan : Trap
             beenHitObject.GetComponent<CharacterController>().Stop();
         }
     }
+
     protected void Blowing()
     {
         Vector3 direction = GameManager.Instance.GetDirectionVector(transform.position, target.position);

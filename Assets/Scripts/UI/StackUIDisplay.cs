@@ -11,13 +11,6 @@ public class StackUIDisplay : MonoBehaviour
     private GameObject levelUIPrefab;
     [SerializeField]
     private List<UILevelDisplay> uILevels;
-    [Header("Key Chest")]
-    [SerializeField]
-    private List<UIKeyChest> keyChests;
-    [SerializeField]
-    private List<Sprite> sprites;
-    [SerializeField]
-    private Slider slider;
     
     public string Name
     {
@@ -57,61 +50,14 @@ public class StackUIDisplay : MonoBehaviour
             }
         }
     }
-    private void AnimateChests()
-    {
-        int isSet = PlayerPrefs.GetInt(Name);
-        if(isSet != 1)
-        {
-            ResetKeys();
-            PlayerPrefs.SetInt(Name, 1);
-        }
-        foreach (UIKeyChest keyChest in keyChests)
-        {
-            keyChest.Initiate(sprites[0], sprites[1]);
-            int index = keyChests.IndexOf(keyChest);
-            if(GetKey(index) == 1)
-            {
-                if (index + 1 <= slider.value / 5)
-                {
-                    keyChest.GetComponent<UIAnimation>().Play();
-                }
-            }
-            else
-            {
-                keyChests[index].isCheck = true;
-            }
-        }
-    }
-
-    private void SetKey(int index, int value)
-    {
-        PlayerPrefs.SetInt(Name + index, value);
-    }
-    private int GetKey(int index)
-    {
-        return PlayerPrefs.GetInt(Name + index);
-    }
-    
-    private void ResetKeys()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            SetKey(i, 1);
-        }
-    }
-
     public void DisplayLevels(List<Map> maps, List<string> mapNames)
     {
-        int stars = 0;
         for(int i = 0; i < uILevels.Count; i++)
         {
             Map currentMap = maps[i];
             string mapName = mapNames[i];
             uILevels[i].Initiate(currentMap, mapName, SetLevelImage(currentMap));
-            stars += uILevels[i].Star;
         }
-        slider.value = stars;
-        AnimateChests();
     }
     public void Initiate(int amount)
     {
@@ -125,19 +71,6 @@ public class StackUIDisplay : MonoBehaviour
         }
         return -1;
     }
-    public void Open(UIKeyChest uIKeyChest)
-    {
-        //check ui key chest index.
-        int index = keyChests.IndexOf(uIKeyChest);
-        int canOpenCount = ((int)slider.value / 5) - 1;
-        if (index != -1 && canOpenCount >= index && GetKey(index) == 1)
-        {
-            // and star count reach ui key chest index => open chest.
-            uIKeyChest.Open();
-            SetKey(index, 0);
-        }
-    }
-
     public static string StackName(int index)
     {
         return string.Format("Stack {0}", index);

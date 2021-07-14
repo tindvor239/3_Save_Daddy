@@ -18,6 +18,7 @@ public class Bomb : Trap
     }
     protected override void OnEnable()
     {
+        base.OnEnable();
         Visible(true);
     }
 

@@ -3,16 +3,10 @@ using UnityEngine.CustomComponents;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class Rock : Obstacle
+public class Rock : Trap
 {
     public RockPool rockPoolParty;
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject beenHitObject = collision.transform.gameObject;
         if (beenHitObject.tag == "Enemy" || beenHitObject.tag == "Player" || beenHitObject.tag == "Trap")
@@ -20,7 +14,6 @@ public class Rock : Obstacle
             OnHit(collision.transform.gameObject);
         }
     }
-
     protected override void OnHit(GameObject beenHitObject)
     {
         CharacterController characterController = beenHitObject.GetComponent<CharacterController>();
