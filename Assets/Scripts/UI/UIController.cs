@@ -23,6 +23,8 @@ public class UIController : Singleton<UIController>
     private UISkinReward skinReward;
     [SerializeField]
     private Sound sound;
+    [SerializeField]
+    private GameObject skipButton;
     private GameManager gameManager;
     private CharacterPoolParty characterParty;
     private CameraController cam;
@@ -96,7 +98,20 @@ public class UIController : Singleton<UIController>
         GameManager.State = GameManager.GameState.pause;
         Load(editor.currentMap);
     }
-    public void Skip()
+    public void ShowVideoSkip()
+    {
+        ZenSDK.instance.ShowVideoReward((bool onSuccess) => {
+            if (onSuccess)
+            {
+                Skip();
+            }
+            else
+            {
+
+            }
+        });
+    }
+    private void Skip()
     {
         GameManager.Instance.UnlockNextLevel();
         bool isDoneShowAds = ShowAds();
@@ -116,6 +131,8 @@ public class UIController : Singleton<UIController>
         editor.Load();
         mapProcessing.Process();
         StartCoroutine(LoadLevelOnTime());
+        int index = GameManager.Instance.CurrentLevelIndex();
+        ZenSDK.instance.TrackLevelCompleted(index);
     }
     public void ShowSettingUI(bool isActive)
     {
@@ -152,6 +169,7 @@ public class UIController : Singleton<UIController>
         if(isActive)
         {
             sound.PlayOnce(gameOver.LoseSound);
+            StartCoroutine(ShowVideoReward());
         }
     }
     public void ShowWinUI(bool isActive)
@@ -162,6 +180,7 @@ public class UIController : Singleton<UIController>
             GameManager.State = GameManager.GameState.win;
             sound.source.PlayOneShot(winInfo.WinSound);
             winInfo.DisplayProcessUI();
+            StartCoroutine(ShowVideoReward());
         }
     }
     public void ShowLevelUpUI(bool isActive)
@@ -258,6 +277,11 @@ public class UIController : Singleton<UIController>
         ShowSkinReward(isActive, GameManager.PlayerSkins[index]);
     }
 
+    private IEnumerator ShowVideoReward()
+    {
+        yield return new WaitForSeconds(2f);
+        ZenSDK.instance.ShowFullScreen();
+    }
     private IEnumerator LoadLevelOnTime()
     {
         while(editor.Process != 100 || editor.isDoneClear == false)

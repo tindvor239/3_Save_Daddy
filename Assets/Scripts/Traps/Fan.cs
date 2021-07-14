@@ -29,7 +29,6 @@ public class Fan : Trap
     private void CheckHit()
     {
         GameObject beenHitObject = RayCastingToObject();
-        Debug.DrawRay(transform.position, GameManager.Instance.GetDirectionVector(transform.position, target.position), Color.red, Vector2.Distance(transform.position, target.position) / 2);
         OnHit(beenHitObject);
         if (beenHitObject != null && (beenHitObject.tag == "Player" || beenHitObject.tag == "Enemy"))
         {

@@ -43,15 +43,6 @@ public class GameManager : Singleton<GameManager>
         get => PlayerPrefs.GetInt("skinIndex");
         set => PlayerPrefs.SetInt("skinIndex", value);
     }
-    public static bool IsVibration
-    {
-        get => PlayerPrefs.GetInt("isVibration") == 1 ? true : false;
-        set
-        {
-            int volume = value == true ? 1 : 0;
-            PlayerPrefs.SetInt("isVibration", volume);
-        }
-    }
     #endregion
     public static GameState State { get => Instance.gameState; set => Instance.gameState = value; }
     #endregion

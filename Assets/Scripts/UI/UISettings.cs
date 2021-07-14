@@ -23,19 +23,11 @@ public class UISettings : UISection
         SoundManager.IsMusicOn = isActive;
         Debug.Log(SoundManager.IsMusicOn);
     }
-    public void OnVibrationPulled(LeverUI lever)
-    {
-        bool isActive = GameManager.IsVibration;
-        lever.OnCLicked(out isActive);
-        GameManager.IsVibration = isActive;
-        Debug.Log(GameManager.IsVibration);
-    }
 
     private void Initiate()
     {
         sound.Initiate(SoundManager.IsMuted);
         music.Initiate(SoundManager.IsMusicOn);
-        vibration.Initiate(GameManager.IsVibration);
     }
     private void Start()
     {

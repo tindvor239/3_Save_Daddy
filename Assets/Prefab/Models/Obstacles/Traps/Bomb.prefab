@@ -138,8 +138,10 @@ MonoBehaviour:
   sound:
     clip: {fileID: 8300000, guid: d127176772a07ca4db683af6ee816a3b, type: 3}
     source: {fileID: 0}
+    gameObject: {fileID: 0}
   effect: {fileID: 8225065022356402609}
   isDisarmed: 0
+  radius: 3
 --- !u!1001 &1950385294208854758
 PrefabInstance:
   m_ObjectHideFlags: 0

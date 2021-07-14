@@ -13,19 +13,20 @@ public class UIGameplay : UISection
         get
         {
             Text ui = (Text)displays[0].Value;
-            return ui.text;
+            string[] splited = ui.text.Split(' ');
+            return splited[1];
         }
         private set
         {
             Text ui = (Text)displays[0].Value;
-            ui.text = value;
+            ui.text = "Level " + value;
         }
     }
     #endregion
     public void OnShowGameplay()
     {
         int mapIndex = GameManager.Instance.CurrentLevelIndex();
-        LevelName = string.Format("Level {0}", mapIndex);
+        LevelName = mapIndex.ToString();
         //Get correct keys
         //Debug.Log("keys: "+ keyCount);
     }
