@@ -12,10 +12,7 @@ public class Bomb : Trap
         if (beenHitObject.tag == "Player" || beenHitObject.tag == "Enemy" || beenHitObject.GetComponent<Rock>() != null)
         {
             CheckHit();
-            sound.PlayOnce(sound.clip);
-            effect.Play();
-            Visible(false);
-            StartCoroutine(OnDestroyed());
+            OnBeingHit(gameObject);
         }
     }
     private void CheckHit()
@@ -25,21 +22,18 @@ public class Bomb : Trap
         {
             if (gameObject != null && (gameObject.tag == "Player" || gameObject.tag == "Enemy"))
             {
-                if (gameObject.GetComponent<PlayerController>() != null)
-                {
-                    base.OnHit(gameObject);
-                }
+                base.OnHit(gameObject);
             }
             else if(gameObject.GetComponent<Rock>() != null)
             {
                 Rock rock = gameObject.GetComponent<Rock>();
                 if(rock.PoolName == "Round Boulder Pool")
                 {
-                    ObstaclePoolParty.Instance.Party.GetPool(rock.PoolName).GetBackToPool(rock.gameObject);
+                    ObstaclePoolParty.Instance.Party.GetPool(rock.PoolName).GetBackToPool(gameObject);
                 }
                 else if(rock.PoolName == "Spike Ball Pool")
                 {
-                    Vector2 direction = SpikePushDirection(rock.gameObject);
+                    Vector2 direction = SpikePushDirection(gameObject);
                     Vector2 pushDirection = new Vector2(10 * direction.x, 5 * direction.y);
                     rock.GetComponent<Rigidbody2D>().AddForce(pushDirection, ForceMode2D.Impulse);
                 }
@@ -48,6 +42,11 @@ public class Bomb : Trap
                     rock.rockPoolParty.GetAllRockToPool();
                 }
             }
+            else if(gameObject.GetComponent<Bomb>() != null)
+            {
+                Bomb bomb = gameObject.GetComponent<Bomb>();
+                bomb.OnBeingHit(gameObject);
+            }
         }
     }
 
@@ -55,6 +54,14 @@ public class Bomb : Trap
     {
         base.OnEnable();
         Visible(true);
+    }
+
+    public override void OnBeingHit(GameObject hitObject)
+    {
+        sound.PlayOnce(sound.clip);
+        effect.Play();
+        Visible(false);
+        StartCoroutine(OnDestroyed());
     }
 
     private IEnumerator OnDestroyed()
