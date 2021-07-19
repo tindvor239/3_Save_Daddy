@@ -8,15 +8,22 @@ public class ButtonTrap : Trap
     [SerializeField]
     private List<Arrow> arrows = new List<Arrow>();
     [SerializeField]
+    private Sprite[] sprites;
+    [SerializeField]
     private Vector2 size = new Vector2(0, 1);
+    private SpriteRenderer currentSprite;
     private float timer = 0;
     private float maxTimer = .2f;
     protected override void Start()
     {
         base.Start();
+        if (currentSprite == null)
+        {
+            currentSprite = GetComponent<SpriteRenderer>();
+        }
         arrows = FindObjectsOfType<Arrow>().Where(f => f.gameObject.activeInHierarchy).ToList();
     }
-    private void Update()
+    protected override void Update()
     {
         if(isDisarmed == false)
         {
@@ -31,7 +38,6 @@ public class ButtonTrap : Trap
         {
             if(hit.GetComponent<Obstacle>() != null && hit != gameObject)
             {
-                Debug.Log(hit);
                 Disarmed();
             }
         }
@@ -40,6 +46,11 @@ public class ButtonTrap : Trap
     protected override void OnEnable()
     {
         base.OnEnable();
+        if (currentSprite == null)
+        {
+            currentSprite = GetComponent<SpriteRenderer>();
+        }
+        currentSprite.sprite = sprites[0];
         isDisarmed = false;
         timer = 0;
         arrows = new List<Arrow>();
@@ -69,6 +80,7 @@ public class ButtonTrap : Trap
         {
             arrow.Disarmed();
         }
+        currentSprite.sprite = sprites[1];
         sound.PlayOnce(sound.clip);
         isDisarmed = true;
     }
