@@ -10,7 +10,7 @@ public class Liquid : MonoBehaviour
         {
             clearLiquid.StartClear(liquidPool, transform.position);
             liquidPool.GetAllLiquidToPool();
-            liquidPool.AudioSource.PlayOneShot(clearLiquid.Sound);
+            liquidPool.Sound.PlayOnce(clearLiquid.Sound);
         }
         else
         {
@@ -19,10 +19,10 @@ public class Liquid : MonoBehaviour
     }
     protected virtual void WaterSound(Collision2D collision)
     {
-        bool isAnimal = collision.gameObject.tag != "Untagged" && collision.gameObject.tag != "Liquid";
+        bool isAnimal = gameObject.GetComponent<CharacterController>();
         if (liquidPool != null && isAnimal)
         {
-            liquidPool.PlaySound();
+            liquidPool.Sound.PlayOnce(liquidPool.Sound.clip);
         }
     }
 }

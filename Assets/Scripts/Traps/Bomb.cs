@@ -15,6 +15,20 @@ public class Bomb : Trap
             OnBeingHit(gameObject);
         }
     }
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        Visible(true);
+    }
+
+    public override void OnBeingHit(GameObject hitObject)
+    {
+        sound.PlayOnce(sound.clip);
+        effect.Play();
+        Visible(false);
+        StartCoroutine(OnDestroyed());
+    }
+
     private void CheckHit()
     {
         List<GameObject> beenHitObjects = RayCastingToObject();
@@ -49,21 +63,6 @@ public class Bomb : Trap
             }
         }
     }
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        Visible(true);
-    }
-
-    public override void OnBeingHit(GameObject hitObject)
-    {
-        sound.PlayOnce(sound.clip);
-        effect.Play();
-        Visible(false);
-        StartCoroutine(OnDestroyed());
-    }
-
     private IEnumerator OnDestroyed()
     {
         yield return new WaitForSeconds(1.1f);
@@ -84,9 +83,9 @@ public class Bomb : Trap
 #endif
     private Vector2 SpikePushDirection(GameObject spikeBall)
     {
-        float x = transform.position.x - spikeBall.transform.position.x;
-        float y = transform.position.y - spikeBall.transform.position.y;
-        return new Vector2(Mathf.Sign(x),Mathf.Sign(y));
+        Vector2 direction = GameManager.Instance.GetDirectionVector(gameObject.transform.position, spikeBall.transform.position);
+        direction = direction.normalized;
+        return new Vector2(Mathf.Sign(direction.x),Mathf.Sign(direction.y));
     }
     private List<GameObject> RayCastingToObject()
     {

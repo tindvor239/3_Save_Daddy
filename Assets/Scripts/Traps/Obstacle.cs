@@ -10,13 +10,13 @@ public abstract class Obstacle : Model
     #endregion
     protected virtual void Start()
     {
-        sound.Initiate(gameObject, SoundManager.Instance.Sound);
+        sound.Initiate(gameObject, SoundManager.Instance.SoundSource);
     }
     protected virtual void OnEnable()
     {
         if(sound.source == null && SoundManager.Instance != null)
         {
-            sound.source = SoundManager.Instance.Sound;
+            sound.source = SoundManager.Instance.SoundSource;
         }
     }
     public virtual void OnBeingHit(GameObject hitObject)

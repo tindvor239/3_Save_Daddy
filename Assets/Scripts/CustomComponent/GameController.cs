@@ -27,7 +27,7 @@ public class GameController : Singleton<GameController>
         {
             case GameManager.GameState.play:
                 UnpinDelayCountDown();
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) && unpinDelayTimer <= 0)
                 {
                     GameObject clickedObject = GetObjectByMouseRayCast();
                     if (clickedObject != null)
@@ -39,6 +39,8 @@ public class GameController : Singleton<GameController>
                             selectedPin.Interact();
                         }
                     }
+                    unpinDelayTimer = 0;
+                    canTrigger = true;
                 }
                 break;
         }
@@ -74,11 +76,6 @@ public class GameController : Singleton<GameController>
         {
             unpinDelayTimer -= Time.deltaTime;
             canTrigger = false;
-        }
-        else
-        {
-            unpinDelayTimer = 0;
-            canTrigger = true;
         }
         
     }

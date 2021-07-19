@@ -90,7 +90,10 @@ MonoBehaviour:
       objectToPool: {fileID: 1790254096043068668, guid: 4901f5ff086ad9c4aba65816e9719a2a,
         type: 3}
       parent: {fileID: 6709897157602964911}
-  clip: {fileID: 8300000, guid: 31b1c53ed9e46ed47b927a792dcc1c3b, type: 3}
+  sound:
+    clip: {fileID: 8300000, guid: 37c14a4313c52b74dbeaad441d192b94, type: 3}
+    source: {fileID: 0}
+    gameObject: {fileID: 0}
 --- !u!1 &6709897158911351242
 GameObject:
   m_ObjectHideFlags: 0

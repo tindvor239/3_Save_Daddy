@@ -38,7 +38,7 @@ public class CharacterController : Controller, IInteractable
     }
     protected override void Start()
     {
-        sound.Initiate(gameObject, SoundManager.Instance.Sound);
+        sound.Initiate(gameObject, SoundManager.Instance.SoundSource);
     }
     protected virtual void Update()
     {
@@ -83,7 +83,7 @@ public class CharacterController : Controller, IInteractable
     {
         transform.DOPause();
     }
-    public void Continue()
+    public virtual void Continue()
     {
         transform.DOPlay();
     }

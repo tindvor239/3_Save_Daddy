@@ -75,6 +75,7 @@ public class PlayerController : CharacterController
             int index = GameManager.Instance.GetNextDestinationIndex(this);
             if (index != -1)
             {
+                Debug.Log(index);
                 alreadyMoveCamera = false;
                 CameraController.Instance.Move();
                 Vector3 pathPosition = GameManager.Instance.Destinations[index].position;
@@ -100,6 +101,11 @@ public class PlayerController : CharacterController
         state = CharacterState.die;
         Action();
         StartCoroutine(OnBeenKilled(1.3f));
+    }
+    public override void Continue()
+    {
+        base.Continue();
+        MovePlayerToNextDestination();
     }
 
     private void ContinueMoving(Transform destination)

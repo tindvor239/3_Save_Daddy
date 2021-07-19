@@ -13,10 +13,6 @@ MonoBehaviour:
   m_Name: Map 100
   m_EditorClassIdentifier: 
   packages:
-  - poolName: Laser Pool
-    name: Laser Pipe
-    position: {x: 28.582363, y: 131.06047, z: 0}
-    rotation: {x: 0, y: 0, z: 1, w: 0}
   - poolName: Up U Shape
     name: Up U Shape(Down)
     position: {x: -7.71, y: 155.30287, z: 0}

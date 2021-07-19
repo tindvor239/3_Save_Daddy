@@ -233,12 +233,9 @@ public class GameManager : Singleton<GameManager>
                 float roundedLastDesX = (float)Math.Round(lastDestination.x, 2);
                 float roundedLastDesY = (float)Math.Round(lastDestination.y, 2);
                 lastDestination = new Vector2(roundedLastDesX, roundedLastDesY);
-                bool isBetweenDestinationX = currentDestination.x >= transform.position.x &&
-                    transform.position.x >= lastDestination.x;
-                bool isBetwwenDestinationY = currentDestination.y >= transform.position.y &&
-                    transform.position.y >= lastDestination.y;
-
-                if (isBetweenDestinationX && isBetwwenDestinationY)
+                bool isBetweenDestinationX = IsBetween(transform.position.x, currentDestination.x, lastDestination.x);
+                bool isBetweenDestinationY = IsBetween(transform.position.y, currentDestination.y, lastDestination.y);
+                if (isBetweenDestinationX && isBetweenDestinationY)
                 {
                     destinationIndex = i - 1;
                 }
@@ -246,10 +243,28 @@ public class GameManager : Singleton<GameManager>
         }
         return destinationIndex;
     }
+
+    private bool IsBetween(float currentValue, float value1, float value2)
+    {
+        bool isBetweenDestinationX;
+        if (value1 >= value2)
+        {
+            isBetweenDestinationX = value1 >= currentValue &&
+            currentValue >= value2;
+        }
+        else
+        {
+            isBetweenDestinationX = value1 <= currentValue &&
+                currentValue <= value2;
+        }
+
+        return isBetweenDestinationX;
+    }
+
     public int GetNextDestinationIndex(CharacterController controller)
     {
         int index = GetCurrentPosIndex(controller.transform, Instance.Destinations);
-        //Debug.Log("current pos: " + index);
+        Debug.Log("current pos: " + index);
         if (index != -1 && index < Instance.destinations.Count - 1)
         {
             for(int i = index + 1; i < destinations.Count; i++)
@@ -337,6 +352,7 @@ public class GameManager : Singleton<GameManager>
             int index = MapData.IndexOf(MapEditor.Instance.currentMap);
             ZenSDK.instance.TrackLevelCompleted(index + 1);
             SetMapStar(3);
+            gameState = GameState.win;
             return true;
         }
         return false;

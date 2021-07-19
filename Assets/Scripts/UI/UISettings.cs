@@ -14,14 +14,12 @@ public class UISettings : UISection
         bool isActive = SoundManager.IsMuted;
         lever.OnCLicked(out isActive);
         SoundManager.IsMuted = isActive;
-        Debug.Log(SoundManager.IsMuted);
     }
     public void OnMusicLeverPulled(LeverUI lever)
     {
         bool isActive = SoundManager.IsMusicOn;
         lever.OnCLicked(out isActive);
         SoundManager.IsMusicOn = isActive;
-        Debug.Log(SoundManager.IsMusicOn);
     }
 
     private void Initiate()

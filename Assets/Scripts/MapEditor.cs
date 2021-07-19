@@ -98,7 +98,11 @@ public class MapEditor : Singleton<MapEditor>
     {
         List<PoolParty> poolParties = PoolParties;
         isDoneClear = false;
-        if(Application.isPlaying)
+        if(SoundManager.Instance != null)
+        {
+            SoundManager.Instance.StopAllSound();
+        }
+        if (Application.isPlaying)
         {
             StartCoroutine(OnClearingModels(poolParties));
         }

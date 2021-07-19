@@ -51,7 +51,7 @@ public class UIController : Singleton<UIController>
         cam = CameraController.Instance;
         obstacleParty = ObstaclePoolParty.Instance;
         editor = MapEditor.Instance;
-        sound.Initiate(gameObject, SoundManager.Instance.Music);
+        sound.Initiate(gameObject, SoundManager.Instance.MusicSource);
         sound.source.loop = true;
         ShowMenuUI(true);
     }
@@ -91,12 +91,15 @@ public class UIController : Singleton<UIController>
     }
     public void Retry()
     {
-        GameManager.Instance.Player.state = CharacterController.CharacterState.idle;
-        GameManager.Instance.Player.Stop();
-        ShowGameOverUI(false);
-        ShowProcessUI(true);
-        GameManager.State = GameManager.GameState.pause;
-        Load(editor.currentMap);
+        if (GameManager.State == GameManager.GameState.play || GameManager.State == GameManager.GameState.gameover)
+        {
+            GameManager.Instance.Player.state = CharacterController.CharacterState.idle;
+            GameManager.Instance.Player.Stop();
+            ShowGameOverUI(false);
+            ShowProcessUI(true);
+            GameManager.State = GameManager.GameState.pause;
+            Load(editor.currentMap);
+        }
     }
     public void ShowVideoSkip()
     {
@@ -136,31 +139,33 @@ public class UIController : Singleton<UIController>
     }
     public void ShowSettingUI(bool isActive)
     {
-        if(isActive)
+        if(GameManager.State != GameManager.GameState.win && GameManager.State != GameManager.GameState.gameover)
         {
-            GameManager.State = GameManager.GameState.pause;
-            sound.source.Pause();
-            SoundManager.Instance.Sound.Pause();
-            gameManager.Player.Pause();
-            foreach (var enemy in gameManager.Enemies)
+            if(isActive)
             {
-                enemy.Pause();
+                GameManager.State = GameManager.GameState.pause;
+                sound.source.Pause();
+                SoundManager.Instance.StopAllSound();
+                gameManager.Player.Pause();
+                foreach (var enemy in gameManager.Enemies)
+                {
+                    enemy.Pause();
+                }
             }
-        }
-        else
-        {
-            GameManager.State = GameManager.GameState.play;
-            sound.source.Play();
-            SoundManager.Instance.Sound.Play();
-            gameManager.Player.Continue();
-            foreach (var enemy in gameManager.Enemies)
+            else
             {
-                enemy.Continue();
+                GameManager.State = GameManager.GameState.play;
+                sound.source.Play();
+                SoundManager.Instance.Continue();
+                gameManager.Player.Continue();
+                foreach (var enemy in gameManager.Enemies)
+                {
+                    enemy.Continue();
+                }
             }
-        }
-        Debug.Log("Turn Setting");
-        ViewManager.ShowUI("GAMEPLAY_UI", !isActive);
-        ViewManager.ShowUI("SETTINGS_UI", isActive);
+            ViewManager.ShowUI("GAMEPLAY_UI", !isActive);
+            ViewManager.ShowUI("SETTINGS_UI", isActive);
+        }    
     }
     public void ShowGameOverUI(bool isActive)
     {
@@ -292,6 +297,7 @@ public class UIController : Singleton<UIController>
         gameplay.OnShowGameplay();
         GetPlayerController();
         GetEnemyControllers();
+        SoundManager.Instance.Continue();
         StartCoroutine(SpawnObstaclesOnPlay());
         Invoke("MovePlayer", 0.5f);
     }
@@ -360,7 +366,7 @@ public class UIController : Singleton<UIController>
     {
         for(int i = 0; i < gameManager.MapData.Count; i++)
         {
-            if(!gameManager.MapData[i].isUnlocked && i - 1 >= 0)
+            if(gameManager.MapData[i] != null && !gameManager.MapData[i].isUnlocked && i - 1 >= 0)
             {
                 editor.currentMap = gameManager.MapData[i - 1];
                 return editor.currentMap;

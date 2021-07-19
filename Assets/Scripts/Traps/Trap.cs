@@ -28,7 +28,14 @@ public class Trap : Obstacle
     }
     protected virtual void Update()
     {
-        OnTriggered(Triggering);
+        if (GameManager.State == GameManager.GameState.play)
+        {
+            OnTriggered(Triggering);
+        }
+        else
+        {
+            OnTriggered(Detriggering);
+        }    
     }
 
     public virtual void Disarmed()
@@ -49,10 +56,7 @@ public class Trap : Obstacle
 
     protected void OnTriggered(Action action)
     {
-        if (GameManager.State == GameManager.GameState.play)
-        {
-            action();
-        }
+        action();
     }
     protected virtual void Triggering()
     {
@@ -62,6 +66,17 @@ public class Trap : Obstacle
             if (rigid.simulated == false)
             {
                 rigid.simulated = true;
+            }
+        }
+    }
+    protected virtual void Detriggering()
+    {
+        if (GetComponent<Rigidbody2D>() != null)
+        {
+            Rigidbody2D rigid = GetComponent<Rigidbody2D>();
+            if (rigid.simulated)
+            {
+                rigid.simulated = false;
             }
         }
     }

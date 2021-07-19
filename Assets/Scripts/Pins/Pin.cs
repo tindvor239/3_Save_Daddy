@@ -35,7 +35,7 @@ public abstract class Pin : Model, IInteractable
     protected virtual void Start()
     {
         collider = GetComponent<Collider2D>();
-        sound.Initiate(gameObject, SoundManager.Instance.Sound);
+        sound.Initiate(gameObject, SoundManager.Instance.SoundSource);
     }
     protected virtual void Update()
     {

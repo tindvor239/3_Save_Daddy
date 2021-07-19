@@ -9,20 +9,17 @@ public abstract class ObstaclePool : Model
     [SerializeField]
     protected PoolParty party;
     protected int count = 0;
-
     [SerializeField]
-    protected AudioClip clip;
-    protected AudioSource sound;
+    protected Sound sound;
     #region Properties
     public PoolParty Party { get => party; }
     public ObjectPool Obstacles { get => party.Pools[0]; }
-    public AudioSource AudioSource { get => sound; }
+    public Sound Sound { get => sound; }
     #endregion
     protected void Start()
     {
-        sound = SoundManager.Instance.Sound;
+        sound.Initiate(gameObject, SoundManager.Instance.SoundSource);
     }
-
     public void SpawnObstaclesOnLoad()
     {
         StartCoroutine(SpawnObstacle());
@@ -50,14 +47,5 @@ public abstract class ObstaclePool : Model
     protected void OnEnable()
     {
         count = 0;
-    }
-
-    public void PlaySound()
-    {
-        if (count <= 0)
-        {
-            sound.PlayOneShot(clip);
-            count++;
-        }
     }
 }
