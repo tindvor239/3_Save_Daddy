@@ -14,16 +14,13 @@ public class HolderPin : Pin
     }
     protected override void Unpin()
     {
-        if (isAlreadyUnpin == false)
+        if (isAlreadyUnpin == false && GameManager.Instance.IsBlocked(pinTransform.position, locker.position, 1 << LayerMask.NameToLayer("Pin")) == false)
         {
             Vector2 destination = FlipFlop();
             finishDuration = unpinDuration + 0.1f;
             base.Unpin();
             collider.enabled = false;
-            if(GameManager.Instance.IsBlocked(pinTransform.position, locker.position, 1 << LayerMask.NameToLayer("Pin")) == false)
-            {
-                GameController.Instance.Move(pinTransform, destination, unpinDuration);
-            }
+            GameController.Instance.Move(pinTransform, destination, unpinDuration);
             collider.enabled = true;
         }
     }

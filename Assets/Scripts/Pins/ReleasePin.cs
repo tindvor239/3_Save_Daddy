@@ -16,16 +16,13 @@ public class ReleasePin : Pin
     }
     protected override void Unpin()
     {
-        if (isAlreadyUnpin == false)
+        if (isAlreadyUnpin == false && GameManager.Instance.IsBlocked(lockers[0].position, lockers[1].position, 1 << LayerMask.NameToLayer("Pin")) == false)
         {
             finishDuration = unpinDuration + 0.1f;
             base.Unpin();
             collider.enabled = false;
-            if (GameManager.Instance.IsBlocked(lockers[0].position, lockers[1].position, 1 << LayerMask.NameToLayer("Pin")) == false)
-            {
-                GameController.Instance.Move(pinTransform, forward.transform.position, unpinDuration);
-                StartCoroutine(Disapear(1f));
-            }
+            GameController.Instance.Move(pinTransform, forward.transform.position, unpinDuration);
+            StartCoroutine(Disapear(1f));
             collider.enabled = true;
         }
     }
