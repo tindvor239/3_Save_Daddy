@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Arrow : Trap
@@ -10,17 +9,16 @@ public class Arrow : Trap
     private float maxTimer = 0.12f;
     [SerializeField]
     private float flySpeed = 5f;
+    [SerializeField]
+    private AudioClip impact;
     public override void Disarmed()
     {
         isDisarmed = true;
+        sound.PlayOnce(sound.clip);
     }
 
-    private void Update()
+    protected override void Update()
     {
-        if(isDisarmed)
-        {
-            GameManager.Instance.OnHitCallBack(ref timer, in maxTimer, CheckHit);
-        }
     }
     private void FixedUpdate()
     {
@@ -29,7 +27,7 @@ public class Arrow : Trap
             transform.position += transform.right * flySpeed * Time.deltaTime;
         }
     }
-    private void OnEnable()
+    protected override void OnEnable()
     {
         isDisarmed = false;
         timer = 0;
@@ -46,6 +44,7 @@ public class Arrow : Trap
             {
                 CharacterController character = hit.GetComponent<CharacterController>();
                 character.Interact();
+                sound.PlayOnce(impact);
                 isDisarmed = false;
             }
             else if((hit.tag == "Pin"|| hit.tag == "Untagged") && hit.GetComponent<Arrow>() == null)
@@ -62,7 +61,10 @@ public class Arrow : Trap
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if(isDisarmed)
+        {
+            GameManager.Instance.OnHitCallBack(ref timer, in maxTimer, CheckHit);
+        }
     }
 
 #if UNITY_EDITOR

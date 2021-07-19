@@ -95,7 +95,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolName: Arrow Pool
+  sound:
+    clip: {fileID: 8300000, guid: f8198069223e01d4a863aa012fd94e4c, type: 3}
+    source: {fileID: 0}
+    gameObject: {fileID: 0}
   effect: {fileID: 0}
   isDisarmed: 0
   size: {x: 2.56, y: 0.73}
   flySpeed: 25
+  impact: {fileID: 8300000, guid: 685334fbd573af742b3f89e938e9c508, type: 3}
