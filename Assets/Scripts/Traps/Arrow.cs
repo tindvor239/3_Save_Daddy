@@ -59,19 +59,11 @@ public class Arrow : Trap
         timer = 0;
     }
 
-    protected override void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if(isDisarmed)
         {
             GameManager.Instance.OnHitCallBack(ref timer, in maxTimer, CheckHit);
         }
     }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, size);
-    }
-#endif
 }

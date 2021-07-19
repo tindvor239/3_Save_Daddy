@@ -81,6 +81,7 @@ MonoBehaviour:
       - SHOP_UI
       - SKIN_UI
       - SPIN_POPUP
+      - TUTORIAL_UI
       - VIDEO_REWARD_UI
       - WELCOME_BACK_UI
       - WIN_UI
