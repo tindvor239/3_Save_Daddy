@@ -5154,6 +5154,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2494590153185103953, guid: 1f7e66f034e21584cafd3bed16717093,
+        type: 3}
+      propertyPath: ShapeModule.type
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494590153185103953, guid: 1f7e66f034e21584cafd3bed16717093,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2494590153293406620, guid: 1f7e66f034e21584cafd3bed16717093,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -5166,8 +5176,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2494590153293406622, guid: 1f7e66f034e21584cafd3bed16717093,
         type: 3}
+      propertyPath: ShapeModule.type
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494590153293406622, guid: 1f7e66f034e21584cafd3bed16717093,
+        type: 3}
       propertyPath: ColorModule.enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494590153293406622, guid: 1f7e66f034e21584cafd3bed16717093,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2494590153293406622, guid: 1f7e66f034e21584cafd3bed16717093,
         type: 3}
@@ -5191,6 +5211,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2494590153967132930, guid: 1f7e66f034e21584cafd3bed16717093,
         type: 3}
+      propertyPath: ShapeModule.type
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494590153967132930, guid: 1f7e66f034e21584cafd3bed16717093,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494590153967132930, guid: 1f7e66f034e21584cafd3bed16717093,
+        type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -5203,6 +5233,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BasicSpark
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494590154952609181, guid: 1f7e66f034e21584cafd3bed16717093,
+        type: 3}
+      propertyPath: ShapeModule.type
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494590154952609181, guid: 1f7e66f034e21584cafd3bed16717093,
+        type: 3}
+      propertyPath: ShapeModule.arc.value
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494590154952609181, guid: 1f7e66f034e21584cafd3bed16717093,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494590154952609181, guid: 1f7e66f034e21584cafd3bed16717093,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2494590154952609182, guid: 1f7e66f034e21584cafd3bed16717093,
         type: 3}

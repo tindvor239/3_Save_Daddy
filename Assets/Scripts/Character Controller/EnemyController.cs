@@ -13,6 +13,7 @@ public class EnemyController : CharacterController
     protected float startSize;
     protected float timer = 0;
     protected float maxTimer = 4f;
+    protected Vector2 startPartrol;
     [SerializeField]
     private AudioClip attackSound;
     [SerializeField]
@@ -30,31 +31,34 @@ public class EnemyController : CharacterController
     }
     protected override void Update()
     {
-        switch(enemyState)
+        if(GameManager.State == GameManager.GameState.play)
         {
-            case EnemyState.partrolling:
-                GameManager.Instance.OnHitCallBack(ref timer, maxTimer, GetPlayer);
-                if (!sequence.IsActive())
-                {
+            switch(enemyState)
+            {
+                case EnemyState.partrolling:
+                    GameManager.Instance.OnHitCallBack(ref timer, maxTimer, GetPlayer);
+                    if (!sequence.IsActive())
+                    {
 
-                    if (transform.localScale.x <= -1 && destinations[0] != null)
-                    {
-                        if((transform.position.x >= destinations[0].position.x || timer >= maxTimer) && destinations[1] != null)
+                        if (transform.localScale.x <= -1 && destinations[0] != null)
                         {
-                            Rotate(destinations[1].position);
-                            timer = 0;
+                            if((transform.position.x >= destinations[0].position.x || timer >= maxTimer) && destinations[1] != null)
+                            {
+                                Rotate(destinations[1].position);
+                                timer = 0;
+                            }
+                        }
+                        else if(transform.localScale.x >= 1 && destinations[1] != null)
+                        {
+                            if((transform.position.x <= destinations[1].position.x || timer >= maxTimer) && destinations[0] != null)
+                            {
+                                Rotate(destinations[0].position);
+                                timer = 0;
+                            }
                         }
                     }
-                    else if(transform.localScale.x >= 1 && destinations[1] != null)
-                    {
-                        if((transform.position.x <= destinations[1].position.x || timer >= maxTimer) && destinations[0] != null)
-                        {
-                            Rotate(destinations[0].position);
-                            timer = 0;
-                        }
-                    }
-                }
-                break;
+                    break;
+            }
         }
     }
     protected void FixedUpdate()
@@ -82,6 +86,10 @@ public class EnemyController : CharacterController
     protected override void OnEnable()
     {
         base.OnEnable();
+        if(enemyState == EnemyState.partrolling)
+        {
+            startPartrol = transform.position;
+        }
         OnStartPartrol();
         timer = 0;
     }
@@ -125,7 +133,7 @@ public class EnemyController : CharacterController
             {
                 GameObject newObject = new GameObject("partrol");
                 patrol *= -1;
-                newObject.transform.position = new Vector2(transform.position.x - patrol, transform.position.y);
+                newObject.transform.position = new Vector2(startPartrol.x - patrol, startPartrol.y);
                 destinations.Add(newObject.transform);
             }
         }

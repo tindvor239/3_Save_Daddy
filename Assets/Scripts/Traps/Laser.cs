@@ -12,6 +12,13 @@ public class Laser : Trap
     private ParticleSystem beamSparkle;
     private float timer = 0;
     private float maxTimer = 0.15f;
+    protected override void Awake()
+    {
+        if (GetComponent<Collider2D>())
+        {
+            hitBox = GetComponent<Collider2D>();
+        }
+    }
     protected override void Start()
     {
         base.Start();
@@ -19,7 +26,6 @@ public class Laser : Trap
         {
             GameManager.Instance.startParalax = true;
         }
-
     }
     public override void OnBeingHit(GameObject hitObject)
     {
@@ -44,12 +50,27 @@ public class Laser : Trap
     }
     protected override void Triggering()
     {
+        if(beamSparkle.isPaused)
+        {
+            beamSparkle.Play();
+            effect.Play();
+            GameManager.Instance.startParalax = true;
+        }
         line.SetPosition(0, transforms[0].position);
         timer += Time.deltaTime;
         if (timer >= maxTimer)
         {
             CheckHit();
             timer = 0;
+        }
+    }
+    protected override void Detriggering()
+    {
+        if (beamSparkle.isPlaying)
+        {
+            beamSparkle.Pause();
+            effect.Pause();
+            GameManager.Instance.startParalax = false;
         }
     }
     protected override void OnEnable()
