@@ -5,8 +5,6 @@ public class Arrow : Trap
 {
     [SerializeField]
     private Vector2 size = new Vector2(1, 1);
-    private float timer = 0;
-    private float maxTimer = 0.12f;
     [SerializeField]
     private float flySpeed = 5f;
     [SerializeField]
@@ -30,8 +28,6 @@ public class Arrow : Trap
     protected override void OnEnable()
     {
         isDisarmed = false;
-        timer = 0;
-        maxTimer = 0.2f;
     }
     private void CheckHit()
     {
@@ -56,14 +52,13 @@ public class Arrow : Trap
         {
             ObstaclePoolParty.Instance.Party.GetPool(poolName).GetBackToPool(gameObject);
         }
-        timer = 0;
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if(isDisarmed)
         {
-            GameManager.Instance.OnHitCallBack(ref timer, in maxTimer, CheckHit);
+            CheckHit();
         }
     }
 }
