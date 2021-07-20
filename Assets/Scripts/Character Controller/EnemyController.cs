@@ -134,7 +134,6 @@ public class EnemyController : CharacterController
     {
         if (enemyState == EnemyState.patrolling)
         {
-            Debug.Log("In Enable" + startPatrol);
             OnStartPatrol();
         }
     }

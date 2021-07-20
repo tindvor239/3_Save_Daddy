@@ -33,7 +33,6 @@ public class GameController : Singleton<GameController>
                     if (clickedObject != null)
                     {
                         Pin selectedPin = GetPinComponent(clickedObject);
-                        Debug.Log(selectedPin);
                         if(selectedPin != null)
                         {
                             selectedPin.Interact();

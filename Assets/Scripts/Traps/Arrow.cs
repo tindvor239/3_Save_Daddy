@@ -39,6 +39,7 @@ public class Arrow : Trap
             if(hit.tag == "Enemy" || hit.tag == "Player")
             {
                 CharacterController character = hit.GetComponent<CharacterController>();
+                Debug.Log(character);
                 character.Interact();
                 sound.PlayOnce(impact);
                 isDisarmed = false;
@@ -46,6 +47,7 @@ public class Arrow : Trap
             else if((hit.tag == "Pin"|| hit.tag == "Untagged") && hit.GetComponent<Arrow>() == null)
             {
                 isDisarmed = false;
+                Debug.Log(gameObject);
             }
         }
         if(hits.Count != 0)

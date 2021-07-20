@@ -179,7 +179,6 @@ public class GameManager : Singleton<GameManager>
         RaycastHit2D hit = Physics2D.Linecast(fromPosition, toPosition, layerIndex);
         if (hit.collider != null)
         {
-            Debug.Log(hit.transform.parent.parent.gameObject);
             if (hit.collider.transform.position == toPosition || hit.collider.transform.position == fromPosition)
             {
                 return false;
