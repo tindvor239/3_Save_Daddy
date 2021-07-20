@@ -24,29 +24,32 @@ public class Gass : Trap
     }
     private void CheckHit()
     {
-        bool beenBlocked = GameManager.Instance.IsBlocked(points[0].position, points[1].position, 1 << LayerMask.NameToLayer("Pin"));
-        if (beenBlocked)
+        if(GameManager.State == GameManager.GameState.play)
         {
-            Disarmed();
-            sound.source.Stop();
-        }
-        else
-        {
-            GameObject beenHitObject = GameManager.Instance.RayCastToObject(points[0].position, points[1].position);
-            if(beenHitObject != null)
+            bool beenBlocked = GameManager.Instance.IsBlocked(points[0].position, points[1].position, 1 << LayerMask.NameToLayer("Pin"));
+            if (beenBlocked)
             {
-                OnHit(beenHitObject);
+                Disarmed();
+                sound.source.Stop();
             }
             else
             {
-                if(isDisarmed)
+                GameObject beenHitObject = GameManager.Instance.RayCastToObject(points[0].position, points[1].position);
+                if(beenHitObject != null)
                 {
-                    isDisarmed = false;
-                    effect.Play();
+                    OnHit(beenHitObject);
+                }
+                else
+                {
+                    if(isDisarmed)
+                    {
+                        isDisarmed = false;
+                        effect.Play();
+                    }
                 }
             }
+            timer = 0;
         }
-        timer = 0;
     }
 
     protected override void OnEnable()
