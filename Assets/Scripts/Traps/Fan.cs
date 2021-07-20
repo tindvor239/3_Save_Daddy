@@ -34,7 +34,8 @@ public class Fan : Trap
         {
             if (beenHitObject.GetComponent<PlayerController>() != null && count == 0)
             {
-                StartCoroutine(MoveNext(beenHitObject.GetComponent<PlayerController>(), beenHitObject.GetComponent<PlayerController>().MoveDuration(beenHitObject.transform.position, target.position) + 1));
+                PlayerController player = beenHitObject.GetComponent<PlayerController>();
+                StartCoroutine(MoveNext(player, Controller.MoveDuration(beenHitObject.transform.position, target.position, player.MoveSpeed) + 1));
                 count++;
             }
         }

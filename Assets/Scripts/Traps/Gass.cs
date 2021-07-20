@@ -18,7 +18,7 @@ public class Gass : Trap
     }
 
     // Update is called once per frame
-    private void Update()
+    protected override void Update()
     {
         GameManager.Instance.OnHitCallBack(ref timer, in maxTimer, CheckHit);
     }

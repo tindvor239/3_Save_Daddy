@@ -179,7 +179,8 @@ public class GameManager : Singleton<GameManager>
         RaycastHit2D hit = Physics2D.Linecast(fromPosition, toPosition, layerIndex);
         if (hit.collider != null)
         {
-            if (hit.collider.transform.position == toPosition)
+            Debug.Log(hit.transform.parent.parent.gameObject);
+            if (hit.collider.transform.position == toPosition || hit.collider.transform.position == fromPosition)
             {
                 return false;
             }
@@ -264,7 +265,6 @@ public class GameManager : Singleton<GameManager>
     public int GetNextDestinationIndex(CharacterController controller)
     {
         int index = GetCurrentPosIndex(controller.transform, Instance.Destinations);
-        Debug.Log("current pos: " + index);
         if (index != -1 && index < Instance.destinations.Count - 1)
         {
             for(int i = index + 1; i < destinations.Count; i++)

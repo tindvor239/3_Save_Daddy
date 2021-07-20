@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 using DG.Tweening;
 
 public class EnemyController : CharacterController
@@ -13,13 +14,17 @@ public class EnemyController : CharacterController
     protected float startSize;
     protected float timer = 0;
     protected float maxTimer = 4f;
-    protected Vector2 startPartrol;
+    [HideInInspector]
+    public Vector2 startPatrol;
     [SerializeField]
     private AudioClip attackSound;
     [SerializeField]
     private AudioClip normalSound;
     [SerializeField]
     private AudioClip deathSound;
+    #region Properties
+    public EnemyState State { get => enemyState; }
+    #endregion
     protected override void Awake()
     {
         base.Awake();
@@ -31,26 +36,26 @@ public class EnemyController : CharacterController
     }
     protected override void Update()
     {
-        if(GameManager.State == GameManager.GameState.play)
+        if (GameManager.State == GameManager.GameState.play)
         {
-            switch(enemyState)
+            switch (enemyState)
             {
-                case EnemyState.partrolling:
+                case EnemyState.patrolling:
                     GameManager.Instance.OnHitCallBack(ref timer, maxTimer, GetPlayer);
                     if (!sequence.IsActive())
                     {
 
                         if (transform.localScale.x <= -1 && destinations[0] != null)
                         {
-                            if((transform.position.x >= destinations[0].position.x || timer >= maxTimer) && destinations[1] != null)
+                            if ((transform.position.x >= destinations[0].position.x || timer >= maxTimer) && destinations[1] != null)
                             {
                                 Rotate(destinations[1].position);
                                 timer = 0;
                             }
                         }
-                        else if(transform.localScale.x >= 1 && destinations[1] != null)
+                        else if (transform.localScale.x >= 1 && destinations[1] != null)
                         {
-                            if((transform.position.x <= destinations[1].position.x || timer >= maxTimer) && destinations[0] != null)
+                            if ((transform.position.x <= destinations[1].position.x || timer >= maxTimer) && destinations[0] != null)
                             {
                                 Rotate(destinations[0].position);
                                 timer = 0;
@@ -63,37 +68,39 @@ public class EnemyController : CharacterController
     }
     protected void FixedUpdate()
     {
-        switch(enemyState)
+        if (GameManager.State == GameManager.GameState.play)
         {
-            case EnemyState.partrolling:
-                if(state == CharacterState.idle)
-                {
-                    transform.position -= (transform.right * Time.deltaTime * moveSpeed) * transform.localScale.x;
-                }
-                break;
+            switch (enemyState)
+            {
+                case EnemyState.patrolling:
+                    if(state == CharacterState.idle)
+                    {
+                        transform.position -= (transform.right * Time.deltaTime * moveSpeed) * transform.localScale.x;
+                    }
+                    break;
+            }
         }
     }
     protected void OnDisable()
     {
-        foreach(Transform destination in destinations)
+        if(enemyState == EnemyState.patrolling)
         {
-            if(enemyState == EnemyState.partrolling && destination != null)
+            foreach(Transform destination in destinations)
             {
-                Destroy(destination.gameObject);
+                if(destination != null)
+                {
+                    Destroy(destination.gameObject);
+                }
             }
+            destinations = new List<Transform>();
         }
     }
     protected override void OnEnable()
     {
+        Patroling();
         base.OnEnable();
-        if(enemyState == EnemyState.partrolling)
-        {
-            startPartrol = transform.position;
-        }
-        OnStartPartrol();
         timer = 0;
     }
-
     public virtual void GetPlayer()
     {
         Transform path = GetPath();
@@ -123,17 +130,25 @@ public class EnemyController : CharacterController
             }
         }
     }
-    private void OnStartPartrol()
+    private void Patroling()
+    {
+        if (enemyState == EnemyState.patrolling)
+        {
+            Debug.Log("In Enable" + startPatrol);
+            OnStartPatrol();
+        }
+    }
+    private void OnStartPatrol()
     {
         destinations = new List<Transform>();
-        if(enemyState == EnemyState.partrolling)
+        if(enemyState == EnemyState.patrolling)
         {
             float patrol = 5;
             for(int i = 0; i < 2; i++)
             {
-                GameObject newObject = new GameObject("partrol");
+                GameObject newObject = new GameObject("patrol");
                 patrol *= -1;
-                newObject.transform.position = new Vector2(startPartrol.x - patrol, startPartrol.y);
+                newObject.transform.localPosition = new Vector2(startPatrol.x - patrol, startPatrol.y);
                 destinations.Add(newObject.transform);
             }
         }
@@ -149,7 +164,7 @@ public class EnemyController : CharacterController
         }
         switch(enemyState)
         {
-            case EnemyState.partrolling:
+            case EnemyState.patrolling:
                 break;
             default:
                 destinations = FindClosestDestinations();
@@ -292,6 +307,15 @@ public class EnemyController : CharacterController
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+        if(enemyState == EnemyState.patrolling)
+        {
+            if(!Application.isPlaying)
+            {
+                startPatrol = transform.position;
+            }
+            Gizmos.DrawWireSphere(new Vector2(startPatrol.x + 5, transform.position.y), 1);
+            Gizmos.DrawWireSphere(new Vector2(startPatrol.x - 5, transform.position.y), 1);
+        }
     }
 #endif
     protected IEnumerator Kill(float duration)
@@ -310,7 +334,7 @@ public class EnemyController : CharacterController
         yield return new WaitForSeconds(duration);
         CharacterPoolParty.Instance.Party.GetPool(poolName).GetBackToPool(gameObject);
     }
-    protected enum EnemyState { standing, aggressive, partrolling }
+    public enum EnemyState { standing, aggressive, patrolling }
     protected override void Action()
     {
         if (skeletonAnimation != null)

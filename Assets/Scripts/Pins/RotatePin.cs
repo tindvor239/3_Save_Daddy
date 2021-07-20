@@ -18,7 +18,6 @@ public class RotatePin : Pin
     {
         for(int i = 0; i < pinLocks.Length; i++)
         {
-            Debug.Log("In Rotating");
             if(Math.Round(pinLocks[i].rotation.x, 2) == Math.Round(pinTransform.transform.rotation.x, 2) &&
                 Math.Round(pinLocks[i].rotation.y, 2) == Math.Round(pinTransform.transform.rotation.y, 2) &&
                 Math.Round(pinLocks[i].rotation.z, 2) == Math.Round(pinTransform.transform.rotation.z, 2))

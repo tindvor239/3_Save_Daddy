@@ -20,6 +20,7 @@ public class Rock : Trap
         if (characterController != null)
         {
             characterController.Interact();
+            sound.PlayOnce(sound.clip);
             if(IsChildRock())
             {
                 bool isHitCharacter = beenHitObject.tag == "Enemy" || beenHitObject.tag == "Player";
@@ -32,7 +33,6 @@ public class Rock : Trap
             {
                 ObstaclePoolParty.Instance.Party.GetPool(poolName).GetBackToPool(gameObject);
             }
-            sound.PlayOnce(sound.clip);
         }
         else
         {

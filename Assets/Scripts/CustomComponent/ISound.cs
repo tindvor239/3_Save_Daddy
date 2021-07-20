@@ -38,7 +38,6 @@ public class Sound : ISound
             }
             if (source != null && clip != null)
             {
-                Debug.Log("PlayLooping");
                 source.PlayOneShot(clip);
                 SoundManager.Instance.StartCoroutine(PlayClipLoop(clip));
             }

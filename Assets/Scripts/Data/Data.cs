@@ -145,7 +145,16 @@ public abstract class Data : ScriptableObject
         }
         else
         {
-            GetPooledObject<Model>(pool).Unpack(package, pool);
+            Model model = GetPooledObject<Model>(pool);
+            if(model is EnemyController)
+            {
+                EnemyController enemy = model.GetComponent<EnemyController>();
+                if(enemy.State == EnemyController.EnemyState.patrolling)
+                {
+                    enemy.startPatrol = package.Position;
+                }
+            }
+            model.Unpack(package, pool);
         }
     }
     private T GetPooledObject<T>(ObjectPool pool) where T : MonoBehaviour

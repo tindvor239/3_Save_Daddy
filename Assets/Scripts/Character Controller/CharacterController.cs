@@ -61,7 +61,7 @@ public class CharacterController : Controller, IInteractable
     {
         if(state != CharacterState.die)
         {
-            moveDuration = MoveDuration(transform.position, destination);
+            moveDuration = MoveDuration(transform.position, destination, moveSpeed);
             GameController.Instance.Move(in sequence, transform, destination, moveDuration, ease);
             Invoke("OnMove", actingDelay);
         }
@@ -70,7 +70,7 @@ public class CharacterController : Controller, IInteractable
     {
         if (state != CharacterState.die)
         {
-            moveDuration = MoveDuration(transform.position, destination);
+            moveDuration = MoveDuration(transform.position, destination, moveSpeed);
             GameController.Instance.Move(in sequence, transform, destination, moveDuration);
             Invoke("OnMove", actingDelay);
         }

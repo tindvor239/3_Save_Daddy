@@ -44,6 +44,11 @@ public class SoundManager : Singleton<SoundManager>
         base.Awake();
         #endregion
     }
+    private void Start()
+    {
+        musicSource.enabled = IsMusicOn;
+        soundSource.enabled = IsMuted;
+    }
     public void StopAllSound()
     {
         if(IsMuted)

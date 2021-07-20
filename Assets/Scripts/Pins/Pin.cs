@@ -50,6 +50,7 @@ public abstract class Pin : Model, IInteractable
     {
         isAlreadyUnpin = true;
         onUnpinTrigger += OnTrigger;
+        TutorialHandler.Instance.ShowTutorial(false, GameManager.Instance.CurrentLevelIndex() - 1);
         sound.PlayOnce(sound.clip);
         StartCoroutine(StartMoveObject(finishDuration));
     }

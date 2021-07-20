@@ -75,7 +75,6 @@ public class PlayerController : CharacterController
             int index = GameManager.Instance.GetNextDestinationIndex(this);
             if (index != -1)
             {
-                Debug.Log(index);
                 alreadyMoveCamera = false;
                 CameraController.Instance.Move();
                 Vector3 pathPosition = GameManager.Instance.Destinations[index].position;
@@ -91,7 +90,9 @@ public class PlayerController : CharacterController
             else if(alreadyMoveCamera == false)
             {
                 CameraController.Instance.ZoomCenterPoint();
-                //Invoke("ScareAnimation", actingDelay);
+                Debug.Log(TutorialHandler.Instance);
+                TutorialHandler.Instance.ShowTutorial(true, GameManager.Instance.CurrentLevelIndex() - 1);
+                Invoke("ScareAnimation", actingDelay);
                 alreadyMoveCamera = true;
             }
         }
@@ -135,7 +136,6 @@ public class PlayerController : CharacterController
         {
             SwitchAction(animationSet[3], animationSet[4]);
             Invoke("ScareSound", 0.4f);
-            Invoke("ScareAnimation", actingDelay);
         }
     }
     private void ScareSound()

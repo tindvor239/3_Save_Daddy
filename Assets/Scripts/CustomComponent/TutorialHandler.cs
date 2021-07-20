@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class TutorialHandler : MonoBehaviour
+public class TutorialHandler : Singleton<TutorialHandler>
 {
     [SerializeField]
     private GameObject[] pinTutorials;
@@ -16,16 +16,17 @@ public class TutorialHandler : MonoBehaviour
     private GameObject rotatePin;
     [SerializeField]
     protected GameObject tutorialUI;
-    public void OnCheckTutorial()
-    {
 
-    }    
-    public void SetUpTutorial()
+    protected override void Awake()
     {
-
+        base.Awake();
     }
-    public void TutorialOn()
+    public void ShowTutorial(bool active, int index)
     {
-        tutorialUI.SetActive(true);
+        if (index < 1)
+        {
+            UIController.Instance.ShowTutorialUI(active);
+            pinTutorials[index].SetActive(active);
+        }
     }
 }

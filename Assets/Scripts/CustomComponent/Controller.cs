@@ -15,12 +15,12 @@ public abstract class Controller : Model, IMoveable
     }
     public virtual void Move(in Vector3 destination)
     {
-        float duration = MoveDuration(transform.position, destination);
+        float duration = MoveDuration(transform.position, destination, moveSpeed);
         GameController.Instance.Move(transform, destination, in duration);
     }
 
-    public float MoveDuration(Vector2 fromPosition, Vector2 toPosition)
+    public static float MoveDuration(Vector2 fromPosition, Vector2 toPosition, float speed)
     {
-        return  Vector2.Distance(fromPosition, toPosition) / moveSpeed;
+        return  Vector2.Distance(fromPosition, toPosition) / speed;
     }
 }

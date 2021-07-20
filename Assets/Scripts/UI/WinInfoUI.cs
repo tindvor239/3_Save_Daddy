@@ -80,7 +80,7 @@ public class WinInfoUI : MonoBehaviour
             button.onClick.AddListener(NextLevel);
         }
         winParticle.Play();
-        levelInfo.text = UIController.Instance.Gameplay.LevelName;
+        levelInfo.text = "Level " + UIController.Instance.Gameplay.LevelName;
     }
 
     private void DisplayProcess()

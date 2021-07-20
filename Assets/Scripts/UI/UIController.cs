@@ -131,10 +131,10 @@ public class UIController : Singleton<UIController>
         {
             ContinuePlay();
         }
+        int index = GameManager.Instance.CurrentLevelIndex();
         editor.Load();
         mapProcessing.Process();
         StartCoroutine(LoadLevelOnTime());
-        int index = GameManager.Instance.CurrentLevelIndex();
         ZenSDK.instance.TrackLevelCompleted(index);
     }
     public void ShowSettingUI(bool isActive)
@@ -176,6 +176,10 @@ public class UIController : Singleton<UIController>
             sound.PlayOnce(gameOver.LoseSound);
             StartCoroutine(ShowVideoReward());
         }
+    }
+    public void ShowTutorialUI(bool isActive)
+    {
+        ViewManager.ShowUI("TUTORIAL_UI", isActive);
     }
     public void ShowWinUI(bool isActive)
     {
@@ -339,7 +343,6 @@ public class UIController : Singleton<UIController>
         gameManager.Player = characterParty.PlayerPool.PooledObjects[0].GetComponent<PlayerController>();
         PlayerController player = gameManager.Player;
         cam.Player = player;
-        Debug.Log(player);
         Vector3 newPosition = new Vector3(player.transform.position.x, player.transform.position.y, cam.gameObject.transform.position.z);
         cam.gameObject.transform.position = newPosition;
         cam.Move();;

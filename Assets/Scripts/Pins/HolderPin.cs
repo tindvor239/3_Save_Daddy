@@ -5,7 +5,7 @@ using UnityEngine.CustomComponents;
 public class HolderPin : Pin
 {
     [SerializeField]
-    private Transform locker;
+    private Transform[] lockers;
     [SerializeField]
     private Transform[] destinations = new Transform[2];
     protected override void Start()
@@ -14,7 +14,9 @@ public class HolderPin : Pin
     }
     protected override void Unpin()
     {
-        if (isAlreadyUnpin == false && GameManager.Instance.IsBlocked(pinTransform.position, locker.position, 1 << LayerMask.NameToLayer("Pin")) == false)
+        bool isBlocked = GameManager.Instance.IsBlocked(lockers[0].position, lockers[1].position, 1 << LayerMask.NameToLayer("Pin"));
+        Debug.Log(isBlocked);
+        if (isAlreadyUnpin == false && isBlocked == false)
         {
             Vector2 destination = FlipFlop();
             finishDuration = unpinDuration + 0.1f;
