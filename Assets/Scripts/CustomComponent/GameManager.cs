@@ -338,10 +338,10 @@ public class GameManager : Singleton<GameManager>
         if (playerIndex == Instance.destinations.Count - 1)
         {
             UnlockNextLevel();
-            winCount = 6;
             if (winCount == 6)
             {
                 ShowSkinOnWin();
+                Debug.Log("Show Skin");
             }
             else
             {

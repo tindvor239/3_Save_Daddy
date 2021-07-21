@@ -32,6 +32,7 @@ public class EnemyController : CharacterController
     protected override void Start()
     {
         base.Start();
+
         startSize = transform.localScale.x;
     }
     protected override void Update()
@@ -97,7 +98,6 @@ public class EnemyController : CharacterController
     }
     protected override void OnEnable()
     {
-        Patroling();
         base.OnEnable();
         timer = 0;
     }
@@ -130,7 +130,7 @@ public class EnemyController : CharacterController
             }
         }
     }
-    private void Patroling()
+    public void Patroling()
     {
         if (enemyState == EnemyState.patrolling)
         {
@@ -147,7 +147,7 @@ public class EnemyController : CharacterController
             {
                 GameObject newObject = new GameObject("patrol");
                 patrol *= -1;
-                newObject.transform.localPosition = new Vector2(startPatrol.x - patrol, startPatrol.y);
+                newObject.transform.position = (Vector2)gameObject.transform.position + new Vector2(startPatrol.x - patrol, startPatrol.y);
                 destinations.Add(newObject.transform);
             }
         }

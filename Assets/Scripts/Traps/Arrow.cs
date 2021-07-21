@@ -35,7 +35,6 @@ public class Arrow : Trap
             GameManager.Instance.BoxCastAll(transform.position, size, transform.eulerAngles.z, transform.right, 0);
         foreach(GameObject hit in hits)
         {
-
             if(hit.tag == "Enemy" || hit.tag == "Player")
             {
                 CharacterController character = hit.GetComponent<CharacterController>();

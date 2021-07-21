@@ -29,10 +29,10 @@ public class UISkinReward : MonoBehaviour
     }    
     public void GetSkin()
     {
-        if(skin != null)
+        if (skin != null)
         {
-            Debug.Log("Watch Ads for Skin");
             Debug.Log(skin);
+            skin.isSold = true;
             UIController.Instance.ShowSkinReward(false, 0);
         }
     }

@@ -90,7 +90,6 @@ public class Fan : Trap
     protected override void OnEnable()
     {
         base.OnEnable();
-        sound.PlayLoop(sound.clip);
         timer = 0;
         count = 0;
     }

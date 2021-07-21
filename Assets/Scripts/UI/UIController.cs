@@ -93,8 +93,11 @@ public class UIController : Singleton<UIController>
     {
         if (GameManager.State == GameManager.GameState.play || GameManager.State == GameManager.GameState.gameover)
         {
-            GameManager.Instance.Player.state = CharacterController.CharacterState.idle;
-            GameManager.Instance.Player.Stop();
+            if(GameManager.Instance.Player != null)
+            {
+                GameManager.Instance.Player.state = CharacterController.CharacterState.idle;
+                GameManager.Instance.Player.Stop();
+            }
             ShowGameOverUI(false);
             ShowProcessUI(true);
             GameManager.State = GameManager.GameState.pause;
@@ -103,14 +106,17 @@ public class UIController : Singleton<UIController>
     }
     public void ShowVideoSkip()
     {
+        ShowViewReward(Skip);
+    }
+    public void ShowViewReward(UnityEngine.Events.UnityAction action)
+    {
         ZenSDK.instance.ShowVideoReward((bool onSuccess) => {
-            if (onSuccess)
+            if(onSuccess)
             {
-                Skip();
+                action();
             }
             else
             {
-
             }
         });
     }
@@ -256,8 +262,9 @@ public class UIController : Singleton<UIController>
                 ViewManager.ShowUI("BEFOREEXIT_UI", !isActive);
                 if(isActive)
                 {
-                    ShowMenuUI(isActive);
+                    ViewManager.ShowUI("MAINBACKGROUND_UI", isActive);
                     editor.Clear();
+                    StartCoroutine(BackToMenu());
                 }
                 break;
             case GameManager.GameState.menu:
@@ -265,7 +272,7 @@ public class UIController : Singleton<UIController>
                 break;
         }
     }
-    public void ShowSkinReward(bool isActive, Skin skin)
+    private void ShowSkinReward(bool isActive, Skin skin)
     {
         ShowSkinReward(isActive);
         if (isActive)
@@ -273,7 +280,7 @@ public class UIController : Singleton<UIController>
             skinReward.ShowUI(skin);
         }
     }
-    public void ShowSkinReward(bool isActive)
+    private void ShowSkinReward(bool isActive)
     {
         ViewManager.ShowUI("VIDEO_REWARD_UI", isActive);
         if(isActive == false)
@@ -283,9 +290,21 @@ public class UIController : Singleton<UIController>
     }
     public void ShowSkinReward(bool isActive, int index)
     {
-        ShowSkinReward(isActive, GameManager.PlayerSkins[index]);
+        UnityEngine.Events.UnityAction action = () =>
+        {
+            ShowSkinReward(isActive, GameManager.PlayerSkins[index]);
+        };
+        ShowViewReward(action);
     }
 
+    private IEnumerator BackToMenu()
+    {
+        while(editor.isDoneClear == false)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        ShowMenuUI(true);
+    }
     private IEnumerator ShowVideoReward()
     {
         yield return new WaitForSeconds(2f);
@@ -340,6 +359,10 @@ public class UIController : Singleton<UIController>
     }
     private void GetPlayerController()
     {
+        if(characterParty.PlayerPool.PooledObjects[0] == null)
+        {
+            characterParty.PlayerPool.PooledObjects[0] = characterParty.PlayerPool.CreatePooledObject();
+        }
         gameManager.Player = characterParty.PlayerPool.PooledObjects[0].GetComponent<PlayerController>();
         PlayerController player = gameManager.Player;
         cam.Player = player;

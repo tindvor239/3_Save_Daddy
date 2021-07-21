@@ -9,7 +9,8 @@ public class Bomb : Trap
     private float radius = 1f;
     protected override void OnHit(GameObject beenHitObject)
     {
-        if (beenHitObject.tag == "Player" || beenHitObject.tag == "Enemy" || beenHitObject.GetComponent<Rock>() != null)
+        if (beenHitObject.tag == "Player" || beenHitObject.tag == "Enemy"
+            || beenHitObject.GetComponent<Trap>() != null)
         {
             CheckHit();
             OnBeingHit(gameObject);
@@ -60,6 +61,11 @@ public class Bomb : Trap
             {
                 Bomb bomb = gameObject.GetComponent<Bomb>();
                 bomb.OnBeingHit(gameObject);
+            }
+            else if(gameObject.GetComponent<Laser>() != null)
+            {
+                Laser laser = gameObject.GetComponent<Laser>();
+                laser.Disarmed();
             }
         }
     }

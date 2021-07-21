@@ -77,6 +77,7 @@ public class CameraController : CharacterController
                 closestPath = cameraPath;
             }
         }
+        Debug.Log(closestPath);
         return closestPath.transform;
     }
 

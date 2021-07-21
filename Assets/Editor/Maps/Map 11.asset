@@ -414,4 +414,4 @@ MonoBehaviour:
     rotation: {x: -0, y: -0, z: -0, w: 1}
     center: {x: 0, y: 0, z: 0}
     size: 10
-  isUnlocked: 1
+  isUnlocked: 0

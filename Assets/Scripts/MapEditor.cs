@@ -108,7 +108,6 @@ public class MapEditor : Singleton<MapEditor>
         }
         else
         {
-            Debug.Log("Editor Mode");
             foreach (PoolParty poolParty in poolParties)
             {
                 foreach (ObjectPool pool in poolParty.Pools)

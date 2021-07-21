@@ -152,6 +152,7 @@ public abstract class Data : ScriptableObject
                 if(enemy.State == EnemyController.EnemyState.patrolling)
                 {
                     enemy.startPatrol = package.Position;
+                    enemy.Patroling();
                 }
             }
             model.Unpack(package, pool);

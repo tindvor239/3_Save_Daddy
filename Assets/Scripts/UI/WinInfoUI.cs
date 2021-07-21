@@ -61,28 +61,28 @@ public class WinInfoUI : MonoBehaviour
         button.onClick.RemoveAllListeners();
         if (indexOfProcess == 4)
         {
-            buttonImage.sprite = bossButton;
-            buttonText.text = "Fight Boss";
-            button.onClick.AddListener(NextLevel);
+            SetUpButton(bossButton, "Fight Boss", NextLevel);
         }
         else if(indexOfProcess == 0)
         {
-            buttonImage.sprite = bossButton;
+            SetUpButton(bossButton, "Next", NextLevel);
             box.SetActive(true);
-            buttonText.text = "Open Box";
-            button.onClick.AddListener(ChestRoom);
             slider.value = slider.maxValue;
         }
         else
         {
-            buttonImage.sprite = normalButton;
-            buttonText.text = "Next";
-            button.onClick.AddListener(NextLevel);
+            SetUpButton(normalButton, "Next", NextLevel);
         }
         winParticle.Play();
         levelInfo.text = "Level " + UIController.Instance.Gameplay.LevelName;
     }
 
+    private void SetUpButton(Sprite sprite, string text, UnityEngine.Events.UnityAction action)
+    {
+        buttonImage.sprite = sprite;
+        buttonText.text = text;
+        button.onClick.AddListener(action);
+    }
     private void DisplayProcess()
     {
         List<Map> maps = GetMapsInProcess();
@@ -117,10 +117,6 @@ public class WinInfoUI : MonoBehaviour
     private void NextLevel()
     {
         UIController.Instance.Play(true);
-    }
-    private void ChestRoom()
-    {
-        UIController.Instance.ShowChestRoomUI(true);
     }
     private List<Map> GetMapsInProcess()
     {

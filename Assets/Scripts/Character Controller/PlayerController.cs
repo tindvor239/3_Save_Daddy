@@ -76,10 +76,10 @@ public class PlayerController : CharacterController
             if (index != -1)
             {
                 alreadyMoveCamera = false;
-                CameraController.Instance.Move();
                 Vector3 pathPosition = GameManager.Instance.Destinations[index].position;
                 if (!CheckPathIsBlocked(transform.position, pathPosition))
                 {
+                    CameraController.Instance.Move();
                     bool isBlocked = GameManager.Instance.IsBlocked(transform.position, pathPosition, 1 << LayerMask.NameToLayer("Enemy"));
                     if (!isBlocked)
                     {
@@ -90,10 +90,13 @@ public class PlayerController : CharacterController
             else if(alreadyMoveCamera == false)
             {
                 CameraController.Instance.ZoomCenterPoint();
-                Debug.Log(TutorialHandler.Instance);
                 TutorialHandler.Instance.ShowTutorial(true, GameManager.Instance.CurrentLevelIndex() - 1);
                 Invoke("ScareAnimation", actingDelay);
                 alreadyMoveCamera = true;
+            }
+            else
+            {
+                CameraController.Instance.ZoomCenterPoint();
             }
         }
     }
