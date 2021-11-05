@@ -147,7 +147,8 @@ public class EnemyController : CharacterController
             {
                 GameObject newObject = new GameObject("patrol");
                 patrol *= -1;
-                newObject.transform.position = (Vector2)gameObject.transform.position + new Vector2(startPatrol.x - patrol, startPatrol.y);
+                Vector2 distance = new Vector2(startPatrol.x - patrol, startPatrol.y) - (Vector2)gameObject.transform.position;
+                newObject.transform.position = (Vector2)gameObject.transform.position + distance;
                 destinations.Add(newObject.transform);
             }
         }

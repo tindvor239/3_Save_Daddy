@@ -108,6 +108,14 @@ public class UIController : Singleton<UIController>
     {
         ShowViewReward(Skip);
     }
+    public void Share()
+    {
+        ZenSDK.instance.Share();
+    }
+    public void Rate()
+    {
+        ZenSDK.instance.Rate();
+    }
     public void ShowViewReward(UnityEngine.Events.UnityAction action)
     {
         ZenSDK.instance.ShowVideoReward((bool onSuccess) => {

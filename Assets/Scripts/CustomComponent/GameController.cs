@@ -29,7 +29,10 @@ public class GameController : Singleton<GameController>
                 UnpinDelayCountDown();
                 if (Input.GetMouseButtonDown(0) && unpinDelayTimer <= 0)
                 {
+                    unpinDelayTimer = 0;
+                    canTrigger = true;
                     GameObject clickedObject = GetObjectByMouseRayCast();
+                    Debug.Log(clickedObject);
                     if (clickedObject != null)
                     {
                         Pin selectedPin = GetPinComponent(clickedObject);
@@ -38,8 +41,6 @@ public class GameController : Singleton<GameController>
                             selectedPin.Interact();
                         }
                     }
-                    unpinDelayTimer = 0;
-                    canTrigger = true;
                 }
                 break;
         }
@@ -50,16 +51,20 @@ public class GameController : Singleton<GameController>
     {
         Pin result = null;
         Transform parent = clickedObject.transform.parent;
+
         if (CanUnpin(clickedObject.GetComponent<Pin>()))
         {
+            Debug.Log(string.Format("Pin: {0}, can unpin: {1}", clickedObject.GetComponent<Pin>()? true : false, CanUnpin(clickedObject.GetComponent<Pin>())));
             result = clickedObject.GetComponent<Pin>();
         }
         else if (CanUnpin(parent.GetComponentInChildren<Pin>()))
         {
+            Debug.Log(string.Format("Pin: {0}, can unpin: {1}", parent.GetComponentInChildren<Pin>() ? true : false, CanUnpin(clickedObject.GetComponent<Pin>())));
             result = parent.GetComponentInChildren<Pin>();
         }
         else if(CanUnpin(parent.parent.gameObject.GetComponent<Pin>()))
         {
+            Debug.Log(string.Format("Pin: {0}, can unpin: {1}", parent.parent.gameObject.GetComponent<Pin>() ? true : false, CanUnpin(clickedObject.GetComponent<Pin>())));
             result = parent.parent.gameObject.GetComponent<Pin>();
         }
         unpinDelayTimer = unpinDelay;

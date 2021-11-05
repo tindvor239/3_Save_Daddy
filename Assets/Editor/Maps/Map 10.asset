@@ -13,247 +13,247 @@ MonoBehaviour:
   m_Name: Map 10
   m_EditorClassIdentifier: 
   packages:
-  - poolName: Path Pool
-    name: 3
-    position: {x: 109.54, y: 194.94, z: 0}
+  - poolName: Right
+    name: Right (2)
+    position: {x: 79.97, y: 210.29, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+  - poolName: Left
+    name: Left (1)
+    position: {x: 56.99, y: 210.31, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+  - poolName: Right
+    name: Right (1)
+    position: {x: 42.72, y: 210.16, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+  - poolName: Up Curve
+    name: Up(Down Left)
+    position: {x: 58.39, y: 203.23517, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+  - poolName: Up Curve 2
+    name: Up(Down Right)
+    position: {x: 41.47, y: 203.05286, z: 0}
     rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Path Pool
-    name: 2
-    position: {x: 44.321243, y: 194.86865, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Path Pool
-    name: 1
-    position: {x: 6.247365, y: 194.58, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Shark Pool
-    name: Shark
-    position: {x: 50.776894, y: 195.38231, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Player Pool
-    name: Daddy
-    position: {x: -8.644712, y: 194.5, z: 0}
+  - poolName: Left
+    name: Left
+    position: {x: 17.98, y: 182.03134, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Laser Pool
-    name: Laser Pipe (1)
-    position: {x: 11.294063, y: 188.94398, z: 0}
-    rotation: {x: 0, y: 0, z: 1, w: 0}
-  - poolName: Laser Pool
-    name: Laser Pipe
-    position: {x: 50.63815, y: 202.95518, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (15)
-    position: {x: 80.18, y: 210.7, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (16)
-    position: {x: 71.68, y: 210.7, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (17)
-    position: {x: 63.18, y: 210.7, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (18)
-    position: {x: 13.849998, y: 210.7, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (19)
-    position: {x: 5.6, y: 210.7, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (25)
-    position: {x: -2.75, y: 210.7, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (24)
-    position: {x: 46.5, y: 211.1, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (23)
-    position: {x: 55, y: 211.1, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (22)
-    position: {x: 21.9, y: 210.7, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (21)
-    position: {x: 30.4, y: 210.7, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (20)
-    position: {x: 38.777084, y: 210.7, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (26)
-    position: {x: -11.2, y: 210.7, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (27)
-    position: {x: -19, y: 210.7, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (13)
-    position: {x: -19, y: 183.91023, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (12)
-    position: {x: -11.2, y: 183.91023, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (6)
-    position: {x: 39.377083, y: 183.91023, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (7)
-    position: {x: 31, y: 183.91023, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (8)
-    position: {x: 22.5, y: 183.91023, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (9)
-    position: {x: 14, y: 181.9, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (10)
-    position: {x: 5.5, y: 182, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (11)
-    position: {x: -2.75, y: 183.91023, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (5)
-    position: {x: 46.43, y: 183.91023, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (4)
-    position: {x: 54.68, y: 183.91023, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (3)
-    position: {x: 63.18, y: 183.91023, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (2)
-    position: {x: 71.68, y: 183.91023, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass (1)
-    position: {x: 80.18, y: 183.91023, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Grass
-    name: Grass
-    position: {x: 88.55708, y: 183.91023, z: 0}
+  - poolName: Down Curve
+    name: Down(Up Left)
+    position: {x: 19.362898, y: 188.67245, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
   - poolName: Right
     name: Right
-    position: {x: 89.58, y: 184.6, z: 0}
+    position: {x: 4.58, y: 183.94, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Door
-    name: Door
-    position: {x: 82.40244, y: 196.006, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Down 3
-    name: Down(Up) 3 (1)
-    position: {x: 80.60721, y: 189.28862, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
   - poolName: Down Curve 2
     name: Down(Up Right)
-    position: {x: 89.44, y: 190.37, z: 0}
+    position: {x: 4.372372, y: 189.71355, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
   - poolName: Up 3
-    name: Up(Down) 3 (6)
-    position: {x: -18.5, y: 203.16, z: 0}
+    name: Up(Down) 3
+    position: {x: 68.59, y: 203.21, z: 0}
     rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Up 3
-    name: Up(Down) 3 (5)
-    position: {x: -8.83, y: 203.16, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Up 3
-    name: Up(Down) 3 (4)
-    position: {x: 11.24, y: 203.11975, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Up 2
-    name: Up(Down) 2 (3)
-    position: {x: 1.2999992, y: 203.1, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Up 2
-    name: Up(Down) 2
-    position: {x: 31.4, y: 203.1, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Up 3
-    name: Up(Down) 3 (3)
-    position: {x: 41.34, y: 203.11975, z: 0}
+  - poolName: Down 3
+    name: Down(Up) 3
+    position: {x: 69.89, y: 188.47, z: 0}
     rotation: {x: -0, y: -0, z: -0, w: 1}
   - poolName: Up 3
     name: Up(Down) 3 (1)
     position: {x: 21.27, y: 203.16, z: 0}
     rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Laser Pool
+    name: Laser Pipe
+    position: {x: 50.63815, y: 202.95518, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Laser Pool
+    name: Laser Pipe (1)
+    position: {x: 11.294063, y: 188.94398, z: 0}
+    rotation: {x: -0, y: -0, z: 1, w: 0}
   - poolName: Up 3
-    name: Up(Down) 3
-    position: {x: 60.07, y: 203.16, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Up Curve 2
-    name: Up(Down Right)
-    position: {x: 80.31148, y: 203.14162, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Down 3
-    name: Down(Up) 3 (3)
-    position: {x: 40.63, y: 189.25, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Down 2
-    name: Down(Up) 2 (2)
-    position: {x: 30.64, y: 189.33, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Down
-    name: Down(Up) (3)
-    position: {x: 20.81, y: 189.33, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Down 3
-    name: Down(Up) 3
-    position: {x: 1.8, y: 189.29063, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Up U Sand Shape
-    name: Up U Sand Shape(Down) (1)
-    position: {x: 11.3, y: 189.2, z: 0}
-    rotation: {x: 0, y: 0, z: 1, w: 0}
-  - poolName: Up U Sand Shape
-    name: Up U Sand Shape(Down)
-    position: {x: 50.77, y: 203.1, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-  - poolName: Down
-    name: Down(Up) (2)
-    position: {x: -18.051674, y: 189.33, z: 0}
-    rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Down 2
-    name: Down(Up) 2 (1)
-    position: {x: -8.221678, y: 189.33, z: 0}
+    name: Up(Down) 3 (4)
+    position: {x: 11.24, y: 203.11975, z: 0}
     rotation: {x: -0, y: -0, z: -0, w: 1}
   - poolName: Down
     name: Down(Up)
-    position: {x: 50.74, y: 189.33, z: 0}
+    position: {x: 49.690002, y: 188.5, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (17)
+    position: {x: 63.640003, y: 210.7, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (25)
+    position: {x: -2.75, y: 210.7, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (4)
+    position: {x: 53.850002, y: 183.13023, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Up 2
+    name: Up(Down) 2 (3)
+    position: {x: 1.2999992, y: 203.1, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Up U Sand Shape
+    name: Up U Sand Shape(Down) (1)
+    position: {x: 11.3, y: 188.5, z: 0.1}
+    rotation: {x: -0, y: -0, z: 1, w: 0}
+  - poolName: Grass
+    name: Grass (26)
+    position: {x: -11.2, y: 210.7, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (20)
+    position: {x: 38.777084, y: 210.9, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Up 3
+    name: Up(Down) 3 (5)
+    position: {x: -8.83, y: 203.16, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Down 2
+    name: Down(Up) 2 (1)
+    position: {x: -4.5800004, y: 188.64, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (16)
+    position: {x: 72.14001, y: 210.7, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Up Curve 2
+    name: Up(Down Right)
+    position: {x: 78.71, y: 203.2, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Down
+    name: Down(Up) (2)
+    position: {x: -14.678322, y: 188.64, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (1)
+    position: {x: 75.57, y: 183.21, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Down Curve 2
+    name: Down(Up Right)
+    position: {x: 78.86, y: 189.56999, z: 0}
     rotation: {x: -0, y: -0, z: -0, w: 1}
   - poolName: Down 2
     name: Down(Up) 2
-    position: {x: 60.57, y: 189.33, z: 0}
+    position: {x: 59.800003, y: 188.46, z: 0}
     rotation: {x: -0, y: -0, z: -0, w: 1}
-  - poolName: Down 3
-    name: Down(Up) 3
-    position: {x: 70.56, y: 189.25, z: 0}
+  - poolName: Grass
+    name: Grass (23)
+    position: {x: 49.54, y: 211.2, z: 0.1}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (2)
+    position: {x: 70.85, y: 183.13023, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Up U Sand Shape
+    name: Up U Sand Shape(Down)
+    position: {x: 49.9, y: 203.1, z: 0.1}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (6)
+    position: {x: 38.29708, y: 183.13023, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Path Pool
+    name: 1
+    position: {x: 5.9599996, y: 194.58, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (27)
+    position: {x: -19, y: 210.7, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Door
+    name: Door
+    position: {x: 81.049995, y: 195.78, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Up 2
+    name: Up(Down) 2
+    position: {x: 31.4, y: 203.1, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (7)
+    position: {x: 29.919998, y: 183.13023, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (22)
+    position: {x: 21.9, y: 210.7, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Path Pool
+    name: 3
+    position: {x: 109.54, y: 194.94, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (19)
+    position: {x: 5.6, y: 210.7, z: 0}
     rotation: {x: -0, y: -0, z: -0, w: 1}
   - poolName: Up 3
-    name: Up(Down) 3
-    position: {x: 70.197975, y: 203.11975, z: 0}
+    name: Up(Down) 3 (6)
+    position: {x: -18.5, y: 203.16, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (13)
+    position: {x: 1.23, y: 183.05, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (9)
+    position: {x: 10.889999, y: 181.46, z: 0.1}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Right
+    name: Right
+    position: {x: 79.079994, y: 183.8, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (5)
+    position: {x: 45.35, y: 183.13023, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Shark Pool
+    name: Shark
+    position: {x: 50.776894, y: 195.38231, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (11)
+    position: {x: -7.1400003, y: 182.63, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (18)
+    position: {x: 13.849998, y: 210.7, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Player Pool
+    name: Daddy
+    position: {x: -8.644712, y: 194.5, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (12)
+    position: {x: -15.4800005, y: 182.66, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (21)
+    position: {x: 30.4, y: 210.7, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Path Pool
+    name: 2
+    position: {x: 43.690002, y: 194.86865, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Down 2
+    name: Down(Up) 2 (2)
+    position: {x: 29.559998, y: 188.46, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Down 3
+    name: Down(Up) 3 (3)
+    position: {x: 39.55, y: 188.47, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (3)
+    position: {x: 62.350002, y: 183.13023, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+  - poolName: Grass
+    name: Grass (8)
+    position: {x: 23.92, y: 182.82, z: 0}
     rotation: {x: -0, y: -0, z: -0, w: 1}
   pinPackages:
   - poolName: Release Pin Pool
     name: Release Pin
     position: {x: 45.82, y: 194.8591, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
     scale: {x: 1, y: 1, z: 1}
     pieces:
     - name: Pin Base Holder
@@ -286,10 +286,41 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: -0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
+  - poolName: Rotate Pin Pool
+    name: Rotate Pin
+    position: {x: 7.97, y: 192.22, z: 0}
+    rotation: {x: -0, y: -0, z: 1, w: 0}
+    scale: {x: 1, y: 1, z: 1}
+    pieces:
+    - name: Pin Base
+      isActive: 1
+      position: {x: -3.402, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.5, y: 1.5, z: 1}
+    - name: Pin Ring End
+      isActive: 1
+      position: {x: -6.68, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.5, y: 1.5, z: 1}
+    - name: Pin Lock
+      isActive: 1
+      position: {x: 0, y: -6.68, z: 0}
+      rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+      scale: {x: 0.6, y: 0.6, z: 1}
+    - name: Pin Lock (1)
+      isActive: 1
+      position: {x: -6.68, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.6, y: 0.6, z: 1}
+    - name: Pin
+      isActive: 1
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
   - poolName: Holder Pin Pool
     name: Holder Pin
     position: {x: 50.519283, y: 199.32, z: 0}
-    rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+    rotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
     scale: {x: 1, y: 1, z: 1}
     pieces:
     - name: Pin Base Holder
@@ -322,48 +353,17 @@ MonoBehaviour:
       position: {x: -0.02, y: -5.78, z: 0}
       rotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
       scale: {x: 1.5, y: 1.5, z: 1}
-  - poolName: Rotate Pin Pool
-    name: Rotate Pin
-    position: {x: 7.97, y: 192.92, z: 0}
-    rotation: {x: 0, y: 0, z: 1, w: 0}
-    scale: {x: 1, y: 1, z: 1}
-    pieces:
-    - name: Pin Base
-      isActive: 1
-      position: {x: -3.402, y: 0, z: 0}
-      rotation: {x: -0, y: -0, z: -0, w: 1}
-      scale: {x: 1.5, y: 1.5, z: 1}
-    - name: Pin Ring End
-      isActive: 1
-      position: {x: -6.68, y: 0, z: 0}
-      rotation: {x: -0, y: -0, z: -0, w: 1}
-      scale: {x: 1.5, y: 1.5, z: 1}
-    - name: Pin Lock
-      isActive: 1
-      position: {x: 0, y: -6.68, z: 0}
-      rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-      scale: {x: 0.6, y: 0.6, z: 1}
-    - name: Pin Lock (1)
-      isActive: 1
-      position: {x: -6.68, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.6, y: 0.6, z: 1}
-    - name: Pin
-      isActive: 1
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-      scale: {x: 1, y: 1, z: 1}
   cameraPathPackages:
-  - poolName: Camera Path Pool
-    name: cam (1)
-    position: {x: 50.34, y: 196.85, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-    center: {x: 0, y: 0, z: 0}
-    size: 13
   - poolName: Camera Path Pool
     name: cam
     position: {x: 11.02, y: 194.5018, z: 0}
-    rotation: {x: 0, y: 0, z: 0, w: 1}
-    center: {x: 0, y: 0, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+    center: {x: -1.27, y: 0, z: 0}
     size: 10
+  - poolName: Camera Path Pool
+    name: cam (1)
+    position: {x: 50.34, y: 196.85, z: 0}
+    rotation: {x: -0, y: -0, z: -0, w: 1}
+    center: {x: -1.62, y: 0, z: 0}
+    size: 13
   isUnlocked: 0
